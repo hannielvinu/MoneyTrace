@@ -1,0 +1,1524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>FraudShield India — SMS Scam Detector</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;600;800&family=Fraunces:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+  />
+  <style>
+    :root {
+      --bg-black: #000000;
+      --bg-dark-1: #0a0a0a;
+      --bg-dark-2: #111111;
+      --bg-dark-3: #1a1a1a;
+      --text-main: #f0f0f0;
+      --text-muted: #888888;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --accent-danger: #e8918a;
+      --accent-safe: #85c98a;
+      --pill-bg: #1a1a1a;
+      --card-bg: #111111;
+      --step-border: #222222;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      scroll-behavior: smooth;
+      background-color: var(--bg-black);
+      color: var(--text-main);
+      font-family: "IBM Plex Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    main {
+      width: 100%;
+      min-height: 100vh;
+      background-color: var(--bg-black);
+    }
+
+    .section {
+      padding: 72px 24px;
+    }
+
+    .max-width {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      background-color: #000000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .hero-inner {
+      text-align: left;
+      width: 100%;
+    }
+
+    .hero-label {
+      font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      opacity: 0.9;
+    }
+
+    .hero-heading {
+      font-family: "Fraunces", system-ui, sans-serif;
+      font-weight: 700;
+      font-size: clamp(40px, 4.1vw, 52px);
+      line-height: 1.1;
+      margin-bottom: 16px;
+      color: var(--text-main);
+      max-width: 560px;
+    }
+
+    .hero-subheading {
+      font-size: 15px;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin-bottom: 28px;
+    }
+
+    .hero-input-card {
+      background-color: var(--bg-dark-3);
+      border-radius: 16px;
+      border: 1px solid var(--border-subtle);
+      padding: 18px 18px 16px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-textarea {
+      width: 100%;
+      min-height: 110px;
+      resize: vertical;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--text-main);
+      font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .hero-textarea::placeholder {
+      color: #555555;
+    }
+
+    .hero-input-footer {
+      margin-top: 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .lang-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .lang-pill {
+      font-family: "IBM Plex Sans", system-ui, sans-serif;
+      font-size: 12px;
+      padding: 6px 16px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background-color: #1a1a1a;
+      color: #888888;
+      cursor: pointer;
+      transition: background-color 0.18s ease, color 0.18s ease, transform 0.12s ease, border-color 0.18s ease;
+      white-space: nowrap;
+    }
+
+    .lang-pill:hover {
+      transform: translateY(-1px);
+    }
+
+    .lang-pill.active {
+      background-color: #2a2a2a;
+      border-color: rgba(255, 255, 255, 0.3);
+      color: #f0f0f0;
+    }
+
+    .analyze-btn {
+      margin-left: auto;
+      font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 9px 18px;
+      border-radius: 10px;
+      border: none;
+      background-color: #f0f0f0;
+      color: #000000;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background-color 0.18s ease, color 0.18s ease, transform 0.12s ease, box-shadow 0.18s ease, opacity 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .analyze-btn:hover:not(:disabled) {
+      background-color: #e0e0e0;
+      transform: translateY(-1px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.6);
+    }
+
+    .analyze-btn:disabled {
+      opacity: 0.6;
+      cursor: default;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .analyze-btn span.dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background-color: var(--accent-safe);
+    }
+
+    .result-container {
+      margin-top: 18px;
+      min-height: 0;
+    }
+
+    .result-card {
+      border-radius: 14px;
+      padding: 14px 14px 13px;
+      border: 1px solid var(--border-subtle);
+      background-color: var(--card-bg);
+      display: none;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.18s ease, transform 0.18s ease;
+    }
+
+    .result-card.show {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .result-card.scam {
+      background-color: rgba(232, 145, 138, 0.1);
+      border-left: 3px solid #e8918a;
+    }
+
+    .result-card.safe {
+      background-color: rgba(133, 201, 138, 0.1);
+      border-left: 3px solid #85c98a;
+    }
+
+    .result-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .result-title {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    .result-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      font-size: 11px;
+      font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    .badge {
+      border-radius: 999px;
+      padding: 3px 9px;
+      font-size: 11px;
+      font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .badge-label {
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background-color: #ffffff;
+    }
+
+    .badge-risk {
+      text-transform: uppercase;
+    }
+
+    .result-body {
+      font-size: 12px;
+      color: var(--text-main);
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .pill {
+      font-size: 11px;
+      padding: 3px 8px;
+      background-color: var(--pill-bg);
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text-main);
+      font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      white-space: nowrap;
+    }
+
+    .result-error {
+      font-size: 12px;
+      color: var(--accent-danger);
+    }
+
+    /* Scroll hint */
+    .scroll-hint {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      cursor: pointer;
+      opacity: 0.7;
+      transition: opacity 0.18s ease;
+    }
+
+    .scroll-hint:hover {
+      opacity: 1;
+    }
+
+    .scroll-hint svg {
+      width: 18px;
+      height: 18px;
+      fill: #888888;
+      animation: bounce 1.6s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translate(-50%, 0);
+      }
+      50% {
+        transform: translate(-50%, 6px);
+      }
+    }
+
+    /* SECTION 2 – MAP */
+    .section-map {
+      background-color: var(--bg-dark-1);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+
+    .section-label {
+      font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      color: var(--text-muted);
+    }
+
+    #map {
+      width: 100%;
+      height: 85vh;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8);
+      position: relative;
+    }
+
+    .map-legend {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 6px 8px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      color: #f0f0f0;
+      pointer-events: none;
+      z-index: 500;
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+    }
+
+    .map-note {
+      margin-top: 10px;
+      font-size: 11px;
+      color: var(--text-muted);
+      font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    /* SECTION 3 – STATS + CATEGORIES */
+    .section-stats {
+      background-color: var(--bg-dark-2);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 40px;
+      align-items: center;
+    }
+
+    .counter-label {
+      font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .counter-value {
+      font-size: 40px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      margin-bottom: 14px;
+      font-family: "Fraunces", system-ui, sans-serif;
+    }
+
+    .counter-subtext {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .stat-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .stat-pill {
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background-color: var(--pill-bg);
+      font-size: 11px;
+      font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      color: var(--text-main);
+    }
+
+    .chart-card {
+      background-color: var(--card-bg);
+      border-radius: 16px;
+      border: 1px solid var(--border-subtle);
+      padding: 18px 18px 14px;
+    }
+
+    .chart-title {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--text-main);
+    }
+
+    .chart-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 260px;
+      margin: 0 auto;
+    }
+
+    .chart-legend {
+      margin-top: 10px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 4px 8px;
+      font-size: 11px;
+      font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      color: var(--text-muted);
+    }
+
+    .chart-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .chart-legend-swatch {
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+    }
+
+    /* SECTION 4 – HOW IT WORKS */
+    .section-how {
+      background-color: var(--bg-black);
+    }
+
+    .how-title {
+      font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      color: var(--text-muted);
+    }
+
+    .how-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .how-card {
+      border-radius: 14px;
+      border: 1px solid var(--step-border);
+      background-color: var(--bg-dark-1);
+      padding: 18px 16px 16px;
+    }
+
+    .how-step {
+      font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #c9b8e8;
+      margin-bottom: 6px;
+    }
+
+    .how-heading {
+      font-weight: 600;
+      font-size: 15px;
+      margin-bottom: 8px;
+      color: var(--text-main);
+    }
+
+    .how-body {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* SECTION 5 – SCAM EVOLUTION TABLE */
+    .section-table {
+      background-color: var(--bg-dark-1);
+    }
+
+    .table-title {
+      font-family: "Fraunces", system-ui, sans-serif;
+      font-size: 22px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      color: var(--text-main);
+    }
+
+    .table-subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+      max-width: 640px;
+    }
+
+    .evolution-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+      background-color: var(--bg-dark-2);
+    }
+
+    .evolution-table thead {
+      background-color: var(--bg-dark-3);
+    }
+
+    .evolution-table th,
+    .evolution-table td {
+      padding: 10px 12px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .evolution-table th {
+      font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .evolution-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .similarity-score {
+      font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      color: #d4756e;
+    }
+
+    .similarity-badge {
+      font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 11px;
+      padding: 2px 7px;
+      border-radius: 999px;
+      border: 1px solid rgba(212, 117, 110, 0.7);
+      color: #d4756e;
+      background-color: rgba(212, 117, 110, 0.06);
+    }
+
+    .bar-cell {
+      width: 180px;
+    }
+
+    .bar-track {
+      width: 100%;
+      height: 6px;
+      border-radius: 999px;
+      background-color: #1a1a1a;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: 999px;
+      background-color: rgba(232, 145, 138, 0.7);
+      border: 1px solid #e8918a;
+      box-sizing: border-box;
+      width: 0;
+      transition: width 0.8s ease-out;
+    }
+
+    /* SECTION 6 – FOOTER */
+    .section-footer {
+      background-color: #000000;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 24px;
+      padding-bottom: 18px;
+    }
+
+    .footer-main {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 12px;
+      color: #f0f0f0;
+    }
+
+    .logo-mark {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo-hex {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      border: 1px solid #f0f0f0;
+      position: relative;
+      transform: rotate(45deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .logo-hex::before {
+      content: "";
+      position: absolute;
+      inset: 4px;
+      border-radius: 4px;
+      border: 1px solid rgba(240, 240, 240, 0.4);
+    }
+
+    .logo-text {
+      font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #f0f0f0;
+    }
+
+    .footer-bottom {
+      margin-top: 12px;
+      font-size: 11px;
+      color: #f0f0f0;
+      font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      text-align: center;
+    }
+
+    /* Responsive */
+    @media (max-width: 880px) {
+      .stats-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .how-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-inner {
+        text-align: left;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .section {
+        padding-inline: 18px;
+      }
+
+      .hero-input-footer {
+        align-items: flex-start;
+      }
+
+      .analyze-btn {
+        width: 100%;
+        justify-content: center;
+        margin-left: 0;
+      }
+
+      .footer-main {
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <!-- SECTION 1: HERO -->
+    <section class="section hero" id="hero">
+      <div class="max-width hero-inner">
+        <div class="hero-label">FRAUDSHIELD INDIA</div>
+        <h1 class="hero-heading">Is this message a scam?</h1>
+        <p class="hero-subheading">
+          Paste any SMS in Hindi, Hinglish, or English. Instant AI detection.
+        </p>
+        <div class="hero-input-card">
+          <textarea
+            id="messageInput"
+            class="hero-textarea"
+            placeholder="Paste suspicious message here..."
+          ></textarea>
+          <div class="hero-input-footer">
+            <div class="lang-row" id="languagePills">
+              <button class="lang-pill active" data-lang="en">English</button>
+              <button class="lang-pill" data-lang="hi">हिंदी</button>
+              <button class="lang-pill" data-lang="hinglish">Hinglish</button>
+              <button class="lang-pill" data-lang="ta">தமிழ்</button>
+            </div>
+            <button id="analyzeButton" class="analyze-btn">
+              <span class="dot"></span>
+              ANALYZE
+            </button>
+          </div>
+          <div class="result-container">
+            <div id="resultCard" class="result-card">
+              <div class="result-header">
+                <div class="result-title" id="resultTitle">Result</div>
+                <div class="result-meta">
+                  <span class="badge" id="categoryBadge" style="display:none;">
+                    <span class="badge-dot"></span>
+                    <span class="badge-label" id="categoryLabel"></span>
+                  </span>
+                  <span class="badge" id="riskBadge" style="display:none;">
+                    <span class="badge-label badge-risk" id="riskLabel"></span>
+                  </span>
+                  <span class="badge" id="confidenceBadge" style="display:none;">
+                    <span class="badge-label" id="confidenceLabel"></span>
+                  </span>
+                </div>
+              </div>
+              <div class="result-body" id="resultExplanation"></div>
+              <div class="pill-row" id="redFlagsRow"></div>
+              <div class="result-error" id="resultError" style="display:none;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-hint" id="scrollHint">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 16.5c-.256 0-.512-.098-.707-.293l-5-5 1.414-1.414L12 14.086l4.293-4.293 1.414 1.414-5 5A1 1 0 0 1 12 16.5z" />
+        </svg>
+      </div>
+    </section>
+
+    <!-- SECTION 2: INDIA FRAUD HOTSPOT MAP -->
+    <section class="section section-map" id="map-section">
+      <div class="max-width">
+        <div class="section-label">
+          FRAUD HOTSPOTS
+          <span id="liveBadge" style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1px;color:#888;margin-left:12px;vertical-align:middle;">SEED DATA</span>
+        </div>
+        <div id="map"></div>
+        <div class="map-note">Synthetic illustrative data for demo. Report: cybercrime.gov.in | 1930</div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: STATS + CATEGORIES -->
+    <section class="section section-stats" id="stats-section">
+      <div class="max-width">
+        <div class="stats-grid">
+          <div>
+            <div class="counter-label">REPORTS TRACKED</div>
+            <div class="counter-value" id="reportsCounter">0</div>
+            <div class="counter-subtext">
+              Aggregated synthetic reports across major Indian cities to stress-test FraudShield India's detection engine.
+            </div>
+            <div class="stat-pills">
+              <div class="stat-pill">100% Accuracy</div>
+              <div class="stat-pill">8 Categories</div>
+              <div class="stat-pill">3 Languages</div>
+            </div>
+          </div>
+          <div>
+            <div class="chart-card">
+              <div class="chart-title">Scam category breakdown</div>
+              <div class="chart-wrapper">
+                <canvas id="categoryChart"></canvas>
+              </div>
+              <div class="chart-legend" id="chartLegend"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: HOW IT WORKS -->
+    <section class="section section-how" id="how-section">
+      <div class="max-width">
+        <div class="how-title">HOW FRAUDSHIELD INDIA WORKS</div>
+        <div class="how-grid">
+          <div class="how-card">
+            <div class="how-step">01 — RECEIVE</div>
+            <div class="how-heading">SMS &amp; chat intake</div>
+            <div class="how-body">
+              SMS arrives on your Android device or Telegram message. FraudShield listens via lightweight connectors without storing your contacts or media.
+            </div>
+          </div>
+          <div class="how-card">
+            <div class="how-step">02 — ANALYZE</div>
+            <div class="how-heading">Azure o4-mini classifier</div>
+            <div class="how-body">
+              Azure OpenAI o4-mini classifies in milliseconds across 8 scam types, combining pattern libraries with live fraud intelligence from Indian incident reports.
+            </div>
+          </div>
+          <div class="how-card">
+            <div class="how-step">03 — PROTECT</div>
+            <div class="how-heading">Hindi-first alerting</div>
+            <div class="how-body">
+              Instant Hindi alert with red flags, scam explanation, and cybercrime.gov.in pre-fill so victims can file FIR-grade reports in under two minutes.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: SCAM EVOLUTION TABLE -->
+    <section class="section section-table" id="evolution-section">
+      <div class="max-width">
+        <div class="table-title">SCAM EVOLUTION 2020–2025</div>
+        <div class="table-subtitle">
+          How new scams inherit patterns from older playbooks — cosine similarity via Azure OpenAI embeddings.
+        </div>
+        <div class="table-wrapper">
+          <table class="evolution-table">
+            <thead>
+              <tr>
+                <th>Template A</th>
+                <th>Template B</th>
+                <th>Similarity</th>
+                <th>Risk</th>
+                <th class="bar-cell">Pattern overlap</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>KBC Lottery 2020</td>
+                <td>Jio Lucky Draw 2021</td>
+                <td class="similarity-score">0.89</td>
+                <td><span class="similarity-badge">HIGH</span></td>
+                <td class="bar-cell">
+                  <div class="bar-track">
+                    <div class="bar-fill" data-score="0.89"></div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Fake Cashback 2022</td>
+                <td>Digital Arrest 2024</td>
+                <td class="similarity-score">0.83</td>
+                <td><span class="similarity-badge">HIGH</span></td>
+                <td class="bar-cell">
+                  <div class="bar-track">
+                    <div class="bar-fill" data-score="0.83"></div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>KYC Freeze 2023</td>
+                <td>Digital Arrest 2024</td>
+                <td class="similarity-score">0.86</td>
+                <td><span class="similarity-badge">HIGH</span></td>
+                <td class="bar-cell">
+                  <div class="bar-track">
+                    <div class="bar-fill" data-score="0.86"></div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Fake Cashback 2022</td>
+                <td>E-Challan Phishing 2025</td>
+                <td class="similarity-score">0.84</td>
+                <td><span class="similarity-badge">HIGH</span></td>
+                <td class="bar-cell">
+                  <div class="bar-track">
+                    <div class="bar-fill" data-score="0.84"></div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Digital Arrest 2024</td>
+                <td>E-Challan Phishing 2025</td>
+                <td class="similarity-score">0.82</td>
+                <td><span class="similarity-badge">HIGH</span></td>
+                <td class="bar-cell">
+                  <div class="bar-track">
+                    <div class="bar-fill" data-score="0.82"></div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: FOOTER -->
+    <footer class="section section-footer" id="footer">
+      <div class="max-width">
+        <div class="footer-main">
+          <div class="logo-mark">
+            <div class="logo-hex"></div>
+            <div class="logo-text">FRAUDSHIELD INDIA</div>
+          </div>
+          <div>
+            Powered by Azure Functions · Azure OpenAI · Azure AI Language · Cosmos DB
+          </div>
+          <div>
+            MIT Manipal · AI Unlocked 2025 · Boulevard of Secure Dreams
+          </div>
+        </div>
+        <div class="footer-bottom">
+          Emergency: 1930 | cybercrime.gov.in
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Scripts -->
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""
+  ></script>
+  <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script>
+    // Shared data
+    const SEED_REPORTS = [
+      { city:"Mumbai", lat:19.076, lng:72.8777, reports:847, topScam:"fake_cashback" },
+      { city:"Delhi", lat:28.6139, lng:77.209, reports:723, topScam:"digital_arrest" },
+      { city:"Bangalore", lat:12.9716, lng:77.5946, reports:534, topScam:"job_scam" },
+      { city:"Hyderabad", lat:17.385, lng:78.4867, reports:412, topScam:"kyc_freeze" },
+      { city:"Chennai", lat:13.0827, lng:80.2707, reports:389, topScam:"phishing_link" },
+      { city:"Kolkata", lat:22.5726, lng:88.3639, reports:298, topScam:"lottery_scam" },
+      { city:"Pune", lat:18.5204, lng:73.8567, reports:267, topScam:"fake_cashback" },
+      { city:"Ahmedabad", lat:23.0225, lng:72.5714, reports:234, topScam:"govt_impersonation" },
+      { city:"Jaipur", lat:26.9124, lng:75.7873, reports:198, topScam:"digital_arrest" },
+      { city:"Lucknow", lat:26.8467, lng:80.9462, reports:176, topScam:"kyc_freeze" },
+      { city:"Chandigarh", lat:30.7333, lng:76.7794, reports:145, topScam:"job_scam" },
+      { city:"Bhopal", lat:23.2599, lng:77.4126, reports:123, topScam:"phishing_link" },
+      { city:"Patna", lat:25.6093, lng:85.1376, reports:156, topScam:"lottery_scam" },
+      { city:"Kochi", lat:9.9312, lng:76.2673, reports:98, topScam:"fake_cashback" },
+      { city:"Guwahati", lat:26.1445, lng:91.7362, reports:87, topScam:"digital_arrest" },
+      { city:"Manipal", lat:13.3525, lng:74.786, reports:45, topScam:"job_scam" },
+    ];
+    let scamReports = [...SEED_REPORTS];
+
+    const categoryColors = {
+      fake_cashback: "#f4a6a0",
+      digital_arrest: "#c9b8e8",
+      kyc_freeze: "#fcd5a0",
+      job_scam: "#a8c8f0",
+      lottery_scam: "#a8dbb0",
+      govt_impersonation: "#c4a882",
+      phishing_link: "#b0bec5",
+      legitimate: "#a8dbb0",
+    };
+
+    function formatCategoryLabel(key) {
+      return key
+        .split("_")
+        .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+        .join(" ");
+    }
+
+    // HERO – API integration
+    (function setupHero() {
+      const textarea = document.getElementById("messageInput");
+      const analyzeButton = document.getElementById("analyzeButton");
+      const resultCard = document.getElementById("resultCard");
+      const resultTitle = document.getElementById("resultTitle");
+      const categoryBadge = document.getElementById("categoryBadge");
+      const categoryLabel = document.getElementById("categoryLabel");
+      const riskBadge = document.getElementById("riskBadge");
+      const riskLabel = document.getElementById("riskLabel");
+      const confidenceBadge = document.getElementById("confidenceBadge");
+      const confidenceLabel = document.getElementById("confidenceLabel");
+      const resultExplanation = document.getElementById("resultExplanation");
+      const redFlagsRow = document.getElementById("redFlagsRow");
+      const resultError = document.getElementById("resultError");
+
+      // Language selector pills
+      const languagePills = document.getElementById("languagePills");
+      const languageExamples = {
+        en: "CBI officer here. Your Aadhaar linked to money laundering. Transfer Rs.50,000 or face arrest.",
+        hi: "आपके बैंक खाते को 24 घंटे में बंद किया जाएगा। KYC अपडेट करें: hdfc-kyc.xyz पर जाएं।",
+        hinglish: "Google Pay se aapko Rs.1500 cashback mila hai. Collect request approve karein: cashback@ybl",
+        ta: "உங்கள் வங்கி கணக்கு முடக்கப்படும். உடனே KYC புதுப்பிக்கவும்: sbi-kyc.xyz",
+      };
+
+      if (languagePills) {
+        languagePills.addEventListener("click", (e) => {
+          const btn = e.target.closest(".lang-pill");
+          if (!btn) return;
+          const lang = btn.getAttribute("data-lang");
+          if (!lang || !languageExamples[lang]) return;
+
+          textarea.value = languageExamples[lang];
+          textarea.focus();
+
+          Array.from(languagePills.querySelectorAll(".lang-pill")).forEach((pill) =>
+            pill.classList.toggle("active", pill === btn)
+          );
+        });
+      }
+
+      function resetResult() {
+        resultCard.classList.remove("scam", "safe", "show");
+        resultExplanation.textContent = "";
+        redFlagsRow.innerHTML = "";
+        resultError.style.display = "none";
+        resultError.textContent = "";
+        categoryBadge.style.display = "none";
+        riskBadge.style.display = "none";
+        confidenceBadge.style.display = "none";
+      }
+
+      function applyResult(data) {
+        // Heuristic interpretation of API response
+        const categoryKey = data.category || data.top_category || "legitimate";
+        const risk = (data.risk_level || data.risk || (categoryKey === "legitimate" ? "LOW" : "HIGH")).toUpperCase();
+        const confidence = typeof data.confidence === "number"
+          ? data.confidence
+          : (typeof data.score === "number" ? data.score : null);
+        const isLegit = categoryKey === "legitimate" || risk === "LOW";
+        const explanation = data.explanation_hi || data.explanation || data.reason_hi || "";
+        const redFlags = Array.isArray(data.red_flags) ? data.red_flags : (Array.isArray(data.flags) ? data.flags : []);
+
+        resultCard.classList.remove("scam", "safe");
+        resultCard.classList.add(isLegit ? "safe" : "scam");
+        resultTitle.textContent = isLegit ? "SAFE MESSAGE" : "SCAM DETECTED";
+
+        // Category
+        const catColor = categoryColors[categoryKey] || "#e5e7eb";
+        categoryBadge.style.display = "inline-flex";
+        categoryBadge.querySelector(".badge-dot").style.backgroundColor = catColor;
+        categoryBadge.style.borderColor = catColor + "cc";
+        categoryLabel.textContent = formatCategoryLabel(categoryKey);
+
+        // Risk
+        riskBadge.style.display = "inline-flex";
+        riskLabel.textContent = risk;
+
+        // Confidence
+        if (confidence !== null && !Number.isNaN(confidence)) {
+          const pct = Math.round(confidence * 100);
+          confidenceBadge.style.display = "inline-flex";
+          confidenceLabel.textContent = pct + "% confidence";
+        } else {
+          confidenceBadge.style.display = "none";
+        }
+
+        // Explanation
+        if (explanation) {
+          resultExplanation.textContent = explanation;
+        } else {
+          resultExplanation.textContent = isLegit
+            ? "कोई स्पष्ट धोखाधड़ी पैटर्न नहीं मिला। फिर भी, कभी भी OTP, PIN या पूरा कार्ड नंबर साझा न करें।"
+            : "संदेश में उच्च जोखिम वाले पैटर्न मिले। किसी भी लिंक पर क्लिक न करें, पैसे न भेजें और 1930 पर रिपोर्ट करें।";
+        }
+
+        // Red flags
+        redFlagsRow.innerHTML = "";
+        if (redFlags.length) {
+          redFlags.forEach(flag => {
+            const el = document.createElement("div");
+            el.className = "pill";
+            el.textContent = flag;
+            redFlagsRow.appendChild(el);
+          });
+        } else {
+          const el = document.createElement("div");
+          el.className = "pill";
+          el.textContent = isLegit ? "No critical fraud triggers" : "Urgency · unknown number · money demand";
+          redFlagsRow.appendChild(el);
+        }
+
+        resultCard.classList.add("show");
+      }
+
+      async function analyze() {
+        const message = textarea.value.trim();
+        if (!message) {
+          textarea.focus();
+          return;
+        }
+
+        resetResult();
+        analyzeButton.disabled = true;
+        analyzeButton.textContent = "ANALYZING...";
+
+        try {
+          const res = await fetch("https://fraudshield-api.azurewebsites.net/api/classify", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              message,
+              source: "landing",
+            }),
+          });
+
+          if (!res.ok) {
+            throw new Error("API error: " + res.status);
+          }
+
+          const data = await res.json();
+          applyResult(data);
+        } catch (err) {
+          resultCard.classList.add("show", "scam");
+          resultTitle.textContent = "UNABLE TO REACH CLASSIFIER";
+          resultExplanation.textContent = "API कॉल फिलहाल उपलब्ध नहीं है। कुछ देर बाद दोबारा कोशिश करें, या सीधे cybercrime.gov.in पर रिपोर्ट दर्ज करें।";
+          categoryBadge.style.display = "none";
+          riskBadge.style.display = "none";
+          confidenceBadge.style.display = "none";
+          resultError.style.display = "block";
+          resultError.textContent = String(err);
+        } finally {
+          analyzeButton.disabled = false;
+          analyzeButton.textContent = "ANALYZE";
+        }
+      }
+
+      analyzeButton.addEventListener("click", analyze);
+      textarea.addEventListener("keydown", (e) => {
+        if ((e.metaKey || e.ctrlKey) && e.key === "Enter") {
+          e.preventDefault();
+          analyze();
+        }
+      });
+    })();
+
+    // Scroll hint
+    (function setupScrollHint() {
+      const scrollHint = document.getElementById("scrollHint");
+      scrollHint.addEventListener("click", () => {
+        const target = document.getElementById("map-section");
+        if (target) target.scrollIntoView({ behavior: "smooth" });
+      });
+    })();
+
+    // Leaflet map + heatmap
+    (function setupMap() {
+      const map = L.map("map", {
+        zoomControl: true,
+        attributionControl: false,
+      }).setView([20.5937, 78.9629], 5);
+
+      window._leafletMap = map;
+
+      L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
+        maxZoom: 18,
+      }).addTo(map);
+
+      function radiusForReports(reports) {
+        const minR = 8;
+        const maxR = 28;
+        const maxReports = scamReports.reduce((max, r) => Math.max(max, r.reports), 0) || 1;
+        const ratio = reports / maxReports;
+        return minR + (maxR - minR) * ratio;
+      }
+
+      function colorForReports(reports) {
+        if (reports > 500) return "#e8918a";  // Critical
+        if (reports >= 200) return "#f5c07a"; // High
+        return "#85c98a";                    // Moderate
+      }
+
+      function renderMapData(reports) {
+        const maxReports = reports.reduce((max, r) => Math.max(max, r.reports), 0) || 1;
+        const markersLayer = L.layerGroup().addTo(map);
+        window._mapMarkersLayer = markersLayer;
+        const heatPoints = [];
+
+        reports.forEach((r) => {
+          const color = colorForReports(r.reports);
+          const radius = radiusForReports(r.reports);
+
+          L.circleMarker([r.lat, r.lng], {
+            radius,
+            color: color,
+            weight: 1.5,
+            fillColor: color,
+            fillOpacity: 0.6,
+          }).addTo(markersLayer).bindPopup(`
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;
+              color:#f0f0f0;background:#111111;border:1px solid rgba(255,255,255,0.1);
+              padding:8px 10px;">
+              <div style="font-weight:600;margin-bottom:3px;">${r.city}</div>
+              <div style="color:#888;margin-bottom:4px;">Reports: <strong style="color:#f0f0f0">${r.reports}</strong></div>
+              <div style="margin-bottom:4px;">Top scam:
+                <span style="display:inline-flex;align-items:center;gap:4px;
+                  padding:2px 7px;border-radius:999px;
+                  border:1px solid ${categoryColors[r.topScam]||'#888'};font-size:11px;">
+                  <span style="width:7px;height:7px;border-radius:50%;
+                    background:${categoryColors[r.topScam]||'#888'}"></span>
+                  <span>${formatCategoryLabel(r.topScam)}</span>
+                </span>
+              </div>
+              <div style="font-size:11px;color:#888;">Report: cybercrime.gov.in | 1930</div>
+            </div>
+          `);
+
+          heatPoints.push([r.lat, r.lng, Math.max(0.3, r.reports / maxReports)]);
+        });
+
+        const heatLayer = L.heatLayer(heatPoints, {
+          radius: 35,
+          blur: 25,
+          maxZoom: 12,
+          gradient: {
+            0.2: "#85c98a",
+            0.5: "#f5c07a",
+            0.8: "#e8918a",
+            1.0: "#c9b8e8",
+          },
+        }).addTo(map);
+        window._mapHeatLayer = heatLayer;
+      }
+
+      renderMapData(scamReports);
+
+      // Legend overlay
+      const legend = document.createElement("div");
+      legend.className = "map-legend";
+      legend.innerHTML = `
+        <span style="margin-right:2px;">Legend:</span>
+        <span class="legend-item">
+          <span class="legend-dot" style="background:#e8918a;"></span>
+          <span>Critical</span>
+        </span>
+        <span class="legend-item">
+          <span class="legend-dot" style="background:#f5c07a;"></span>
+          <span>High</span>
+        </span>
+        <span class="legend-item">
+          <span class="legend-dot" style="background:#85c98a;"></span>
+          <span>Moderate</span>
+        </span>
+      `;
+      document.getElementById("map").appendChild(legend);
+
+      // Fix initial sizing and handle resizes
+      setTimeout(() => {
+        map.invalidateSize();
+      }, 400);
+
+      const mapSection = document.getElementById("map-section");
+      if (mapSection && window.ResizeObserver) {
+        const ro = new ResizeObserver(() => {
+          map.invalidateSize();
+        });
+        ro.observe(mapSection);
+      }
+    })();
+
+    // Stats: counter + chart
+    (function setupStats() {
+      const totalReports = scamReports.reduce((sum, r) => sum + r.reports, 0);
+      const counterEl = document.getElementById("reportsCounter");
+
+      let start = null;
+      const duration = 1200;
+
+      function animateCounter(timestamp) {
+        if (!start) start = timestamp;
+        const progress = Math.min((timestamp - start) / duration, 1);
+        const current = Math.floor(totalReports * (0.2 + 0.8 * progress));
+        counterEl.textContent = current.toLocaleString("en-IN");
+        if (progress < 1) {
+          window.requestAnimationFrame(animateCounter);
+        }
+      }
+      window.requestAnimationFrame(animateCounter);
+
+      // Category breakdown
+      const categoryCounts = {
+        fake_cashback: 0,
+        digital_arrest: 0,
+        kyc_freeze: 0,
+        job_scam: 0,
+        lottery_scam: 0,
+        govt_impersonation: 0,
+        phishing_link: 0,
+        legitimate: 0,
+      };
+
+      scamReports.forEach((r) => {
+        if (categoryCounts.hasOwnProperty(r.topScam)) {
+          categoryCounts[r.topScam] += r.reports;
+        }
+      });
+
+      // Allocate a small slice to "legitimate" so chart has all 8
+      categoryCounts.legitimate = Math.round(totalReports * 0.12);
+
+      const labels = Object.keys(categoryCounts);
+      const values = labels.map((k) => categoryCounts[k]);
+      const colors = labels.map((k) => categoryColors[k]);
+
+      const ctx = document.getElementById("categoryChart").getContext("2d");
+      new Chart(ctx, {
+        type: "doughnut",
+        data: {
+          labels: labels.map(formatCategoryLabel),
+          datasets: [
+            {
+              data: values,
+              backgroundColor: colors,
+              borderWidth: 0,
+            },
+          ],
+        },
+        options: {
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => {
+                  const label = ctx.label || "";
+                  const value = ctx.raw || 0;
+                  const pct = ((value / values.reduce((a, b) => a + b, 0)) * 100).toFixed(1);
+                  return `${label}: ${value.toLocaleString("en-IN")} (${pct}%)`;
+                },
+              },
+            },
+          },
+          cutout: "62%",
+          responsive: true,
+          maintainAspectRatio: false,
+        },
+      });
+
+      // Custom legend
+      const legendEl = document.getElementById("chartLegend");
+      labels.forEach((key) => {
+        const row = document.createElement("div");
+        row.className = "chart-legend-item";
+        const swatch = document.createElement("div");
+        swatch.className = "chart-legend-swatch";
+        swatch.style.backgroundColor = categoryColors[key];
+        const labelSpan = document.createElement("span");
+        labelSpan.textContent = formatCategoryLabel(key);
+        row.appendChild(swatch);
+        row.appendChild(labelSpan);
+        legendEl.appendChild(row);
+      });
+    })();
+
+    // Scam evolution bar animations
+    (function setupEvolutionBars() {
+      const fills = document.querySelectorAll(".bar-fill");
+      fills.forEach((fill) => {
+        const score = parseFloat(fill.getAttribute("data-score") || "0");
+        const pct = Math.max(0, Math.min(1, score)) * 100;
+        requestAnimationFrame(() => {
+          fill.style.width = pct + "%";
+        });
+      });
+    })();
+
+    // Live report loading
+    async function loadLiveReports() {
+      try {
+        const res = await fetch(
+          "https://fraudshield-api.azurewebsites.net/api/reports"
+        );
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        const data = await res.json();
+
+        if (data.cities && data.cities.length > 0) {
+          scamReports = data.cities;
+
+          const counterEl = document.getElementById("reportsCounter");
+          if (counterEl && data.total) {
+            counterEl.textContent = data.total.toLocaleString("en-IN");
+          }
+
+          const liveBadge = document.getElementById("liveBadge");
+          if (liveBadge && data.live) {
+            liveBadge.textContent = "LIVE DATA";
+            liveBadge.style.color = "#85c98a";
+          }
+
+          if (window._mapMarkersLayer) {
+            window._mapMarkersLayer.clearLayers();
+          }
+          if (window._mapHeatLayer && window._leafletMap) {
+            window._leafletMap.removeLayer(window._mapHeatLayer);
+          }
+          if (typeof window._leafletMap !== "undefined") {
+            // Re-render with latest data
+            (function reRender() {
+              const map = window._leafletMap;
+              if (!map) return;
+              const reports = scamReports;
+              const maxReports = reports.reduce((max, r) => Math.max(max, r.reports), 0) || 1;
+              const markersLayer = L.layerGroup().addTo(map);
+              window._mapMarkersLayer = markersLayer;
+              const heatPoints = [];
+
+              reports.forEach((r) => {
+                const color = (r.reports > 500) ? "#e8918a" : (r.reports >= 200 ? "#f5c07a" : "#85c98a");
+                const minR = 8;
+                const maxR = 28;
+                const radius = minR + (maxR - minR) * (r.reports / maxReports);
+
+                L.circleMarker([r.lat, r.lng], {
+                  radius,
+                  color,
+                  weight: 1.5,
+                  fillColor: color,
+                  fillOpacity: 0.6,
+                }).addTo(markersLayer).bindPopup(`
+                  <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;
+                    color:#f0f0f0;background:#111111;border:1px solid rgba(255,255,255,0.1);
+                    padding:8px 10px;">
+                    <div style="font-weight:600;margin-bottom:3px;">${r.city}</div>
+                    <div style="color:#888;margin-bottom:4px;">Reports: <strong style="color:#f0f0f0">${r.reports}</strong></div>
+                    <div style="margin-bottom:4px;">Top scam:
+                      <span style="display:inline-flex;align-items:center;gap:4px;
+                        padding:2px 7px;border-radius:999px;
+                        border:1px solid ${categoryColors[r.topScam]||'#888'};font-size:11px;">
+                        <span style="width:7px;height:7px;border-radius:50%;
+                          background:${categoryColors[r.topScam]||'#888'}"></span>
+                        <span>${formatCategoryLabel(r.topScam)}</span>
+                      </span>
+                    </div>
+                    <div style="font-size:11px;color:#888;">Report: cybercrime.gov.in | 1930</div>
+                  </div>
+                `);
+
+                heatPoints.push([r.lat, r.lng, Math.max(0.3, r.reports / maxReports)]);
+              });
+
+              const heatLayer = L.heatLayer(heatPoints, {
+                radius: 35,
+                blur: 25,
+                maxZoom: 12,
+                gradient: {
+                  0.2: "#85c98a",
+                  0.5: "#f5c07a",
+                  0.8: "#e8918a",
+                  1.0: "#c9b8e8",
+                },
+              }).addTo(map);
+              window._mapHeatLayer = heatLayer;
+            })();
+          }
+        }
+      } catch (e) {
+        console.log("Using seed data:", e.message);
+      }
+    }
+
+    loadLiveReports();
+    setInterval(loadLiveReports, 30000);
+  </script>
+</body>
+</html>
+

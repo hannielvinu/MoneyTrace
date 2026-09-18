@@ -1,0 +1,148 @@
+{
+  "name": "MoneyTrace Autonomous Response Workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "moneytrace-incident",
+        "responseMode": "onReceived",
+        "options": {}
+      },
+      "name": "MoneyTrace Incident Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "incident_id",
+              "value": "={{$json[\"body\"][\"incident_id\"]}}"
+            },
+            {
+              "name": "severity",
+              "value": "={{$json[\"body\"][\"severity\"]}}"
+            },
+            {
+              "name": "scam_type",
+              "value": "={{$json[\"body\"][\"scam_type\"]}}"
+            }
+          ],
+          "number": [
+            {
+              "name": "amount",
+              "value": "={{$json[\"body\"][\"amount\"]}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Validate Incident",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$json[\"severity\"]}}",
+              "value2": "CRITICAL"
+            }
+          ]
+        }
+      },
+      "name": "Is High Risk / Critical?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "escalation_status",
+              "value": "EMERGENCY_QUEUE_ESCALATED"
+            },
+            {
+              "name": "action",
+              "value": "Flag recipient counterparty in national registry & notify fraud ops."
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "High Severity Escalation",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [900, 200]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "escalation_status",
+              "value": "STANDARD_QUEUE"
+            },
+            {
+              "name": "action",
+              "value": "Log transaction and issue standard safe advisory to victim."
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Standard Advisory",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [900, 400]
+    }
+  ],
+  "connections": {
+    "MoneyTrace Incident Webhook": {
+      "main": [
+        [
+          {
+            "node": "Validate Incident",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validate Incident": {
+      "main": [
+        [
+          {
+            "node": "Is High Risk / Critical?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is High Risk / Critical?": {
+      "main": [
+        [
+          {
+            "node": "High Severity Escalation",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Standard Advisory",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}

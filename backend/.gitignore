@@ -1,0 +1,16 @@
+.env
+.env.*
+!.env.example
+__pycache__/
+*.pyc
+.vscode/
+.idea/
+node_modules/
+*.log
+local.settings.json
+.python_packages/
+.venv/
+*.egg-info/
+dist/
+.DS_Store
+.pytest_cache/
