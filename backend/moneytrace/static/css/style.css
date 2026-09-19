@@ -1243,3 +1243,45 @@ html, body {
   overflow-x: auto;
   line-height: 1.6;
 }
+
+/* Minimal Fallback Prompt for Browser Autoplay Policy */
+.voice-banner-prompt {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--brand-dark-navy);
+  color: #FFFFFF;
+  padding: 12px 18px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-elevated);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  z-index: 1000;
+  border: 1px solid var(--brand-cyan);
+  font-size: 13px;
+  font-weight: 600;
+  animation: slideInRight 0.3s ease-out;
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(40px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.btn-voice-play {
+  background: var(--brand-cyan);
+  color: var(--brand-dark-navy);
+  border: none;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-voice-play:hover {
+  background: var(--brand-cyan-hover);
+  color: #FFFFFF;
+}

@@ -87,6 +87,8 @@ async def test_full_flow():
         inc_data = submit_res.json()
         new_inc_id = inc_data["incident_id"]
         print(f"✓ Incident Registered: {new_inc_id}, Message: '{inc_data['message']}'")
+        assert "voice_response" in inc_data, "voice_response missing from intake response"
+        print(f"✓ Voice Acknowledgement Generated: available={inc_data['voice_response'].get('available')}, url={inc_data['voice_response'].get('audio_url')}")
 
         print("\n--- 5. Awaiting Autonomous Investigation Pipeline & Events ---")
         # Await pipeline completion (real Cognee Cloud adds/searches + Gemini structured generation + n8n webhook take 4-8 seconds)
@@ -142,6 +144,19 @@ async def test_full_flow():
         assert "EVIDENCE_PREPARED" in event_types
         assert "N8N_WORKFLOW_COMPLETED" in event_types
         assert "USER_NOTIFICATION_CREATED" in event_types
+
+        # Verify Resolution Voice Response attached to completion event
+        comp_event = next((e for e in events if e["event_type"] == "INCIDENT_COMPLETED"), None)
+        assert comp_event is not None, "INCIDENT_COMPLETED event missing"
+        voice_res = comp_event.get("payload", {}).get("voice_response", {})
+        print(f"✓ Resolution Voice Response in Pipeline: available={voice_res.get('available')}, event={voice_res.get('event')}, url={voice_res.get('audio_url')}")
+
+        # Verify dedicated audio endpoint /api/voice/response
+        voice_endpoint_res = await client.get(f"/api/voice/response/{new_inc_id}/investigation_completed", headers=v1_headers)
+        assert voice_endpoint_res.status_code == 200, f"Voice endpoint failed: {voice_endpoint_res.text}"
+        voice_data = voice_endpoint_res.json()
+        assert voice_data.get("available") is True, "Voice response not available on endpoint"
+        print(f"✓ Voice Response Endpoint verified: {voice_data.get('audio_url')} (cached={voice_data.get('cached')})")
 
         print("\n--- 8. Operator Human Review Signoff ---")
         review_res = await client.post(

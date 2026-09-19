@@ -93,35 +93,38 @@ async def transcribe_audio(audio_bytes: bytes, language: str = "en") -> Dict[str
 
 async def synthesize_guidance(text: str, language: str = "en") -> Optional[str]:
     """
-    Synthesizes victim guidance speech via Sarvam TTS.
+    Synthesizes victim guidance speech via Sarvam TTS (Bulbul v3).
     Returns audio base64 data URL if available, or None.
     """
-    if not SARVAM_API_KEY:
+    api_key = os.environ.get("SARVAM_API_KEY", "").strip()
+    if not api_key:
         return None
 
     lang_code = SARVAM_LANG_MAP.get(language, "en-IN")
     try:
         async with httpx.AsyncClient(timeout=12.0) as client:
             headers = {
-                "api-subscription-key": SARVAM_API_KEY,
+                "api-subscription-key": api_key,
                 "Content-Type": "application/json"
             }
             payload = {
-                "inputs": [text[:400]],
+                "inputs": [text[:200]],
                 "target_language_code": lang_code,
-                "speaker": "meera",
+                "speaker": "priya",
                 "pitch": 0,
                 "pace": 1.0,
                 "loudness": 1.5,
-                "speech_sample_rate": 8000,
+                "speech_sample_rate": 16000,
                 "enable_preprocessing": True,
-                "model": "bulbul:v1"
+                "model": "bulbul:v3"
             }
             resp = await client.post(SARVAM_TTS_URL, json=payload, headers=headers)
             if resp.status_code == 200:
                 audios = resp.json().get("audios", [])
                 if audios:
                     return f"data:audio/wav;base64,{audios[0]}"
+            else:
+                logger.warning(f"Sarvam TTS returned {resp.status_code}: {resp.text[:120]}")
     except Exception as e:
         logger.warning(f"Sarvam TTS failed: {e}")
     return None

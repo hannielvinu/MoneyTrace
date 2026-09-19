@@ -14,3 +14,4 @@ local.settings.json
 dist/
 .DS_Store
 .pytest_cache/
+moneytrace/static/uploads/

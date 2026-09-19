@@ -24,6 +24,8 @@ const MoneyTraceApp = (() => {
   let audioChunks = [];
   let isRecording = false;
   let selectedLanguage = "en";
+  let activeAudioPlayer = null;
+  const playedAudioEvents = new Set(); // Tracks (case_id + '_' + event_type) to guarantee single playback
 
   // Notifications
   let currentNotifications = [];
@@ -203,8 +205,83 @@ const MoneyTraceApp = (() => {
     };
   }
 
+  function playVoiceResponse(voiceResp, fallbackCaseId) {
+    if (!voiceResp || !voiceResp.available || !voiceResp.audio_url) return;
+    const cId = voiceResp.case_id || fallbackCaseId || "generic";
+    const evType = voiceResp.event || "ack";
+    const playKey = `${cId}_${evType}`;
+
+    if (playedAudioEvents.has(playKey)) {
+      console.log(`[Voice] Skipping duplicate playback for ${playKey}`);
+      return;
+    }
+
+    // Mark played immediately
+    playedAudioEvents.add(playKey);
+    console.log(`[Voice] Playing response for ${playKey}: ${voiceResp.audio_url}`);
+
+    try {
+      if (activeAudioPlayer) {
+        activeAudioPlayer.pause();
+        activeAudioPlayer = null;
+      }
+      const audio = new Audio(voiceResp.audio_url);
+      activeAudioPlayer = audio;
+
+      const playPromise = audio.play();
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          showToast(`🔊 Voice update: ${voiceResp.text ? voiceResp.text.substring(0, 45) + '...' : 'Playing...'}`);
+        }).catch(err => {
+          console.warn("[Voice] Autoplay blocked by browser policy:", err);
+          // Show minimal inline banner or toast with small manual play button
+          showAudioPrompt(voiceResp.audio_url, voiceResp.text || "Voice response available");
+        });
+      }
+    } catch (err) {
+      console.error("[Voice] Audio error:", err);
+    }
+  }
+
+  function showAudioPrompt(audioUrl, text) {
+    const existing = document.getElementById("voicePromptBanner");
+    if (existing) existing.remove();
+
+    const banner = document.createElement("div");
+    banner.id = "voicePromptBanner";
+    banner.className = "voice-banner-prompt";
+    banner.innerHTML = `
+      <div style="display:flex; align-items:center; gap:8px;">
+        <span style="font-size:15px;">🔊</span>
+        <span>${text.length > 50 ? text.substring(0, 50) + '...' : text}</span>
+      </div>
+      <button class="btn-voice-play" onclick="MoneyTraceApp.playExplicitAudio('${audioUrl}')">Play Voice</button>
+    `;
+    document.body.appendChild(banner);
+    setTimeout(() => {
+      if (banner && banner.parentElement) banner.remove();
+    }, 12000);
+  }
+
+  function playExplicitAudio(audioUrl) {
+    const banner = document.getElementById("voicePromptBanner");
+    if (banner) banner.remove();
+    try {
+      const audio = new Audio(audioUrl);
+      activeAudioPlayer = audio;
+      audio.play();
+    } catch (e) {
+      console.warn("Explicit play error:", e);
+    }
+  }
+
   function handleIncomingEvent(event) {
     if (!event || !event.event_type) return;
+
+    // Process Voice Acknowledgement or Final Resolution Audio
+    if (event.payload && event.payload.voice_response) {
+      playVoiceResponse(event.payload.voice_response, event.incident_id);
+    }
 
     if (activeView === "investigations") {
       if (!activePipelineIncident && event.incident_id) {
@@ -825,6 +902,11 @@ const MoneyTraceApp = (() => {
 
         showToast(`Report submitted! Case ${data.incident_id} under investigation.`);
         document.getElementById("narrativeInput").value = "";
+
+        // Play immediate voice acknowledgement returned directly from submission response
+        if (data.voice_response) {
+          playVoiceResponse(data.voice_response, data.incident_id);
+        }
       }
     } catch (e) {
       console.error("Submit report error:", e);
@@ -2111,7 +2193,8 @@ python evaluation/evaluator.py</pre>
     rerunInvestigation,
     signoffIncident,
     renderEvaluationView,
-    showSimilarityModal
+    showSimilarityModal,
+    playExplicitAudio
   };
 })();
 

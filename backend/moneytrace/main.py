@@ -41,6 +41,7 @@ from moneytrace.auth import (
 )
 from moneytrace.services.investigation_agent import run_investigation_pipeline
 from moneytrace.services.sarvam_service import transcribe_audio, synthesize_guidance
+from moneytrace.services.voice_response import generate_voice_response
 from moneytrace.services.cognee_service import build_compact_graph_nodes_and_edges
 from moneytrace.services.event_bus import register_subscriber, unregister_subscriber, emit_event
 
@@ -277,7 +278,15 @@ async def api_submit_portal_report(
 
     add_audit_log(inc_id, "Report received", "Victim submitted new report via MoneyTrace User Portal.", datetime.now().strftime("%H:%M:%S"))
 
-    # Emit real-time INCIDENT_CREATED
+    # Generate initial voice acknowledgement (Sarvam Bulbul v3, <= 200 chars, cached)
+    voice_ack = await generate_voice_response(
+        case_id=inc_id,
+        event_type="complaint_received",
+        language=req.language or "en",
+        amount=req.amount or 0.0
+    )
+
+    # Emit real-time INCIDENT_CREATED with voice_response metadata attached
     await emit_event(
         event_type="INCIDENT_CREATED",
         incident_id=inc_id,
@@ -289,7 +298,8 @@ async def api_submit_portal_report(
             "amount": req.amount or 0.0,
             "transaction_id": req.transaction_id or "",
             "narrative_preview": req.narrative[:80],
-            "language": req.language or "en"
+            "language": req.language or "en",
+            "voice_response": voice_ack
         },
         user_id=current_user["id"]
     )
@@ -302,7 +312,8 @@ async def api_submit_portal_report(
         "status": "INVESTIGATING",
         "investigation_stage": "REPORT_RECEIVED",
         "message": "Report submitted — investigation in progress.",
-        "case_reference": inc_id
+        "case_reference": inc_id,
+        "voice_response": voice_ack
     }
 
 
@@ -347,6 +358,35 @@ async def api_voice_synthesize(payload: Dict[str, str]):
     language = payload.get("language", "en")
     audio_url = await synthesize_guidance(text, language)
     return {"audio_url": audio_url}
+
+
+@app.get("/api/voice/response/{incident_id}/{event_type}")
+async def api_get_voice_response(
+    incident_id: str,
+    event_type: str,
+    current_user: Dict[str, Any] = Depends(get_current_user)
+):
+    """
+    Returns the voice response audio URL and metadata for a given incident and event.
+    Authorized: Incident owner or Fraud Operator.
+    """
+    inc = get_incident(incident_id)
+    if not inc:
+        raise HTTPException(status_code=404, detail="Incident not found")
+
+    # Access control: user must own incident or be operator
+    if current_user["role"] != "FRAUD_OPERATOR" and inc.get("user_id") != current_user["id"]:
+        raise HTTPException(status_code=403, detail="Access denied to this incident audio")
+
+    voice_resp = await generate_voice_response(
+        case_id=incident_id,
+        event_type=event_type,
+        language=inc.get("language", "en"),
+        amount=inc.get("amount"),
+        status=inc.get("status"),
+        scam_type=inc.get("scam_type")
+    )
+    return voice_resp
 
 
 # ==========================================

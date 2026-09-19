@@ -31,6 +31,7 @@ from moneytrace.services.cognee_service import (
 )
 from moneytrace.services.n8n_service import trigger_n8n_response_workflow
 from moneytrace.services.sarvam_service import synthesize_guidance
+from moneytrace.services.voice_response import generate_voice_response
 from moneytrace.services.event_bus import emit_event
 from moneytrace.services.gemini_service import run_gemini_investigation
 
@@ -474,7 +475,18 @@ async def run_investigation_pipeline(incident_id: str) -> Dict[str, Any]:
     )
 
     # 8. INCIDENT_COMPLETED
-    audio_url = await synthesize_guidance(victim_guidance_text[:300], language)
+    # Generate resolution voice response via Sarvam Bulbul v3 (<= 200 chars, cached)
+    final_voice_response = await generate_voice_response(
+        case_id=incident_id,
+        event_type="investigation_completed",
+        language=language,
+        amount=amount,
+        status="ESCALATED",
+        scam_type=scam_type,
+        is_fraud=True
+    )
+    voice_audio_url = final_voice_response.get("audio_url") or ""
+
     update_incident_record(incident_id, {
         "amount": amount,
         "transaction_id": tx_id,
@@ -488,7 +500,7 @@ async def run_investigation_pipeline(incident_id: str) -> Dict[str, Any]:
         "qr_id": extracted_entities.get("qr", ""),
         "victim_story_summary": evidence_package["victim_story_summary"],
         "victim_guidance": victim_guidance_text,
-        "victim_guidance_audio_url": audio_url or "",
+        "victim_guidance_audio_url": voice_audio_url,
         "requires_human_review": 1,
         "updated_at": datetime.now().strftime("%d %b %Y, %H:%M IST")
     })
@@ -498,7 +510,12 @@ async def run_investigation_pipeline(incident_id: str) -> Dict[str, Any]:
         incident_id=incident_id,
         status="COMPLETED",
         service="MoneyTrace Autonomous Pipeline",
-        payload={"final_status": "ESCALATED", "scam_type": scam_type, "severity": evidence_package["severity"]},
+        payload={
+            "final_status": "ESCALATED",
+            "scam_type": scam_type,
+            "severity": evidence_package["severity"],
+            "voice_response": final_voice_response
+        },
         user_id=user_id
     )
 
@@ -524,7 +541,8 @@ async def run_investigation_pipeline(incident_id: str) -> Dict[str, Any]:
             "title": "Investigation Complete: Protective Actions Required",
             "summary": user_safe_summary,
             "guidance": victim_guidance_text,
-            "language": language
+            "language": language,
+            "voice_response": final_voice_response
         },
         user_id=user_id
     )
