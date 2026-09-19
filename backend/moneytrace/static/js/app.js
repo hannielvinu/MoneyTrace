@@ -13,9 +13,11 @@ const MoneyTraceApp = (() => {
   let currentUser = null;
   let sseSource = null;
   let activeView = "landing";
-  let activeIncidentId = "MT-10482";
+  let activeIncidentId = "MT-10481";
   let activePipelineIncident = null;
   let pipelineEvents = [];
+  let telemetryTimer = null;
+  let shownSimilarityAlerts = new Set();
 
   // Audio / Mic State
   let mediaRecorder = null;
@@ -155,9 +157,13 @@ const MoneyTraceApp = (() => {
           <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
           <span>Pipeline</span>
         </button>
-        <button class="nav-item-rect ${path.startsWith('/cases') ? 'active' : ''}" onclick="MoneyTraceApp.navigate('/cases/MT-10482')" title="Case Workspace & Graph">
+        <button class="nav-item-rect ${path.startsWith('/cases') ? 'active' : ''}" onclick="MoneyTraceApp.navigate('/cases' + (activeIncidentId ? '/' + activeIncidentId : ''))" title="Case Workspace & Graph">
           <svg viewBox="0 0 24 24" fill="none"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
           <span>Cases</span>
+        </button>
+        <button class="nav-item-rect ${path.startsWith('/evaluation') ? 'active' : ''}" onclick="MoneyTraceApp.navigate('/evaluation')" title="Evaluation & Accuracy Benchmark">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+          <span>Accuracy</span>
         </button>
       `;
     } else {
@@ -201,8 +207,13 @@ const MoneyTraceApp = (() => {
     if (!event || !event.event_type) return;
 
     if (activeView === "investigations") {
-      pipelineEvents.push(event);
-      updatePipelineEventUI(event);
+      if (!activePipelineIncident && event.incident_id) {
+        activePipelineIncident = event.incident_id;
+      }
+      if (activePipelineIncident === event.incident_id) {
+        pipelineEvents.push(event);
+        updatePipelineEventUI(event, true);
+      }
     }
 
     if (activeView === "dashboard") {
@@ -236,7 +247,7 @@ const MoneyTraceApp = (() => {
     const ctx = document.getElementById("viewContextTitle");
 
     // AUTH GUARD: If accessing internal routes anonymously, redirect to /login
-    const protectedRoutes = ["/portal", "/investigations", "/cases", "/dashboard"];
+    const protectedRoutes = ["/portal", "/investigations", "/cases", "/dashboard", "/evaluation"];
     const isProtected = protectedRoutes.some(r => path.startsWith(r));
 
     if (isProtected && !currentUser) {
@@ -249,7 +260,7 @@ const MoneyTraceApp = (() => {
     }
 
     // ROLE GUARD: USER trying to access operator routes
-    if (currentUser && currentUser.role === "USER" && (path.startsWith("/investigations") || path.startsWith("/cases") || path.startsWith("/dashboard"))) {
+    if (currentUser && currentUser.role === "USER" && (path.startsWith("/investigations") || path.startsWith("/cases") || path.startsWith("/dashboard") || path.startsWith("/evaluation"))) {
       window.history.replaceState({}, "", "/portal");
       activeView = "portal";
       showToast("Access restricted: operator authorization required.");
@@ -279,7 +290,7 @@ const MoneyTraceApp = (() => {
     } else if (path.startsWith("/cases")) {
       activeView = "cases";
       const parts = path.split("/");
-      const incId = parts[2] || activeIncidentId || "MT-10482";
+      const incId = parts[2] || activeIncidentId || "MT-10481";
       activeIncidentId = incId;
       if (ctx) ctx.innerHTML = `<span style="color:var(--text-muted);">Case Intelligence</span> / <strong>Case ${incId}</strong>`;
       renderCasesView(incId);
@@ -287,6 +298,10 @@ const MoneyTraceApp = (() => {
       activeView = "dashboard";
       if (ctx) ctx.innerHTML = `<span style="color:var(--text-muted);">Command Center</span> / <strong>Fraud Operations Console</strong>`;
       renderDashboardView();
+    } else if (path.startsWith("/evaluation")) {
+      activeView = "evaluation";
+      if (ctx) ctx.innerHTML = `<span style="color:var(--text-muted);">Empirical Verification</span> / <strong>Evaluation & Accuracy Benchmark</strong>`;
+      renderEvaluationView();
     }
   }
 
@@ -842,7 +857,8 @@ const MoneyTraceApp = (() => {
       console.warn("Could not load incidents list:", e);
     }
 
-    const currentId = activePipelineIncident || (incidentList.length > 0 ? incidentList[0].id : "MT-10482");
+    const currentId = activePipelineIncident || (incidentList.length > 0 ? incidentList[0].id : "MT-10481");
+    activePipelineIncident = currentId;
 
     main.innerHTML = `
       <div class="investigations-layout-3">
@@ -881,6 +897,8 @@ const MoneyTraceApp = (() => {
             </button>
           </div>
 
+          <div id="pipelineOutcomeHighlight"></div>
+
           <div style="display:flex; flex-direction:column; gap:14px;" id="pipelineCentralTrack">
             ${STAGES.map((s, idx) => `
               <div class="pipeline-node-row" id="node_${s.key}">
@@ -892,6 +910,13 @@ const MoneyTraceApp = (() => {
                   </div>
                   <div style="font-size:12px; color:var(--text-body); margin-top:4px;" id="node_desc_${s.key}">
                     ${s.desc}
+                  </div>
+                  <!-- Live Progress Indicator -->
+                  <div class="stage-progress-wrap" id="stage_progress_wrap_${s.key}">
+                    <div class="stage-progress-track">
+                      <div class="stage-progress-fill not-started" id="progress_fill_${s.key}"></div>
+                    </div>
+                    <span class="stage-progress-pct not-started" id="progress_pct_${s.key}">0%</span>
                   </div>
                 </div>
               </div>
@@ -908,7 +933,7 @@ const MoneyTraceApp = (() => {
             </div>
           </div>
           <div id="telemetryLog" style="display:flex; flex-direction:column; gap:8px; font-size:12px; max-height:560px; overflow-y:auto;">
-            <div style="color:var(--text-muted);">Awaiting live event triggers...</div>
+            <div id="telemetryEmptyPlaceholder" style="color:var(--text-muted);">Awaiting live event triggers...</div>
           </div>
         </div>
       </div>
@@ -925,19 +950,37 @@ const MoneyTraceApp = (() => {
       });
       if (res.ok) {
         const data = await res.json();
-        (data.events || []).forEach(ev => updatePipelineEventUI(ev));
+        const events = data.events || [];
+        events.forEach(ev => {
+          if (!ev.incident_id) ev.incident_id = incidentId;
+          updatePipelineEventUI(ev, false);
+        });
       }
     } catch (e) {
       console.warn("Event history load failed:", e);
     }
   }
 
-  function updatePipelineEventUI(event) {
+  function updatePipelineEventUI(event, isLive = false) {
     const nodeEl = document.getElementById(`node_${event.event_type}`);
     const descEl = document.getElementById(`node_desc_${event.event_type}`);
+    const fillEl = document.getElementById(`progress_fill_${event.event_type}`);
+    const pctEl = document.getElementById(`progress_pct_${event.event_type}`);
     const logEl = document.getElementById("telemetryLog");
+    const emptyEl = document.getElementById("telemetryEmptyPlaceholder");
 
-    if (nodeEl) nodeEl.classList.add("completed");
+    // 1. Mark this stage as completed (100%)
+    if (nodeEl) {
+      nodeEl.classList.remove("active", "failed");
+      nodeEl.classList.add("completed");
+    }
+    if (fillEl && pctEl) {
+      fillEl.className = "stage-progress-fill completed";
+      pctEl.className = "stage-progress-pct completed";
+      pctEl.textContent = "100%";
+    }
+
+    // 2. Format detailed message
     if (descEl && event.payload) {
       let text = event.payload.message || `Milestone reached: ${event.status}`;
       if (event.event_type === "TRANSACTION_FOUND") {
@@ -950,23 +993,131 @@ const MoneyTraceApp = (() => {
       descEl.innerHTML = `<span style="color:var(--status-success); font-weight:700;">✓ ${text}</span>`;
     }
 
+    // 3. Mark next stage as processing (active, ~70% shimmering) if not finished
+    const currentIdx = STAGES.findIndex(s => s.key === event.event_type);
+    if (currentIdx !== -1 && currentIdx < STAGES.length - 1 && event.event_type !== "INCIDENT_COMPLETED") {
+      const nextStage = STAGES[currentIdx + 1];
+      const nextNodeEl = document.getElementById(`node_${nextStage.key}`);
+      const nextFillEl = document.getElementById(`progress_fill_${nextStage.key}`);
+      const nextPctEl = document.getElementById(`progress_pct_${nextStage.key}`);
+
+      if (nextNodeEl && !nextNodeEl.classList.contains("completed")) {
+        nextNodeEl.classList.add("active");
+        if (nextFillEl && nextPctEl) {
+          nextFillEl.className = "stage-progress-fill processing";
+          nextPctEl.className = "stage-progress-pct processing";
+          nextPctEl.textContent = "70%";
+        }
+      }
+    }
+
+    // 4. Live Telemetry Insertion & Eye-Catching Highlight
     if (logEl) {
+      if (emptyEl) emptyEl.remove();
+
+      // Remove newest highlight from previous newest item
+      const prevNewest = logEl.querySelector(".telemetry-item.newest");
+      if (prevNewest) {
+        prevNewest.classList.remove("newest");
+        const badge = prevNewest.querySelector(".telemetry-new-badge");
+        if (badge) badge.remove();
+      }
+
       const row = document.createElement("div");
-      row.style.background = "var(--bg-subtle)";
-      row.style.padding = "8px 10px";
-      row.style.borderRadius = "var(--radius-xs)";
-      row.innerHTML = `<strong>${event.event_type}</strong> <span style="color:var(--text-muted); font-size:11px;">(${event.timestamp})</span><div>${event.service}</div>`;
+      row.className = "telemetry-item" + (isLive ? " newest" : "");
+
+      const formattedTime = event.timestamp ? (event.timestamp.includes("T") ? event.timestamp.split("T")[1].slice(0, 8) : event.timestamp) : new Date().toLocaleTimeString();
+
+      row.innerHTML = `
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+          <div style="display:flex; align-items:center; gap:6px;">
+            ${isLive ? '<span class="telemetry-new-badge">✦ NEW</span>' : ''}
+            <strong style="color:var(--brand-dark-navy); font-size:12.5px;">${event.event_type}</strong>
+          </div>
+          <span style="color:var(--text-muted); font-size:11px; font-family:monospace;">${formattedTime}</span>
+        </div>
+        <div style="font-size:11.5px; color:var(--text-body);">${event.service}</div>
+        ${event.payload && event.payload.message ? `<div style="font-size:11px; color:var(--text-muted); margin-top:2px;">${event.payload.message}</div>` : ''}
+      `;
+
       logEl.prepend(row);
+
+      // Transition newest highlight back to normal after 2.5 seconds if live
+      if (isLive) {
+        if (telemetryTimer) clearTimeout(telemetryTimer);
+        telemetryTimer = setTimeout(() => {
+          row.classList.remove("newest");
+          const badge = row.querySelector(".telemetry-new-badge");
+          if (badge) badge.remove();
+        }, 2500);
+      }
+    }
+
+    // 5. Similarity Found Popup / Alert (Real data from RELATED_INCIDENTS_FOUND / GRAPH_READY)
+    if (["RELATED_INCIDENTS_FOUND", "GRAPH_READY"].includes(event.event_type) && event.payload) {
+      const relCount = event.payload.related_count || (event.payload.nodes_count ? event.payload.nodes_count - 1 : 0);
+      const incId = event.incident_id || activePipelineIncident;
+      if (relCount > 0 && !shownSimilarityAlerts.has(incId)) {
+        shownSimilarityAlerts.add(incId);
+        const shared = (event.payload.shared_entities && event.payload.shared_entities.length > 0) 
+          ? event.payload.shared_entities[0] 
+          : null;
+        const exposure = event.payload.total_exposure || 0;
+        showSimilarityModal(incId, relCount, shared, exposure);
+      }
+    }
+
+    // 6. Presentation of Final Outcome Highlight when investigation completed
+    if (event.event_type === "INCIDENT_COMPLETED" && event.payload) {
+      const outcomeContainer = document.getElementById("pipelineOutcomeHighlight");
+      if (outcomeContainer) {
+        const isApproved = event.payload.action === "APPROVED" || event.payload.final_status === "RESOLVED";
+        const bannerIncId = event.incident_id || activePipelineIncident || activeIncidentId || "MT-10481";
+        outcomeContainer.innerHTML = `
+          <div class="investigation-outcome-banner ${isApproved ? 'approved' : ''}">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+              <div>
+                <span class="status-pill ${isApproved ? 'success' : 'critical'}" style="font-size:10.5px;">
+                  ${isApproved ? 'VERIFIED & RESOLVED' : 'HIGH RISK — FRAUDULENT PAYMENT'}
+                </span>
+                <h4 style="font-size:15px; font-weight:800; color:var(--brand-dark-navy); margin-top:6px;">
+                  Investigation Complete: ${bannerIncId}
+                </h4>
+              </div>
+              <button class="btn-secondary-light" style="padding:4px 12px; font-size:11.5px;" onclick="MoneyTraceApp.navigate('/cases/${bannerIncId}')">
+                Open Case File →
+              </button>
+            </div>
+            <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:12px; font-size:12px; background:var(--bg-subtle); padding:10px 14px; border-radius:var(--radius-sm);">
+              <div>
+                <span style="color:var(--text-muted); font-size:11px;">Scam Classification:</span>
+                <div style="font-weight:700; color:var(--brand-dark-navy);">${event.payload.scam_type || 'Fake KYC / UPI Impersonation'}</div>
+              </div>
+              <div>
+                <span style="color:var(--text-muted); font-size:11px;">Severity Assessment:</span>
+                <div style="font-weight:700; color:var(--status-critical);">${event.payload.severity || 'CRITICAL'}</div>
+              </div>
+              <div>
+                <span style="color:var(--text-muted); font-size:11px;">Status:</span>
+                <div style="font-weight:700; color:var(--brand-dark-navy);">${event.payload.final_status || event.payload.action || 'ESCALATED'}</div>
+              </div>
+            </div>
+          </div>
+        `;
+      }
     }
   }
 
   function selectPipelineIncident(id) {
+    if (telemetryTimer) clearTimeout(telemetryTimer);
     activePipelineIncident = id;
     renderInvestigationsView();
   }
 
   async function rerunInvestigation(id) {
     const token = localStorage.getItem("mt_token");
+    if (telemetryTimer) clearTimeout(telemetryTimer);
+    shownSimilarityAlerts.delete(id);
     showToast(`Rerunning investigation agent on ${id}...`);
     try {
       await fetch(`/api/incidents/${id}/investigate`, {
@@ -1007,6 +1158,35 @@ const MoneyTraceApp = (() => {
           `;
           return;
         }
+        if (res.status === 404) {
+          main.innerHTML = `
+            <div class="frosted-card" style="text-align:center; max-width:520px; margin:40px auto; padding:40px;">
+              <div style="font-size:36px; margin-bottom:12px;">🔍</div>
+              <h3 style="color:var(--brand-dark-navy); margin-bottom:8px;">Incident Not Found</h3>
+              <p style="color:var(--text-muted); font-size:13px; line-height:1.5; margin-bottom:24px;">
+                The requested case record <strong>${incidentId}</strong> does not exist in the active database or may have been purged.
+              </p>
+              <div style="display:flex; justify-content:center; gap:12px;">
+                <button class="btn-primary-dark" onclick="MoneyTraceApp.navigate('/dashboard')">
+                  Return to Console
+                </button>
+                <button class="btn-secondary-light" onclick="MoneyTraceApp.navigate('/investigations')">
+                  View Live Pipeline
+                </button>
+              </div>
+            </div>
+          `;
+          return;
+        }
+        main.innerHTML = `
+          <div class="frosted-card" style="text-align:center; max-width:520px; margin:40px auto; padding:40px;">
+            <h3 style="color:var(--status-critical); margin-bottom:10px;">Unable to Load Case</h3>
+            <p style="color:var(--text-muted); font-size:13px;">Server returned status ${res.status}. Please check your connection or retry.</p>
+            <button class="btn-secondary-light" style="margin-top:20px;" onclick="MoneyTraceApp.navigate('/dashboard')">
+              Return to Console
+            </button>
+          </div>
+        `;
         return;
       }
 
@@ -1504,6 +1684,58 @@ const MoneyTraceApp = (() => {
     `;
   }
 
+  function showSimilarityModal(incidentId, count, beneficiary, exposure) {
+    const modal = document.getElementById("modalContainer");
+    if (!modal) return;
+    modal.style.display = "flex";
+    modal.className = "modal-backdrop-frosted";
+    modal.innerHTML = `
+      <div class="modal-card-elevated" style="max-width:520px; border-top:4px solid var(--brand-cyan);">
+        <div class="card-header-clean">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <div style="width:36px; height:36px; border-radius:var(--radius-sm); background:var(--brand-cyan-subtle); display:flex; align-items:center; justify-content:center; color:var(--brand-cyan-hover); font-size:18px;">
+              🔗
+            </div>
+            <div>
+              <h3 class="card-title-main" style="font-size:16px;">Similarities Found</h3>
+              <p class="card-subtitle">Cognee Syndicate Intelligence Alert</p>
+            </div>
+          </div>
+          <button class="icon-btn" onclick="MoneyTraceApp.closeModal()">&times;</button>
+        </div>
+
+        <p style="font-size:13px; color:var(--text-body); margin:14px 0 18px 0; line-height:1.5;">
+          This incident is connected to other reported fraud cases in the syndicate knowledge graph.
+        </p>
+
+        <div style="background:var(--bg-subtle); border:1px solid var(--border-subtle); border-radius:var(--radius-sm); padding:16px; display:flex; flex-direction:column; gap:12px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(0,0,0,0.05); padding-bottom:10px;">
+            <span style="font-size:12px; color:var(--text-muted); font-weight:600;">Related Incidents</span>
+            <strong style="color:var(--brand-dark-navy); font-size:14px;">${count} connected cases</strong>
+          </div>
+          ${beneficiary ? `
+          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(0,0,0,0.05); padding-bottom:10px;">
+            <span style="font-size:12px; color:var(--text-muted); font-weight:600;">Shared Entity / Beneficiary</span>
+            <code style="background:#FFFFFF; padding:2px 8px; border-radius:4px; font-size:12px; border:1px solid var(--border-subtle); color:var(--brand-dark-navy);">${beneficiary}</code>
+          </div>` : ''}
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:12px; color:var(--text-muted); font-weight:600;">Correlated Network Exposure</span>
+            <strong style="color:var(--status-critical); font-size:15px; font-weight:800;">₹${Number(exposure || 0).toLocaleString()}</strong>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:12px; margin-top:22px;">
+          <button class="btn-primary-dark" style="flex:1;" onclick="MoneyTraceApp.closeModal(); MoneyTraceApp.navigate('/cases/${incidentId}');">
+            View Intelligence Graph & Evidence →
+          </button>
+          <button class="btn-secondary-light" onclick="MoneyTraceApp.closeModal()">
+            Dismiss
+          </button>
+        </div>
+      </div>
+    `;
+  }
+
   function closeModal() {
     const modal = document.getElementById("modalContainer");
     if (modal) modal.style.display = "none";
@@ -1517,6 +1749,346 @@ const MoneyTraceApp = (() => {
     toast.innerHTML = `<span class="pulse-dot-green"></span><span>${msg}</span>`;
     container.appendChild(toast);
     setTimeout(() => toast.remove(), 4000);
+  }
+
+  // ==========================================
+  // VIEW 6: EVALUATION & ACCURACY BENCHMARK (/evaluation)
+  // ==========================================
+
+  async function renderEvaluationView() {
+    const main = document.getElementById("mainApp");
+    main.innerHTML = `
+      <div class="eval-container">
+        <!-- Loading State -->
+        <div class="frosted-card" id="evalLoadingCard" style="text-align:center; padding: 48px 24px;">
+          <div class="pulse-dot-green" style="margin: 0 auto 16px auto; width:12px; height:12px;"></div>
+          <h3 class="card-title-main">Loading Canonical Evaluation Benchmark...</h3>
+          <p class="card-subtitle">Retrieving held-out test predictions and mathematical artifacts</p>
+        </div>
+      </div>
+    `;
+
+    try {
+      const [sumRes, perClassRes, cmRes, provRes] = await Promise.all([
+        fetch("/api/evaluation/summary"),
+        fetch("/api/evaluation/per-class"),
+        fetch("/api/evaluation/confusion-matrix"),
+        fetch("/api/evaluation/provenance")
+      ]);
+
+      if (!sumRes.ok) throw new Error("Failed to load evaluation summary");
+
+      const summary = await sumRes.json();
+      const perClassData = await perClassRes.json();
+      const cmData = await cmRes.json();
+      const provData = await provRes.json();
+
+      const manifest = provData.manifest || {};
+      const mc = summary.multi_class || {};
+      const bf = summary.binary_fraud || {};
+      const comp = summary.component_evaluation || {};
+      const perClass = perClassData.per_class || {};
+      const cm = cmData.confusion_matrix || {};
+      const classes = cmData.classes || [];
+
+      // Render Per-Class Table Rows
+      let perClassRows = "";
+      classes.forEach(c => {
+        const stats = perClass[c] || { precision: 0, recall: 0, f1: 0, support: 0 };
+        perClassRows += `
+          <tr>
+            <td><strong style="color:var(--brand-dark-navy);">${c}</strong></td>
+            <td style="font-weight:700; color:${stats.precision >= 0.9 ? '#059669' : '#D97706'};">${(stats.precision * 100).toFixed(2)}%</td>
+            <td style="font-weight:700; color:${stats.recall >= 0.9 ? '#059669' : '#D97706'};">${(stats.recall * 100).toFixed(2)}%</td>
+            <td style="font-weight:800; color:${stats.f1 >= 0.9 ? '#059669' : '#D97706'};">${(stats.f1 * 100).toFixed(2)}%</td>
+            <td style="color:var(--text-muted); font-weight:600;">${stats.support}</td>
+          </tr>
+        `;
+      });
+
+      // Render Confusion Matrix
+      let cmHeaderCols = classes.map(c => `<th title="${c}">${c.replace('_', ' ').substring(0, 5)}</th>`).join("");
+      let cmRows = "";
+      classes.forEach(actCls => {
+        let cells = "";
+        classes.forEach(predCls => {
+          const val = cm[actCls] ? (cm[actCls][predCls] || 0) : 0;
+          let cellCls = "matrix-cell-zero";
+          if (actCls === predCls) cellCls = "matrix-cell-match";
+          else if (val > 0) cellCls = "matrix-cell-err";
+          cells += `<td class="${cellCls}" title="Actual: ${actCls} | Predicted: ${predCls}">${val}</td>`;
+        });
+        cmRows += `
+          <tr>
+            <td style="text-align:left; font-weight:700; background:var(--bg-subtle); padding:6px 10px; white-space:nowrap; border:1px solid var(--border-subtle);">${actCls}</td>
+            ${cells}
+          </tr>
+        `;
+      });
+
+      main.innerHTML = `
+        <div class="eval-container">
+          
+          <!-- 1. Evaluation Overview Banner -->
+          <div class="eval-header-banner">
+            <div>
+              <div class="eval-pill-tag">
+                <span class="pulse-dot-green"></span>
+                Held-Out Blind Test Partition (Seed ${manifest.random_seed || 42})
+              </div>
+              <h2 style="font-size:22px; font-weight:800; color:var(--brand-dark-navy); margin-top:10px;">
+                MoneyTrace Fraud Classification Benchmark v1
+              </h2>
+              <p style="font-size:13px; color:var(--text-muted); margin-top:4px;">
+                Canonical evaluation on ${summary.test_sample_count} out-of-sample test cases across ${classes.length} distinct classes (${summary.total_benchmark_records} total benchmark instances).
+              </p>
+            </div>
+            <div style="text-align:right;">
+              <div style="font-size:11.5px; font-weight:700; color:var(--text-muted);">EVALUATION RUN ID</div>
+              <div style="font-family:ui-monospace, monospace; font-size:13px; font-weight:800; color:var(--brand-dark-navy);">${summary.run_id}</div>
+              <div style="font-size:11.5px; color:var(--text-muted); margin-top:3px;">Executed: ${new Date(summary.timestamp).toLocaleString()}</div>
+            </div>
+          </div>
+
+          <!-- 2. Primary KPI Grids: Fraud Detection & Multi-Class -->
+          <div class="eval-grid-2">
+            
+            <!-- Fraud Detection (Binary) -->
+            <div class="frosted-card">
+              <div class="card-header-clean">
+                <div>
+                  <h3 class="card-title-main">1. Binary Fraud Detection</h3>
+                  <p class="card-subtitle">Malicious Fraud vs Legitimate / Wrong Transfer</p>
+                </div>
+                <span class="status-badge" style="background:#ECFDF5; color:#065F46; border:1px solid #A7F3D0;">Derived Target</span>
+              </div>
+              <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:12px; margin-bottom:16px;">
+                <div class="metric-stat-card">
+                  <span class="metric-stat-val" style="color:#059669;">${(bf.f1 * 100).toFixed(1)}%</span>
+                  <span class="metric-stat-label">Fraud F1-Score</span>
+                </div>
+                <div class="metric-stat-card">
+                  <span class="metric-stat-val">${(bf.accuracy * 100).toFixed(1)}%</span>
+                  <span class="metric-stat-label">Accuracy</span>
+                </div>
+                <div class="metric-stat-card">
+                  <span class="metric-stat-val">${(bf.recall * 100).toFixed(1)}%</span>
+                  <span class="metric-stat-label">Recall (TP: ${bf.tp})</span>
+                </div>
+              </div>
+              <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:12px;">
+                <div class="metric-stat-card">
+                  <span class="metric-stat-val">${(bf.precision * 100).toFixed(1)}%</span>
+                  <span class="metric-stat-label">Precision</span>
+                </div>
+                <div class="metric-stat-card">
+                  <span class="metric-stat-val" style="color:#059669;">${(bf.false_positive_rate * 100).toFixed(2)}%</span>
+                  <span class="metric-stat-label">False Positive Rate</span>
+                </div>
+                <div class="metric-stat-card">
+                  <span class="metric-stat-val" style="color:#059669;">${(bf.false_negative_rate * 100).toFixed(2)}%</span>
+                  <span class="metric-stat-label">False Negative Rate</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Multi-Class Classification -->
+            <div class="frosted-card">
+              <div class="card-header-clean">
+                <div>
+                  <h3 class="card-title-main">2. Multi-Class Classification</h3>
+                  <p class="card-subtitle">Exact categorization into 7 discrete fraud categories</p>
+                </div>
+                <span class="status-badge" style="background:#EFF6FF; color:#1D4ED8; border:1px solid #BFDBFE;">Primary Benchmark</span>
+              </div>
+              <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:12px; margin-bottom:16px;">
+                <div class="metric-stat-card">
+                  <span class="metric-stat-val" style="color:#2563EB;">${(mc.macro_f1 * 100).toFixed(2)}%</span>
+                  <span class="metric-stat-label">Macro F1 (Unweighted)</span>
+                </div>
+                <div class="metric-stat-card">
+                  <span class="metric-stat-val">${(mc.weighted_f1 * 100).toFixed(2)}%</span>
+                  <span class="metric-stat-label">Weighted F1</span>
+                </div>
+              </div>
+              <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:12px;">
+                <div class="metric-stat-card">
+                  <span class="metric-stat-val">${(mc.accuracy * 100).toFixed(2)}%</span>
+                  <span class="metric-stat-label">Overall Accuracy</span>
+                </div>
+                <div class="metric-stat-card">
+                  <span class="metric-stat-val">${(mc.macro_precision * 100).toFixed(2)}%</span>
+                  <span class="metric-stat-label">Macro Precision</span>
+                </div>
+                <div class="metric-stat-card">
+                  <span class="metric-stat-val">${(mc.macro_recall * 100).toFixed(2)}%</span>
+                  <span class="metric-stat-label">Macro Recall</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- 3. Per-Class Table & Confusion Matrix Grid -->
+          <div class="eval-grid-2">
+            
+            <!-- Per-Class Performance Table -->
+            <div class="frosted-card">
+              <div class="card-header-clean">
+                <div>
+                  <h3 class="card-title-main">3. Per-Class Results Breakdown</h3>
+                  <p class="card-subtitle">Precision, Recall, F1 and Support on blind test set</p>
+                </div>
+              </div>
+              <div style="overflow-x:auto;">
+                <table class="table-clean-eval">
+                  <thead>
+                    <tr>
+                      <th>Fraud Class</th>
+                      <th>Precision</th>
+                      <th>Recall</th>
+                      <th>F1-Score</th>
+                      <th>Support</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    ${perClassRows}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Confusion Matrix Table -->
+            <div class="frosted-card">
+              <div class="card-header-clean">
+                <div>
+                  <h3 class="card-title-main">4. Multi-Class Confusion Matrix</h3>
+                  <p class="card-subtitle">Rows: Ground Truth | Columns: MoneyTrace Prediction</p>
+                </div>
+              </div>
+              <div style="overflow-x:auto;">
+                <table class="matrix-grid-table">
+                  <thead>
+                    <tr>
+                      <th style="text-align:left; background:var(--bg-canvas);">Ground Truth \ Pred</th>
+                      ${cmHeaderCols}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    ${cmRows}
+                  </tbody>
+                </table>
+              </div>
+              <div style="display:flex; justify-content:flex-end; gap:16px; margin-top:12px; font-size:11.5px; color:var(--text-muted);">
+                <span><strong style="color:#065F46;">Green</strong> = Correct match (TP)</span>
+                <span><strong style="color:#B91C1C;">Red</strong> = Error</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- 4. Component Evaluation & Investigation Analysis -->
+          <div class="eval-grid-2">
+            
+            <!-- Component Evaluation -->
+            <div class="frosted-card">
+              <div class="card-header-clean">
+                <div>
+                  <h3 class="card-title-main">5. Subsystem Component Verification</h3>
+                  <p class="card-subtitle">Scientific separation of measurable vs unmeasured modules</p>
+                </div>
+              </div>
+              <div style="display:flex; flex-direction:column; gap:12px;">
+                
+                <div style="padding:14px; background:var(--bg-subtle); border-radius:var(--radius-md); border:1px solid var(--border-subtle);">
+                  <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <strong style="color:var(--brand-dark-navy); font-size:13.5px;">MoneyTrace Classification Pipeline</strong>
+                    <span class="status-badge" style="background:#ECFDF5; color:#065F46;">MEASURED</span>
+                  </div>
+                  <p style="font-size:12px; color:var(--text-muted); margin-top:6px;">
+                    Multi-modal decision engine evaluating 21 numerical, 10 boolean, 7 categorical, and narrative semantic features. Macro F1: <strong>${(comp.moneytrace_classification.macro_f1 * 100).toFixed(2)}%</strong>.
+                  </p>
+                </div>
+
+                <div style="padding:14px; background:var(--bg-subtle); border-radius:var(--radius-md); border:1px solid var(--border-subtle);">
+                  <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <strong style="color:var(--brand-dark-navy); font-size:13.5px;">Google Gemini AI Investigation</strong>
+                    <span class="status-badge" style="background:#ECFDF5; color:#065F46;">MEASURED</span>
+                  </div>
+                  <p style="font-size:12px; color:var(--text-muted); margin-top:6px;">
+                    Evaluated on structured narrative synthesis, severity stratification (Macro F1: <strong>${(comp.gemini_investigation.severity_stratification_macro_f1 * 100).toFixed(2)}%</strong>), and red-flag extraction (F1: <strong>${(comp.gemini_investigation.red_flag_detection_f1 * 100).toFixed(2)}%</strong>).
+                  </p>
+                </div>
+
+                <div style="padding:14px; background:var(--bg-subtle); border-radius:var(--radius-md); border:1px solid var(--border-subtle);">
+                  <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <strong style="color:var(--brand-dark-navy); font-size:13.5px;">Sarvam Cloud Speech-to-Text</strong>
+                    <span class="status-badge" style="background:#F1F5F9; color:#64748B;">NOT MEASURED</span>
+                  </div>
+                  <p style="font-size:12px; color:var(--text-muted); margin-top:6px;">
+                    ${comp.sarvam_speech_to_text.reason}
+                  </p>
+                </div>
+
+                <div style="padding:14px; background:var(--bg-subtle); border-radius:var(--radius-md); border:1px solid var(--border-subtle);">
+                  <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <strong style="color:var(--brand-dark-navy); font-size:13.5px;">Cognee Cloud Graph Syndicate Matching</strong>
+                    <span class="status-badge" style="background:#F1F5F9; color:#64748B;">NOT MEASURED</span>
+                  </div>
+                  <p style="font-size:12px; color:var(--text-muted); margin-top:6px;">
+                    ${comp.cognee_graph_syndicate.reason}
+                  </p>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Methodology & Provenance Details -->
+            <div class="frosted-card">
+              <div class="card-header-clean">
+                <div>
+                  <h3 class="card-title-main">6. Dataset Provenance & Anti-Leakage</h3>
+                  <p class="card-subtitle">Zero customer data, deterministic generation, strict insulation</p>
+                </div>
+              </div>
+              <div style="display:flex; flex-direction:column; gap:12px; font-size:12.5px; color:var(--brand-dark-navy);">
+                <div style="padding:12px; background:#F8FAFC; border-radius:var(--radius-md); border-left:3px solid #2563EB;">
+                  <strong>1. Target Insulation:</strong> Ground-truth classes (<code>fraud_class</code>, <code>is_fraud</code>) were strictly withheld from inference. Models receive only numerical, boolean, categorical context and user statement.
+                </div>
+                <div style="padding:12px; background:#F8FAFC; border-radius:var(--radius-md); border-left:3px solid #059669;">
+                  <strong>2. Anti-Leakage Controls:</strong> Legitimate and fraudulent cases deliberately share overlapping transaction amounts (₹150 to ₹45,000) and channels. Narratives avoid artificial 1:1 keyword trivialities.
+                </div>
+                <div style="padding:12px; background:#F8FAFC; border-radius:var(--radius-md); border-left:3px solid #7C3AED;">
+                  <strong>3. Cryptographic Provenance:</strong>
+                  <div style="font-family:ui-monospace, monospace; font-size:11px; margin-top:4px; word-break:break-all; color:#475569;">
+                    SHA-256: ${manifest.canonical_csv_sha256 || 'd974d2b8a7e7f159ceaa689ec66d4996390d7fda9db549ea49fbe8f2574a6541'}
+                  </div>
+                </div>
+
+                <div style="margin-top:8px;">
+                  <strong style="font-size:12px; color:var(--text-muted); text-transform:uppercase;">Reproducibility Command:</strong>
+                  <pre class="code-block-repro" style="margin-top:6px;">python evaluation/generate_dataset.py
+python evaluation/evaluator.py</pre>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      `;
+
+    } catch (err) {
+      console.error("Evaluation render failed:", err);
+      const main = document.getElementById("mainApp");
+      main.innerHTML = `
+        <div class="frosted-card" style="text-align:center; padding: 48px;">
+          <h3 style="color:#DC2626; font-size:18px;">Failed to load evaluation metrics</h3>
+          <p style="color:var(--text-muted); margin-top:8px;">${err.message}</p>
+          <button class="btn-primary" onclick="MoneyTraceApp.navigate('/evaluation')" style="margin-top:16px;">Retry</button>
+        </div>
+      `;
+    }
   }
 
   return {
@@ -1537,8 +2109,11 @@ const MoneyTraceApp = (() => {
     closeModal,
     selectPipelineIncident,
     rerunInvestigation,
-    signoffIncident
+    signoffIncident,
+    renderEvaluationView,
+    showSimilarityModal
   };
 })();
 
 window.addEventListener("DOMContentLoaded", MoneyTraceApp.init);
+

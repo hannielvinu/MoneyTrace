@@ -538,6 +538,118 @@ async def api_get_dashboard(operator: Dict[str, Any] = Depends(require_operator)
 
 
 # ==========================================
+# Evaluation & Accuracy API Endpoints
+# ==========================================
+
+EVAL_DIR = os.path.join(WORKSPACE_ROOT, "backend", "evaluation")
+
+def _load_latest_eval() -> Dict[str, Any]:
+    latest_file = os.path.join(EVAL_DIR, "latest_run.json")
+    if os.path.isfile(latest_file):
+        with open(latest_file, "r", encoding="utf-8") as f:
+            return json.load(f)
+    return {}
+
+@app.get("/api/evaluation/summary")
+async def get_evaluation_summary():
+    """Returns high-level evaluation metrics for multi-class and binary fraud detection."""
+    data = _load_latest_eval()
+    if not data:
+        raise HTTPException(status_code=404, detail="Evaluation results not found. Run evaluator.py first.")
+    return {
+        "run_id": data.get("run_id"),
+        "dataset_name": data.get("dataset_name"),
+        "dataset_version": data.get("dataset_version"),
+        "timestamp": data.get("timestamp"),
+        "model_version": data.get("model_version"),
+        "test_sample_count": data.get("test_sample_count"),
+        "total_benchmark_records": data.get("total_benchmark_records"),
+        "multi_class": {
+            "accuracy": data["metrics"]["multi_class"]["accuracy"],
+            "macro_f1": data["metrics"]["multi_class"]["macro_f1"],
+            "macro_precision": data["metrics"]["multi_class"]["macro_precision"],
+            "macro_recall": data["metrics"]["multi_class"]["macro_recall"],
+            "weighted_f1": data["metrics"]["multi_class"]["weighted_f1"]
+        },
+        "binary_fraud": data["metrics"]["binary_fraud"],
+        "component_evaluation": data.get("component_evaluation", {})
+    }
+
+@app.get("/api/evaluation/classification")
+async def get_evaluation_classification():
+    """Returns full multi-class classification metrics."""
+    data = _load_latest_eval()
+    if not data:
+        raise HTTPException(status_code=404, detail="Evaluation results not found.")
+    return data.get("metrics", {}).get("multi_class", {})
+
+@app.get("/api/evaluation/confusion-matrix")
+async def get_evaluation_confusion_matrix():
+    """Returns the multi-class confusion matrix."""
+    data = _load_latest_eval()
+    if not data:
+        raise HTTPException(status_code=404, detail="Evaluation results not found.")
+    return {
+        "classes": data.get("classes", []),
+        "confusion_matrix": data.get("metrics", {}).get("multi_class", {}).get("confusion_matrix", {})
+    }
+
+@app.get("/api/evaluation/per-class")
+async def get_evaluation_per_class():
+    """Returns precision, recall, F1, and support for all 7 classes."""
+    data = _load_latest_eval()
+    if not data:
+        raise HTTPException(status_code=404, detail="Evaluation results not found.")
+    return {
+        "classes": data.get("classes", []),
+        "per_class": data.get("metrics", {}).get("multi_class", {}).get("per_class", {})
+    }
+
+@app.get("/api/evaluation/provenance")
+async def get_evaluation_provenance():
+    """Returns dataset manifest and provenance verification metadata."""
+    manifest_file = os.path.join(EVAL_DIR, "dataset_manifest.json")
+    if os.path.isfile(manifest_file):
+        with open(manifest_file, "r", encoding="utf-8") as f:
+            manifest = json.load(f)
+    else:
+        manifest = {}
+    return {
+        "manifest": manifest,
+        "methodology": {
+            "target_insulation": "Ground truth (fraud_class, is_fraud) strictly withheld from inference pipeline.",
+            "partition": "80% reference/dev set (1,600 records), 20% held-out blind test set (400 records).",
+            "signals": "21 numerical features, 10 boolean flags, 7 categorical parameters, 1 natural language narrative.",
+            "reproducibility": "Deterministic generation with fixed seed (42). Re-computable via evaluation/generate_dataset.py."
+        }
+    }
+
+@app.get("/api/evaluation/runs")
+async def get_evaluation_runs():
+    """Lists available evaluation runs."""
+    runs_dir = os.path.join(EVAL_DIR, "runs")
+    runs = []
+    if os.path.isdir(runs_dir):
+        for d in sorted(os.listdir(runs_dir), reverse=True):
+            r_path = os.path.join(runs_dir, d, "results.json")
+            if os.path.isfile(r_path):
+                try:
+                    with open(r_path, "r", encoding="utf-8") as rf:
+                        r_data = json.load(rf)
+                        runs.append({
+                            "run_id": r_data.get("run_id"),
+                            "timestamp": r_data.get("timestamp"),
+                            "test_sample_count": r_data.get("test_sample_count"),
+                            "macro_f1": r_data.get("metrics", {}).get("multi_class", {}).get("macro_f1"),
+                            "binary_f1": r_data.get("metrics", {}).get("binary_fraud", {}).get("f1"),
+                            "accuracy": r_data.get("metrics", {}).get("multi_class", {}).get("accuracy")
+                        })
+                except Exception:
+                    pass
+    return {"runs": runs}
+
+
+# ==========================================
 # Frontend SPA Routes
 # ==========================================
 
@@ -548,6 +660,7 @@ INDEX_HTML_PATH = os.path.join(STATIC_DIR, "index.html")
 @app.get("/investigations")
 @app.get("/cases/{incident_id}")
 @app.get("/dashboard")
+@app.get("/evaluation")
 @app.get("/login")
 async def serve_spa_routes(incident_id: Optional[str] = None):
     """Serves index.html for all valid SPA routes."""

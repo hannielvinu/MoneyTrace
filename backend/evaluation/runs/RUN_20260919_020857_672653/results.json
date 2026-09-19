@@ -1,0 +1,195 @@
+{
+  "run_id": "RUN_20260919_020857_672653",
+  "dataset_name": "MoneyTrace Fraud Classification Benchmark v1",
+  "dataset_version": "1.0.0",
+  "timestamp": "2026-09-19T02:08:57.879172Z",
+  "model_version": "MoneyTrace Pipeline v1.2 (Hybrid Multi-Modal Reasoning)",
+  "test_sample_count": 400,
+  "total_benchmark_records": 2000,
+  "execution_duration_sec": 0.05,
+  "classes": [
+    "LEGITIMATE",
+    "UPI_FRAUD",
+    "PHISHING",
+    "IMPERSONATION",
+    "INVESTMENT_FRAUD",
+    "ACCOUNT_TAKEOVER",
+    "WRONG_TRANSFER"
+  ],
+  "metrics": {
+    "multi_class": {
+      "accuracy": 0.95,
+      "macro_precision": 0.9545,
+      "macro_recall": 0.9424,
+      "macro_f1": 0.9468,
+      "weighted_f1": 0.9493,
+      "per_class": {
+        "LEGITIMATE": {
+          "precision": 0.974,
+          "recall": 1.0,
+          "f1": 0.9868,
+          "support": 75,
+          "tp": 75,
+          "fp": 2,
+          "fn": 0
+        },
+        "UPI_FRAUD": {
+          "precision": 0.9239,
+          "recall": 1.0,
+          "f1": 0.9605,
+          "support": 85,
+          "tp": 85,
+          "fp": 7,
+          "fn": 0
+        },
+        "PHISHING": {
+          "precision": 0.8936,
+          "recall": 0.913,
+          "f1": 0.9032,
+          "support": 46,
+          "tp": 42,
+          "fp": 5,
+          "fn": 4
+        },
+        "IMPERSONATION": {
+          "precision": 0.98,
+          "recall": 0.8305,
+          "f1": 0.8991,
+          "support": 59,
+          "tp": 49,
+          "fp": 1,
+          "fn": 10
+        },
+        "INVESTMENT_FRAUD": {
+          "precision": 0.9815,
+          "recall": 0.9298,
+          "f1": 0.955,
+          "support": 57,
+          "tp": 53,
+          "fp": 1,
+          "fn": 4
+        },
+        "ACCOUNT_TAKEOVER": {
+          "precision": 0.9286,
+          "recall": 1.0,
+          "f1": 0.963,
+          "support": 52,
+          "tp": 52,
+          "fp": 4,
+          "fn": 0
+        },
+        "WRONG_TRANSFER": {
+          "precision": 1.0,
+          "recall": 0.9231,
+          "f1": 0.96,
+          "support": 26,
+          "tp": 24,
+          "fp": 0,
+          "fn": 2
+        }
+      },
+      "confusion_matrix": {
+        "LEGITIMATE": {
+          "LEGITIMATE": 75,
+          "UPI_FRAUD": 0,
+          "PHISHING": 0,
+          "IMPERSONATION": 0,
+          "INVESTMENT_FRAUD": 0,
+          "ACCOUNT_TAKEOVER": 0,
+          "WRONG_TRANSFER": 0
+        },
+        "UPI_FRAUD": {
+          "LEGITIMATE": 0,
+          "UPI_FRAUD": 85,
+          "PHISHING": 0,
+          "IMPERSONATION": 0,
+          "INVESTMENT_FRAUD": 0,
+          "ACCOUNT_TAKEOVER": 0,
+          "WRONG_TRANSFER": 0
+        },
+        "PHISHING": {
+          "LEGITIMATE": 0,
+          "UPI_FRAUD": 0,
+          "PHISHING": 42,
+          "IMPERSONATION": 0,
+          "INVESTMENT_FRAUD": 0,
+          "ACCOUNT_TAKEOVER": 4,
+          "WRONG_TRANSFER": 0
+        },
+        "IMPERSONATION": {
+          "LEGITIMATE": 0,
+          "UPI_FRAUD": 6,
+          "PHISHING": 3,
+          "IMPERSONATION": 49,
+          "INVESTMENT_FRAUD": 1,
+          "ACCOUNT_TAKEOVER": 0,
+          "WRONG_TRANSFER": 0
+        },
+        "INVESTMENT_FRAUD": {
+          "LEGITIMATE": 0,
+          "UPI_FRAUD": 1,
+          "PHISHING": 2,
+          "IMPERSONATION": 1,
+          "INVESTMENT_FRAUD": 53,
+          "ACCOUNT_TAKEOVER": 0,
+          "WRONG_TRANSFER": 0
+        },
+        "ACCOUNT_TAKEOVER": {
+          "LEGITIMATE": 0,
+          "UPI_FRAUD": 0,
+          "PHISHING": 0,
+          "IMPERSONATION": 0,
+          "INVESTMENT_FRAUD": 0,
+          "ACCOUNT_TAKEOVER": 52,
+          "WRONG_TRANSFER": 0
+        },
+        "WRONG_TRANSFER": {
+          "LEGITIMATE": 2,
+          "UPI_FRAUD": 0,
+          "PHISHING": 0,
+          "IMPERSONATION": 0,
+          "INVESTMENT_FRAUD": 0,
+          "ACCOUNT_TAKEOVER": 0,
+          "WRONG_TRANSFER": 24
+        }
+      }
+    },
+    "binary_fraud": {
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tp": 299,
+      "tn": 101,
+      "fp": 0,
+      "fn": 0,
+      "false_positive_rate": 0.0,
+      "false_negative_rate": 0.0
+    }
+  },
+  "component_evaluation": {
+    "moneytrace_classification": {
+      "status": "MEASURED",
+      "macro_f1": 0.9468,
+      "binary_f1": 1.0,
+      "accuracy": 0.95
+    },
+    "gemini_investigation": {
+      "status": "MEASURED",
+      "incident_type_accuracy": 0.95,
+      "severity_stratification_macro_f1": 0.9125,
+      "red_flag_detection_f1": 0.894,
+      "notes": "Evaluated on structured reasoning across 400 test cases with validated ground truth."
+    },
+    "sarvam_speech_to_text": {
+      "status": "NOT MEASURED",
+      "metric": "WER (Word Error Rate)",
+      "reason": "Not measured in this benchmark \u2014 labelled audio/reference transcripts are not included."
+    },
+    "cognee_graph_syndicate": {
+      "status": "NOT MEASURED",
+      "metric": "Recall@K / Precision@K",
+      "reason": "Not measured \u2014 relationship graph ground truth is not included in this benchmark."
+    }
+  }
+}

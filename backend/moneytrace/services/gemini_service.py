@@ -139,30 +139,43 @@ Analyze this payment fraud emergency report and provide structured intelligence.
     try:
         client = genai.Client(api_key=api_key)
         
-        # Resilient retry against transient 503 / rate limits
+        # Resilient retry against transient 503 / rate limits, with quota fallback
+        candidate_models = [model_name]
+        if "3.8-flash" in model_name:
+            candidate_models.append("gemini-3.5-flash")
+
         response = None
+        actual_model_used = model_name
         last_err = None
-        for attempt in range(4):
-            try:
-                response = client.models.generate_content(
-                    model=model_name,
-                    contents=prompt,
-                    config=types.GenerateContentConfig(
-                        response_mime_type="application/json",
-                        response_schema=GeminiInvestigationOutput,
-                        temperature=0.1
+
+        for target_model in candidate_models:
+            for attempt in range(3):
+                try:
+                    response = client.models.generate_content(
+                        model=target_model,
+                        contents=prompt,
+                        config=types.GenerateContentConfig(
+                            response_mime_type="application/json",
+                            response_schema=GeminiInvestigationOutput,
+                            temperature=0.1
+                        )
                     )
-                )
-                if response and response.text:
-                    break
-            except Exception as ex:
-                last_err = ex
-                err_str = str(ex)
-                if "503" in err_str or "429" in err_str or "UNAVAILABLE" in err_str:
-                    logger.warning(f"Gemini {model_name} transient error (attempt {attempt + 1}/4): {ex}. Retrying in 3s...")
-                    await asyncio.sleep(3.0)
-                else:
-                    raise ex
+                    if response and response.text:
+                        actual_model_used = target_model
+                        break
+                except Exception as ex:
+                    last_err = ex
+                    err_str = str(ex)
+                    if "503" in err_str or "UNAVAILABLE" in err_str:
+                        logger.warning(f"Gemini {target_model} transient error (attempt {attempt + 1}/3): {ex}. Retrying in 2s...")
+                        await asyncio.sleep(2.0)
+                    elif "429" in err_str or "RESOURCE_EXHAUSTED" in err_str:
+                        logger.warning(f"Gemini {target_model} quota exhausted (429). Attempting fallback...")
+                        break
+                    else:
+                        raise ex
+            if response and response.text:
+                break
 
         if not response or not response.text:
             raise last_err or ValueError("Empty response received from Gemini API.")
@@ -171,11 +184,11 @@ Analyze this payment fraud emergency report and provide structured intelligence.
         validated_output = GeminiInvestigationOutput.model_validate_json(response.text)
         result_dict = validated_output.model_dump()
 
-        logger.info(f"Gemini investigation completed successfully using model {model_name}")
+        logger.info(f"Gemini investigation completed successfully using model {actual_model_used}")
         return {
             "status": "GEMINI LIVE",
             "provider": "Google Gemini Cloud AI",
-            "model": model_name,
+            "model": actual_model_used,
             "timestamp": now_ts,
             "data": result_dict,
             "error": None

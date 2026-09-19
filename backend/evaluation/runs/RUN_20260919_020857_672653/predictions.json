@@ -1,0 +1,3602 @@
+[
+  {
+    "case_id": "BENCH_02851",
+    "ground_truth_class": "WRONG_TRANSFER",
+    "predicted_class": "WRONG_TRANSFER",
+    "confidence": 0.82,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Accidentally transferred vendor payment to an inactive supplier account that was clos..."
+  },
+  {
+    "case_id": "BENCH_01597",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "A buyer on classifieds app insisted on paying via dynamic QR code and instructed me t..."
+  },
+  {
+    "case_id": "BENCH_01600",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.73,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Contacted fake helpline found on social media for utility bill delay; executive sent ..."
+  },
+  {
+    "case_id": "BENCH_01964",
+    "ground_truth_class": "PHISHING",
+    "predicted_class": "PHISHING",
+    "confidence": 0.86,
+    "latency_ms": 1.0,
+    "match": true,
+    "narrative_preview": "Received an alert about suspicious login attempt on net banking with a link to verify..."
+  },
+  {
+    "case_id": "BENCH_02058",
+    "ground_truth_class": "PHISHING",
+    "predicted_class": "PHISHING",
+    "confidence": 0.78,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Opened an email warning my tax refund was pending. Entered my net banking credentials..."
+  },
+  {
+    "case_id": "BENCH_01797",
+    "ground_truth_class": "PHISHING",
+    "predicted_class": "PHISHING",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Received an SMS stating electricity supply would be disconnected tonight unless I upd..."
+  },
+  {
+    "case_id": "BENCH_02415",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.89,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Added to a private messaging investment channel promising 200% returns in 7 days thro..."
+  },
+  {
+    "case_id": "BENCH_01293",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Routine medical insurance premium payment made online; bank notification received imm..."
+  },
+  {
+    "case_id": "BENCH_02048",
+    "ground_truth_class": "PHISHING",
+    "predicted_class": "PHISHING",
+    "confidence": 0.94,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "SMS claiming my pan card was not linked with bank account provided a portal link wher..."
+  },
+  {
+    "case_id": "BENCH_02152",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "IMPERSONATION",
+    "confidence": 0.87,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Received video call from someone in police uniform claiming a parcel containing contr..."
+  },
+  {
+    "case_id": "BENCH_02162",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "IMPERSONATION",
+    "confidence": 0.78,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Person posing as an old school friend contacted on messaging app asking for immediate..."
+  },
+  {
+    "case_id": "BENCH_01741",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.89,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Someone posing as a restaurant refund agent sent a collect link on my messaging app s..."
+  },
+  {
+    "case_id": "BENCH_01229",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Transferred funds for monthly home rent to landlord as usual, but the status shows pe..."
+  },
+  {
+    "case_id": "BENCH_02138",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "PHISHING",
+    "confidence": 0.82,
+    "latency_ms": 0.0,
+    "match": false,
+    "narrative_preview": "Caller stated they were from credit card department offering zero interest rate conve..."
+  },
+  {
+    "case_id": "BENCH_02917",
+    "ground_truth_class": "WRONG_TRANSFER",
+    "predicted_class": "WRONG_TRANSFER",
+    "confidence": 0.95,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Transferred tuition fee to another student's virtual payment address due to typo in s..."
+  },
+  {
+    "case_id": "BENCH_02277",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "IMPERSONATION",
+    "confidence": 0.87,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Received video call from someone in police uniform claiming a parcel containing contr..."
+  },
+  {
+    "case_id": "BENCH_01513",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.99,
+    "latency_ms": 0.59,
+    "match": true,
+    "narrative_preview": "Got an urgent call from someone claiming payment failed for a courier package; was to..."
+  },
+  {
+    "case_id": "BENCH_01449",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Got an urgent call from someone claiming payment failed for a courier package; was to..."
+  },
+  {
+    "case_id": "BENCH_01593",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.9,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Received a request claiming to be from a prospective buyer on an online marketplace a..."
+  },
+  {
+    "case_id": "BENCH_01023",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Purchased an electronic gadget from an e-commerce festival sale. Payment deducted twi..."
+  },
+  {
+    "case_id": "BENCH_01474",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.75,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Someone posing as a restaurant refund agent sent a collect link on my messaging app s..."
+  },
+  {
+    "case_id": "BENCH_02516",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.82,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Promised daily guaranteed 5% return on custom trading terminal app provided via direc..."
+  },
+  {
+    "case_id": "BENCH_02509",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.83,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Investment advisor in VIP trading group recommended exclusive institutional equity al..."
+  },
+  {
+    "case_id": "BENCH_02804",
+    "ground_truth_class": "ACCOUNT_TAKEOVER",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.95,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Email account was compromised and password reset emails for banking apps were trigger..."
+  },
+  {
+    "case_id": "BENCH_02467",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.91,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Added to a private messaging investment channel promising 200% returns in 7 days thro..."
+  },
+  {
+    "case_id": "BENCH_01728",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Scanned a QR code received over chat believing it was to receive cash prize reward, b..."
+  },
+  {
+    "case_id": "BENCH_01515",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "A buyer on classifieds app insisted on paying via dynamic QR code and instructed me t..."
+  },
+  {
+    "case_id": "BENCH_02619",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.74,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Investment advisor in VIP trading group recommended exclusive institutional equity al..."
+  },
+  {
+    "case_id": "BENCH_02637",
+    "ground_truth_class": "ACCOUNT_TAKEOVER",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Noticed strange login notification from an IP in another state followed by multiple u..."
+  },
+  {
+    "case_id": "BENCH_01953",
+    "ground_truth_class": "PHISHING",
+    "predicted_class": "PHISHING",
+    "confidence": 0.86,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Clicked a notification link warning my SIM card will be deactivated within 24 hours d..."
+  },
+  {
+    "case_id": "BENCH_02651",
+    "ground_truth_class": "ACCOUNT_TAKEOVER",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.94,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Received repeated OTP requests while asleep; woke up to find net banking password res..."
+  },
+  {
+    "case_id": "BENCH_02852",
+    "ground_truth_class": "WRONG_TRANSFER",
+    "predicted_class": "WRONG_TRANSFER",
+    "confidence": 0.93,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Mistakenly entered extra zero in the amount field and sent to correct party but canno..."
+  },
+  {
+    "case_id": "BENCH_01752",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "A buyer on classifieds app insisted on paying via dynamic QR code and instructed me t..."
+  },
+  {
+    "case_id": "BENCH_01165",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.98,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Scheduled bill payment for electricity and broadband utilities deducted successfully ..."
+  },
+  {
+    "case_id": "BENCH_01756",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.98,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Scanned a QR code received over chat believing it was to receive cash prize reward, b..."
+  },
+  {
+    "case_id": "BENCH_02932",
+    "ground_truth_class": "WRONG_TRANSFER",
+    "predicted_class": "WRONG_TRANSFER",
+    "confidence": 0.82,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Accidentally transferred vendor payment to an inactive supplier account that was clos..."
+  },
+  {
+    "case_id": "BENCH_02781",
+    "ground_truth_class": "ACCOUNT_TAKEOVER",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.95,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Email account was compromised and password reset emails for banking apps were trigger..."
+  },
+  {
+    "case_id": "BENCH_01309",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Monthly grocery payment made at supermarket POS terminal. Balance was deducted but me..."
+  },
+  {
+    "case_id": "BENCH_02376",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.85,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Saw social media influencer advertisement about high-yield pre-IPO stock allotment gr..."
+  },
+  {
+    "case_id": "BENCH_02265",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "IMPERSONATION",
+    "confidence": 0.84,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Person claiming to be bank fraud prevention executive called saying unauthorized debi..."
+  },
+  {
+    "case_id": "BENCH_01408",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Got an urgent call from someone claiming payment failed for a courier package; was to..."
+  },
+  {
+    "case_id": "BENCH_02524",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.66,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Friend recommended high return automated trading bot requiring deposits into escrow U..."
+  },
+  {
+    "case_id": "BENCH_02612",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.74,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Friend recommended high return automated trading bot requiring deposits into escrow U..."
+  },
+  {
+    "case_id": "BENCH_02875",
+    "ground_truth_class": "WRONG_TRANSFER",
+    "predicted_class": "WRONG_TRANSFER",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Mistakenly entered extra zero in the amount field and sent to correct party but canno..."
+  },
+  {
+    "case_id": "BENCH_01853",
+    "ground_truth_class": "PHISHING",
+    "predicted_class": "PHISHING",
+    "confidence": 0.79,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Opened an email warning my tax refund was pending. Entered my net banking credentials..."
+  },
+  {
+    "case_id": "BENCH_02273",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.72,
+    "latency_ms": 0.0,
+    "match": false,
+    "narrative_preview": "Individual claiming to be income tax commissioner called demanding immediate penalty ..."
+  },
+  {
+    "case_id": "BENCH_02317",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "IMPERSONATION",
+    "confidence": 0.87,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Received video call from someone in police uniform claiming a parcel containing contr..."
+  },
+  {
+    "case_id": "BENCH_01994",
+    "ground_truth_class": "PHISHING",
+    "predicted_class": "PHISHING",
+    "confidence": 0.85,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Received an alert about suspicious login attempt on net banking with a link to verify..."
+  },
+  {
+    "case_id": "BENCH_01383",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Sent money to college fee portal via net banking. Awaiting confirmation receipt from ..."
+  },
+  {
+    "case_id": "BENCH_02212",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "IMPERSONATION",
+    "confidence": 0.71,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Caller stated they were from credit card department offering zero interest rate conve..."
+  },
+  {
+    "case_id": "BENCH_02332",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "IMPERSONATION",
+    "confidence": 0.94,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Received video call from someone in police uniform claiming a parcel containing contr..."
+  },
+  {
+    "case_id": "BENCH_02983",
+    "ground_truth_class": "WRONG_TRANSFER",
+    "predicted_class": "WRONG_TRANSFER",
+    "confidence": 0.83,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Mistyped one digit of recipient mobile phone number while sending money via UPI to my..."
+  },
+  {
+    "case_id": "BENCH_02996",
+    "ground_truth_class": "WRONG_TRANSFER",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.84,
+    "latency_ms": 0.0,
+    "match": false,
+    "narrative_preview": "Entered wrong bank IFSC code and account number while doing an IMPS transfer for medi..."
+  },
+  {
+    "case_id": "BENCH_01585",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Scanned a QR code received over chat believing it was to receive cash prize reward, b..."
+  },
+  {
+    "case_id": "BENCH_01571",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.8,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Someone posing as a restaurant refund agent sent a collect link on my messaging app s..."
+  },
+  {
+    "case_id": "BENCH_02663",
+    "ground_truth_class": "ACCOUNT_TAKEOVER",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.85,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Found secondary authentication device added to my digital wallet without authorizatio..."
+  },
+  {
+    "case_id": "BENCH_02921",
+    "ground_truth_class": "WRONG_TRANSFER",
+    "predicted_class": "WRONG_TRANSFER",
+    "confidence": 0.75,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Accidentally transferred vendor payment to an inactive supplier account that was clos..."
+  },
+  {
+    "case_id": "BENCH_02479",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.71,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Offered a part-time remote job involving rating hotels and liking videos; required to..."
+  },
+  {
+    "case_id": "BENCH_01794",
+    "ground_truth_class": "PHISHING",
+    "predicted_class": "PHISHING",
+    "confidence": 0.72,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Opened an email warning my tax refund was pending. Entered my net banking credentials..."
+  },
+  {
+    "case_id": "BENCH_01149",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Purchased an electronic gadget from an e-commerce festival sale. Payment deducted twi..."
+  },
+  {
+    "case_id": "BENCH_02828",
+    "ground_truth_class": "ACCOUNT_TAKEOVER",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.91,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Suddenly lost cellular mobile network connectivity; discovered later an unauthorized ..."
+  },
+  {
+    "case_id": "BENCH_02046",
+    "ground_truth_class": "PHISHING",
+    "predicted_class": "PHISHING",
+    "confidence": 0.79,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Clicked a notification link warning my SIM card will be deactivated within 24 hours d..."
+  },
+  {
+    "case_id": "BENCH_02453",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.75,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Promised daily guaranteed 5% return on custom trading terminal app provided via direc..."
+  },
+  {
+    "case_id": "BENCH_02091",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "IMPERSONATION",
+    "confidence": 0.87,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Caller claiming to be senior officer from telecom regulatory authority stated my phon..."
+  },
+  {
+    "case_id": "BENCH_02992",
+    "ground_truth_class": "WRONG_TRANSFER",
+    "predicted_class": "WRONG_TRANSFER",
+    "confidence": 0.82,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Mistakenly entered extra zero in the amount field and sent to correct party but canno..."
+  },
+  {
+    "case_id": "BENCH_02199",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "IMPERSONATION",
+    "confidence": 0.94,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Received video call from someone in police uniform claiming a parcel containing contr..."
+  },
+  {
+    "case_id": "BENCH_01618",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.68,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Contacted fake helpline found on social media for utility bill delay; executive sent ..."
+  },
+  {
+    "case_id": "BENCH_02303",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "IMPERSONATION",
+    "confidence": 0.8,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Person claiming to be bank fraud prevention executive called saying unauthorized debi..."
+  },
+  {
+    "case_id": "BENCH_01227",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Routine medical insurance premium payment made online; bank notification received imm..."
+  },
+  {
+    "case_id": "BENCH_01372",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.94,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Sent money to college fee portal via net banking. Awaiting confirmation receipt from ..."
+  },
+  {
+    "case_id": "BENCH_01637",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.68,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Contacted fake helpline found on social media for utility bill delay; executive sent ..."
+  },
+  {
+    "case_id": "BENCH_01889",
+    "ground_truth_class": "PHISHING",
+    "predicted_class": "PHISHING",
+    "confidence": 0.78,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Clicked on a sponsored search ad claiming to be customer service portal for credit ca..."
+  },
+  {
+    "case_id": "BENCH_02764",
+    "ground_truth_class": "ACCOUNT_TAKEOVER",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.94,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Suddenly lost cellular mobile network connectivity; discovered later an unauthorized ..."
+  },
+  {
+    "case_id": "BENCH_01328",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Purchased an electronic gadget from an e-commerce festival sale. Payment deducted twi..."
+  },
+  {
+    "case_id": "BENCH_02450",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "IMPERSONATION",
+    "confidence": 0.71,
+    "latency_ms": 0.0,
+    "match": false,
+    "narrative_preview": "Friend recommended high return automated trading bot requiring deposits into escrow U..."
+  },
+  {
+    "case_id": "BENCH_01078",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Routine medical insurance premium payment made online; bank notification received imm..."
+  },
+  {
+    "case_id": "BENCH_02380",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.7,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Promised daily guaranteed 5% return on custom trading terminal app provided via direc..."
+  },
+  {
+    "case_id": "BENCH_02150",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "IMPERSONATION",
+    "confidence": 0.82,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Caller claiming to be senior officer from telecom regulatory authority stated my phon..."
+  },
+  {
+    "case_id": "BENCH_02287",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "IMPERSONATION",
+    "confidence": 0.78,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Person claiming to be bank fraud prevention executive called saying unauthorized debi..."
+  },
+  {
+    "case_id": "BENCH_02902",
+    "ground_truth_class": "WRONG_TRANSFER",
+    "predicted_class": "WRONG_TRANSFER",
+    "confidence": 0.87,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Accidentally selected the wrong saved beneficiary with a similar name from my banking..."
+  },
+  {
+    "case_id": "BENCH_01710",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.92,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Got an urgent call from someone claiming payment failed for a courier package; was to..."
+  },
+  {
+    "case_id": "BENCH_01469",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.68,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Contacted fake helpline found on social media for utility bill delay; executive sent ..."
+  },
+  {
+    "case_id": "BENCH_01280",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Purchased an electronic gadget from an e-commerce festival sale. Payment deducted twi..."
+  },
+  {
+    "case_id": "BENCH_01535",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.86,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Got an urgent call from someone claiming payment failed for a courier package; was to..."
+  },
+  {
+    "case_id": "BENCH_02480",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.7,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Promised daily guaranteed 5% return on custom trading terminal app provided via direc..."
+  },
+  {
+    "case_id": "BENCH_02059",
+    "ground_truth_class": "PHISHING",
+    "predicted_class": "PHISHING",
+    "confidence": 0.91,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Received an SMS stating electricity supply would be disconnected tonight unless I upd..."
+  },
+  {
+    "case_id": "BENCH_02441",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.74,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Friend recommended high return automated trading bot requiring deposits into escrow U..."
+  },
+  {
+    "case_id": "BENCH_02000",
+    "ground_truth_class": "PHISHING",
+    "predicted_class": "PHISHING",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Opened an email warning my tax refund was pending. Entered my net banking credentials..."
+  },
+  {
+    "case_id": "BENCH_02322",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "IMPERSONATION",
+    "confidence": 0.79,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Caller claiming to be senior officer from telecom regulatory authority stated my phon..."
+  },
+  {
+    "case_id": "BENCH_01762",
+    "ground_truth_class": "PHISHING",
+    "predicted_class": "PHISHING",
+    "confidence": 0.93,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Received an SMS stating electricity supply would be disconnected tonight unless I upd..."
+  },
+  {
+    "case_id": "BENCH_02006",
+    "ground_truth_class": "PHISHING",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.76,
+    "latency_ms": 0.0,
+    "match": false,
+    "narrative_preview": "Opened an email warning my tax refund was pending. Entered my net banking credentials..."
+  },
+  {
+    "case_id": "BENCH_02211",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "IMPERSONATION",
+    "confidence": 0.71,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Person claiming to be bank fraud prevention executive called saying unauthorized debi..."
+  },
+  {
+    "case_id": "BENCH_02854",
+    "ground_truth_class": "WRONG_TRANSFER",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.89,
+    "latency_ms": 0.0,
+    "match": false,
+    "narrative_preview": "Entered wrong bank IFSC code and account number while doing an IMPS transfer for medi..."
+  },
+  {
+    "case_id": "BENCH_02375",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.82,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Added to a private messaging investment channel promising 200% returns in 7 days thro..."
+  },
+  {
+    "case_id": "BENCH_01027",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.98,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Scheduled bill payment for electricity and broadband utilities deducted successfully ..."
+  },
+  {
+    "case_id": "BENCH_01548",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Scanned a QR code received over chat believing it was to receive cash prize reward, b..."
+  },
+  {
+    "case_id": "BENCH_02529",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.8,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Joined forex trading pool after viewing profit screenshots. Platform showed huge bala..."
+  },
+  {
+    "case_id": "BENCH_01969",
+    "ground_truth_class": "PHISHING",
+    "predicted_class": "PHISHING",
+    "confidence": 0.8,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Opened an email warning my tax refund was pending. Entered my net banking credentials..."
+  },
+  {
+    "case_id": "BENCH_02149",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "IMPERSONATION",
+    "confidence": 0.94,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Caller claiming to be senior officer from telecom regulatory authority stated my phon..."
+  },
+  {
+    "case_id": "BENCH_01298",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.97,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Scheduled bill payment for electricity and broadband utilities deducted successfully ..."
+  },
+  {
+    "case_id": "BENCH_02725",
+    "ground_truth_class": "ACCOUNT_TAKEOVER",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.88,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Installed a screen sharing remote support app recommended by someone claiming to fix ..."
+  },
+  {
+    "case_id": "BENCH_01093",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Sent money to college fee portal via net banking. Awaiting confirmation receipt from ..."
+  },
+  {
+    "case_id": "BENCH_02309",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.68,
+    "latency_ms": 0.0,
+    "match": false,
+    "narrative_preview": "Individual claiming to be income tax commissioner called demanding immediate penalty ..."
+  },
+  {
+    "case_id": "BENCH_01079",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Routine medical insurance premium payment made online; bank notification received imm..."
+  },
+  {
+    "case_id": "BENCH_01704",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.94,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Scanned a QR code received over chat believing it was to receive cash prize reward, b..."
+  },
+  {
+    "case_id": "BENCH_01467",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.73,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Contacted fake helpline found on social media for utility bill delay; executive sent ..."
+  },
+  {
+    "case_id": "BENCH_02092",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "IMPERSONATION",
+    "confidence": 0.94,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Received message from my manager's photo profile on WhatsApp requesting urgent gift v..."
+  },
+  {
+    "case_id": "BENCH_01172",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Transferred funds for monthly home rent to landlord as usual, but the status shows pe..."
+  },
+  {
+    "case_id": "BENCH_02106",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "IMPERSONATION",
+    "confidence": 0.73,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Received message from my manager's photo profile on WhatsApp requesting urgent gift v..."
+  },
+  {
+    "case_id": "BENCH_01685",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Received a request claiming to be from a prospective buyer on an online marketplace a..."
+  },
+  {
+    "case_id": "BENCH_02452",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.87,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Added to a private messaging investment channel promising 200% returns in 7 days thro..."
+  },
+  {
+    "case_id": "BENCH_02012",
+    "ground_truth_class": "PHISHING",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.7,
+    "latency_ms": 0.0,
+    "match": false,
+    "narrative_preview": "Clicked on a sponsored search ad claiming to be customer service portal for credit ca..."
+  },
+  {
+    "case_id": "BENCH_01405",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.98,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Scanned a QR code received over chat believing it was to receive cash prize reward, b..."
+  },
+  {
+    "case_id": "BENCH_02176",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "IMPERSONATION",
+    "confidence": 0.71,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Caller stated they were from credit card department offering zero interest rate conve..."
+  },
+  {
+    "case_id": "BENCH_01641",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Tried claiming cashback banner on a third-party coupon site which opened UPI app with..."
+  },
+  {
+    "case_id": "BENCH_01276",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Routine medical insurance premium payment made online; bank notification received imm..."
+  },
+  {
+    "case_id": "BENCH_01068",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Transferred funds to a family member for festive shopping expenses through standard U..."
+  },
+  {
+    "case_id": "BENCH_01097",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Routine medical insurance premium payment made online; bank notification received imm..."
+  },
+  {
+    "case_id": "BENCH_02374",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.88,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Offered a part-time remote job involving rating hotels and liking videos; required to..."
+  },
+  {
+    "case_id": "BENCH_02313",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "IMPERSONATION",
+    "confidence": 0.69,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Person claiming to be bank fraud prevention executive called saying unauthorized debi..."
+  },
+  {
+    "case_id": "BENCH_01048",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Transferred funds to a family member for festive shopping expenses through standard U..."
+  },
+  {
+    "case_id": "BENCH_01524",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.92,
+    "latency_ms": 1.0,
+    "match": true,
+    "narrative_preview": "Got an urgent call from someone claiming payment failed for a courier package; was to..."
+  },
+  {
+    "case_id": "BENCH_01325",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Monthly grocery payment made at supermarket POS terminal. Balance was deducted but me..."
+  },
+  {
+    "case_id": "BENCH_02354",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "IMPERSONATION",
+    "confidence": 0.61,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Individual claiming to be income tax commissioner called demanding immediate penalty ..."
+  },
+  {
+    "case_id": "BENCH_01379",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.9,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Scheduled bill payment for electricity and broadband utilities deducted successfully ..."
+  },
+  {
+    "case_id": "BENCH_02630",
+    "ground_truth_class": "ACCOUNT_TAKEOVER",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.91,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Noticed strange login notification from an IP in another state followed by multiple u..."
+  },
+  {
+    "case_id": "BENCH_02769",
+    "ground_truth_class": "ACCOUNT_TAKEOVER",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.79,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Suddenly lost cellular mobile network connectivity; discovered later an unauthorized ..."
+  },
+  {
+    "case_id": "BENCH_01770",
+    "ground_truth_class": "PHISHING",
+    "predicted_class": "PHISHING",
+    "confidence": 0.85,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Got an urgent text message indicating reward points worth \u20b9127,927.03 were expiring t..."
+  },
+  {
+    "case_id": "BENCH_02805",
+    "ground_truth_class": "ACCOUNT_TAKEOVER",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.95,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Received repeated OTP requests while asleep; woke up to find net banking password res..."
+  },
+  {
+    "case_id": "BENCH_02690",
+    "ground_truth_class": "ACCOUNT_TAKEOVER",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.94,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Received repeated OTP requests while asleep; woke up to find net banking password res..."
+  },
+  {
+    "case_id": "BENCH_02674",
+    "ground_truth_class": "ACCOUNT_TAKEOVER",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.95,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Noticed strange login notification from an IP in another state followed by multiple u..."
+  },
+  {
+    "case_id": "BENCH_01269",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Sent money to college fee portal via net banking. Awaiting confirmation receipt from ..."
+  },
+  {
+    "case_id": "BENCH_01671",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.92,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Scanned a QR code received over chat believing it was to receive cash prize reward, b..."
+  },
+  {
+    "case_id": "BENCH_02013",
+    "ground_truth_class": "PHISHING",
+    "predicted_class": "PHISHING",
+    "confidence": 0.89,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Opened an email warning my tax refund was pending. Entered my net banking credentials..."
+  },
+  {
+    "case_id": "BENCH_01209",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.94,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Transferred funds for monthly home rent to landlord as usual, but the status shows pe..."
+  },
+  {
+    "case_id": "BENCH_02964",
+    "ground_truth_class": "WRONG_TRANSFER",
+    "predicted_class": "WRONG_TRANSFER",
+    "confidence": 0.87,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Transferred tuition fee to another student's virtual payment address due to typo in s..."
+  },
+  {
+    "case_id": "BENCH_01657",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Tried claiming cashback banner on a third-party coupon site which opened UPI app with..."
+  },
+  {
+    "case_id": "BENCH_01951",
+    "ground_truth_class": "PHISHING",
+    "predicted_class": "PHISHING",
+    "confidence": 0.84,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Clicked on a sponsored search ad claiming to be customer service portal for credit ca..."
+  },
+  {
+    "case_id": "BENCH_02611",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.68,
+    "latency_ms": 0.0,
+    "match": false,
+    "narrative_preview": "Saw social media influencer advertisement about high-yield pre-IPO stock allotment gr..."
+  },
+  {
+    "case_id": "BENCH_02263",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "IMPERSONATION",
+    "confidence": 0.71,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Person posing as an old school friend contacted on messaging app asking for immediate..."
+  },
+  {
+    "case_id": "BENCH_01494",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.9,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Received a request claiming to be from a prospective buyer on an online marketplace a..."
+  },
+  {
+    "case_id": "BENCH_02559",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.87,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Saw social media influencer advertisement about high-yield pre-IPO stock allotment gr..."
+  },
+  {
+    "case_id": "BENCH_02333",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.7,
+    "latency_ms": 0.0,
+    "match": false,
+    "narrative_preview": "Caller stated they were from credit card department offering zero interest rate conve..."
+  },
+  {
+    "case_id": "BENCH_01454",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.9,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Scanned a QR code received over chat believing it was to receive cash prize reward, b..."
+  },
+  {
+    "case_id": "BENCH_01737",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.97,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "A buyer on classifieds app insisted on paying via dynamic QR code and instructed me t..."
+  },
+  {
+    "case_id": "BENCH_01754",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Got an urgent call from someone claiming payment failed for a courier package; was to..."
+  },
+  {
+    "case_id": "BENCH_01196",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Purchased an electronic gadget from an e-commerce festival sale. Payment deducted twi..."
+  },
+  {
+    "case_id": "BENCH_01359",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Transferred funds for monthly home rent to landlord as usual, but the status shows pe..."
+  },
+  {
+    "case_id": "BENCH_01416",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.97,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Got an urgent call from someone claiming payment failed for a courier package; was to..."
+  },
+  {
+    "case_id": "BENCH_01882",
+    "ground_truth_class": "PHISHING",
+    "predicted_class": "PHISHING",
+    "confidence": 0.82,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "SMS claiming my pan card was not linked with bank account provided a portal link wher..."
+  },
+  {
+    "case_id": "BENCH_02157",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "IMPERSONATION",
+    "confidence": 0.75,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Received message from my manager's photo profile on WhatsApp requesting urgent gift v..."
+  },
+  {
+    "case_id": "BENCH_02488",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.87,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Added to a private messaging investment channel promising 200% returns in 7 days thro..."
+  },
+  {
+    "case_id": "BENCH_02243",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "IMPERSONATION",
+    "confidence": 0.75,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Person posing as an old school friend contacted on messaging app asking for immediate..."
+  },
+  {
+    "case_id": "BENCH_02977",
+    "ground_truth_class": "WRONG_TRANSFER",
+    "predicted_class": "WRONG_TRANSFER",
+    "confidence": 0.75,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Mistakenly entered extra zero in the amount field and sent to correct party but canno..."
+  },
+  {
+    "case_id": "BENCH_01633",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.98,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "A buyer on classifieds app insisted on paying via dynamic QR code and instructed me t..."
+  },
+  {
+    "case_id": "BENCH_01495",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Received a request claiming to be from a prospective buyer on an online marketplace a..."
+  },
+  {
+    "case_id": "BENCH_02649",
+    "ground_truth_class": "ACCOUNT_TAKEOVER",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.83,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Email account was compromised and password reset emails for banking apps were trigger..."
+  },
+  {
+    "case_id": "BENCH_01904",
+    "ground_truth_class": "PHISHING",
+    "predicted_class": "PHISHING",
+    "confidence": 0.94,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Received an alert about suspicious login attempt on net banking with a link to verify..."
+  },
+  {
+    "case_id": "BENCH_02750",
+    "ground_truth_class": "ACCOUNT_TAKEOVER",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Found secondary authentication device added to my digital wallet without authorizatio..."
+  },
+  {
+    "case_id": "BENCH_01225",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.9,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Scheduled bill payment for electricity and broadband utilities deducted successfully ..."
+  },
+  {
+    "case_id": "BENCH_02846",
+    "ground_truth_class": "WRONG_TRANSFER",
+    "predicted_class": "WRONG_TRANSFER",
+    "confidence": 0.87,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Transferred tuition fee to another student's virtual payment address due to typo in s..."
+  },
+  {
+    "case_id": "BENCH_01452",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "A buyer on classifieds app insisted on paying via dynamic QR code and instructed me t..."
+  },
+  {
+    "case_id": "BENCH_02501",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.75,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Promised daily guaranteed 5% return on custom trading terminal app provided via direc..."
+  },
+  {
+    "case_id": "BENCH_02989",
+    "ground_truth_class": "WRONG_TRANSFER",
+    "predicted_class": "WRONG_TRANSFER",
+    "confidence": 0.74,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Entered wrong bank IFSC code and account number while doing an IMPS transfer for medi..."
+  },
+  {
+    "case_id": "BENCH_02486",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.75,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Investment advisor in VIP trading group recommended exclusive institutional equity al..."
+  },
+  {
+    "case_id": "BENCH_02151",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "IMPERSONATION",
+    "confidence": 0.72,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Person posing as an old school friend contacted on messaging app asking for immediate..."
+  },
+  {
+    "case_id": "BENCH_01064",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.98,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Scheduled bill payment for electricity and broadband utilities deducted successfully ..."
+  },
+  {
+    "case_id": "BENCH_02508",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.75,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Added to a private messaging investment channel promising 200% returns in 7 days thro..."
+  },
+  {
+    "case_id": "BENCH_02955",
+    "ground_truth_class": "WRONG_TRANSFER",
+    "predicted_class": "WRONG_TRANSFER",
+    "confidence": 0.95,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Mistakenly entered extra zero in the amount field and sent to correct party but canno..."
+  },
+  {
+    "case_id": "BENCH_01123",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Monthly grocery payment made at supermarket POS terminal. Balance was deducted but me..."
+  },
+  {
+    "case_id": "BENCH_02293",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "IMPERSONATION",
+    "confidence": 0.94,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Received message from my manager's photo profile on WhatsApp requesting urgent gift v..."
+  },
+  {
+    "case_id": "BENCH_01863",
+    "ground_truth_class": "PHISHING",
+    "predicted_class": "PHISHING",
+    "confidence": 0.77,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Got an urgent text message indicating reward points worth \u20b979,712.45 were expiring to..."
+  },
+  {
+    "case_id": "BENCH_02336",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "IMPERSONATION",
+    "confidence": 0.61,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Individual claiming to be income tax commissioner called demanding immediate penalty ..."
+  },
+  {
+    "case_id": "BENCH_02408",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.85,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Offered a part-time remote job involving rating hotels and liking videos; required to..."
+  },
+  {
+    "case_id": "BENCH_02642",
+    "ground_truth_class": "ACCOUNT_TAKEOVER",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.95,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Email account was compromised and password reset emails for banking apps were trigger..."
+  },
+  {
+    "case_id": "BENCH_01155",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Monthly grocery payment made at supermarket POS terminal. Balance was deducted but me..."
+  },
+  {
+    "case_id": "BENCH_02615",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.82,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Offered a part-time remote job involving rating hotels and liking videos; required to..."
+  },
+  {
+    "case_id": "BENCH_01911",
+    "ground_truth_class": "PHISHING",
+    "predicted_class": "PHISHING",
+    "confidence": 0.93,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Clicked a notification link warning my SIM card will be deactivated within 24 hours d..."
+  },
+  {
+    "case_id": "BENCH_02683",
+    "ground_truth_class": "ACCOUNT_TAKEOVER",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.85,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Attacked by malware that intercepted SMS notifications and initiated transfers from m..."
+  },
+  {
+    "case_id": "BENCH_02818",
+    "ground_truth_class": "ACCOUNT_TAKEOVER",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Email account was compromised and password reset emails for banking apps were trigger..."
+  },
+  {
+    "case_id": "BENCH_01012",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Transferred funds for monthly home rent to landlord as usual, but the status shows pe..."
+  },
+  {
+    "case_id": "BENCH_01038",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Routine medical insurance premium payment made online; bank notification received imm..."
+  },
+  {
+    "case_id": "BENCH_01563",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.92,
+    "latency_ms": 0.99,
+    "match": true,
+    "narrative_preview": "Tried claiming cashback banner on a third-party coupon site which opened UPI app with..."
+  },
+  {
+    "case_id": "BENCH_01463",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.92,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Someone posing as a restaurant refund agent sent a collect link on my messaging app s..."
+  },
+  {
+    "case_id": "BENCH_02038",
+    "ground_truth_class": "PHISHING",
+    "predicted_class": "PHISHING",
+    "confidence": 0.84,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Got an urgent text message indicating reward points worth \u20b9163,084.56 were expiring t..."
+  },
+  {
+    "case_id": "BENCH_02208",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "IMPERSONATION",
+    "confidence": 0.8,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Individual claiming to be income tax commissioner called demanding immediate penalty ..."
+  },
+  {
+    "case_id": "BENCH_01929",
+    "ground_truth_class": "PHISHING",
+    "predicted_class": "PHISHING",
+    "confidence": 0.79,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Received an SMS stating electricity supply would be disconnected tonight unless I upd..."
+  },
+  {
+    "case_id": "BENCH_02493",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.71,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Offered a part-time remote job involving rating hotels and liking videos; required to..."
+  },
+  {
+    "case_id": "BENCH_01084",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Routine medical insurance premium payment made online; bank notification received imm..."
+  },
+  {
+    "case_id": "BENCH_01544",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.94,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Scanned a QR code received over chat believing it was to receive cash prize reward, b..."
+  },
+  {
+    "case_id": "BENCH_02496",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.79,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Joined forex trading pool after viewing profit screenshots. Platform showed huge bala..."
+  },
+  {
+    "case_id": "BENCH_01235",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.99,
+    "match": true,
+    "narrative_preview": "Routine medical insurance premium payment made online; bank notification received imm..."
+  },
+  {
+    "case_id": "BENCH_01092",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.97,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Scheduled bill payment for electricity and broadband utilities deducted successfully ..."
+  },
+  {
+    "case_id": "BENCH_02963",
+    "ground_truth_class": "WRONG_TRANSFER",
+    "predicted_class": "WRONG_TRANSFER",
+    "confidence": 0.87,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Accidentally selected the wrong saved beneficiary with a similar name from my banking..."
+  },
+  {
+    "case_id": "BENCH_02290",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "IMPERSONATION",
+    "confidence": 0.94,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Received message from my manager's photo profile on WhatsApp requesting urgent gift v..."
+  },
+  {
+    "case_id": "BENCH_01233",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Routine medical insurance premium payment made online; bank notification received imm..."
+  },
+  {
+    "case_id": "BENCH_01891",
+    "ground_truth_class": "PHISHING",
+    "predicted_class": "PHISHING",
+    "confidence": 0.84,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "SMS claiming my pan card was not linked with bank account provided a portal link wher..."
+  },
+  {
+    "case_id": "BENCH_01523",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.74,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Contacted fake helpline found on social media for utility bill delay; executive sent ..."
+  },
+  {
+    "case_id": "BENCH_01204",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Sent money to college fee portal via net banking. Awaiting confirmation receipt from ..."
+  },
+  {
+    "case_id": "BENCH_02817",
+    "ground_truth_class": "ACCOUNT_TAKEOVER",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.88,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Attacked by malware that intercepted SMS notifications and initiated transfers from m..."
+  },
+  {
+    "case_id": "BENCH_02800",
+    "ground_truth_class": "ACCOUNT_TAKEOVER",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.85,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Installed a screen sharing remote support app recommended by someone claiming to fix ..."
+  },
+  {
+    "case_id": "BENCH_02975",
+    "ground_truth_class": "WRONG_TRANSFER",
+    "predicted_class": "WRONG_TRANSFER",
+    "confidence": 0.82,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Mistakenly entered extra zero in the amount field and sent to correct party but canno..."
+  },
+  {
+    "case_id": "BENCH_02400",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.71,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Offered a part-time remote job involving rating hotels and liking videos; required to..."
+  },
+  {
+    "case_id": "BENCH_01387",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Monthly grocery payment made at supermarket POS terminal. Balance was deducted but me..."
+  },
+  {
+    "case_id": "BENCH_02119",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "IMPERSONATION",
+    "confidence": 0.77,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Person claiming to be bank fraud prevention executive called saying unauthorized debi..."
+  },
+  {
+    "case_id": "BENCH_01156",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Tried paying for flight ticket booking during promotion. Amount debited but airline P..."
+  },
+  {
+    "case_id": "BENCH_01667",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.8,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Someone posing as a restaurant refund agent sent a collect link on my messaging app s..."
+  },
+  {
+    "case_id": "BENCH_01812",
+    "ground_truth_class": "PHISHING",
+    "predicted_class": "PHISHING",
+    "confidence": 0.9,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Received an alert about suspicious login attempt on net banking with a link to verify..."
+  },
+  {
+    "case_id": "BENCH_01574",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Scanned a QR code received over chat believing it was to receive cash prize reward, b..."
+  },
+  {
+    "case_id": "BENCH_02522",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.7,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Added to a private messaging investment channel promising 200% returns in 7 days thro..."
+  },
+  {
+    "case_id": "BENCH_02594",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.93,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Saw social media influencer advertisement about high-yield pre-IPO stock allotment gr..."
+  },
+  {
+    "case_id": "BENCH_01378",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Transferred funds to a family member for festive shopping expenses through standard U..."
+  },
+  {
+    "case_id": "BENCH_02988",
+    "ground_truth_class": "WRONG_TRANSFER",
+    "predicted_class": "WRONG_TRANSFER",
+    "confidence": 0.82,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Sent funds to previous landlord's old UPI ID instead of current landlord by mistake f..."
+  },
+  {
+    "case_id": "BENCH_01435",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.9,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Got an urgent call from someone claiming payment failed for a courier package; was to..."
+  },
+  {
+    "case_id": "BENCH_01134",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Sent money to college fee portal via net banking. Awaiting confirmation receipt from ..."
+  },
+  {
+    "case_id": "BENCH_01757",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Scanned a QR code received over chat believing it was to receive cash prize reward, b..."
+  },
+  {
+    "case_id": "BENCH_02217",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "IMPERSONATION",
+    "confidence": 0.76,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Caller claiming to be senior officer from telecom regulatory authority stated my phon..."
+  },
+  {
+    "case_id": "BENCH_01922",
+    "ground_truth_class": "PHISHING",
+    "predicted_class": "PHISHING",
+    "confidence": 0.9,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Opened an email warning my tax refund was pending. Entered my net banking credentials..."
+  },
+  {
+    "case_id": "BENCH_01314",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Transferred funds for monthly home rent to landlord as usual, but the status shows pe..."
+  },
+  {
+    "case_id": "BENCH_02426",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.75,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Saw social media influencer advertisement about high-yield pre-IPO stock allotment gr..."
+  },
+  {
+    "case_id": "BENCH_02794",
+    "ground_truth_class": "ACCOUNT_TAKEOVER",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.83,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Suddenly lost cellular mobile network connectivity; discovered later an unauthorized ..."
+  },
+  {
+    "case_id": "BENCH_02181",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "IMPERSONATION",
+    "confidence": 0.75,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Received message from my manager's photo profile on WhatsApp requesting urgent gift v..."
+  },
+  {
+    "case_id": "BENCH_02384",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.79,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Promised daily guaranteed 5% return on custom trading terminal app provided via direc..."
+  },
+  {
+    "case_id": "BENCH_02381",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.7,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Investment advisor in VIP trading group recommended exclusive institutional equity al..."
+  },
+  {
+    "case_id": "BENCH_02916",
+    "ground_truth_class": "WRONG_TRANSFER",
+    "predicted_class": "WRONG_TRANSFER",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Sent funds to previous landlord's old UPI ID instead of current landlord by mistake f..."
+  },
+  {
+    "case_id": "BENCH_02016",
+    "ground_truth_class": "PHISHING",
+    "predicted_class": "PHISHING",
+    "confidence": 0.93,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Opened an email warning my tax refund was pending. Entered my net banking credentials..."
+  },
+  {
+    "case_id": "BENCH_02548",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "PHISHING",
+    "confidence": 0.67,
+    "latency_ms": 0.0,
+    "match": false,
+    "narrative_preview": "Saw social media influencer advertisement about high-yield pre-IPO stock allotment gr..."
+  },
+  {
+    "case_id": "BENCH_01609",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.86,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Got an urgent call from someone claiming payment failed for a courier package; was to..."
+  },
+  {
+    "case_id": "BENCH_02448",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.7,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Promised daily guaranteed 5% return on custom trading terminal app provided via direc..."
+  },
+  {
+    "case_id": "BENCH_02115",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "IMPERSONATION",
+    "confidence": 0.74,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Caller stated they were from credit card department offering zero interest rate conve..."
+  },
+  {
+    "case_id": "BENCH_01390",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Tried paying for flight ticket booking during promotion. Amount debited but airline P..."
+  },
+  {
+    "case_id": "BENCH_01767",
+    "ground_truth_class": "PHISHING",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.78,
+    "latency_ms": 0.0,
+    "match": false,
+    "narrative_preview": "Got an urgent text message indicating reward points worth \u20b973,350.40 were expiring to..."
+  },
+  {
+    "case_id": "BENCH_01037",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Purchased an electronic gadget from an e-commerce festival sale. Payment deducted twi..."
+  },
+  {
+    "case_id": "BENCH_02089",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "IMPERSONATION",
+    "confidence": 0.8,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Individual claiming to be income tax commissioner called demanding immediate penalty ..."
+  },
+  {
+    "case_id": "BENCH_02308",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "IMPERSONATION",
+    "confidence": 0.61,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Caller stated they were from credit card department offering zero interest rate conve..."
+  },
+  {
+    "case_id": "BENCH_01020",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Transferred funds to a family member for festive shopping expenses through standard U..."
+  },
+  {
+    "case_id": "BENCH_01281",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Tried paying for flight ticket booking during promotion. Amount debited but airline P..."
+  },
+  {
+    "case_id": "BENCH_02826",
+    "ground_truth_class": "ACCOUNT_TAKEOVER",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.95,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Suddenly lost cellular mobile network connectivity; discovered later an unauthorized ..."
+  },
+  {
+    "case_id": "BENCH_01321",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Routine medical insurance premium payment made online; bank notification received imm..."
+  },
+  {
+    "case_id": "BENCH_02753",
+    "ground_truth_class": "ACCOUNT_TAKEOVER",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.83,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Email account was compromised and password reset emails for banking apps were trigger..."
+  },
+  {
+    "case_id": "BENCH_01122",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Sent money to college fee portal via net banking. Awaiting confirmation receipt from ..."
+  },
+  {
+    "case_id": "BENCH_02347",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "IMPERSONATION",
+    "confidence": 0.7,
+    "latency_ms": 1.0,
+    "match": true,
+    "narrative_preview": "Caller claiming to be senior officer from telecom regulatory authority stated my phon..."
+  },
+  {
+    "case_id": "BENCH_02777",
+    "ground_truth_class": "ACCOUNT_TAKEOVER",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.91,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Email account was compromised and password reset emails for banking apps were trigger..."
+  },
+  {
+    "case_id": "BENCH_01699",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.89,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Someone posing as a restaurant refund agent sent a collect link on my messaging app s..."
+  },
+  {
+    "case_id": "BENCH_02130",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "IMPERSONATION",
+    "confidence": 0.75,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Received message from my manager's photo profile on WhatsApp requesting urgent gift v..."
+  },
+  {
+    "case_id": "BENCH_02589",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.79,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Saw social media influencer advertisement about high-yield pre-IPO stock allotment gr..."
+  },
+  {
+    "case_id": "BENCH_01826",
+    "ground_truth_class": "PHISHING",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.72,
+    "latency_ms": 0.0,
+    "match": false,
+    "narrative_preview": "Received an alert about suspicious login attempt on net banking with a link to verify..."
+  },
+  {
+    "case_id": "BENCH_01689",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Someone posing as a restaurant refund agent sent a collect link on my messaging app s..."
+  },
+  {
+    "case_id": "BENCH_01723",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Scanned a QR code received over chat believing it was to receive cash prize reward, b..."
+  },
+  {
+    "case_id": "BENCH_02754",
+    "ground_truth_class": "ACCOUNT_TAKEOVER",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.91,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Noticed strange login notification from an IP in another state followed by multiple u..."
+  },
+  {
+    "case_id": "BENCH_02987",
+    "ground_truth_class": "WRONG_TRANSFER",
+    "predicted_class": "WRONG_TRANSFER",
+    "confidence": 0.82,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Mistakenly entered extra zero in the amount field and sent to correct party but canno..."
+  },
+  {
+    "case_id": "BENCH_02518",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.79,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Offered a part-time remote job involving rating hotels and liking videos; required to..."
+  },
+  {
+    "case_id": "BENCH_01781",
+    "ground_truth_class": "PHISHING",
+    "predicted_class": "PHISHING",
+    "confidence": 0.8,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Received an alert about suspicious login attempt on net banking with a link to verify..."
+  },
+  {
+    "case_id": "BENCH_02087",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "IMPERSONATION",
+    "confidence": 0.75,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Person claiming to be bank fraud prevention executive called saying unauthorized debi..."
+  },
+  {
+    "case_id": "BENCH_02428",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.87,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Offered a part-time remote job involving rating hotels and liking videos; required to..."
+  },
+  {
+    "case_id": "BENCH_01420",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.95,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Someone posing as a restaurant refund agent sent a collect link on my messaging app s..."
+  },
+  {
+    "case_id": "BENCH_02786",
+    "ground_truth_class": "ACCOUNT_TAKEOVER",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Installed a screen sharing remote support app recommended by someone claiming to fix ..."
+  },
+  {
+    "case_id": "BENCH_02260",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "IMPERSONATION",
+    "confidence": 0.62,
+    "latency_ms": 0.99,
+    "match": true,
+    "narrative_preview": "Person claiming to be bank fraud prevention executive called saying unauthorized debi..."
+  },
+  {
+    "case_id": "BENCH_02710",
+    "ground_truth_class": "ACCOUNT_TAKEOVER",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.9,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Found secondary authentication device added to my digital wallet without authorizatio..."
+  },
+  {
+    "case_id": "BENCH_02668",
+    "ground_truth_class": "ACCOUNT_TAKEOVER",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.9,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Installed a screen sharing remote support app recommended by someone claiming to fix ..."
+  },
+  {
+    "case_id": "BENCH_01361",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Transferred funds to a family member for festive shopping expenses through standard U..."
+  },
+  {
+    "case_id": "BENCH_01138",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Monthly grocery payment made at supermarket POS terminal. Balance was deducted but me..."
+  },
+  {
+    "case_id": "BENCH_01438",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Scanned a QR code received over chat believing it was to receive cash prize reward, b..."
+  },
+  {
+    "case_id": "BENCH_01488",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Received a request claiming to be from a prospective buyer on an online marketplace a..."
+  },
+  {
+    "case_id": "BENCH_02920",
+    "ground_truth_class": "WRONG_TRANSFER",
+    "predicted_class": "WRONG_TRANSFER",
+    "confidence": 0.74,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Entered wrong bank IFSC code and account number while doing an IMPS transfer for medi..."
+  },
+  {
+    "case_id": "BENCH_01908",
+    "ground_truth_class": "PHISHING",
+    "predicted_class": "PHISHING",
+    "confidence": 0.77,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Opened an email warning my tax refund was pending. Entered my net banking credentials..."
+  },
+  {
+    "case_id": "BENCH_01492",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Scanned a QR code received over chat believing it was to receive cash prize reward, b..."
+  },
+  {
+    "case_id": "BENCH_02585",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.75,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Friend recommended high return automated trading bot requiring deposits into escrow U..."
+  },
+  {
+    "case_id": "BENCH_01516",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Scanned a QR code received over chat believing it was to receive cash prize reward, b..."
+  },
+  {
+    "case_id": "BENCH_02570",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.7,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Saw social media influencer advertisement about high-yield pre-IPO stock allotment gr..."
+  },
+  {
+    "case_id": "BENCH_02746",
+    "ground_truth_class": "ACCOUNT_TAKEOVER",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.95,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Noticed strange login notification from an IP in another state followed by multiple u..."
+  },
+  {
+    "case_id": "BENCH_02341",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.83,
+    "latency_ms": 0.0,
+    "match": false,
+    "narrative_preview": "Caller stated they were from credit card department offering zero interest rate conve..."
+  },
+  {
+    "case_id": "BENCH_02167",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "PHISHING",
+    "confidence": 0.61,
+    "latency_ms": 0.0,
+    "match": false,
+    "narrative_preview": "Received video call from someone in police uniform claiming a parcel containing contr..."
+  },
+  {
+    "case_id": "BENCH_01130",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.9,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Scheduled bill payment for electricity and broadband utilities deducted successfully ..."
+  },
+  {
+    "case_id": "BENCH_02254",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "IMPERSONATION",
+    "confidence": 0.88,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Person posing as an old school friend contacted on messaging app asking for immediate..."
+  },
+  {
+    "case_id": "BENCH_01566",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.92,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Someone posing as a restaurant refund agent sent a collect link on my messaging app s..."
+  },
+  {
+    "case_id": "BENCH_02223",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "IMPERSONATION",
+    "confidence": 0.67,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Person posing as an old school friend contacted on messaging app asking for immediate..."
+  },
+  {
+    "case_id": "BENCH_02647",
+    "ground_truth_class": "ACCOUNT_TAKEOVER",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.85,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Installed a screen sharing remote support app recommended by someone claiming to fix ..."
+  },
+  {
+    "case_id": "BENCH_02222",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.57,
+    "latency_ms": 0.0,
+    "match": false,
+    "narrative_preview": "Individual claiming to be income tax commissioner called demanding immediate penalty ..."
+  },
+  {
+    "case_id": "BENCH_02535",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.75,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Investment advisor in VIP trading group recommended exclusive institutional equity al..."
+  },
+  {
+    "case_id": "BENCH_02503",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.62,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Friend recommended high return automated trading bot requiring deposits into escrow U..."
+  },
+  {
+    "case_id": "BENCH_01069",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Monthly grocery payment made at supermarket POS terminal. Balance was deducted but me..."
+  },
+  {
+    "case_id": "BENCH_02359",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "IMPERSONATION",
+    "confidence": 0.66,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Received message from my manager's photo profile on WhatsApp requesting urgent gift v..."
+  },
+  {
+    "case_id": "BENCH_02097",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "IMPERSONATION",
+    "confidence": 0.75,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Person posing as an old school friend contacted on messaging app asking for immediate..."
+  },
+  {
+    "case_id": "BENCH_02717",
+    "ground_truth_class": "ACCOUNT_TAKEOVER",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Noticed strange login notification from an IP in another state followed by multiple u..."
+  },
+  {
+    "case_id": "BENCH_01739",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.9,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Scanned a QR code received over chat believing it was to receive cash prize reward, b..."
+  },
+  {
+    "case_id": "BENCH_01312",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.94,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Routine medical insurance premium payment made online; bank notification received imm..."
+  },
+  {
+    "case_id": "BENCH_02234",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "IMPERSONATION",
+    "confidence": 0.7,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Received video call from someone in police uniform claiming a parcel containing contr..."
+  },
+  {
+    "case_id": "BENCH_01257",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Transferred funds for monthly home rent to landlord as usual, but the status shows pe..."
+  },
+  {
+    "case_id": "BENCH_01881",
+    "ground_truth_class": "PHISHING",
+    "predicted_class": "PHISHING",
+    "confidence": 0.73,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Received an SMS stating electricity supply would be disconnected tonight unless I upd..."
+  },
+  {
+    "case_id": "BENCH_02789",
+    "ground_truth_class": "ACCOUNT_TAKEOVER",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.91,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Noticed strange login notification from an IP in another state followed by multiple u..."
+  },
+  {
+    "case_id": "BENCH_02751",
+    "ground_truth_class": "ACCOUNT_TAKEOVER",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.94,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Received repeated OTP requests while asleep; woke up to find net banking password res..."
+  },
+  {
+    "case_id": "BENCH_01007",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Tried paying for flight ticket booking during promotion. Amount debited but airline P..."
+  },
+  {
+    "case_id": "BENCH_01703",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Scanned a QR code received over chat believing it was to receive cash prize reward, b..."
+  },
+  {
+    "case_id": "BENCH_01484",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Got an urgent call from someone claiming payment failed for a courier package; was to..."
+  },
+  {
+    "case_id": "BENCH_01717",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.68,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Contacted fake helpline found on social media for utility bill delay; executive sent ..."
+  },
+  {
+    "case_id": "BENCH_02052",
+    "ground_truth_class": "PHISHING",
+    "predicted_class": "PHISHING",
+    "confidence": 0.72,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Clicked on a sponsored search ad claiming to be customer service portal for credit ca..."
+  },
+  {
+    "case_id": "BENCH_02358",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "IMPERSONATION",
+    "confidence": 0.74,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Caller claiming to be senior officer from telecom regulatory authority stated my phon..."
+  },
+  {
+    "case_id": "BENCH_01738",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.9,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Received a request claiming to be from a prospective buyer on an online marketplace a..."
+  },
+  {
+    "case_id": "BENCH_01243",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Routine medical insurance premium payment made online; bank notification received imm..."
+  },
+  {
+    "case_id": "BENCH_02026",
+    "ground_truth_class": "PHISHING",
+    "predicted_class": "PHISHING",
+    "confidence": 0.9,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Clicked on a sponsored search ad claiming to be customer service portal for credit ca..."
+  },
+  {
+    "case_id": "BENCH_01167",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Sent money to college fee portal via net banking. Awaiting confirmation receipt from ..."
+  },
+  {
+    "case_id": "BENCH_02593",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.75,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Promised daily guaranteed 5% return on custom trading terminal app provided via direc..."
+  },
+  {
+    "case_id": "BENCH_02122",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "PHISHING",
+    "confidence": 0.65,
+    "latency_ms": 0.0,
+    "match": false,
+    "narrative_preview": "Person claiming to be bank fraud prevention executive called saying unauthorized debi..."
+  },
+  {
+    "case_id": "BENCH_01695",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.94,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Got an urgent call from someone claiming payment failed for a courier package; was to..."
+  },
+  {
+    "case_id": "BENCH_02438",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.7,
+    "latency_ms": 1.0,
+    "match": true,
+    "narrative_preview": "Friend recommended high return automated trading bot requiring deposits into escrow U..."
+  },
+  {
+    "case_id": "BENCH_02881",
+    "ground_truth_class": "WRONG_TRANSFER",
+    "predicted_class": "WRONG_TRANSFER",
+    "confidence": 0.83,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Mistakenly entered extra zero in the amount field and sent to correct party but canno..."
+  },
+  {
+    "case_id": "BENCH_02726",
+    "ground_truth_class": "ACCOUNT_TAKEOVER",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.79,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Installed a screen sharing remote support app recommended by someone claiming to fix ..."
+  },
+  {
+    "case_id": "BENCH_02363",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.75,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Offered a part-time remote job involving rating hotels and liking videos; required to..."
+  },
+  {
+    "case_id": "BENCH_02365",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.75,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Joined forex trading pool after viewing profit screenshots. Platform showed huge bala..."
+  },
+  {
+    "case_id": "BENCH_01091",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Routine medical insurance premium payment made online; bank notification received imm..."
+  },
+  {
+    "case_id": "BENCH_02802",
+    "ground_truth_class": "ACCOUNT_TAKEOVER",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.85,
+    "latency_ms": 1.0,
+    "match": true,
+    "narrative_preview": "Found secondary authentication device added to my digital wallet without authorizatio..."
+  },
+  {
+    "case_id": "BENCH_02845",
+    "ground_truth_class": "WRONG_TRANSFER",
+    "predicted_class": "WRONG_TRANSFER",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Mistyped one digit of recipient mobile phone number while sending money via UPI to my..."
+  },
+  {
+    "case_id": "BENCH_01445",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Scanned a QR code received over chat believing it was to receive cash prize reward, b..."
+  },
+  {
+    "case_id": "BENCH_01033",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.9,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Scheduled bill payment for electricity and broadband utilities deducted successfully ..."
+  },
+  {
+    "case_id": "BENCH_02673",
+    "ground_truth_class": "ACCOUNT_TAKEOVER",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.94,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Noticed strange login notification from an IP in another state followed by multiple u..."
+  },
+  {
+    "case_id": "BENCH_01558",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Got an urgent call from someone claiming payment failed for a courier package; was to..."
+  },
+  {
+    "case_id": "BENCH_01116",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Purchased an electronic gadget from an e-commerce festival sale. Payment deducted twi..."
+  },
+  {
+    "case_id": "BENCH_01473",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.9,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Scanned a QR code received over chat believing it was to receive cash prize reward, b..."
+  },
+  {
+    "case_id": "BENCH_01402",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.68,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Contacted fake helpline found on social media for utility bill delay; executive sent ..."
+  },
+  {
+    "case_id": "BENCH_01477",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.97,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Received a request claiming to be from a prospective buyer on an online marketplace a..."
+  },
+  {
+    "case_id": "BENCH_02482",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.7,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Joined forex trading pool after viewing profit screenshots. Platform showed huge bala..."
+  },
+  {
+    "case_id": "BENCH_01605",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Got an urgent call from someone claiming payment failed for a courier package; was to..."
+  },
+  {
+    "case_id": "BENCH_02283",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "IMPERSONATION",
+    "confidence": 0.61,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Individual claiming to be income tax commissioner called demanding immediate penalty ..."
+  },
+  {
+    "case_id": "BENCH_01862",
+    "ground_truth_class": "PHISHING",
+    "predicted_class": "PHISHING",
+    "confidence": 0.78,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Opened an email warning my tax refund was pending. Entered my net banking credentials..."
+  },
+  {
+    "case_id": "BENCH_02334",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "IMPERSONATION",
+    "confidence": 0.76,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Person posing as an old school friend contacted on messaging app asking for immediate..."
+  },
+  {
+    "case_id": "BENCH_01587",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Received a request claiming to be from a prospective buyer on an online marketplace a..."
+  },
+  {
+    "case_id": "BENCH_02494",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.7,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Joined forex trading pool after viewing profit screenshots. Platform showed huge bala..."
+  },
+  {
+    "case_id": "BENCH_01927",
+    "ground_truth_class": "PHISHING",
+    "predicted_class": "PHISHING",
+    "confidence": 0.86,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Clicked a notification link warning my SIM card will be deactivated within 24 hours d..."
+  },
+  {
+    "case_id": "BENCH_01646",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Scanned a QR code received over chat believing it was to receive cash prize reward, b..."
+  },
+  {
+    "case_id": "BENCH_02361",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.75,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Promised daily guaranteed 5% return on custom trading terminal app provided via direc..."
+  },
+  {
+    "case_id": "BENCH_01709",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.68,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Contacted fake helpline found on social media for utility bill delay; executive sent ..."
+  },
+  {
+    "case_id": "BENCH_02689",
+    "ground_truth_class": "ACCOUNT_TAKEOVER",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.85,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Found secondary authentication device added to my digital wallet without authorizatio..."
+  },
+  {
+    "case_id": "BENCH_01630",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Got an urgent call from someone claiming payment failed for a courier package; was to..."
+  },
+  {
+    "case_id": "BENCH_02722",
+    "ground_truth_class": "ACCOUNT_TAKEOVER",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.87,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Noticed strange login notification from an IP in another state followed by multiple u..."
+  },
+  {
+    "case_id": "BENCH_01310",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Transferred funds for monthly home rent to landlord as usual, but the status shows pe..."
+  },
+  {
+    "case_id": "BENCH_02173",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "IMPERSONATION",
+    "confidence": 0.87,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Caller claiming to be senior officer from telecom regulatory authority stated my phon..."
+  },
+  {
+    "case_id": "BENCH_02031",
+    "ground_truth_class": "PHISHING",
+    "predicted_class": "PHISHING",
+    "confidence": 0.67,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Got an urgent text message indicating reward points worth \u20b928,830.66 were expiring to..."
+  },
+  {
+    "case_id": "BENCH_02445",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.79,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Investment advisor in VIP trading group recommended exclusive institutional equity al..."
+  },
+  {
+    "case_id": "BENCH_02327",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.74,
+    "latency_ms": 0.0,
+    "match": false,
+    "narrative_preview": "Caller stated they were from credit card department offering zero interest rate conve..."
+  },
+  {
+    "case_id": "BENCH_02541",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.62,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Friend recommended high return automated trading bot requiring deposits into escrow U..."
+  },
+  {
+    "case_id": "BENCH_02465",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.8,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Joined forex trading pool after viewing profit screenshots. Platform showed huge bala..."
+  },
+  {
+    "case_id": "BENCH_01230",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Transferred funds for monthly home rent to landlord as usual, but the status shows pe..."
+  },
+  {
+    "case_id": "BENCH_02864",
+    "ground_truth_class": "WRONG_TRANSFER",
+    "predicted_class": "WRONG_TRANSFER",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Transferred tuition fee to another student's virtual payment address due to typo in s..."
+  },
+  {
+    "case_id": "BENCH_02198",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "IMPERSONATION",
+    "confidence": 0.87,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Received message from my manager's photo profile on WhatsApp requesting urgent gift v..."
+  },
+  {
+    "case_id": "BENCH_01624",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Tried claiming cashback banner on a third-party coupon site which opened UPI app with..."
+  },
+  {
+    "case_id": "BENCH_02461",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.7,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Saw social media influencer advertisement about high-yield pre-IPO stock allotment gr..."
+  },
+  {
+    "case_id": "BENCH_02657",
+    "ground_truth_class": "ACCOUNT_TAKEOVER",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.95,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Email account was compromised and password reset emails for banking apps were trigger..."
+  },
+  {
+    "case_id": "BENCH_01451",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.67,
+    "latency_ms": 1.01,
+    "match": true,
+    "narrative_preview": "Contacted fake helpline found on social media for utility bill delay; executive sent ..."
+  },
+  {
+    "case_id": "BENCH_01573",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Got an urgent call from someone claiming payment failed for a courier package; was to..."
+  },
+  {
+    "case_id": "BENCH_02719",
+    "ground_truth_class": "ACCOUNT_TAKEOVER",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.88,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Found secondary authentication device added to my digital wallet without authorizatio..."
+  },
+  {
+    "case_id": "BENCH_01700",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.92,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Someone posing as a restaurant refund agent sent a collect link on my messaging app s..."
+  },
+  {
+    "case_id": "BENCH_01461",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.9,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Tried claiming cashback banner on a third-party coupon site which opened UPI app with..."
+  },
+  {
+    "case_id": "BENCH_01639",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.92,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Someone posing as a restaurant refund agent sent a collect link on my messaging app s..."
+  },
+  {
+    "case_id": "BENCH_01205",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Sent money to college fee portal via net banking. Awaiting confirmation receipt from ..."
+  },
+  {
+    "case_id": "BENCH_01780",
+    "ground_truth_class": "PHISHING",
+    "predicted_class": "PHISHING",
+    "confidence": 0.9,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Received an SMS stating electricity supply would be disconnected tonight unless I upd..."
+  },
+  {
+    "case_id": "BENCH_01197",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Sent money to college fee portal via net banking. Awaiting confirmation receipt from ..."
+  },
+  {
+    "case_id": "BENCH_01541",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.74,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Contacted fake helpline found on social media for utility bill delay; executive sent ..."
+  },
+  {
+    "case_id": "BENCH_01074",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Transferred funds for monthly home rent to landlord as usual, but the status shows pe..."
+  },
+  {
+    "case_id": "BENCH_02747",
+    "ground_truth_class": "ACCOUNT_TAKEOVER",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.95,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Suddenly lost cellular mobile network connectivity; discovered later an unauthorized ..."
+  },
+  {
+    "case_id": "BENCH_01806",
+    "ground_truth_class": "PHISHING",
+    "predicted_class": "PHISHING",
+    "confidence": 0.84,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Got an urgent text message indicating reward points worth \u20b913,095.32 were expiring to..."
+  },
+  {
+    "case_id": "BENCH_02040",
+    "ground_truth_class": "PHISHING",
+    "predicted_class": "PHISHING",
+    "confidence": 0.72,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Clicked on a sponsored search ad claiming to be customer service portal for credit ca..."
+  },
+  {
+    "case_id": "BENCH_01343",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.94,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Transferred funds to a family member for festive shopping expenses through standard U..."
+  },
+  {
+    "case_id": "BENCH_01414",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.83,
+    "latency_ms": 0.59,
+    "match": true,
+    "narrative_preview": "Tried claiming cashback banner on a third-party coupon site which opened UPI app with..."
+  },
+  {
+    "case_id": "BENCH_02088",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "IMPERSONATION",
+    "confidence": 0.61,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Individual claiming to be income tax commissioner called demanding immediate penalty ..."
+  },
+  {
+    "case_id": "BENCH_02672",
+    "ground_truth_class": "ACCOUNT_TAKEOVER",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.9,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Attacked by malware that intercepted SMS notifications and initiated transfers from m..."
+  },
+  {
+    "case_id": "BENCH_02792",
+    "ground_truth_class": "ACCOUNT_TAKEOVER",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.9,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Installed a screen sharing remote support app recommended by someone claiming to fix ..."
+  },
+  {
+    "case_id": "BENCH_02758",
+    "ground_truth_class": "ACCOUNT_TAKEOVER",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.85,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Attacked by malware that intercepted SMS notifications and initiated transfers from m..."
+  },
+  {
+    "case_id": "BENCH_02923",
+    "ground_truth_class": "WRONG_TRANSFER",
+    "predicted_class": "WRONG_TRANSFER",
+    "confidence": 0.93,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Accidentally transferred vendor payment to an inactive supplier account that was clos..."
+  },
+  {
+    "case_id": "BENCH_02041",
+    "ground_truth_class": "PHISHING",
+    "predicted_class": "PHISHING",
+    "confidence": 0.75,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Opened an email warning my tax refund was pending. Entered my net banking credentials..."
+  },
+  {
+    "case_id": "BENCH_02831",
+    "ground_truth_class": "ACCOUNT_TAKEOVER",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Email account was compromised and password reset emails for banking apps were trigger..."
+  },
+  {
+    "case_id": "BENCH_01110",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Transferred funds to a family member for festive shopping expenses through standard U..."
+  },
+  {
+    "case_id": "BENCH_02838",
+    "ground_truth_class": "ACCOUNT_TAKEOVER",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Email account was compromised and password reset emails for banking apps were trigger..."
+  },
+  {
+    "case_id": "BENCH_01970",
+    "ground_truth_class": "PHISHING",
+    "predicted_class": "PHISHING",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Got an urgent text message indicating reward points worth \u20b936,292.97 were expiring to..."
+  },
+  {
+    "case_id": "BENCH_01758",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.89,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Someone posing as a restaurant refund agent sent a collect link on my messaging app s..."
+  },
+  {
+    "case_id": "BENCH_02606",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "PHISHING",
+    "confidence": 0.67,
+    "latency_ms": 0.0,
+    "match": false,
+    "narrative_preview": "Saw social media influencer advertisement about high-yield pre-IPO stock allotment gr..."
+  },
+  {
+    "case_id": "BENCH_02705",
+    "ground_truth_class": "ACCOUNT_TAKEOVER",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.95,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Email account was compromised and password reset emails for banking apps were trigger..."
+  },
+  {
+    "case_id": "BENCH_02662",
+    "ground_truth_class": "ACCOUNT_TAKEOVER",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.79,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Received repeated OTP requests while asleep; woke up to find net banking password res..."
+  },
+  {
+    "case_id": "BENCH_02519",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.79,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Offered a part-time remote job involving rating hotels and liking videos; required to..."
+  },
+  {
+    "case_id": "BENCH_01170",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Tried paying for flight ticket booking during promotion. Amount debited but airline P..."
+  },
+  {
+    "case_id": "BENCH_02371",
+    "ground_truth_class": "INVESTMENT_FRAUD",
+    "predicted_class": "INVESTMENT_FRAUD",
+    "confidence": 0.71,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Added to a private messaging investment channel promising 200% returns in 7 days thro..."
+  },
+  {
+    "case_id": "BENCH_01636",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.97,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "A buyer on classifieds app insisted on paying via dynamic QR code and instructed me t..."
+  },
+  {
+    "case_id": "BENCH_01960",
+    "ground_truth_class": "PHISHING",
+    "predicted_class": "PHISHING",
+    "confidence": 0.76,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Received an SMS stating electricity supply would be disconnected tonight unless I upd..."
+  },
+  {
+    "case_id": "BENCH_01357",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.83,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Scheduled bill payment for electricity and broadband utilities deducted successfully ..."
+  },
+  {
+    "case_id": "BENCH_01895",
+    "ground_truth_class": "PHISHING",
+    "predicted_class": "PHISHING",
+    "confidence": 0.91,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Got an urgent text message indicating reward points worth \u20b996,879.69 were expiring to..."
+  },
+  {
+    "case_id": "BENCH_01049",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Transferred funds for monthly home rent to landlord as usual, but the status shows pe..."
+  },
+  {
+    "case_id": "BENCH_02762",
+    "ground_truth_class": "ACCOUNT_TAKEOVER",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.87,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Email account was compromised and password reset emails for banking apps were trigger..."
+  },
+  {
+    "case_id": "BENCH_02759",
+    "ground_truth_class": "ACCOUNT_TAKEOVER",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.91,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Suddenly lost cellular mobile network connectivity; discovered later an unauthorized ..."
+  },
+  {
+    "case_id": "BENCH_02648",
+    "ground_truth_class": "ACCOUNT_TAKEOVER",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.85,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Found secondary authentication device added to my digital wallet without authorizatio..."
+  },
+  {
+    "case_id": "BENCH_01678",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Scanned a QR code received over chat believing it was to receive cash prize reward, b..."
+  },
+  {
+    "case_id": "BENCH_01407",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Received a request claiming to be from a prospective buyer on an online marketplace a..."
+  },
+  {
+    "case_id": "BENCH_01286",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Sent money to college fee portal via net banking. Awaiting confirmation receipt from ..."
+  },
+  {
+    "case_id": "BENCH_02112",
+    "ground_truth_class": "IMPERSONATION",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.64,
+    "latency_ms": 0.0,
+    "match": false,
+    "narrative_preview": "Caller stated they were from credit card department offering zero interest rate conve..."
+  },
+  {
+    "case_id": "BENCH_01651",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.92,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Got an urgent call from someone claiming payment failed for a courier package; was to..."
+  },
+  {
+    "case_id": "BENCH_01440",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.73,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Contacted fake helpline found on social media for utility bill delay; executive sent ..."
+  },
+  {
+    "case_id": "BENCH_02691",
+    "ground_truth_class": "ACCOUNT_TAKEOVER",
+    "predicted_class": "ACCOUNT_TAKEOVER",
+    "confidence": 0.85,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Suddenly lost cellular mobile network connectivity; discovered later an unauthorized ..."
+  },
+  {
+    "case_id": "BENCH_01489",
+    "ground_truth_class": "UPI_FRAUD",
+    "predicted_class": "UPI_FRAUD",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Received a request claiming to be from a prospective buyer on an online marketplace a..."
+  },
+  {
+    "case_id": "BENCH_01291",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.94,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Transferred funds for monthly home rent to landlord as usual, but the status shows pe..."
+  },
+  {
+    "case_id": "BENCH_01058",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Tried paying for flight ticket booking during promotion. Amount debited but airline P..."
+  },
+  {
+    "case_id": "BENCH_01031",
+    "ground_truth_class": "LEGITIMATE",
+    "predicted_class": "LEGITIMATE",
+    "confidence": 0.99,
+    "latency_ms": 0.0,
+    "match": true,
+    "narrative_preview": "Monthly grocery payment made at supermarket POS terminal. Balance was deducted but me..."
+  }
+]

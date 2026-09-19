@@ -1,0 +1,151 @@
+{
+  "multi_class": {
+    "accuracy": 0.865,
+    "macro_precision": 0.8888,
+    "macro_recall": 0.8658,
+    "macro_f1": 0.8737,
+    "weighted_f1": 0.8657,
+    "per_class": {
+      "LEGITIMATE": {
+        "precision": 0.7789,
+        "recall": 0.881,
+        "f1": 0.8268,
+        "support": 84,
+        "tp": 74,
+        "fp": 21,
+        "fn": 10
+      },
+      "UPI_FRAUD": {
+        "precision": 0.8488,
+        "recall": 0.9359,
+        "f1": 0.8902,
+        "support": 78,
+        "tp": 73,
+        "fp": 13,
+        "fn": 5
+      },
+      "PHISHING": {
+        "precision": 0.8852,
+        "recall": 0.806,
+        "f1": 0.8438,
+        "support": 67,
+        "tp": 54,
+        "fp": 7,
+        "fn": 13
+      },
+      "IMPERSONATION": {
+        "precision": 0.913,
+        "recall": 0.7925,
+        "f1": 0.8485,
+        "support": 53,
+        "tp": 42,
+        "fp": 4,
+        "fn": 11
+      },
+      "INVESTMENT_FRAUD": {
+        "precision": 1.0,
+        "recall": 0.8125,
+        "f1": 0.8966,
+        "support": 48,
+        "tp": 39,
+        "fp": 0,
+        "fn": 9
+      },
+      "ACCOUNT_TAKEOVER": {
+        "precision": 0.7955,
+        "recall": 0.8974,
+        "f1": 0.8434,
+        "support": 39,
+        "tp": 35,
+        "fp": 9,
+        "fn": 4
+      },
+      "WRONG_TRANSFER": {
+        "precision": 1.0,
+        "recall": 0.9355,
+        "f1": 0.9667,
+        "support": 31,
+        "tp": 29,
+        "fp": 0,
+        "fn": 2
+      }
+    },
+    "confusion_matrix": {
+      "LEGITIMATE": {
+        "LEGITIMATE": 74,
+        "UPI_FRAUD": 10,
+        "PHISHING": 0,
+        "IMPERSONATION": 0,
+        "INVESTMENT_FRAUD": 0,
+        "ACCOUNT_TAKEOVER": 0,
+        "WRONG_TRANSFER": 0
+      },
+      "UPI_FRAUD": {
+        "LEGITIMATE": 5,
+        "UPI_FRAUD": 73,
+        "PHISHING": 0,
+        "IMPERSONATION": 0,
+        "INVESTMENT_FRAUD": 0,
+        "ACCOUNT_TAKEOVER": 0,
+        "WRONG_TRANSFER": 0
+      },
+      "PHISHING": {
+        "LEGITIMATE": 4,
+        "UPI_FRAUD": 0,
+        "PHISHING": 54,
+        "IMPERSONATION": 0,
+        "INVESTMENT_FRAUD": 0,
+        "ACCOUNT_TAKEOVER": 9,
+        "WRONG_TRANSFER": 0
+      },
+      "IMPERSONATION": {
+        "LEGITIMATE": 3,
+        "UPI_FRAUD": 3,
+        "PHISHING": 5,
+        "IMPERSONATION": 42,
+        "INVESTMENT_FRAUD": 0,
+        "ACCOUNT_TAKEOVER": 0,
+        "WRONG_TRANSFER": 0
+      },
+      "INVESTMENT_FRAUD": {
+        "LEGITIMATE": 4,
+        "UPI_FRAUD": 0,
+        "PHISHING": 1,
+        "IMPERSONATION": 4,
+        "INVESTMENT_FRAUD": 39,
+        "ACCOUNT_TAKEOVER": 0,
+        "WRONG_TRANSFER": 0
+      },
+      "ACCOUNT_TAKEOVER": {
+        "LEGITIMATE": 3,
+        "UPI_FRAUD": 0,
+        "PHISHING": 1,
+        "IMPERSONATION": 0,
+        "INVESTMENT_FRAUD": 0,
+        "ACCOUNT_TAKEOVER": 35,
+        "WRONG_TRANSFER": 0
+      },
+      "WRONG_TRANSFER": {
+        "LEGITIMATE": 2,
+        "UPI_FRAUD": 0,
+        "PHISHING": 0,
+        "IMPERSONATION": 0,
+        "INVESTMENT_FRAUD": 0,
+        "ACCOUNT_TAKEOVER": 0,
+        "WRONG_TRANSFER": 29
+      }
+    }
+  },
+  "binary_fraud": {
+    "accuracy": 0.9275,
+    "precision": 0.9638,
+    "recall": 0.9333,
+    "f1": 0.9483,
+    "tp": 266,
+    "tn": 105,
+    "fp": 10,
+    "fn": 19,
+    "false_positive_rate": 0.087,
+    "false_negative_rate": 0.0667
+  }
+}
