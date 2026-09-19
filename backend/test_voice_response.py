@@ -72,6 +72,39 @@ class TestEmpatheticVoiceAgent(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(res5["amount"], 18500.0)
         self.assertEqual(res5["amount_source"], "voice_transcript")
 
+        # Critical Spoken Number Hierarchy Cases:
+        cases = [
+            ("three thousand six hundred rupees", 3600),
+            ("three thousand six hundred", 3600),
+            ("three thousand", 3000),
+            ("three hundred", 300),
+            ("three hundred fifty", 350),
+            ("three hundred and fifty", 350),
+            ("twenty five hundred", 2500),
+            ("seven thousand two hundred", 7200),
+            ("seven thousand two hundred fifty", 7250),
+            ("eighteen thousand five hundred", 18500),
+            ("fifty thousand", 50000),
+            ("one lakh", 100000),
+            ("one lakh twenty five thousand", 125000),
+            ("two lakh fifty thousand", 250000),
+            ("one crore", 10000000),
+            ("I transferred three thousand six hundred rupees", 3600),
+            ("I was scammed for three thousand six hundred rupees", 3600),
+            ("I lost three thousand six hundred rupees", 3600),
+            ("3600 rupees", 3600),
+            ("3,600 rupees", 3600),
+            ("₹3,600", 3600),
+            ("Rs 3600", 3600),
+            ("3.6 thousand", 3600),
+            ("3.6k", 3600),
+        ]
+        for phrase, expected in cases:
+            res_c = extract_amount_from_transcript(phrase)
+            self.assertEqual(res_c["amount"], float(expected), f"Failed for '{phrase}': got {res_c['amount']}, expected {expected}")
+            self.assertEqual(res_c["amount_source"], "voice_transcript")
+            self.assertTrue(bool(res_c["amount_source_text"]))
+
     def test_missing_amount_handled_without_hallucination(self):
         t_no_amt = "Someone called pretending to be a police officer and threatened me."
         res = extract_amount_from_transcript(t_no_amt)

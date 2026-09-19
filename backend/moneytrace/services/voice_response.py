@@ -53,29 +53,48 @@ WORD_NUMS = {
     "eighteen": 18, "nineteen": 19, "twenty": 20, "thirty": 30, "forty": 40, "fifty": 50, "sixty": 60,
     "seventy": 70, "eighty": 80, "ninety": 90
 }
-SCALES = {"hundred": 100, "thousand": 1000, "k": 1000, "lakh": 100000, "lac": 100000, "crore": 10000000}
+SCALES = {
+    "hundred": 100,
+    "thousand": 1000,
+    "k": 1000,
+    "lakh": 100000,
+    "lac": 100000,
+    "crore": 10000000
+}
 
 
 def parse_words_number(text: str) -> Optional[float]:
-    """Parses verbal number sequences like 'eighteen thousand five hundred' into numeric float."""
+    """
+    Parses verbal number sequences like 'eighteen thousand five hundred',
+    'three thousand six hundred', 'one lakh twenty five thousand', 'one crore' into numeric float.
+    Uses hierarchical number composition:
+      - small scale: hundred (multiplies current)
+      - large scale: thousand, lakh, crore (multiplies current and accumulates into total)
+    """
     tokens = [t.lower() for t in re.findall(r'[a-zA-Z]+', text)]
     total = 0
     current = 0
     has_number = False
+
     for t in tokens:
         if t in WORD_NUMS:
             current += WORD_NUMS[t]
+            has_number = True
+        elif t == "hundred":
+            if current == 0:
+                current = 1
+            current *= 100
             has_number = True
         elif t in SCALES:
             scale = SCALES[t]
             if current == 0:
                 current = 1
-            if scale == 100:
-                current *= 100
-            else:
-                total += current * scale
-                current = 0
+            total += current * scale
+            current = 0
             has_number = True
+        elif t == "and":
+            continue
+
     total += current
     return float(total) if has_number and total > 0 else None
 
@@ -97,7 +116,7 @@ def extract_amount_from_transcript(transcript: Optional[str]) -> Dict[str, Any]:
     text = transcript.strip()
 
     # 1. Decimal with multiplier: e.g. 18.5k, 18.5 thousand, 1.5 lakh
-    m_dec = re.search(r'(?:(?:₹|rs\.?|inr)\s*)?(\d+(?:\.\d+)?)\s*(k|thousand|lakh|lac)\b', text, re.IGNORECASE)
+    m_dec = re.search(r'(?:(?:₹|rs\.?|inr)\s*)?(\d+(?:\.\d+)?)\s*(k|thousand|lakh|lac|crore)\b', text, re.IGNORECASE)
     if m_dec:
         val = float(m_dec.group(1))
         mult = m_dec.group(2).lower()
@@ -105,6 +124,8 @@ def extract_amount_from_transcript(transcript: Optional[str]) -> Dict[str, Any]:
             val *= 1000
         elif mult in ["lakh", "lac"]:
             val *= 100000
+        elif mult in ["crore"]:
+            val *= 10000000
         return {
             "amount": float(val),
             "currency": "INR",
@@ -112,8 +133,8 @@ def extract_amount_from_transcript(transcript: Optional[str]) -> Dict[str, Any]:
             "amount_source_text": m_dec.group(0).strip()
         }
 
-    # 2. Words like 'eighteen thousand five hundred'
-    words_seq = r'\b((?:(?:one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety|hundred|thousand|lakh|lac|and)\s*){2,})(?:rupees|rs\.?|inr)?\b'
+    # 2. Words like 'three thousand six hundred', 'eighteen thousand five hundred', 'one crore'
+    words_seq = r'\b((?:(?:one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety|hundred|thousand|lakh|lac|crore|and)\s*){1,})(?:rupees|rs\.?|inr)?\b'
     m_words = re.search(words_seq, text, re.IGNORECASE)
     if m_words:
         val = parse_words_number(m_words.group(1))
@@ -125,8 +146,8 @@ def extract_amount_from_transcript(transcript: Optional[str]) -> Dict[str, Any]:
                 "amount_source_text": m_words.group(0).strip()
             }
 
-    # 3. Currency prefix: ₹18,500, Rs. 18500, INR 18,500
-    m_cur = re.search(r'(?:₹|rs\.?|inr)\s*(\d{1,3}(?:,\d{2,3})*(?:\.\d+)?|\d+)', text, re.IGNORECASE)
+    # 3. Currency prefix: ₹18,500, Rs. 18500, INR 18,500, Rs 3600
+    m_cur = re.search(r'(?:₹|rs\.?|inr)\s*(\d{1,3}(?:,\d{2,3})+(?:\.\d+)?|\d+(?:\.\d+)?)', text, re.IGNORECASE)
     if m_cur:
         val = float(m_cur.group(1).replace(',', ''))
         if val >= 50:
@@ -137,8 +158,8 @@ def extract_amount_from_transcript(transcript: Optional[str]) -> Dict[str, Any]:
                 "amount_source_text": m_cur.group(0).strip()
             }
 
-    # 4. Suffix currency: 18,500 rupees, 18500 inr, 7250 rs
-    m_suff = re.search(r'(\d{1,3}(?:,\d{2,3})*(?:\.\d+)?|\d+)\s*(?:rupees|rs\.?|inr|bucks)', text, re.IGNORECASE)
+    # 4. Suffix currency: 18,500 rupees, 18500 inr, 3600 rupees, 7250 rs
+    m_suff = re.search(r'(\d{1,3}(?:,\d{2,3})+(?:\.\d+)?|\d+(?:\.\d+)?)\s*(?:rupees|rs\.?|inr|bucks)', text, re.IGNORECASE)
     if m_suff:
         val = float(m_suff.group(1).replace(',', ''))
         if val >= 50:
@@ -149,8 +170,8 @@ def extract_amount_from_transcript(transcript: Optional[str]) -> Dict[str, Any]:
                 "amount_source_text": m_suff.group(0).strip()
             }
 
-    # 5. Standalone numbers near transaction verbs (transferred 18500, lost 7250)
-    m_num = re.search(r'(?:transferred|transfer|sent|paid|debited|lost|scammed|sending|requested|demanded|deposited)\s*(?:of\s*)?(?:₹|rs\.?|inr)?\s*(\d{1,3}(?:,\d{2,3})*(?:\.\d+)?|\d+)', text, re.IGNORECASE)
+    # 5. Standalone numbers near transaction verbs (transferred 18500, lost 7250, scammed for 3600)
+    m_num = re.search(r'(?:transferred|transfer|sent|paid|debited|lost|scammed|sending|requested|demanded|deposited)\s*(?:for\s*|of\s*)?(?:₹|rs\.?|inr)?\s*(\d{1,3}(?:,\d{2,3})+(?:\.\d+)?|\d+(?:\.\d+)?)', text, re.IGNORECASE)
     if m_num:
         val = float(m_num.group(1).replace(',', ''))
         if val >= 50:
