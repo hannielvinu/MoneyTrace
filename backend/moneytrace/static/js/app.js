@@ -778,6 +778,16 @@ const MoneyTraceApp = (() => {
             const narrativeInput = document.getElementById("narrativeInput");
             if (narrativeInput && data.transcript) {
               narrativeInput.value = data.transcript;
+
+              // Extract spoken amount to provide visual transparency without overriding canonical pipeline
+              const match = data.transcript.match(/(?:(?:₹|rs\.?|inr)\s*)?(\d{1,3}(?:,\d{2,3})*(?:\.\d+)?|\d+)\s*(?:rupees|rs\.?|inr)?/i);
+              const amtInput = document.getElementById("amountInput");
+              if (amtInput && match && match[1]) {
+                const parsedAmt = match[1].replace(/,/g, "");
+                if (parseFloat(parsedAmt) >= 50) {
+                  amtInput.value = parsedAmt;
+                }
+              }
             }
             if (statusTitle) statusTitle.innerText = "Statement transcribed";
             if (providerLabel) providerLabel.innerText = data.provider || "Sarvam Cloud AI";

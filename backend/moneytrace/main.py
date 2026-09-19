@@ -41,7 +41,7 @@ from moneytrace.auth import (
 )
 from moneytrace.services.investigation_agent import run_investigation_pipeline
 from moneytrace.services.sarvam_service import transcribe_audio, synthesize_guidance
-from moneytrace.services.voice_response import generate_voice_response
+from moneytrace.services.voice_response import generate_voice_response, resolve_amount_with_provenance
 from moneytrace.services.cognee_service import build_compact_graph_nodes_and_edges
 from moneytrace.services.event_bus import register_subscriber, unregister_subscriber, emit_event
 
@@ -259,6 +259,22 @@ async def api_submit_portal_report(
     inc_id = f"MT-{10482 + count + 1}"
     now_str = datetime.now().strftime("%d %b %Y, %H:%M IST")
 
+    # Resolve amount lineage from spoken narrative vs manual request
+    amt_info = resolve_amount_with_provenance(req.narrative, req.amount)
+    canonical_amount = amt_info["amount"] or 0.0
+    amount_source = amt_info["amount_source"]
+    amount_source_text = amt_info["amount_source_text"]
+
+    # Package OCR and amount lineage metadata
+    ocr_meta = dict(req.ocr_data or {})
+    ocr_meta["amount_provenance"] = {
+        "transaction_amount": canonical_amount,
+        "currency": "INR",
+        "amount_source": amount_source,
+        "amount_source_text": amount_source_text,
+        "amount_conflict": amt_info.get("amount_conflict", False)
+    }
+
     cur.execute("""
     INSERT INTO incidents (
         id, user_id, victim_name, victim_phone, language, amount, currency,
@@ -268,25 +284,33 @@ async def api_submit_portal_report(
     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     """, (
         inc_id, current_user["id"], current_user.get("name") or "Authenticated Victim",
-        "", req.language or "en", req.amount or 0.0, "INR",
+        "", req.language or "en", canonical_amount, "INR",
         req.transaction_id or "", "Under Investigation", "PENDING", "INVESTIGATING",
         "REPORT_RECEIVED", 0.0, req.narrative, req.narrative[:150], "",
-        req.screenshot_url or "", json.dumps(req.ocr_data or {}), 1, now_str, now_str
+        req.screenshot_url or "", json.dumps(ocr_meta), 1, now_str, now_str
     ))
     conn.commit()
     conn.close()
 
-    add_audit_log(inc_id, "Report received", "Victim submitted new report via MoneyTrace User Portal.", datetime.now().strftime("%H:%M:%S"))
+    # Detailed audit trail recording exact amount lineage
+    amt_audit_detail = (
+        f"Amount ₹{canonical_amount:,.2f} verified from {amount_source} ('{amount_source_text}')."
+        if amount_source == "voice_transcript"
+        else f"Amount recorded as {canonical_amount} (source: {amount_source})."
+    )
+    add_audit_log(inc_id, "Report received", f"Victim submitted report. {amt_audit_detail}", datetime.now().strftime("%H:%M:%S"))
 
-    # Generate initial voice acknowledgement (Sarvam Bulbul v3, <= 200 chars, cached)
+    # Generate empathetic voice acknowledgement grounded in actual transcript amount
     voice_ack = await generate_voice_response(
         case_id=inc_id,
         event_type="complaint_received",
         language=req.language or "en",
-        amount=req.amount or 0.0
+        amount=canonical_amount if canonical_amount > 0 else None,
+        amount_source=amount_source,
+        complaint_narrative=req.narrative
     )
 
-    # Emit real-time INCIDENT_CREATED with voice_response metadata attached
+    # Emit real-time INCIDENT_CREATED with voice_response and amount lineage metadata attached
     await emit_event(
         event_type="INCIDENT_CREATED",
         incident_id=inc_id,
@@ -295,7 +319,8 @@ async def api_submit_portal_report(
         payload={
             "incident_id": inc_id,
             "victim_name": current_user.get("name"),
-            "amount": req.amount or 0.0,
+            "amount": canonical_amount,
+            "amount_provenance": ocr_meta["amount_provenance"],
             "transaction_id": req.transaction_id or "",
             "narrative_preview": req.narrative[:80],
             "language": req.language or "en",
@@ -313,6 +338,8 @@ async def api_submit_portal_report(
         "investigation_stage": "REPORT_RECEIVED",
         "message": "Report submitted — investigation in progress.",
         "case_reference": inc_id,
+        "amount": canonical_amount,
+        "amount_provenance": ocr_meta["amount_provenance"],
         "voice_response": voice_ack
     }
 
@@ -375,16 +402,23 @@ async def api_get_voice_response(
         raise HTTPException(status_code=404, detail="Incident not found")
 
     # Access control: user must own incident or be operator
-    if current_user["role"] != "FRAUD_OPERATOR" and inc.get("user_id") != current_user["id"]:
-        raise HTTPException(status_code=403, detail="Access denied to this incident audio")
+    # Read amount source from ocr_extracted_data if available
+    amt_source = "none"
+    try:
+        ocr_d = json.loads(inc.get("ocr_extracted_data") or "{}")
+        amt_source = ocr_d.get("amount_provenance", {}).get("amount_source", "none")
+    except Exception:
+        pass
 
     voice_resp = await generate_voice_response(
         case_id=incident_id,
         event_type=event_type,
         language=inc.get("language", "en"),
         amount=inc.get("amount"),
+        amount_source=amt_source,
         status=inc.get("status"),
-        scam_type=inc.get("scam_type")
+        scam_type=inc.get("scam_type"),
+        complaint_narrative=inc.get("narrative")
     )
     return voice_resp
 

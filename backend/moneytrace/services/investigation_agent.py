@@ -31,7 +31,9 @@ from moneytrace.services.cognee_service import (
 )
 from moneytrace.services.n8n_service import trigger_n8n_response_workflow
 from moneytrace.services.sarvam_service import synthesize_guidance
-from moneytrace.services.voice_response import generate_voice_response
+from moneytrace.services.voice_response import (
+    generate_voice_response, resolve_amount_with_provenance, extract_amount_from_transcript
+)
 from moneytrace.services.event_bus import emit_event
 from moneytrace.services.gemini_service import run_gemini_investigation
 
@@ -167,9 +169,10 @@ async def run_investigation_pipeline(incident_id: str) -> Dict[str, Any]:
     extracted_entities = _extract_entities_from_text(text)
     scam_type = extracted_entities.get("scam_type", "Payment Fraud")
 
+    # Amount lineage check: never use arbitrary 18500 fallback
     if not amount or amount <= 0:
-        found_amt = _extract_amount_from_text(text)
-        amount = found_amt if found_amt else 18500.0
+        amt_res = extract_amount_from_transcript(text)
+        amount = amt_res["amount"] or 0.0
 
     await asyncio.sleep(0.5)
 
@@ -179,7 +182,7 @@ async def run_investigation_pipeline(incident_id: str) -> Dict[str, Any]:
         transaction = get_transaction(tx_id)
 
     if not transaction:
-        if "kyc" in text.lower() or amount == 18500:
+        if "kyc" in text.lower():
             tx_id = "TXN784219"
             transaction = get_transaction(tx_id)
         elif "support" in text.lower() or "qr" in text.lower():
@@ -475,15 +478,21 @@ async def run_investigation_pipeline(incident_id: str) -> Dict[str, Any]:
     )
 
     # 8. INCIDENT_COMPLETED
-    # Generate resolution voice response via Sarvam Bulbul v3 (<= 200 chars, cached)
+    # Determine amount source from transcript
+    amt_lineage = extract_amount_from_transcript(text)
+    amt_src = amt_lineage["amount_source"]
+
+    # Generate resolution voice response via Sarvam Bulbul v3 (calm, reassuring, outcome-grounded, cached)
     final_voice_response = await generate_voice_response(
         case_id=incident_id,
         event_type="investigation_completed",
         language=language,
         amount=amount,
+        amount_source=amt_src,
         status="ESCALATED",
-        scam_type=scam_type,
-        is_fraud=True
+        scam_type=final_scam_type,
+        complaint_narrative=text,
+        investigation_result=evidence_package
     )
     voice_audio_url = final_voice_response.get("audio_url") or ""
 
