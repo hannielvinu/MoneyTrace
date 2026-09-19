@@ -1,7 +1,7 @@
 # MoneyTrace — Autonomous Financial Emergency Response
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-trycloudflare.com-00BAF2?style=for-the-badge&logo=cloudflare&logoColor=white)](https://use-pearl-hist-separately.trycloudflare.com)
 [![Paytm Hackathon](https://img.shields.io/badge/Paytm%20Build%20for%20India-AI%20Hackathon%202026-002970?style=for-the-badge)](https://github.com/hannielvinu/MoneyTrace)
+[![Deploy to Render](https://img.shields.io/badge/Deploy_to_Render-46E3B7?style=for-the-badge&logo=render&logoColor=white)](https://render.com/deploy?repo=https://github.com/hannielvinu/MoneyTrace)
 [![Python 3.11+](https://img.shields.io/badge/Python-3.11%2B-blue?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.115-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
 [![Gemini Cloud AI](https://img.shields.io/badge/Google%20Gemini-Cloud%20AI-8E75B2?style=for-the-badge&logo=google&logoColor=white)](https://deepmind.google/technologies/gemini/)
@@ -11,11 +11,37 @@
 
 ---
 
-## 🌐 Live Deployment
+## 🌐 Deployment Options
 
-- **Live URL**: [https://use-pearl-hist-separately.trycloudflare.com](https://use-pearl-hist-separately.trycloudflare.com)
-- **API Health Endpoint**: [https://use-pearl-hist-separately.trycloudflare.com/api/health](https://use-pearl-hist-separately.trycloudflare.com/api/health)
-- **Evaluation Benchmark View**: [https://use-pearl-hist-separately.trycloudflare.com/evaluation](https://use-pearl-hist-separately.trycloudflare.com/evaluation)
+### Why Render is the Right Choice (vs GitHub Pages)
+> **Important**: **GitHub Pages only hosts static files (HTML/CSS/JS)** and cannot run backend Python servers, SQLite databases, JWT authentication, Sarvam audio streaming, or Server-Sent Events (SSE).  
+> **Render** natively hosts full-stack Python/FastAPI applications with automated continuous deployment directly from your GitHub repository for free.
+
+### 🚀 Deploying Permanently to Render in 2 Minutes
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/hannielvinu/MoneyTrace)
+
+1. Sign up/Log in at **[render.com](https://render.com/)** (Free tier).
+2. Click **New +** → **Web Service**.
+3. Connect your repository: **`https://github.com/hannielvinu/MoneyTrace.git`**.
+4. Configure the service settings:
+   - **Name**: `moneytrace`
+   - **Region**: Any (e.g. *Singapore* or *Oregon*)
+   - **Branch**: `main`
+   - **Root Directory**: *(leave blank or set to `.`)*
+   - **Runtime**: `Python 3`
+   - **Build Command**: `cd backend && pip install -r requirements.txt`
+   - **Start Command**: `cd backend && python -m uvicorn moneytrace.main:app --host 0.0.0.0 --port $PORT`
+5. Under **Environment Variables**, add:
+   - `JWT_SECRET` = `moneytrace-production-jwt-secret-key-2026`
+   - `LLM_API_KEY` = *(Your Gemini API Key)*
+   - `SARVAM_API_KEY` = *(Your Sarvam API Key)*
+   - `COGNEE_API_KEY` = *(Your Cognee API Key)*
+   - `COGNEE_BASE_URL` = `https://api.cognee.ai`
+   - `N8N_WEBHOOK_URL` = *(Your n8n webhook URL)*
+6. Click **Create Web Service**.  
+   Render will build the app and give you your permanent URL:  
+   👉 **`https://moneytrace.onrender.com`** (or your chosen custom service name).
 
 ---
 
@@ -202,6 +228,5 @@ Validates:
 ## 👥 Team & Hackathon Submission
 
 - **Repository**: [https://github.com/hannielvinu/MoneyTrace.git](https://github.com/hannielvinu/MoneyTrace.git)
-- **Live Deployment**: [https://use-pearl-hist-separately.trycloudflare.com](https://use-pearl-hist-separately.trycloudflare.com)
 - **Track**: Paytm Build for India AI Hackathon — Autonomous AI Teammates
 - **Author**: [@hannielvinu](https://github.com/hannielvinu)

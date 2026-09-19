@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: moneytrace
+    env: python
+    region: oregon
+    plan: free
+    buildCommand: "cd backend && pip install -r requirements.txt"
+    startCommand: "cd backend && python -m uvicorn moneytrace.main:app --host 0.0.0.0 --port $PORT"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: JWT_SECRET
+        generateValue: true
+      - key: LLM_API_KEY
+        sync: false
+      - key: SARVAM_API_KEY
+        sync: false
+      - key: COGNEE_API_KEY
+        sync: false
+      - key: COGNEE_BASE_URL
+        value: https://api.cognee.ai
+      - key: N8N_WEBHOOK_URL
+        sync: false
