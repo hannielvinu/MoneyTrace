@@ -59,3 +59,18 @@ def test_deployed_service_never_seeds_public_demo_passwords(monkeypatch):
     monkeypatch.delenv("SEED_DEMO_USERS")
     with db.get_engine().begin() as conn:  # restore dev account for the other tests
         db.seed_users(conn)
+
+
+def test_event_stream_requires_token(client):
+    assert client.get("/api/events").status_code == 401
+    assert client.get("/api/events?token=garbage").status_code == 401
+
+
+def test_event_filtering_per_role():
+    from moneytrace.main import _visible_event
+    ev = {"event_type": "RELATED_INCIDENTS_FOUND", "user_id": "u1",
+          "payload": {"related_count": 3, "shared_entities": ["UPI: x@ybl"]}}
+    assert _visible_event(ev, {"id": "u2", "role": "USER"}) is None
+    mine = _visible_event(ev, {"id": "u1", "role": "USER"})
+    assert "shared_entities" not in mine["payload"] and mine["payload"]["related_count"] == 3
+    assert _visible_event(ev, {"id": "op", "role": "FRAUD_OPERATOR"})["payload"]["shared_entities"]

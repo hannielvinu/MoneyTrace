@@ -84,6 +84,7 @@ const MoneyTraceApp = (() => {
       if (res.ok) {
         const data = await res.json();
         localStorage.setItem("mt_token", data.access_token);
+        setupSSE();  // reconnect the authenticated event stream with the new token
         currentUser = data.user;
         updateUserUI();
         showToast(`Authenticated as ${currentUser.name}`);
@@ -105,6 +106,7 @@ const MoneyTraceApp = (() => {
 
   function logout() {
     localStorage.removeItem("mt_token");
+    if (sseSource) { sseSource.close(); sseSource = null; }
     currentUser = null;
     updateUserUI();
     showToast("Signed out");
@@ -185,7 +187,9 @@ const MoneyTraceApp = (() => {
 
   function setupSSE() {
     if (sseSource) sseSource.close();
-    sseSource = new EventSource("/api/events");
+    const sseToken = localStorage.getItem("mt_token");
+    if (!sseToken) return;  // the event stream is authenticated
+    sseSource = new EventSource("/api/events?token=" + encodeURIComponent(sseToken));
 
     sseSource.onopen = () => {
       const text = document.getElementById("sseText");

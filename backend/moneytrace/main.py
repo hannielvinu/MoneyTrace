@@ -179,8 +179,21 @@ async def api_me(current_user: Dict[str, Any] = Depends(get_current_user)):
 # Real-Time SSE Event Bus (/api/events)
 # ==========================================
 
+_USER_HIDDEN_KEYS = {"shared_entities", "related_incidents", "exact_entity_matches"}
+
+
+def _visible_event(event: Dict[str, Any], user: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+    """Operators see every event; victims only see events of their own cases, without other victims' linked data."""
+    if user.get("role") == "FRAUD_OPERATOR":
+        return event
+    if event.get("user_id") != user.get("id"):
+        return None
+    payload = {k: v for k, v in (event.get("payload") or {}).items() if k not in _USER_HIDDEN_KEYS}
+    return {**event, "payload": payload}
+
+
 @app.get("/api/events")
-async def sse_event_stream(request: Request):
+async def sse_event_stream(request: Request, token: Optional[str] = None):
     """
     Server-Sent Events endpoint powering real-time synchronization across:
     Tab 1: User Portal
@@ -188,6 +201,11 @@ async def sse_event_stream(request: Request):
     Tab 3: Case Workspace
     Tab 4: Fraud Operations Dashboard
     """
+    from moneytrace.auth import decode_access_token
+    payload = decode_access_token(token or "") if token else None
+    user = get_user_by_id(payload["sub"]) if payload and payload.get("sub") else None
+    if not user:
+        raise HTTPException(status_code=401, detail="Event stream requires a valid token (?token=...)")
     queue = await register_subscriber()
 
     async def event_generator():
@@ -204,7 +222,9 @@ async def sse_event_stream(request: Request):
                 if await request.is_disconnected():
                     break
                 try:
-                    event = await asyncio.wait_for(queue.get(), timeout=20.0)
+                    event = _visible_event(await asyncio.wait_for(queue.get(), timeout=20.0), user)
+                    if event is None:
+                        continue
                     yield {
                         "event": event.get("event_type", "MESSAGE"),
                         "data": json.dumps(event)
