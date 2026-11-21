@@ -1,6 +1,6 @@
 # MoneyTrace v2 — measured results
 
-_Generated 2026-11-21 23:04 UTC by `python backend/scripts/make_results.py` from the raw result files listed in each section. Do not edit numbers by hand: re-run the command._
+_Generated 2026-11-21 23:08 UTC by `python backend/scripts/make_results.py` from the raw result files listed in each section. Do not edit numbers by hand: re-run the command._
 
 > **Read this first.** Every number below comes from a script that was actually run; the command, date and raw
 > output file are given for each. Where a run used development substitutes (NVIDIA-hosted models instead of

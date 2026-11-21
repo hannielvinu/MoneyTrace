@@ -7,7 +7,7 @@ Branch: `claude/gifted-sagan-ls5pdr`. Numbers: see [`RESULTS.md`](../RESULTS.md)
 
 | Item | Status | Evidence / what is left |
 |---|---|---|
-| All existing tests pass, plus new unit tests | ✅ code · ⚠️ env | `make test`: 57 passed on SQLite and on Postgres+pgvector. Acceptance test passes every agent check locally; it stops at the Sarvam voice step only because this sandbox has no `SARVAM_API_KEY` (`backend/results/acceptance_v2_local.log`). The old `backend/tests/` (Azure) are excluded: they need `azure.functions`. |
+| All existing tests pass, plus new unit tests | ✅ code · ⚠️ env | `make test`: 62 passed on SQLite and on Postgres+pgvector. Acceptance test passes every agent check locally; it stops at the Sarvam voice step only because this sandbox has no `SARVAM_API_KEY` (`backend/results/acceptance_v2_local.log`). The old `backend/tests/` (Azure) are excluded: they need `azure.functions`. |
 | Pipeline runs on Postgres; agent state in Firestore survives restarts | ✅ code · ⬜ cloud | Full pipeline + acceptance run on local Postgres 16 + pgvector. Firestore session service tested against an in-process fake (restart test); SQLite session backend tested too. Real Firestore needs your project. |
 | Advisory corpus ingested; real counts recorded | ✅ partial | 49 documents / 1,106 chunks from the sandbox (`backend/rag/STATS.md`). 65 more sources refused the sandbox; ingest from your laptop. |
 | ADK coordinator delegates to intake, ReAct investigation, guidance | ✅ | `backend/moneytrace/agents/`; delegation visible in `backend/results/traces/sample_trace.md`. |
@@ -31,6 +31,17 @@ Branch: `claude/gifted-sagan-ls5pdr`. Numbers: see [`RESULTS.md`](../RESULTS.md)
   added an independent, quote-verified auditor (`backend/results/rag_eval/preliminary/README.md`).
 - Two voice unit tests silently depended on a real Sarvam key in a developer `.env`; they now patch a dummy key.
 - Committed SQLite databases were removed from git.
+- Security (important before a public launch):
+  - the SSE event stream `/api/events` was unauthenticated and broadcast every case to everyone → now needs a token,
+    victims only receive their own cases;
+  - a deployed service would have used the public dev `JWT_SECRET` and seeded `operator@moneytrace.in / operator123`
+    → it now refuses to start without a real secret and never seeds public demo passwords;
+  - voice endpoints were anonymous (Sarvam credit abuse) and `/api/voice/response/...` did not check case ownership
+    → login + ownership enforced.
+- Load testing found runaway ReAct loops (up to 166 model calls / ~20M tokens per case) → per-case model-call budget;
+  and a cold start that delayed intake (p95 4 s) → agent imports are warmed at start-up (p95 0.68 s).
+- Known, not fixed: CORS allows all origins (`allow_origins=["*"]`); average ~55-150k input tokens per case
+  (advisory passages repeated across agent calls) - the main lever for cost per request.
 
 ## Not done / needs you
 - Anything that needs your Google Cloud account, API keys, or the club (see HANNIEL_TODO.md).
