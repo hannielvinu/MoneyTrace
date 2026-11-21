@@ -405,7 +405,8 @@ async def api_get_my_notifications(current_user: Dict[str, Any] = Depends(get_cu
 @app.post("/api/voice/transcribe")
 async def api_voice_transcribe(
     audio: Optional[UploadFile] = File(None),
-    language: str = Form("en")
+    language: str = Form("en"),
+    current_user: Dict[str, Any] = Depends(get_current_user)
 ):
     """
     Transcribes spoken victim report using Sarvam AI.
@@ -420,7 +421,7 @@ async def api_voice_transcribe(
 
 
 @app.post("/api/voice/synthesize")
-async def api_voice_synthesize(payload: Dict[str, str]):
+async def api_voice_synthesize(payload: Dict[str, str], current_user: Dict[str, Any] = Depends(get_current_user)):
     text = payload.get("text", "")
     language = payload.get("language", "en")
     audio_url = await synthesize_guidance(text, language)
@@ -442,6 +443,8 @@ async def api_get_voice_response(
         raise HTTPException(status_code=404, detail="Incident not found")
 
     # Access control: user must own incident or be operator
+    if current_user.get("role") != "FRAUD_OPERATOR" and inc.get("user_id") != current_user.get("id"):
+        raise HTTPException(status_code=404, detail="Incident not found")
     # Read amount source from ocr_extracted_data if available
     amt_source = "none"
     try:

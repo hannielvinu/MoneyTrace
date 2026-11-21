@@ -69,7 +69,8 @@ async def test_full_flow():
         stt_res = await client.post(
             "/api/voice/transcribe",
             files={"audio": ("audio.wav", audio_dummy, "audio/wav")},
-            data={"language": "en"}
+            data={"language": "en"},
+            headers=v1_headers
         )
         assert stt_res.status_code == 200, f"STT failed: {stt_res.text}"
         stt_data = stt_res.json()

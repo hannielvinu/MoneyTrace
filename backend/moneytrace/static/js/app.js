@@ -794,7 +794,8 @@ const MoneyTraceApp = (() => {
           formData.append("language", selectedLanguage);
 
           try {
-            const res = await fetch("/api/voice/transcribe", { method: "POST", body: formData });
+            const res = await fetch("/api/voice/transcribe", { method: "POST", body: formData,
+              headers: { "Authorization": `Bearer ${localStorage.getItem("mt_token") || ""}` } });
             const data = await res.json();
             const narrativeInput = document.getElementById("narrativeInput");
             if (narrativeInput && data.transcript) {

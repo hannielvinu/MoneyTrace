@@ -74,3 +74,12 @@ def test_event_filtering_per_role():
     mine = _visible_event(ev, {"id": "u1", "role": "USER"})
     assert "shared_entities" not in mine["payload"] and mine["payload"]["related_count"] == 3
     assert _visible_event(ev, {"id": "op", "role": "FRAUD_OPERATOR"})["payload"]["shared_entities"]
+
+
+def test_voice_endpoints_require_login_and_ownership(client, victim_headers, victim2_headers):
+    from tests_v2.test_pipeline import REPORT
+    assert client.post("/api/voice/synthesize", json={"text": "hi"}).status_code == 401
+    assert client.post("/api/voice/transcribe", data={"language": "en"}).status_code == 401
+    inc = client.post("/api/portal/reports", json=REPORT, headers=victim_headers).json()["incident_id"]
+    assert client.get(f"/api/voice/response/{inc}/investigation_completed", headers=victim2_headers).status_code == 404
+    assert client.get(f"/api/voice/response/{inc}/investigation_completed", headers=victim_headers).status_code == 200
