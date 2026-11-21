@@ -87,6 +87,25 @@ if os.path.isdir(STATIC_DIR):
     app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 
 
+def _warm_imports():
+    """Import the agent stack once at start-up. These imports take seconds and would otherwise run inside the first
+    investigation, blocking the event loop and delaying every concurrent request (cold-start latency)."""
+    try:
+        import google.adk.runners  # noqa: F401
+        from moneytrace.agents import coordinator  # noqa: F401
+        from moneytrace import llm
+        if llm.provider() != "gemini":
+            import litellm  # noqa: F401
+    except Exception as e:
+        logger.warning(f"agent warm-up failed: {e}")
+
+
+@app.on_event("startup")
+async def _startup_warmup():
+    if os.environ.get("MONEYTRACE_TESTING") != "1":
+        await asyncio.to_thread(_warm_imports)
+
+
 # Pydantic Schemas
 class LoginRequest(BaseModel):
     email: str

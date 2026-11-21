@@ -99,5 +99,6 @@ def test_retriever_refuses_mismatched_embedding_model(corpus, monkeypatch):
 
 def test_search_tool_never_raises(monkeypatch):
     monkeypatch.setattr("rag.retriever.retrieve", lambda *a, **k: (_ for _ in ()).throw(ValueError("db down")))
-    out = search_advisories("anything")
+    import asyncio
+    out = asyncio.run(search_advisories("anything"))
     assert out and "error" in out[0]

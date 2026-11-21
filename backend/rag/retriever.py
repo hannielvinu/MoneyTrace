@@ -167,7 +167,7 @@ def retrieve(query: str, k: Optional[int] = None, engine=None, trace: Optional[R
                      vector_rank=it["_ranks"].get(0), keyword_rank=it["_ranks"].get(1)) for it in top]
 
 
-def search_advisories(query: str, k: int = 5) -> List[Dict]:
+async def search_advisories(query: str, k: int = 5) -> List[Dict]:
     """Search official RBI / NPCI / CERT-In / I4C / SEBI fraud advisories.
 
     Use this before giving a scam victim any step. Each result has a chunk_id,
@@ -178,8 +178,11 @@ def search_advisories(query: str, k: int = 5) -> List[Dict]:
         query: what the victim needs to know, e.g. "UPI money sent to fraudster how to report".
         k: number of passages to return (default 5).
     """
+    import asyncio
     try:
-        return [c.short() for c in retrieve(query, k=k)]
+        # embedding + DB calls are blocking: run them off the event loop so other requests stay responsive
+        cites = await asyncio.to_thread(retrieve, query, k)
+        return [c.short() for c in cites]
     except Exception as e:  # a tool must return data, not raise, so the agent can fall back safely
         logger.error(f"search_advisories failed: {e}")
         return [{"error": f"advisory search unavailable: {type(e).__name__}"}]
