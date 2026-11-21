@@ -1,0 +1,292 @@
+{
+  "started_at": "2026-11-21T21:04:27.945171+00:00",
+  "embedding": {
+    "provider": "nvidia",
+    "model": "nvidia/nemotron-3-embed-1b",
+    "dim": 2048
+  },
+  "chunk_tokens": 600,
+  "overlap_tokens": 100,
+  "documents": [
+    {
+      "doc_id": "departme-e1719044",
+      "title": "Beware of Jumped Deposit Alert scam (DoT)",
+      "chunks": 21,
+      "chars": 2503
+    },
+    {
+      "doc_id": "departme-09c0c586",
+      "title": "Sanchar Saathi Suspected Fraud Communication Reporting",
+      "chunks": 2,
+      "chars": 1082
+    },
+    {
+      "doc_id": "pressinf-0aa4344f",
+      "title": "Curbing Cyber Frauds in Digital India",
+      "chunks": 21,
+      "chars": 18655
+    },
+    {
+      "doc_id": "certin-00209aa3",
+      "title": "Digital Safety Compass Handbook (Safer Internet Day 2025)",
+      "chunks": 58,
+      "chars": 14400
+    },
+    {
+      "doc_id": "certin-1cf66530",
+      "title": "Escalation of AI-Driven Attacks on BFSI Entities by Threat Actor \"CRAFTY FALCON\"",
+      "chunks": 41,
+      "chars": 66076
+    },
+    {
+      "doc_id": "certin-4431f143",
+      "title": "Threat Actors Exploiting Payment and Disbursement APIs for Unauthorized Fund Transfers in BFSI Entities",
+      "chunks": 5,
+      "chars": 8838
+    },
+    {
+      "doc_id": "certincy-3dbd6de5",
+      "title": "CERT-In Safe Internet-Best Practices Book",
+      "chunks": 23,
+      "chars": 8385
+    },
+    {
+      "doc_id": "itd-4e3945a2",
+      "title": "Steps taken by Income Tax Department for safeguarding taxpayers from phishing email",
+      "chunks": 3,
+      "chars": 3184
+    },
+    {
+      "doc_id": "rbi-106bf499",
+      "title": "SMS on Customer Liability in Unauthorised Electronic Banking Transactions",
+      "chunks": 2,
+      "chars": 3036
+    },
+    {
+      "doc_id": "rbi-8b80b369",
+      "title": "RBI Cautions against unauthorised Digital Lending Platforms/Mobile Apps",
+      "chunks": 2,
+      "chars": 3518
+    },
+    {
+      "doc_id": "rbi-843271d7",
+      "title": "Consumer Awareness - Cyber Threats and Frauds",
+      "chunks": 5,
+      "chars": 9806
+    },
+    {
+      "doc_id": "rbi-73fadad7",
+      "title": "BE(A)WARE – A Booklet on Modus Operandi of Financial Frauds",
+      "chunks": 3,
+      "chars": 4402
+    },
+    {
+      "doc_id": "rbi-6e639779",
+      "title": "RBI cautions against frauds in the name of KYC updation",
+      "chunks": 3,
+      "chars": 5102
+    },
+    {
+      "doc_id": "rbi-5d51b487",
+      "title": "Master Directions on Frauds – Classification and Reporting by commercial banks and select FIs (Updated as on July 03, 2017)",
+      "chunks": 61,
+      "chars": 118379
+    },
+    {
+      "doc_id": "rbi-fcad3939",
+      "title": "Reserve Bank of India (Commercial Banks - Responsible Business Conduct) Directions, 2025 (Updated as on October 1, 2026)",
+      "chunks": 254,
+      "chars": 507955
+    },
+    {
+      "doc_id": "rbi-4fccc950",
+      "title": "Master Directions on Cyber Resilience and Digital Payment Security Controls for non-bank Payment System Operators",
+      "chunks": 55,
+      "chars": 111205
+    },
+    {
+      "doc_id": "rbi-c120c432",
+      "title": "Master Direction on Digital Payment Security Controls",
+      "chunks": 44,
+      "chars": 88089
+    },
+    {
+      "doc_id": "rbi-f121ac56",
+      "title": "Unified Payments Interface (UPI) access for Prepaid Payment Instruments (PPIs) through third-party applications",
+      "chunks": 4,
+      "chars": 5395
+    },
+    {
+      "doc_id": "rbi-1266fc51",
+      "title": "Reserve Bank of India (Authentication mechanisms for digital payment transactions) Directions, 2025",
+      "chunks": 10,
+      "chars": 20689
+    },
+    {
+      "doc_id": "rbi-09177c98",
+      "title": "Reserve Bank of India (Payments Banks – Digital Payment Security Controls) Directions, 2026 (Updated as on October 01, 2026)",
+      "chunks": 52,
+      "chars": 101686
+    },
+    {
+      "doc_id": "rbi-80a28d95",
+      "title": "Discussion Paper - Exploring safeguards in digital payments to curb frauds",
+      "chunks": 33,
+      "chars": 65429
+    },
+    {
+      "doc_id": "rbi-39df730a",
+      "title": "FAQs on Master Direction on KYC",
+      "chunks": 21,
+      "chars": 41130
+    },
+    {
+      "doc_id": "rbi-2b7a9050",
+      "title": "Card Transactions",
+      "chunks": 7,
+      "chars": 12384
+    },
+    {
+      "doc_id": "rbi-be9c79af",
+      "title": "Cyber Security Framework in Banks",
+      "chunks": 14,
+      "chars": 26235
+    },
+    {
+      "doc_id": "rbi-1e4cba7a",
+      "title": "Master Circular – Mobile Banking transactions in India – Operative Guidelines for Banks (Updated as on November 12, 2021)",
+      "chunks": 26,
+      "chars": 48432
+    },
+    {
+      "doc_id": "rbi-d1477697",
+      "title": "Customer Protection – Limiting Liability of Customers in Unauthorised Electronic Banking Transactions",
+      "chunks": 16,
+      "chars": 29146
+    },
+    {
+      "doc_id": "rbi-7143c0ac",
+      "title": "Customer Protection - Limiting Liability of Customers of Co-operative Banks in Unauthorised Electronic Banking Transactions",
+      "chunks": 17,
+      "chars": 30448
+    },
+    {
+      "doc_id": "rbi-f2e01814",
+      "title": "Increasing Instances of Payment Frauds – Enhancing Public Awareness Campaigns Through Multiple Channels",
+      "chunks": 2,
+      "chars": 3344
+    },
+    {
+      "doc_id": "rbi-21d480ce",
+      "title": "RBI cautions Public Not to respond to Phishing Mail sent in its Name",
+      "chunks": 3,
+      "chars": 4331
+    },
+    {
+      "doc_id": "rbi-681e23bf",
+      "title": "Do not respond to Mails asking for your Internet Banking Account Details : RBI Cautions Public",
+      "chunks": 3,
+      "chars": 4501
+    },
+    {
+      "doc_id": "rbi-df42e429",
+      "title": "RBI cautions Public Once Again against Fictitious Offers",
+      "chunks": 5,
+      "chars": 9443
+    },
+    {
+      "doc_id": "rbi-e7d0dc8b",
+      "title": "Complain to Local Police/Cyber Crime Authorities against Fictitious Offers of Money from Abroad",
+      "chunks": 4,
+      "chars": 5904
+    },
+    {
+      "doc_id": "rbi-bffc2b85",
+      "title": "RBI Cautions about Fake Websites in its Name",
+      "chunks": 3,
+      "chars": 5073
+    },
+    {
+      "doc_id": "rbi-aba6e909",
+      "title": "RBI Cautions about Fictitious Emails",
+      "chunks": 4,
+      "chars": 6209
+    },
+    {
+      "doc_id": "rbi-f41a357c",
+      "title": "Financial Awareness Messages (FAME) booklet, RBI",
+      "chunks": 129,
+      "chars": 54607
+    },
+    {
+      "doc_id": "rbi-52442362",
+      "title": "Frauds – Classification and Reporting",
+      "chunks": 40,
+      "chars": 77956
+    },
+    {
+      "doc_id": "rbi-f87c454a",
+      "title": "Internet Banking - Security Features:",
+      "chunks": 6,
+      "chars": 10434
+    },
+    {
+      "doc_id": "rbi-04c1eb12",
+      "title": "Prevention of financial frauds perpetrated using voice calls and SMS – Regulatory prescriptions and Institutional Safeguards",
+      "chunks": 21,
+      "chars": 41020
+    },
+    {
+      "doc_id": "departme-e6db0b88",
+      "title": "Citizens’ Money Saved before It Is Lost: Financial",
+      "chunks": 7,
+      "chars": 11430
+    },
+    {
+      "doc_id": "departme-76b0a947",
+      "title": "Sanchar Saathi portal crosses 30 crore visits as citizens",
+      "chunks": 6,
+      "chars": 7829
+    },
+    {
+      "doc_id": "departme-45c84ecd",
+      "title": "Sanchar Saathi Unsolicited Commercial Communication Reporting",
+      "chunks": 3,
+      "chars": 2155
+    },
+    {
+      "doc_id": "sebi-2d45d6ac",
+      "title": "Caution to public against Fraudulent / Manipulative activities on Social Media",
+      "chunks": 2,
+      "chars": 3805
+    },
+    {
+      "doc_id": "sebi-cc528562",
+      "title": "Caution to Investors on Stock Market Scams through Social Media Platforms",
+      "chunks": 1,
+      "chars": 2198
+    }
+  ],
+  "failures": [],
+  "skipped_unchanged": 6,
+  "finished_at": "2026-11-21T21:05:29.098870+00:00",
+  "duration_s": 61.2,
+  "embedding_usage": {
+    "calls": 93,
+    "texts": 1042,
+    "input_tokens": 459959
+  },
+  "corpus": {
+    "documents": 49,
+    "chunks": 1106,
+    "by_issuer": {
+      "Reserve Bank of India": 34,
+      "Department of Telecommunications (Sanchar Saathi)": 5,
+      "CERT-In": 4,
+      "SEBI": 3,
+      "CERT-In (Cyber Swachhta Kendra)": 1,
+      "Income Tax Department": 1,
+      "Press Information Bureau, Government of India": 1
+    }
+  }
+}

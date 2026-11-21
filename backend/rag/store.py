@@ -58,9 +58,10 @@ def create_rag_schema(conn: Connection, dim: int = 768):
                 setweight(to_tsvector('english', text), 'B')
             ) STORED
         )"""))
-        conn.execute(text(
-            "CREATE INDEX IF NOT EXISTS ix_chunks_embedding_hnsw ON advisory_chunks "
-            "USING hnsw (embedding vector_cosine_ops)"))
+        if dim <= 2000:  # pgvector HNSW limit for the `vector` type
+            conn.execute(text(
+                "CREATE INDEX IF NOT EXISTS ix_chunks_embedding_hnsw ON advisory_chunks "
+                "USING hnsw (embedding vector_cosine_ops)"))
         conn.execute(text("CREATE INDEX IF NOT EXISTS ix_chunks_tsv ON advisory_chunks USING gin (tsv)"))
         conn.execute(text("CREATE INDEX IF NOT EXISTS ix_chunks_doc ON advisory_chunks (doc_id)"))
     else:
@@ -78,9 +79,38 @@ def create_rag_schema(conn: Connection, dim: int = 768):
         )"""))
 
 
+def _create_meta(conn: Connection):
+    conn.execute(text("CREATE TABLE IF NOT EXISTS rag_meta (key TEXT PRIMARY KEY, value TEXT)"))
+
+
+def get_meta(conn: Connection) -> Dict[str, str]:
+    _create_meta(conn)
+    return {r[0]: r[1] for r in conn.execute(text("SELECT key, value FROM rag_meta")).all()}
+
+
+def set_meta(conn: Connection, values: Dict[str, Any]):
+    _create_meta(conn)
+    for k, v in values.items():
+        conn.execute(text("DELETE FROM rag_meta WHERE key = :k"), {"k": k})
+        conn.execute(text("INSERT INTO rag_meta (key, value) VALUES (:k, :v)"), {"k": k, "v": str(v)})
+
+
 def ensure_rag_schema(engine, dim: int = 768):
     with engine.begin() as conn:
+        _create_meta(conn)
         create_rag_schema(conn, dim)
+
+
+def reset_rag_schema(engine, dim: int, embedder_desc: Dict[str, Any]):
+    """Drop and recreate the corpus tables for a new embedding model / dimension."""
+    with engine.begin() as conn:
+        conn.execute(text("DROP TABLE IF EXISTS advisory_chunks"))
+        conn.execute(text("DROP TABLE IF EXISTS advisory_documents"))
+        _create_meta(conn)
+        conn.execute(text("DELETE FROM rag_meta"))
+        create_rag_schema(conn, dim)
+        set_meta(conn, {"embedding_provider": embedder_desc["provider"], "embedding_model": embedder_desc["model"],
+                        "embedding_dim": dim})
 
 
 def _vec_literal(vec: Sequence[float]) -> str:

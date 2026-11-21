@@ -189,6 +189,7 @@ _MONTH_LIST = re.compile(r"(all months\s+)?january\s+february\s+march", re.I)
 def _clean_lines(lines: List[str]) -> List[str]:
     out, prev = [], None
     for ln in lines:
+        ln = re.sub(r"[\x00-\x08\x0b\x0c\x0e-\x1f\x7f]", "", ln)
         ln = re.sub(r"\s+", " ", ln).strip()
         if not ln or len(ln) < 3 or _BOILERPLATE.match(ln) or ln == prev or _MONTH_LIST.search(ln):
             continue
