@@ -31,7 +31,8 @@ from pydantic import BaseModel
 from sse_starlette.sse import EventSourceResponse
 
 from moneytrace.db.database import (
-    init_db, get_db_connection, get_incident,
+    init_db, get_incident, create_incident, list_incidents, get_dashboard_metrics,
+    get_cluster_summary,
     add_audit_log, get_transaction, get_user_by_email, get_user_by_id,
     hash_password, get_user_incidents, get_user_notifications,
     get_incident_events, update_incident_record
@@ -251,12 +252,6 @@ async def api_submit_portal_report(
     Creates incident, links to authenticated user_id, emits INCIDENT_CREATED,
     and dispatches background investigation.
     """
-    conn = get_db_connection()
-    cur = conn.cursor()
-
-    cur.execute("SELECT COUNT(*) FROM incidents")
-    count = cur.fetchone()[0]
-    inc_id = f"MT-{10482 + count + 1}"
     now_str = datetime.now().strftime("%d %b %Y, %H:%M IST")
 
     # Resolve amount lineage from spoken narrative vs manual request
@@ -275,22 +270,28 @@ async def api_submit_portal_report(
         "amount_conflict": amt_info.get("amount_conflict", False)
     }
 
-    cur.execute("""
-    INSERT INTO incidents (
-        id, user_id, victim_name, victim_phone, language, amount, currency,
-        transaction_id, scam_type, severity, status, investigation_stage, confidence,
-        narrative, victim_story_summary, victim_guidance, screenshot_url, ocr_extracted_data,
-        requires_human_review, created_at, updated_at
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    """, (
-        inc_id, current_user["id"], current_user.get("name") or "Authenticated Victim",
-        "", req.language or "en", canonical_amount, "INR",
-        req.transaction_id or "", "Under Investigation", "PENDING", "INVESTIGATING",
-        "REPORT_RECEIVED", 0.0, req.narrative, req.narrative[:150], "",
-        req.screenshot_url or "", json.dumps(ocr_meta), 1, now_str, now_str
-    ))
-    conn.commit()
-    conn.close()
+    inc_id = create_incident({
+        "user_id": current_user["id"],
+        "victim_name": current_user.get("name") or "Authenticated Victim",
+        "victim_phone": "",
+        "language": req.language or "en",
+        "amount": canonical_amount,
+        "currency": "INR",
+        "transaction_id": req.transaction_id or "",
+        "scam_type": "Under Investigation",
+        "severity": "PENDING",
+        "status": "INVESTIGATING",
+        "investigation_stage": "REPORT_RECEIVED",
+        "confidence": 0.0,
+        "narrative": req.narrative,
+        "victim_story_summary": req.narrative[:150],
+        "victim_guidance": "",
+        "screenshot_url": req.screenshot_url or "",
+        "ocr_extracted_data": json.dumps(ocr_meta),
+        "requires_human_review": 1,
+        "created_at": now_str,
+        "updated_at": now_str,
+    })
 
     # Detailed audit trail recording exact amount lineage
     amt_audit_detail = (
@@ -430,16 +431,7 @@ async def api_get_voice_response(
 @app.get("/api/incidents")
 async def api_list_incidents(operator: Dict[str, Any] = Depends(require_operator)):
     """Lists all incidents for fraud operators."""
-    conn = get_db_connection()
-    cur = conn.cursor()
-    cur.execute("""
-    SELECT id, severity, amount, scam_type, status, investigation_stage, created_at, victim_name, recipient_upi, scammer_phone
-    FROM incidents
-    ORDER BY id DESC
-    LIMIT 100
-    """)
-    rows = [dict(r) for r in cur.fetchall()]
-    conn.close()
+    rows = list_incidents(limit=100)
     return {"incidents": rows}
 
 
@@ -534,77 +526,18 @@ async def api_review_incident(
 
 @app.get("/api/dashboard")
 async def api_get_dashboard(operator: Dict[str, Any] = Depends(require_operator)):
-    """Fraud operations console metrics, syndicate clusters, and incident feed."""
-    conn = get_db_connection()
-    cur = conn.cursor()
-
-    cur.execute("SELECT COUNT(*) FROM incidents")
-    total_active = cur.fetchone()[0]
-
-    cur.execute("SELECT COUNT(*) FROM incidents WHERE severity = 'CRITICAL'")
-    critical_count = cur.fetchone()[0]
-
-    cur.execute("SELECT SUM(amount) FROM incidents")
-    total_exposure = cur.fetchone()[0] or 0.0
-
-    cur.execute("SELECT COUNT(*) FROM incidents WHERE requires_human_review = 1")
-    human_reviews = cur.fetchone()[0]
-
-    clusters = [
-        {
-            "category": "Fake KYC",
-            "name": "KYC Impersonation Ring",
-            "incident_count": 8,
-            "reported_exposure": 384000,
-            "shared_entities_count": 4,
-            "lead_entity": "kyc-update.pay@ybl",
-            "status": "Active Threat"
-        },
-        {
-            "category": "Fake Customer Support",
-            "name": "Refund QR Scam Network",
-            "incident_count": 12,
-            "reported_exposure": 218000,
-            "shared_entities_count": 3,
-            "lead_entity": "QR_SUPPORT_8832",
-            "status": "Escalated"
-        },
-        {
-            "category": "Digital Arrest",
-            "name": "CBI / Customs Coercion Syndicate",
-            "incident_count": 6,
-            "reported_exposure": 584000,
-            "shared_entities_count": 5,
-            "lead_entity": "+91-77009-12845",
-            "status": "High Alert"
-        },
-        {
-            "category": "Fake Loan",
-            "name": "Instant Credit Phishing",
-            "incident_count": 9,
-            "reported_exposure": 122500,
-            "shared_entities_count": 2,
-            "lead_entity": "instant-credit-loan.org",
-            "status": "Monitoring"
-        }
-    ]
-
-    cur.execute("""
-    SELECT id, severity, amount, scam_type, status, investigation_stage, created_at, victim_name, recipient_upi, scammer_phone, requires_human_review
-    FROM incidents
-    ORDER BY id DESC
-    LIMIT 60
-    """)
-    rows = [dict(r) for r in cur.fetchall()]
-    conn.close()
-
+    """Fraud operations console metrics, syndicate clusters, and incident feed.
+    All numbers are computed from the incidents table (no hard-coded demo values)."""
+    metrics = get_dashboard_metrics()
+    clusters = get_cluster_summary()
+    rows = list_incidents(limit=60, include_review_flag=True)
     return {
         "metrics": {
-            "active_incidents": total_active,
-            "critical_incidents": critical_count,
+            "active_incidents": metrics["active_incidents"],
+            "critical_incidents": metrics["critical_incidents"],
             "potential_clusters": len(clusters),
-            "reported_exposure": total_exposure,
-            "human_reviews_required": human_reviews
+            "reported_exposure": metrics["reported_exposure"],
+            "human_reviews_required": metrics["human_reviews_required"]
         },
         "clusters": clusters,
         "incidents": rows

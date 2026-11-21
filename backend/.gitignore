@@ -15,3 +15,10 @@ dist/
 .DS_Store
 .pytest_cache/
 moneytrace/static/uploads/
+
+# v2: local databases and caches are never committed
+*.db
+*.db-wal
+*.db-shm
+rag/raw/
+moneytrace/static/uploads/voice_cache/

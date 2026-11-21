@@ -22,7 +22,7 @@ from datetime import datetime
 
 from moneytrace.db.database import (
     get_incident, get_transaction, add_audit_log,
-    save_evidence_package, update_incident_record, get_db_connection,
+    save_evidence_package, update_incident_record, list_other_incidents,
     create_user_notification
 )
 from moneytrace.services.cognee_service import (
@@ -248,11 +248,7 @@ async def run_investigation_pipeline(incident_id: str) -> Dict[str, Any]:
     await asyncio.sleep(0.5)
 
     # 4. RELATED_INCIDENTS_FOUND & GRAPH_READY (Cognee Cloud + Local Fallback)
-    conn = get_db_connection()
-    cur = conn.cursor()
-    cur.execute("SELECT * FROM incidents WHERE id != ?", (incident_id,))
-    all_rows = [dict(r) for r in cur.fetchall()]
-    conn.close()
+    all_rows = list_other_incidents(incident_id)
 
     # Attempt Cognee Add & Cognify in background
     await add_and_cognify_incident({

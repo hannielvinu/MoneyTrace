@@ -1,247 +1,201 @@
 """
-Database storage for MoneyTrace using SQLite.
-Stores users, incidents, transactions, extracted entities, audit trail, evidence packages,
-persistent investigation events, and user-safe notifications.
+Database storage for MoneyTrace (SQLAlchemy Core).
+
+DATABASE_URL selects the backend:
+- unset / sqlite:///path  -> SQLite file (local development, unit tests)
+- postgresql+psycopg://... -> PostgreSQL (Neon / Cloud SQL), pgvector enabled
+
+The public functions keep the exact names and return shapes of the original
+sqlite3 implementation, so callers did not need to change.
 """
 
-import sqlite3
-import json
 import os
+import json
 import hashlib
+import logging
+from datetime import datetime, timezone
 from typing import List, Dict, Any, Optional
-from datetime import datetime
+
+from sqlalchemy import create_engine, select, insert, update, delete, func, text, event
+from sqlalchemy.engine import Engine
+
+from moneytrace.db import models as m
+
+logger = logging.getLogger("moneytrace.db")
 
 _DEFAULT_DB_FILE = os.path.join(os.path.dirname(__file__), "moneytrace.db")
-_url = os.environ.get("DATABASE_URL", "")
-DB_FILE = _url[len("sqlite:///"):] if _url.startswith("sqlite:///") else _DEFAULT_DB_FILE
+INCIDENT_ID_BASE = 10482
+
+
+def _database_url() -> str:
+    url = os.environ.get("DATABASE_URL", "").strip()
+    if not url:
+        return f"sqlite:///{_DEFAULT_DB_FILE}"
+    # Accept plain postgres:// URLs from Neon / Heroku style providers.
+    if url.startswith("postgres://"):
+        url = "postgresql+psycopg://" + url[len("postgres://"):]
+    elif url.startswith("postgresql://"):
+        url = "postgresql+psycopg://" + url[len("postgresql://"):]
+    return url
+
+
+DATABASE_URL = _database_url()
+DB_FILE = DATABASE_URL[len("sqlite:///"):] if DATABASE_URL.startswith("sqlite:///") else None
+
+_engine: Optional[Engine] = None
+
+
+def get_engine() -> Engine:
+    global _engine
+    if _engine is None:
+        if DATABASE_URL.startswith("sqlite"):
+            _engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False, "timeout": 30})
+
+            @event.listens_for(_engine, "connect")
+            def _sqlite_pragmas(dbapi_conn, _rec):
+                cur = dbapi_conn.cursor()
+                cur.execute("PRAGMA journal_mode=WAL")
+                cur.close()
+        else:
+            _engine = create_engine(
+                DATABASE_URL,
+                pool_pre_ping=True,
+                pool_size=int(os.environ.get("DB_POOL_SIZE", "5")),
+                max_overflow=int(os.environ.get("DB_MAX_OVERFLOW", "5")),
+                pool_recycle=300,
+            )
+    return _engine
+
+
+def is_postgres() -> bool:
+    return get_engine().dialect.name == "postgresql"
+
+
+def _now_display() -> str:
+    return datetime.now().strftime("%d %b %Y, %H:%M IST")
 
 
 def hash_password(password: str) -> str:
     return hashlib.sha256(password.encode("utf-8")).hexdigest()
 
 
-def get_db_connection():
-    conn = sqlite3.connect(DB_FILE)
-    conn.row_factory = sqlite3.Row
-    return conn
+def _rows(result) -> List[Dict[str, Any]]:
+    return [dict(r) for r in result.mappings().all()]
+
+
+def _row(result) -> Optional[Dict[str, Any]]:
+    r = result.mappings().first()
+    return dict(r) if r else None
+
+
+# ---------------------------------------------------------------------------
+# Schema management
+# ---------------------------------------------------------------------------
+
+def create_schema(drop_first: bool = False):
+    """Create all core tables (idempotent). Used by init_db and the Alembic baseline."""
+    eng = get_engine()
+    if eng.dialect.name == "postgresql":
+        with eng.begin() as conn:
+            try:
+                conn.execute(text("CREATE EXTENSION IF NOT EXISTS vector"))
+            except Exception as e:  # pragma: no cover - depends on DB privileges
+                logger.warning(f"Could not enable pgvector extension: {e}")
+    if drop_first:
+        m.metadata.drop_all(eng)
+    if drop_first:
+        with eng.begin() as conn:
+            conn.execute(text("DROP TABLE IF EXISTS advisory_chunks"))
+            conn.execute(text("DROP TABLE IF EXISTS advisory_documents"))
+    m.metadata.create_all(eng, checkfirst=True)
+    _add_missing_columns()
+    from rag.store import ensure_rag_schema
+    ensure_rag_schema(eng, dim=int(os.environ.get("EMBEDDING_DIM", "768")))
+
+
+def _add_missing_columns():
+    """Bring a pre-v2 SQLite file up to date (adds columns introduced in v2)."""
+    eng = get_engine()
+    from sqlalchemy import inspect
+    insp = inspect(eng)
+    for table in m.metadata.sorted_tables:
+        if not insp.has_table(table.name):
+            continue
+        existing = {c["name"] for c in insp.get_columns(table.name)}
+        for col in table.columns:
+            if col.name not in existing:
+                coltype = col.type.compile(dialect=eng.dialect)
+                with eng.begin() as conn:
+                    conn.execute(text(f'ALTER TABLE {table.name} ADD COLUMN {col.name} {coltype}'))
+                logger.info(f"Added column {table.name}.{col.name}")
 
 
 def init_db(force_reseed: bool = False):
     """Initializes the database schema and seeds synthetic data if empty."""
-    conn = get_db_connection()
-    cur = conn.cursor()
-
-    if force_reseed:
-        cur.execute("DROP TABLE IF EXISTS incidents")
-        cur.execute("DROP TABLE IF EXISTS users")
-        cur.execute("DROP TABLE IF EXISTS transactions")
-        cur.execute("DROP TABLE IF EXISTS entities")
-        cur.execute("DROP TABLE IF EXISTS audit_trail")
-        cur.execute("DROP TABLE IF EXISTS evidence_packages")
-        cur.execute("DROP TABLE IF EXISTS investigation_events")
-        cur.execute("DROP TABLE IF EXISTS user_notifications")
-        conn.commit()
-
-    # 1. Users table (Role: USER vs FRAUD_OPERATOR)
-    cur.execute("""
-    CREATE TABLE IF NOT EXISTS users (
-        id TEXT PRIMARY KEY,
-        email TEXT UNIQUE,
-        password_hash TEXT,
-        name TEXT,
-        role TEXT, -- 'USER' or 'FRAUD_OPERATOR'
-        created_at TEXT
-    );
-    """)
-
-    # 2. Incidents table with user_id, investigation_stage, screenshot_url, and ocr_data
-    cur.execute("""
-    CREATE TABLE IF NOT EXISTS incidents (
-        id TEXT PRIMARY KEY,
-        user_id TEXT,
-        victim_name TEXT,
-        victim_phone TEXT,
-        language TEXT DEFAULT 'en',
-        amount REAL,
-        currency TEXT DEFAULT 'INR',
-        transaction_id TEXT,
-        scam_type TEXT,
-        severity TEXT,
-        status TEXT,
-        investigation_stage TEXT DEFAULT 'REPORT_RECEIVED',
-        confidence REAL,
-        narrative TEXT,
-        victim_story_summary TEXT,
-        recipient_upi TEXT,
-        scammer_phone TEXT,
-        bank_account TEXT,
-        domain TEXT,
-        qr_id TEXT,
-        shared_cluster TEXT,
-        victim_guidance TEXT,
-        victim_guidance_audio_url TEXT,
-        screenshot_url TEXT,
-        ocr_extracted_data TEXT,
-        requires_human_review BOOLEAN DEFAULT 1,
-        created_at TEXT,
-        updated_at TEXT,
-        FOREIGN KEY(user_id) REFERENCES users(id)
-    );
-    """)
-
-    # 3. Transactions table
-    cur.execute("""
-    CREATE TABLE IF NOT EXISTS transactions (
-        transaction_id TEXT PRIMARY KEY,
-        amount REAL,
-        currency TEXT DEFAULT 'INR',
-        sender TEXT,
-        recipient TEXT,
-        recipient_phone TEXT,
-        recipient_bank TEXT,
-        date TEXT,
-        status TEXT,
-        scam_category TEXT,
-        note TEXT
-    );
-    """)
-
-    # 4. Entities table
-    cur.execute("""
-    CREATE TABLE IF NOT EXISTS entities (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        incident_id TEXT,
-        entity_type TEXT,
-        entity_value TEXT,
-        FOREIGN KEY(incident_id) REFERENCES incidents(id)
-    );
-    """)
-
-    # 5. Audit Trail table
-    cur.execute("""
-    CREATE TABLE IF NOT EXISTS audit_trail (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        incident_id TEXT,
-        timestamp TEXT,
-        action TEXT,
-        detail TEXT,
-        FOREIGN KEY(incident_id) REFERENCES incidents(id)
-    );
-    """)
-
-    # 6. Evidence Packages table
-    cur.execute("""
-    CREATE TABLE IF NOT EXISTS evidence_packages (
-        incident_id TEXT PRIMARY KEY,
-        package_json TEXT,
-        created_at TEXT,
-        FOREIGN KEY(incident_id) REFERENCES incidents(id)
-    );
-    """)
-
-    # 7. Investigation Events table (Persistent SSE Event Log)
-    cur.execute("""
-    CREATE TABLE IF NOT EXISTS investigation_events (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        incident_id TEXT,
-        event_type TEXT,
-        status TEXT,
-        service TEXT,
-        payload_json TEXT,
-        timestamp TEXT,
-        FOREIGN KEY(incident_id) REFERENCES incidents(id)
-    );
-    """)
-
-    # 8. User Safe Notifications table
-    cur.execute("""
-    CREATE TABLE IF NOT EXISTS user_notifications (
-        id TEXT PRIMARY KEY,
-        user_id TEXT,
-        incident_id TEXT,
-        title TEXT,
-        summary TEXT,
-        guidance TEXT,
-        read_status BOOLEAN DEFAULT 0,
-        created_at TEXT,
-        FOREIGN KEY(user_id) REFERENCES users(id),
-        FOREIGN KEY(incident_id) REFERENCES incidents(id)
-    );
-    """)
-
-    conn.commit()
-
-    # Seed users and dataset if empty
-    cur.execute("SELECT COUNT(*) FROM users")
-    user_count = cur.fetchone()[0]
-
-    if user_count == 0 or force_reseed:
-        seed_users(cur)
-        conn.commit()
-
-    cur.execute("SELECT COUNT(*) FROM incidents")
-    incident_count = cur.fetchone()[0]
-
-    if incident_count == 0 or force_reseed:
-        seed_data(conn)
-
-    conn.close()
+    create_schema(drop_first=force_reseed)
+    eng = get_engine()
+    with eng.begin() as conn:
+        user_count = conn.execute(select(func.count()).select_from(m.users)).scalar()
+        if user_count == 0 or force_reseed:
+            seed_users(conn)
+    with eng.begin() as conn:
+        incident_count = conn.execute(select(func.count()).select_from(m.incidents)).scalar()
+        if incident_count == 0 or force_reseed:
+            seed_data(conn)
+    _ensure_incident_counter()
 
 
-def seed_users(cur):
+def _upsert(conn, table, values: Dict[str, Any], key: str):
+    exists = conn.execute(select(table.c[key]).where(table.c[key] == values[key])).first()
+    if exists:
+        conn.execute(update(table).where(table.c[key] == values[key]).values(**values))
+    else:
+        conn.execute(insert(table).values(**values))
+
+
+def seed_users(conn):
     users = [
         ("usr_demo_victim_1", "victim@moneytrace.in", hash_password("victim123"), "Ramesh Kumar (Victim)", "USER"),
         ("usr_demo_victim_2", "victim2@moneytrace.in", hash_password("victim123"), "Priya Sharma (Victim 2)", "USER"),
         ("usr_demo_operator", "operator@moneytrace.in", hash_password("operator123"), "Vikram Mehta (Fraud Ops)", "FRAUD_OPERATOR"),
     ]
     for uid, email, phash, name, role in users:
-        cur.execute("""
-        INSERT OR REPLACE INTO users (id, email, password_hash, name, role, created_at)
-        VALUES (?, ?, ?, ?, ?, ?)
-        """, (uid, email, phash, name, role, datetime.now().strftime("%d %b %Y, %H:%M IST")))
+        _upsert(conn, m.users, {
+            "id": uid, "email": email, "password_hash": phash, "name": name,
+            "role": role, "created_at": _now_display(),
+        }, "id")
 
 
 def seed_data(conn):
     from moneytrace.data.synthetic_incidents import generate_synthetic_dataset
     dataset = generate_synthetic_dataset()
-    cur = conn.cursor()
 
     for tx in dataset["transactions"]:
-        cur.execute("""
-        INSERT OR REPLACE INTO transactions (
-            transaction_id, amount, currency, sender, recipient,
-            recipient_phone, recipient_bank, date, status, scam_category, note
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-        """, (
-            tx["transaction_id"], tx["amount"], tx.get("currency", "INR"),
-            tx.get("sender", "Anonymous"), tx.get("recipient", ""),
-            tx.get("recipient_phone", ""), tx.get("recipient_bank", ""),
-            tx.get("date", ""), tx.get("status", "Completed"),
-            tx.get("scam_category", ""), tx.get("note", "")
-        ))
+        _upsert(conn, m.transactions, {
+            "transaction_id": tx["transaction_id"], "amount": tx["amount"],
+            "currency": tx.get("currency", "INR"), "sender": tx.get("sender", "Anonymous"),
+            "recipient": tx.get("recipient", ""), "recipient_phone": tx.get("recipient_phone", ""),
+            "recipient_bank": tx.get("recipient_bank", ""), "date": tx.get("date", ""),
+            "status": tx.get("status", "Completed"), "scam_category": tx.get("scam_category", ""),
+            "note": tx.get("note", ""),
+        }, "transaction_id")
 
     for inc in dataset["incidents"]:
-        cur.execute("""
-        INSERT OR REPLACE INTO incidents (
-            id, user_id, victim_name, victim_phone, language, amount, currency,
-            transaction_id, scam_type, severity, status, investigation_stage, confidence,
-            narrative, victim_story_summary, recipient_upi, scammer_phone,
-            bank_account, domain, qr_id, shared_cluster, victim_guidance,
-            requires_human_review, created_at, updated_at
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-        """, (
-            inc["id"], "usr_demo_victim_1", inc.get("victim_name", "Anonymous"), inc.get("victim_phone", ""),
-            "en", inc["amount"], inc.get("currency", "INR"),
-            inc["transaction_id"], inc.get("scam_type", "Unknown Scam"),
-            inc.get("severity", "CRITICAL"), inc.get("status", "ESCALATED"),
-            "COMPLETE",
-            0.92, inc.get("narrative", ""), inc.get("narrative", ""),
-            inc.get("recipient_upi", ""), inc.get("scammer_phone", ""),
-            inc.get("bank_account", ""), inc.get("domain", ""),
-            inc.get("qr_id", ""), inc.get("shared_cluster", ""),
-            "Do not send more money. Keep all transaction records and report to official cybercrime authority.",
-            1, inc.get("created_at", ""), inc.get("created_at", "")
-        ))
+        _upsert(conn, m.incidents, {
+            "id": inc["id"], "user_id": "usr_demo_victim_1",
+            "victim_name": inc.get("victim_name", "Anonymous"), "victim_phone": inc.get("victim_phone", ""),
+            "language": "en", "amount": inc["amount"], "currency": inc.get("currency", "INR"),
+            "transaction_id": inc["transaction_id"], "scam_type": inc.get("scam_type", "Unknown Scam"),
+            "severity": inc.get("severity", "CRITICAL"), "status": inc.get("status", "ESCALATED"),
+            "investigation_stage": "COMPLETE", "confidence": 0.92,
+            "narrative": inc.get("narrative", ""), "victim_story_summary": inc.get("narrative", ""),
+            "recipient_upi": inc.get("recipient_upi", ""), "scammer_phone": inc.get("scammer_phone", ""),
+            "bank_account": inc.get("bank_account", ""), "domain": inc.get("domain", ""),
+            "qr_id": inc.get("qr_id", ""), "shared_cluster": inc.get("shared_cluster", ""),
+            "victim_guidance": "Do not send more money. Keep all transaction records and report to official cybercrime authority.",
+            "requires_human_review": 1,
+            "created_at": inc.get("created_at", ""), "updated_at": inc.get("created_at", ""),
+        }, "id")
 
         for etype, evalue in [
             ("phone", inc.get("scammer_phone")),
@@ -251,193 +205,349 @@ def seed_data(conn):
             ("qr", inc.get("qr_id")),
         ]:
             if evalue:
-                cur.execute("""
-                INSERT INTO entities (incident_id, entity_type, entity_value)
-                VALUES (?, ?, ?)
-                """, (inc["id"], etype, evalue))
+                conn.execute(insert(m.entities).values(incident_id=inc["id"], entity_type=etype, entity_value=evalue))
 
-        cur.execute("""
-        INSERT INTO audit_trail (incident_id, timestamp, action, detail)
-        VALUES (?, ?, ?, ?)
-        """, (inc["id"], inc.get("created_at"), "Incident registered", "Incident recorded in MoneyTrace triage database."))
+        conn.execute(insert(m.audit_trail).values(
+            incident_id=inc["id"], timestamp=inc.get("created_at"),
+            action="Incident registered", detail="Incident recorded in MoneyTrace triage database.",
+        ))
 
-    conn.commit()
 
+def _ensure_incident_counter():
+    """Initialise the incident-id counter so new ids continue the MT-<n> series."""
+    with get_engine().begin() as conn:
+        row = conn.execute(select(m.counters.c.value).where(m.counters.c.name == "incident")).first()
+        count = conn.execute(select(func.count()).select_from(m.incidents)).scalar() or 0
+        floor = INCIDENT_ID_BASE + count
+        if row is None:
+            conn.execute(insert(m.counters).values(name="incident", value=floor))
+        elif row[0] < floor:
+            conn.execute(update(m.counters).where(m.counters.c.name == "incident").values(value=floor))
+
+
+def next_incident_id() -> str:
+    """Atomically allocate the next incident id (safe under concurrent requests)."""
+    with get_engine().begin() as conn:
+        res = conn.execute(
+            update(m.counters).where(m.counters.c.name == "incident")
+            .values(value=m.counters.c.value + 1).returning(m.counters.c.value)
+        ).first()
+        if res is None:
+            conn.execute(insert(m.counters).values(name="incident", value=INCIDENT_ID_BASE + 1))
+            value = INCIDENT_ID_BASE + 1
+        else:
+            value = res[0]
+    return f"MT-{value}"
+
+
+# ---------------------------------------------------------------------------
+# Users
+# ---------------------------------------------------------------------------
 
 def get_user_by_email(email: str) -> Optional[Dict[str, Any]]:
-    conn = get_db_connection()
-    cur = conn.cursor()
-    cur.execute("SELECT * FROM users WHERE email = ?", (email.strip().lower(),))
-    row = cur.fetchone()
-    conn.close()
-    return dict(row) if row else None
+    with get_engine().connect() as conn:
+        return _row(conn.execute(select(m.users).where(m.users.c.email == email.strip().lower())))
 
 
 def get_user_by_id(user_id: str) -> Optional[Dict[str, Any]]:
-    conn = get_db_connection()
-    cur = conn.cursor()
-    cur.execute("SELECT * FROM users WHERE id = ?", (user_id,))
-    row = cur.fetchone()
-    conn.close()
-    return dict(row) if row else None
+    with get_engine().connect() as conn:
+        return _row(conn.execute(select(m.users).where(m.users.c.id == user_id)))
+
+
+def create_user(user_id: str, email: str, password: str, name: str, role: str) -> Dict[str, Any]:
+    with get_engine().begin() as conn:
+        _upsert(conn, m.users, {
+            "id": user_id, "email": email.strip().lower(), "password_hash": hash_password(password),
+            "name": name, "role": role, "created_at": _now_display(),
+        }, "id")
+    return get_user_by_id(user_id)
+
+
+# ---------------------------------------------------------------------------
+# Incidents
+# ---------------------------------------------------------------------------
+
+def create_incident(values: Dict[str, Any]) -> str:
+    values = dict(values)
+    values.setdefault("id", next_incident_id())
+    values.setdefault("created_ts", datetime.now(timezone.utc))
+    with get_engine().begin() as conn:
+        conn.execute(insert(m.incidents).values(**values))
+    return values["id"]
 
 
 def get_incident(incident_id: str) -> Optional[Dict[str, Any]]:
-    conn = get_db_connection()
-    cur = conn.cursor()
-    cur.execute("SELECT * FROM incidents WHERE id = ?", (incident_id,))
-    row = cur.fetchone()
-    if not row:
-        conn.close()
-        return None
+    with get_engine().connect() as conn:
+        inc = _row(conn.execute(select(m.incidents).where(m.incidents.c.id == incident_id)))
+        if not inc:
+            return None
+        inc.pop("created_ts", None)
+        inc.pop("guidance_ts", None)
 
-    inc = dict(row)
-
-    cur.execute("SELECT timestamp, action, detail FROM audit_trail WHERE incident_id = ? ORDER BY id ASC", (incident_id,))
-    inc["audit_trail"] = [dict(r) for r in cur.fetchall()]
-
-    cur.execute("SELECT entity_type, entity_value FROM entities WHERE incident_id = ?", (incident_id,))
-    inc["entities"] = [dict(r) for r in cur.fetchall()]
-
-    cur.execute("SELECT package_json FROM evidence_packages WHERE incident_id = ?", (incident_id,))
-    pkg_row = cur.fetchone()
-    if pkg_row and pkg_row[0]:
-        try:
-            inc["evidence_package"] = json.loads(pkg_row[0])
-        except Exception:
+        inc["audit_trail"] = _rows(conn.execute(
+            select(m.audit_trail.c.timestamp, m.audit_trail.c.action, m.audit_trail.c.detail)
+            .where(m.audit_trail.c.incident_id == incident_id).order_by(m.audit_trail.c.id)
+        ))
+        inc["entities"] = _rows(conn.execute(
+            select(m.entities.c.entity_type, m.entities.c.entity_value)
+            .where(m.entities.c.incident_id == incident_id)
+        ))
+        pkg_row = conn.execute(
+            select(m.evidence_packages.c.package_json).where(m.evidence_packages.c.incident_id == incident_id)
+        ).first()
+        if pkg_row and pkg_row[0]:
+            try:
+                inc["evidence_package"] = json.loads(pkg_row[0])
+            except Exception:
+                inc["evidence_package"] = None
+        else:
             inc["evidence_package"] = None
-    else:
-        inc["evidence_package"] = None
 
-    if inc.get("transaction_id"):
-        cur.execute("SELECT * FROM transactions WHERE transaction_id = ?", (inc["transaction_id"],))
-        tx_row = cur.fetchone()
-        inc["transaction"] = dict(tx_row) if tx_row else None
-    else:
-        inc["transaction"] = None
-
-    conn.close()
+        if inc.get("transaction_id"):
+            inc["transaction"] = _row(conn.execute(
+                select(m.transactions).where(m.transactions.c.transaction_id == inc["transaction_id"])
+            ))
+        else:
+            inc["transaction"] = None
     return inc
 
 
-def get_user_incidents(user_id: str) -> List[Dict[str, Any]]:
-    conn = get_db_connection()
-    cur = conn.cursor()
-    cur.execute("""
-    SELECT id, amount, currency, transaction_id, scam_type, severity, status, investigation_stage, created_at, narrative
-    FROM incidents
-    WHERE user_id = ?
-    ORDER BY created_at DESC
-    """, (user_id,))
-    rows = [dict(r) for r in cur.fetchall()]
-    conn.close()
+_LIST_COLUMNS = ("id", "severity", "amount", "scam_type", "status", "investigation_stage",
+                 "created_at", "victim_name", "recipient_upi", "scammer_phone")
+
+
+def _incident_order():
+    # Newest first by creation; ids are MT-<n> strings so fall back to id for seeded rows.
+    return (m.incidents.c.created_ts.desc(), m.incidents.c.id.desc())
+
+
+def list_incidents(limit: int = 100, include_review_flag: bool = False) -> List[Dict[str, Any]]:
+    cols = [m.incidents.c[c] for c in _LIST_COLUMNS]
+    if include_review_flag:
+        cols.append(m.incidents.c.requires_human_review)
+    with get_engine().connect() as conn:
+        return _rows(conn.execute(select(*cols).order_by(m.incidents.c.id.desc()).limit(limit)))
+
+
+def list_other_incidents(incident_id: str) -> List[Dict[str, Any]]:
+    with get_engine().connect() as conn:
+        rows = _rows(conn.execute(select(m.incidents).where(m.incidents.c.id != incident_id)))
+    for r in rows:
+        r.pop("created_ts", None)
+        r.pop("guidance_ts", None)
     return rows
 
+
+def get_dashboard_metrics() -> Dict[str, Any]:
+    with get_engine().connect() as conn:
+        total = conn.execute(select(func.count()).select_from(m.incidents)).scalar() or 0
+        critical = conn.execute(
+            select(func.count()).select_from(m.incidents).where(m.incidents.c.severity == "CRITICAL")
+        ).scalar() or 0
+        exposure = conn.execute(select(func.sum(m.incidents.c.amount))).scalar() or 0.0
+        reviews = conn.execute(
+            select(func.count()).select_from(m.incidents).where(m.incidents.c.requires_human_review == 1)
+        ).scalar() or 0
+    return {
+        "active_incidents": total,
+        "critical_incidents": critical,
+        "reported_exposure": float(exposure),
+        "human_reviews_required": reviews,
+    }
+
+
+def get_cluster_summary(limit: int = 6) -> List[Dict[str, Any]]:
+    """Scam clusters computed from stored incidents (replaces the hard-coded demo list)."""
+    i = m.incidents
+    with get_engine().connect() as conn:
+        groups = _rows(conn.execute(
+            select(
+                i.c.shared_cluster.label("name"),
+                func.min(i.c.scam_type).label("category"),
+                func.count().label("incident_count"),
+                func.coalesce(func.sum(i.c.amount), 0).label("reported_exposure"),
+                func.max(i.c.severity).label("max_severity"),
+            )
+            .where(i.c.shared_cluster.isnot(None), i.c.shared_cluster != "")
+            .group_by(i.c.shared_cluster)
+            .order_by(func.count().desc())
+            .limit(limit)
+        ))
+        for g in groups:
+            ids = [r[0] for r in conn.execute(select(i.c.id).where(i.c.shared_cluster == g["name"])).all()]
+            ent_rows = conn.execute(
+                select(m.entities.c.entity_value, func.count().label("n"))
+                .where(m.entities.c.incident_id.in_(ids))
+                .group_by(m.entities.c.entity_value)
+                .order_by(func.count().desc())
+            ).all()
+            shared = [r for r in ent_rows if r[1] > 1]
+            g["shared_entities_count"] = len(shared)
+            g["lead_entity"] = (shared[0][0] if shared else (ent_rows[0][0] if ent_rows else ""))
+            g["reported_exposure"] = float(g["reported_exposure"])
+            g["status"] = "Active Threat" if g["incident_count"] >= 8 else "Monitoring"
+            g.pop("max_severity", None)
+    return groups
+
+
+def get_user_incidents(user_id: str) -> List[Dict[str, Any]]:
+    i = m.incidents
+    with get_engine().connect() as conn:
+        return _rows(conn.execute(
+            select(i.c.id, i.c.amount, i.c.currency, i.c.transaction_id, i.c.scam_type, i.c.severity,
+                   i.c.status, i.c.investigation_stage, i.c.created_at, i.c.narrative)
+            .where(i.c.user_id == user_id)
+            .order_by(i.c.created_ts.desc(), i.c.id.desc())
+        ))
+
+
+def update_incident_record(incident_id: str, updates: Dict[str, Any]):
+    valid = {k: v for k, v in updates.items() if k in m.incidents.c}
+    unknown = set(updates) - set(valid)
+    if unknown:
+        raise ValueError(f"Unknown incident columns: {sorted(unknown)}")
+    with get_engine().begin() as conn:
+        conn.execute(update(m.incidents).where(m.incidents.c.id == incident_id).values(**valid))
+
+
+def mark_guidance_delivered(incident_id: str) -> Optional[float]:
+    """Stamp the first time guidance reached the victim; returns seconds since the report."""
+    now = datetime.now(timezone.utc)
+    with get_engine().begin() as conn:
+        row = conn.execute(select(m.incidents.c.created_ts, m.incidents.c.guidance_ts)
+                           .where(m.incidents.c.id == incident_id)).first()
+        if not row:
+            return None
+        created, already = row
+        if already is None:
+            conn.execute(update(m.incidents).where(m.incidents.c.id == incident_id).values(guidance_ts=now))
+    if created is None:
+        return None
+    if created.tzinfo is None:
+        created = created.replace(tzinfo=timezone.utc)
+    return (now - created).total_seconds()
+
+
+# ---------------------------------------------------------------------------
+# Notifications, events, ledger, audit, evidence
+# ---------------------------------------------------------------------------
 
 def get_user_notifications(user_id: str) -> List[Dict[str, Any]]:
-    conn = get_db_connection()
-    cur = conn.cursor()
-    cur.execute("""
-    SELECT * FROM user_notifications
-    WHERE user_id = ?
-    ORDER BY created_at DESC
-    """, (user_id,))
-    rows = [dict(r) for r in cur.fetchall()]
-    conn.close()
-    return rows
+    n = m.user_notifications
+    with get_engine().connect() as conn:
+        return _rows(conn.execute(select(n).where(n.c.user_id == user_id).order_by(n.c.id.desc())))
 
 
 def create_user_notification(user_id: str, incident_id: str, title: str, summary: str, guidance: str):
-    conn = get_db_connection()
-    cur = conn.cursor()
-    nid = f"NOTIF-{int(datetime.now().timestamp()*1000)}"
-    now_str = datetime.now().strftime("%d %b %Y, %H:%M IST")
-    cur.execute("""
-    INSERT INTO user_notifications (id, user_id, incident_id, title, summary, guidance, read_status, created_at)
-    VALUES (?, ?, ?, ?, ?, ?, 0, ?)
-    """, (nid, user_id, incident_id, title, summary, guidance, now_str))
-    conn.commit()
-    conn.close()
+    nid = f"NOTIF-{int(datetime.now().timestamp() * 1000000)}"
+    with get_engine().begin() as conn:
+        conn.execute(insert(m.user_notifications).values(
+            id=nid, user_id=user_id, incident_id=incident_id, title=title, summary=summary,
+            guidance=guidance, read_status=0, created_at=_now_display(),
+        ))
     return nid
 
 
 def save_investigation_event(incident_id: str, event_type: str, status: str, service: str, payload: Dict[str, Any]):
-    conn = get_db_connection()
-    cur = conn.cursor()
-    now_str = datetime.now().strftime("%H:%M:%S")
-    cur.execute("""
-    INSERT INTO investigation_events (incident_id, event_type, status, service, payload_json, timestamp)
-    VALUES (?, ?, ?, ?, ?, ?)
-    """, (incident_id, event_type, status, service, json.dumps(payload, ensure_ascii=False), now_str))
-    conn.commit()
-    conn.close()
+    with get_engine().begin() as conn:
+        conn.execute(insert(m.investigation_events).values(
+            incident_id=incident_id, event_type=event_type, status=status, service=service,
+            payload_json=json.dumps(payload, ensure_ascii=False, default=str),
+            timestamp=datetime.now().strftime("%H:%M:%S"),
+            created_ts=datetime.now(timezone.utc),
+        ))
 
 
 def get_incident_events(incident_id: str) -> List[Dict[str, Any]]:
-    conn = get_db_connection()
-    cur = conn.cursor()
-    cur.execute("""
-    SELECT event_type, status, service, payload_json, timestamp
-    FROM investigation_events
-    WHERE incident_id = ?
-    ORDER BY id ASC
-    """, (incident_id,))
-    rows = []
-    for r in cur.fetchall():
-        d = dict(r)
+    e = m.investigation_events
+    with get_engine().connect() as conn:
+        rows = _rows(conn.execute(
+            select(e.c.event_type, e.c.status, e.c.service, e.c.payload_json, e.c.timestamp)
+            .where(e.c.incident_id == incident_id).order_by(e.c.id)
+        ))
+    for d in rows:
         try:
             d["payload"] = json.loads(d["payload_json"])
         except Exception:
             d["payload"] = {}
-        rows.append(d)
-    conn.close()
     return rows
 
 
 def get_transaction(tx_id: str) -> Optional[Dict[str, Any]]:
-    conn = get_db_connection()
-    cur = conn.cursor()
-    cur.execute("SELECT * FROM transactions WHERE transaction_id = ?", (tx_id,))
-    row = cur.fetchone()
-    conn.close()
-    return dict(row) if row else None
+    with get_engine().connect() as conn:
+        return _row(conn.execute(select(m.transactions).where(m.transactions.c.transaction_id == tx_id)))
+
+
+def find_transactions(recipient: Optional[str] = None, amount: Optional[float] = None,
+                      limit: int = 5) -> List[Dict[str, Any]]:
+    """Ledger search used by the investigation agent when no transaction id was given."""
+    t = m.transactions
+    q = select(t)
+    if recipient:
+        q = q.where(func.lower(t.c.recipient) == recipient.strip().lower())
+    if amount:
+        q = q.where(t.c.amount.between(amount - 0.5, amount + 0.5))
+    if not recipient and not amount:
+        return []
+    with get_engine().connect() as conn:
+        return _rows(conn.execute(q.limit(limit)))
+
+
+def find_incidents_by_entity(entity_value: str, exclude_incident: Optional[str] = None) -> List[Dict[str, Any]]:
+    e, i = m.entities, m.incidents
+    q = (select(i.c.id, i.c.scam_type, i.c.amount, i.c.severity, i.c.shared_cluster, e.c.entity_type)
+         .join(e, e.c.incident_id == i.c.id)
+         .where(func.lower(e.c.entity_value) == entity_value.strip().lower()))
+    if exclude_incident:
+        q = q.where(i.c.id != exclude_incident)
+    with get_engine().connect() as conn:
+        return _rows(conn.execute(q))
+
+
+def save_entities(incident_id: str, ents: Dict[str, Optional[str]]):
+    with get_engine().begin() as conn:
+        conn.execute(delete(m.entities).where(m.entities.c.incident_id == incident_id))
+        for etype, value in ents.items():
+            if value:
+                conn.execute(insert(m.entities).values(incident_id=incident_id, entity_type=etype, entity_value=value))
 
 
 def add_audit_log(incident_id: str, action: str, detail: str, timestamp: Optional[str] = None):
-    if not timestamp:
-        timestamp = datetime.now().strftime("%H:%M:%S")
-    conn = get_db_connection()
-    cur = conn.cursor()
-    cur.execute("""
-    INSERT INTO audit_trail (incident_id, timestamp, action, detail)
-    VALUES (?, ?, ?, ?)
-    """, (incident_id, timestamp, action, detail))
-    conn.commit()
-    conn.close()
+    with get_engine().begin() as conn:
+        conn.execute(insert(m.audit_trail).values(
+            incident_id=incident_id, timestamp=timestamp or datetime.now().strftime("%H:%M:%S"),
+            action=action, detail=detail,
+        ))
 
 
 def save_evidence_package(incident_id: str, package: Dict[str, Any]):
-    conn = get_db_connection()
-    cur = conn.cursor()
-    cur.execute("""
-    INSERT OR REPLACE INTO evidence_packages (incident_id, package_json, created_at)
-    VALUES (?, ?, ?)
-    """, (incident_id, json.dumps(package, ensure_ascii=False), datetime.now().strftime("%d %b %Y, %H:%M IST")))
-    conn.commit()
-    conn.close()
+    with get_engine().begin() as conn:
+        _upsert(conn, m.evidence_packages, {
+            "incident_id": incident_id,
+            "package_json": json.dumps(package, ensure_ascii=False, default=str),
+            "created_at": _now_display(),
+        }, "incident_id")
 
 
-def update_incident_record(incident_id: str, updates: Dict[str, Any]):
-    conn = get_db_connection()
-    cur = conn.cursor()
-    
-    fields = []
-    values = []
-    for k, v in updates.items():
-        fields.append(f"{k} = ?")
-        values.append(v)
-    
-    values.append(incident_id)
-    cur.execute(f"UPDATE incidents SET {', '.join(fields)} WHERE id = ?", values)
-    conn.commit()
-    conn.close()
+# ---------------------------------------------------------------------------
+# Telemetry + usage
+# ---------------------------------------------------------------------------
+
+def record_llm_call(**values):
+    try:
+        with get_engine().begin() as conn:
+            conn.execute(insert(m.llm_calls).values(**values))
+    except Exception as e:  # telemetry must never break a request
+        logger.warning(f"record_llm_call failed: {e}")
+
+
+def record_usage_event(kind: str, incident_id: Optional[str] = None, scam_type: Optional[str] = None,
+                       language: Optional[str] = None, seconds_to_guidance: Optional[float] = None):
+    try:
+        with get_engine().begin() as conn:
+            conn.execute(insert(m.usage_events).values(
+                kind=kind, incident_id=incident_id, scam_type=scam_type, language=language,
+                seconds_to_guidance=seconds_to_guidance, created_ts=datetime.now(timezone.utc),
+            ))
+    except Exception as e:
+        logger.warning(f"record_usage_event failed: {e}")
