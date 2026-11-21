@@ -129,7 +129,8 @@ async def test_full_flow():
         print(f"✓ Evidence Package: Severity={pkg['severity']}, Intel Layer='{pkg.get('intelligence_layer')}'")
         ai_inv = pkg.get("ai_investigator", {})
         print(f"✓ AI Investigator: Provider='{ai_inv.get('provider')}', Status='{ai_inv.get('status')}', Model='{ai_inv.get('model')}'")
-        assert ai_inv.get("status") == "GEMINI LIVE", f"Gemini status not LIVE: {ai_inv}"
+        # v2: the ADK agents report "GEMINI LIVE" on Gemini/Vertex, "LLM LIVE (<provider>)" on dev providers.
+        assert "LIVE" in (ai_inv.get("status") or "") and "NOT" not in ai_inv.get("status", ""), f"AI agents not LIVE: {ai_inv}"
         print(f"  Gemini Story Summary: {pkg.get('victim_story_summary')[:80]}...")
         print(f"  Shared Entities: {pkg.get('shared_entities')}")
         print(f"  Related Incidents Discovered: {pkg.get('related_incidents_count')}")

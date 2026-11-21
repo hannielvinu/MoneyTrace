@@ -129,6 +129,14 @@ def _extract_entities_from_text(text: str) -> Dict[str, Any]:
 
 
 async def run_investigation_pipeline(incident_id: str) -> Dict[str, Any]:
+    """Dispatch to the configured engine: AGENT_ENGINE=adk (default, Google ADK multi-agent) or legacy."""
+    if os.environ.get("AGENT_ENGINE", "adk").strip().lower() != "legacy":
+        from moneytrace.agents.coordinator import run_adk_pipeline
+        return await run_adk_pipeline(incident_id)
+    return await run_legacy_pipeline(incident_id)
+
+
+async def run_legacy_pipeline(incident_id: str) -> Dict[str, Any]:
     """
     Executes the end-to-end MoneyTrace autonomous investigation sequence.
     Emits real-time SSE events at each milestone for synchronized multi-tab updates:

@@ -220,20 +220,11 @@ async def api_upload_screenshot(
     
     url = f"/static/uploads/{filename}"
     
-    # Realistic extraction heuristic from filename/content
-    ocr_extracted = {
-        "detected_type": "UPI Payment Receipt",
-        "confidence": 0.88,
-        "extracted_fields": {
-            "transaction_id": "TXN" + "".join(re.findall(r'\d', filename))[:6] if re.findall(r'\d', filename) else "TXN784219",
-            "amount": 18500.0,
-            "recipient_vpa": "kyc-update.pay@ybl",
-            "date": datetime.now().strftime("%d %b %Y, %I:%M %p")
-        },
-        "is_uncertain": False,
-        "note": "Values extracted from payment screenshot. Please verify or correct before submitting."
-    }
-    
+    # Vision-model extraction; honest fallback (no invented values) when unavailable
+    from moneytrace.services.screenshot_service import extract_payment_fields
+    mime = file.content_type or "image/png"
+    ocr_extracted = await asyncio.to_thread(extract_payment_fields, contents, mime)
+
     return {
         "screenshot_url": url,
         "filename": file.filename,

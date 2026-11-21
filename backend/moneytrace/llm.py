@@ -26,8 +26,8 @@ logger = logging.getLogger("moneytrace.llm")
 
 OPENAI_COMPAT = {
     "groq": ("https://api.groq.com/openai/v1", "GROQ_API_KEY", "openai/gpt-oss-120b", "openai/gpt-oss-20b"),
-    "nvidia": ("https://integrate.api.nvidia.com/v1", "NVIDIA_API_KEY", "meta/llama-3.3-70b-instruct",
-               "meta/llama-3.1-8b-instruct"),
+    "nvidia": ("https://integrate.api.nvidia.com/v1", "NVIDIA_API_KEY", "minimaxai/minimax-m3.1-flash",
+               "nvidia/nemotron-3.5-lightning-30b-a3b"),
 }
 
 
@@ -50,9 +50,11 @@ def model_for(tier: str = "fast") -> str:
     p = provider()
     if p in OPENAI_COMPAT:
         _, _, strong, fast = OPENAI_COMPAT[p]
+        if tier == "vision":
+            return os.environ.get("DEV_VISION_MODEL") or "nvidia/nemotron-3.5-super-vl-120b-a12b"
         env = {"fast": "DEV_FAST_MODEL", "strong": "DEV_STRONG_MODEL", "judge": "DEV_JUDGE_MODEL"}[tier]
         return os.environ.get(env) or (fast if tier == "fast" else strong)
-    return {"fast": s.fast_model, "strong": s.strong_model, "judge": s.judge_model}[tier]
+    return {"fast": s.fast_model, "strong": s.strong_model, "judge": s.judge_model, "vision": s.fast_model}[tier]
 
 
 def llm_available() -> bool:
@@ -67,7 +69,10 @@ def adk_model(tier: str = "fast") -> Any:
     p = provider()
     name = model_for(tier)
     if p in OPENAI_COMPAT:
+        import litellm
         from google.adk.models.lite_llm import LiteLlm
+        litellm.num_retries = int(os.environ.get("LLM_NUM_RETRIES", "4"))
+        litellm.request_timeout = 120
         base, key_env, _, _ = OPENAI_COMPAT[p]
         os.environ.setdefault(key_env, "proxy-injected")
         if p == "groq":
@@ -103,7 +108,13 @@ def generate_text(prompt: str, *, tier: str = "fast", agent: str = "llm", json_m
         msgs = []
         if system:
             msgs.append({"role": "system", "content": system})
-        msgs.append({"role": "user", "content": prompt})
+        if image_bytes:
+            import base64
+            uri = f"data:{image_mime};base64,{base64.b64encode(image_bytes).decode()}"
+            msgs.append({"role": "user", "content": [{"type": "text", "text": prompt},
+                                                     {"type": "image_url", "image_url": {"url": uri}}]})
+        else:
+            msgs.append({"role": "user", "content": prompt})
         body = {"model": model, "messages": msgs, "temperature": temperature, "max_tokens": max_tokens}
         if json_mode:
             body["response_format"] = {"type": "json_object"}

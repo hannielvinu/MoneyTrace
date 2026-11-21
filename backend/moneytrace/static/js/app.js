@@ -838,7 +838,8 @@ const MoneyTraceApp = (() => {
             <img src="${data.screenshot_url}" style="height:60px; border-radius:6px; object-fit:contain;" />
             <div style="font-size:12px; color:#1E40AF;">
               <strong>${data.ocr_data.detected_type}</strong> (Confidence: ${Math.round(data.ocr_data.confidence * 100)}%)
-              <div>Txn: ${data.ocr_data.extracted_fields.transaction_id} • ₹${data.ocr_data.extracted_fields.amount}</div>
+              <div>Txn: ${data.ocr_data.extracted_fields.transaction_id || "—"} • ₹${data.ocr_data.extracted_fields.amount ?? "—"}</div>
+              ${data.ocr_data.is_uncertain ? `<div style="color:#B45309;">${data.ocr_data.note || "Please verify these values."}</div>` : ""}
             </div>
           </div>
         `;
@@ -846,8 +847,9 @@ const MoneyTraceApp = (() => {
 
       const txInput = document.getElementById("txIdInput");
       const amtInput = document.getElementById("amountInput");
-      if (txInput && !txInput.value) txInput.value = data.ocr_data.extracted_fields.transaction_id;
-      if (amtInput && !amtInput.value) amtInput.value = data.ocr_data.extracted_fields.amount;
+      const ef = data.ocr_data.extracted_fields || {};
+      if (txInput && !txInput.value && ef.transaction_id) txInput.value = ef.transaction_id;
+      if (amtInput && !amtInput.value && ef.amount != null) amtInput.value = ef.amount;
 
       window._currentScreenshot = data.screenshot_url;
       window._currentOcr = data.ocr_data;
