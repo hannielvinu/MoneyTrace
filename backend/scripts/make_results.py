@@ -95,6 +95,7 @@ def main():
               f"| Requests | {load['requests']} ({load['completed']} completed, {load['errors']} errors), concurrency {load['concurrency']} |",
               f"| Intake API latency p50 / p95 / mean | {load['intake_latency_ms']['p50']} / {load['intake_latency_ms']['p95']} / {load['intake_latency_ms']['mean']} ms |",
               f"| Time to guidance p50 / p95 / mean (full agent pipeline) | {load['time_to_guidance_ms']['p50']} / {load['time_to_guidance_ms']['p95']} / {load['time_to_guidance_ms']['mean']} ms |",
+              f"| Agent status per request | {', '.join(f'{k}: {v}' for k, v in load.get('ai_status_counts', {}).items())} |",
               f"| Avg output tokens/sec (model wall time) | {load['avg_output_tokens_per_sec']} |",
               f"| Avg tokens per request (in / out) | {load['avg_input_tokens']} / {load['avg_output_tokens']} over {load['avg_model_calls']} model calls |",
               (f"| Avg cost per request | ₹{load['avg_cost_inr_per_request']} |"
@@ -105,7 +106,7 @@ def main():
               f"| Models | {', '.join(load['models'])} |",
               f"| Pricing used | prices {json.dumps(load['pricing']['prices_usd_per_1m'])} USD/1M tokens (checked {load['pricing']['checked_on']}); USD→INR {load['pricing']['usd_to_inr']} ({load['pricing']['usd_to_inr_source']}) |",
               f"| Date | {load['date_utc']} |", f"| Command | `cd backend && {load['command']}` |",
-              f"| Raw output | `{rel(load['run_dir'])}/requests.jsonl`, `summary.json` |", ""]
+              f"| Raw output | `{rel(load['run_dir'])}/requests.jsonl`, `summary.json`; all runs: `backend/results/load/README.md` |", ""]
         if "127.0.0.1" in load["base_url"] or "localhost" in load["base_url"]:
             L += ["Caveat: run against a local server (not Cloud Run) with NVIDIA-hosted development models, which have no price "
                   "in the table (cost ₹0) and are far slower than Gemini Flash. Re-run against the live Cloud Run URL with Gemini.", ""]

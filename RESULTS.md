@@ -51,6 +51,7 @@ Caveat: the questions were drafted by an LLM from corpus passages (gold = the so
 | Requests | 24 (24 completed, 0 errors), concurrency 4 |
 | Intake API latency p50 / p95 / mean | 13.1 / 684.2 / 100.8 ms |
 | Time to guidance p50 / p95 / mean (full agent pipeline) | 47533.8 / 59991.0 / 47445.7 ms |
+| Agent status per request | LLM LIVE (nvidia): 21, AGENTS FAILED (rules fallback): 3 |
 | Avg output tokens/sec (model wall time) | 142.25 |
 | Avg tokens per request (in / out) | 59247.2 / 5130.7 over 36.83 model calls |
 | Avg cost per request | **not measured**: development models on a free endpoint, no price configured (re-run with Gemini and PRICE_* set) |
@@ -58,7 +59,7 @@ Caveat: the questions were drafted by an LLM from corpus passages (gold = the so
 | Pricing used | prices {"nvidia/nemotron-3.5-lightning-30b-a3b": "not configured"} USD/1M tokens (checked not set - prices not verified); USD→INR 84.0 (config default; set USD_TO_INR to the RBI reference rate on the day you report) |
 | Date | 2026-11-21T23:04:20.198239+00:00 |
 | Command | `cd backend && python scripts/load_test.py --base-url http://127.0.0.1:8000 --n 24 --concurrency 4 --poll-timeout 500` |
-| Raw output | `backend/results/load/LOAD_20261121T225909Z/requests.jsonl`, `summary.json` |
+| Raw output | `backend/results/load/LOAD_20261121T225909Z/requests.jsonl`, `summary.json`; all runs: `backend/results/load/README.md` |
 
 Caveat: run against a local server (not Cloud Run) with NVIDIA-hosted development models, which have no price in the table (cost ₹0) and are far slower than Gemini Flash. Re-run against the live Cloud Run URL with Gemini.
 
