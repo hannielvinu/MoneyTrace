@@ -1,0 +1,37 @@
+{
+  "run_id": "RAG_20261121T215923Z_subset6",
+  "date_utc": "2026-11-21T21:59:26.955248+00:00",
+  "command": "python -m evaluation.rag_eval --subset 6 --concurrency 3",
+  "eval_set": "evaluation/rag_golden.jsonl",
+  "eval_set_size": 6,
+  "review_status": [
+    "draft"
+  ],
+  "corpus": {
+    "documents": 49,
+    "chunks": 1106
+  },
+  "embedding_model": "nvidia/nemotron-3-embed-1b",
+  "llm_provider": "nvidia",
+  "guidance_model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+  "judge_model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+  "recall_at_5": 0.6667,
+  "recall_at_5_hits": 4,
+  "recall_at_5_by_language": {
+    "en": 0.75,
+    "ta": 0.0,
+    "hi": 1.0
+  },
+  "mean_retrieval_latency_ms": 487.9,
+  "fully_grounded_pct": 16.67,
+  "fully_grounded_count": 1,
+  "fully_grounded_definition": "independent eval judge (different model, claim-level rubric with supporting quotes) on the FINAL answer; every step must be supported",
+  "eval_judge_model": "minimaxai/minimax-m3.1-flash",
+  "pipeline_self_check_grounded_pct": 100.0,
+  "draft_fully_grounded_pct": 83.33,
+  "answers_with_errors": 0,
+  "safe_fallback_count": 0,
+  "mean_final_steps": 5.33,
+  "mean_guidance_latency_ms": 8304.4,
+  "duration_s": 185.7
+}

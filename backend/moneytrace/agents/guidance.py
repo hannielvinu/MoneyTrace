@@ -37,22 +37,28 @@ Write calm, practical, step-by-step guidance for the victim, using ONLY facts fo
 
 Procedure:
 1. Read the case in the session state key `case_record` (fraud type, amount, channel, language).
-2. Call `search_advisories` with 1-3 focused English queries (e.g. "<fraud type> what to do", "report unauthorised UPI transaction to bank zero liability", "1930 helpline cybercrime.gov.in").
-3. Write 4-7 short steps. EVERY step must cite the chunk_id(s) of the passage(s) that support it. Do not add any step
-   that no retrieved passage supports. Do not invent phone numbers, websites, deadlines or amounts.
+2. Use the passages already retrieved for this case (listed below). If they do not cover the case, call
+   `search_advisories` with 1-2 focused English queries.
+3. Write 3-6 short steps. EVERY step must cite the chunk_id(s) of the passage(s) that support it, and each step must be
+   a close paraphrase of specific sentence(s) in those passages. Do not add items, examples, reasons, numbers or
+   websites that the cited sentences do not contain (for example, do not add "OTP" to a list unless the passage says OTP).
+   Leave out useful-sounding advice that no passage states - an automatic checker removes unsupported steps.
 4. Always include a step on reporting through official channels (1930 helpline, cybercrime.gov.in, the bank) if a
    retrieved passage mentions them.
-5. Write the step text in {language_name}. Keep chunk_ids exactly as returned.
+5. Write the step text in {language_name}. Citations must be real chunk_ids exactly as shown in [brackets]
+   (for example "rbi-6e639779#0001"); never invent ids such as "chunk_1".
 
 Reply with ONLY this JSON (no prose): {{"steps": [{{"text": "...", "citations": ["<chunk_id>"]}}]}}"""
 
-JUDGE_PROMPT = """You are a strict fact-checker for victim guidance. For each STEP, decide whether the CITED PASSAGES
-explicitly support everything the step says (actions, numbers, websites, deadlines). Paraphrase and translation are fine;
-any claim not stated in the cited passages makes the step unsupported. A step with no citations is unsupported.
+JUDGE_PROMPT = """You are a strict fact-checker for advice given to scam victims.
+For EACH step: split it into its individual claims or instructions (actions, numbers, deadlines, websites,
+organisations, rights). For every claim copy, word for word, the sentence from the step's CITED PASSAGES that states it
+(the step may be in another language; the quote stays in the passage's language). If no sentence states a claim,
+use null. Generic politeness is not a claim.
 
 {items}
 
-Reply with ONLY JSON: {{"verdicts": [{{"step": 1, "supported": true, "reason": "..."}}]}}"""
+Reply with ONLY JSON: {{"steps": [{{"step": 1, "claims": [{{"claim": "...", "quote": "<exact sentence or null>"}}]}}]}}"""
 
 
 def parse_steps(raw: Any) -> List[Dict[str, Any]]:
@@ -95,6 +101,38 @@ def load_chunks(chunk_ids: List[str]) -> Dict[str, Dict[str, Any]]:
     return out
 
 
+def _norm(t: str) -> List[str]:
+    return re.findall(r"\w+", (t or "").lower())
+
+
+def quote_in_passages(quote: Optional[str], passages: List[str]) -> bool:
+    """Deterministic check that a judge's supporting quote really occurs in a cited passage.
+    Accepts an exact (normalised) substring, or >= 85% of the quote's words appearing in order-insensitive overlap
+    for quotes of 6+ words (tolerates PDF line-break and punctuation differences)."""
+    q = _norm(quote or "")
+    if len(q) < 3:
+        return False
+    qs = " ".join(q)
+    for p in passages:
+        pw = _norm(p)
+        if qs in " ".join(pw):
+            return True
+        if len(q) >= 6:
+            ps = set(pw)
+            if sum(1 for w in q if w in ps) / len(q) >= 0.85:
+                return True
+    return False
+
+
+def verdict_from_claims(claims: List[Dict[str, Any]], passages: List[str]) -> Tuple[bool, str]:
+    if not claims:
+        return False, "judge returned no claims"
+    bad = [c.get("claim", "") for c in claims if not quote_in_passages(c.get("quote"), passages)]
+    if bad:
+        return False, "unsupported: " + "; ".join(b[:80] for b in bad[:3])
+    return True, f"{len(claims)} claims, each with a verified quote"
+
+
 def judge_steps(steps: List[Dict[str, Any]], chunks: Dict[str, Dict[str, Any]]) -> List[Dict[str, Any]]:
     """One judge call for all steps. Returns per-step {'supported': bool, 'reason': str}."""
     from moneytrace.llm import generate_json
@@ -103,11 +141,19 @@ def judge_steps(steps: List[Dict[str, Any]], chunks: Dict[str, Dict[str, Any]]) 
         cited = [chunks[c] for c in s["citations"] if c in chunks]
         passages = "\n".join(f"  [{c['chunk_id']}] {c['text'][:1500]}" for c in cited) or "  (none)"
         items.append(f"STEP {i}: {s['text']}\nCITED PASSAGES:\n{passages}")
+    passages_for = [[chunks[c]["text"] for c in s["citations"] if c in chunks] for s in steps]
     verdicts: Dict[int, Dict] = {}
+
+    def _apply(i, v):
+        ok, why = verdict_from_claims(v.get("claims") or [], passages_for[i - 1])
+        verdicts[i] = {"supported": ok, "reason": why}
+
     try:
         res = generate_json(JUDGE_PROMPT.format(items="\n\n".join(items)), tier="judge", agent="grounding_checker",
                             max_tokens=12000)
-        verdicts = {int(v.get("step")): v for v in res.get("verdicts", [])}
+        for v in res.get("steps", []):
+            if isinstance(v, dict) and str(v.get("step", "")).isdigit() and 1 <= int(v["step"]) <= len(steps):
+                _apply(int(v["step"]), v)
     except Exception as e:
         logger.warning(f"batched grounding judge failed ({type(e).__name__}: {str(e)[:120]}); judging steps one by one")
     for i, item in enumerate(items, 1):
@@ -116,8 +162,7 @@ def judge_steps(steps: List[Dict[str, Any]], chunks: Dict[str, Dict[str, Any]]) 
         try:
             one = generate_json(JUDGE_PROMPT.format(items=item.replace(f"STEP {i}:", "STEP 1:", 1)), tier="judge",
                                 agent="grounding_checker", max_tokens=6000)
-            v = (one.get("verdicts") or [{}])[0]
-            verdicts[i] = {"supported": bool(v.get("supported")), "reason": v.get("reason", "")}
+            _apply(i, (one.get("steps") or [{}])[0])
         except Exception as e:
             logger.warning(f"grounding judge failed on step {i}: {type(e).__name__}")
     out = []

@@ -1,0 +1,313 @@
+id,question,final_steps_with_citations,cited_passages,judge_fully_grounded,human_fully_grounded (1/0),human_notes
+q030,"व्हाट्सएप या टेलीग्राम पर कोई ट्रेडिंग ऐप दिखे, जो जल्दी ज्यादा मुनाफा देने का वादा करे, क्या वो भरोसेमंद होता है?","1. डाउनलोड किए गए ऐप या ट्रांसफर किए गए पैसे के बावजूद, तुरंत 1930 पर कॉल करें या cybercrime.gov.in पर शिकायत दर्ज कराएं। PIB की एडवाइजरी के अनुसार, 1930 हेल्पलाइन तुरंत सहायता प्रदान करती है और साइबर क्राइम पोर्टल पर शिकायत दर्ज करने से धन वसूली में मदद मिल सकती है। ['pressinf-0aa4344f#0009']
+2. अपने बैंक को सूचित करें ताकि भविष्य के लेनदेन को रोका जा सके; CERT-In के डिजिटल सेफ्टी हैंडबुक के अनुसार, फ्रॉड ऐप्स hidden fees impose जब निकासी की कोशिश करते हैं, तो बैंक से संपर्क करना जरूरी है। ['certin-00209aa3#0042']
+3. अनवीर्ड ऐप लिंक या APK फ़ाइलें न डाउनलोड करें; केवल आधिकारिक ऐप स्टोर से ऐप डाउनलोड करें। SEBI की एडवाइजरी के अनुसार, 'Unverified app links or apk files (download only from official app stores!)' एक सामान्य स्कैम चरण है। ['sebi-f7196f25#0001']
+4. प्लेटफ़ॉर्म की पुष्टि करें: रजिस्टर्ड मोबाइल ट्रेडिंग ऐप्स सेक्शन पर SEBI के निवेशक पोर्टल पर जांचें। SEBI की एडवाइजरी के अनुसार, 'Verify platform legitimacy (check on Exchanges website or SEBI Investor website under Registered Mobile Trading Apps Section)'। ['sebi-f7196f25#0002']","[certin-00209aa3#0042] Digital Safety Compass Handbook (Safer Internet Day 2025): ital Safety
+The fraudulent trading app scam involves
+creating deceptive apps to trick investors,
+promising high returns with low risk to lure you
+into investing.
+Scammers try
+to contact
+victims
+through social
+media and
+establish trust.
+After gaining
+trust, scammers
+offer a fake
+trading app as a
+profitable
+investment.
+The app falsely
+shows rising
+investments,
+misleading
+victims into
+investing more.
+impose hidden
+fees when
+victims withdraw
+funds, hindering
+their recovery
+efforts.
+Ensure your broker is SEBI-
+registered. Verify on SEBI’s
+official website.
+Use the official app or
+website of a registered
+broker for fund transfers.
+Some influencers may
+promote fake investments.
+Research before trusting
+their advice.
+Avoid transferring money to
+personal accounts; always
+use the official app or
+web
+
+[pressinf-0aa4344f#0009] Curbing Cyber Frauds in Digital India: yber defences, the Union Budget 2025 has allocate d ₹782 crore for
+cybersecurity projects. This significant move highlights government’s heightened focus on cyber threats that
+pose risk to the national security.19 Through the Citizen Financial Cyber Fraud Reporting and Management
+System (CFCFRMS), financial institutions have been able to save more than ₹5,489 crore in over 17.82 lakh
+complaints.20
+To strengthen citizen participation in the fight against cybercrime, the Government has operationalised the
+National Cyber Crime Reporting Portal (www.cybercrime.gov.in). The portal enables citizens to report
+complaints relating to various categories of cybercrime, with a special focus on offences targeting women and
+children. A dedicated cybercrime helpline number 1930 provides immediate assista
+
+[sebi-f7196f25#0001] BEWARE OF Fake Trading App Scams!: BEWARE OF Fake Trading App Scams!
+Scammers lure investors with promises of high returns and "" "" access through fake trading apps and social
+media groups
+exclusive
+Stages of the Scam: Remember:
+Invest Wisely,
+Don't Fall for Get
+Unverified app links or apk files (download
+only from official app stores!
+Payments to third-party accounts
+(legitimate platforms don't do this
+Unrealistic promises (guaranteed returns in
+the securities market are a scam!)
+
+[sebi-f7196f25#0002] BEWARE OF Fake Trading App Scams!: nvestors with promises of high returns and "" "" access through fake trading apps and social
+media groups
+exclusive
+Stages of the Scam: Remember:
+Invest Wisely,
+Don't Fall for Get
+Unverified app links or apk files (download
+only from official app stores!
+Payments to third-party accounts
+(legitimate platforms don't do this
+Unrealistic promises (guaranteed returns in
+the securities market are a scam!)
+V erify platform legitimacy (check on
+Exchanges website or SEBI Investor website
+under Registered Mobile T rading Apps Section
+Be skeptical of investment advice / Stock tips
+on social medi
+Report any suspicious activity to cyber cell,
+I4C helpline 1930
+(https://investor.sebi.gov.in/Investor-
+support.html
+https://cybercrime.gov.in/ ( )
+Social Media Hook:
+Attractive ads on
+WhatsApp/T elegram
+promis",0,,
+q038,"I got a call from someone saying they're from the Reserve Bank of India, asking for my debit card PIN and the three-digit code on the back. Is this a real RBI call?","1. The Reserve Bank of India never asks for your debit card PIN, CVV, OTP, or full bank account details over the phone or via email. Any such call claiming to be from RBI is a fraud. ['rbi-09b576cb#0001', 'rbi-09b576cb#0003', 'rbi-bffc2b85#0000']
+2. Report the fraud immediately: call the national cyber crime helpline 1930 / file a complaint at cybercrime.gov.in. ['pressinf-0aa4344f#0009']","[pressinf-0aa4344f#0009] Curbing Cyber Frauds in Digital India: yber defences, the Union Budget 2025 has allocate d ₹782 crore for
+cybersecurity projects. This significant move highlights government’s heightened focus on cyber threats that
+pose risk to the national security.19 Through the Citizen Financial Cyber Fraud Reporting and Management
+System (CFCFRMS), financial institutions have been able to save more than ₹5,489 crore in over 17.82 lakh
+complaints.20
+To strengthen citizen participation in the fight against cybercrime, the Government has operationalised the
+National Cyber Crime Reporting Portal (www.cybercrime.gov.in). The portal enables citizens to report
+complaints relating to various categories of cybercrime, with a special focus on offences targeting women and
+children. A dedicated cybercrime helpline number 1930 provides immediate assista
+
+[rbi-09b576cb#0001] Do Not give Details of Your Bank Account or Credit/Debit Cards on Email/Phone: RBI Warns Public Again on Phishing Mails/Calls: : Aug 01, 2014
+Do Not give Details of Your Bank Account or Credit/Debit Cards on Email/Phone: RBI Warns Public Again on Phishing Mails/Calls Of late, some new methods of frauds have come to the notice of the Reserve Bank of India. An e-mail is sent in the name of a senior official of the Reserve Bank of India which gives an impression of it having been sent from the Reserve Bank and at times even displays the official rbi.org.in extension. The e-mail states that the Reserve Bank has received a large sum of foreign currency from the World Bank or a well-known international institution or a multi-national company for transfer of such funds to the bank account of the e-mail recipient. The reason for such transfer cited in such e-mails is also quite convincing, such as, ‘ compensation for inte
+
+[rbi-09b576cb#0003] Do Not give Details of Your Bank Account or Credit/Debit Cards on Email/Phone: RBI Warns Public Again on Phishing Mails/Calls: May 28, 2010 Do Not fall Prey to Fictitious Offers of Funds Transfer: RBI Advisory May 26, 2010 Remittance towards participation in lottery, money circulation schemes, other fictitious offers of cheap funds, etc. July 30, 2009 Beware of Fictitious Offers/Lottery Winnings/Cheap Fund Offers: RBI December 07, 2007 RBI cautions Public against Fictitious Offers of Remitting Cheap Funds from Abroad Of late, some new methods of frauds have come to the notice of the Reserve Bank of India. An e-mail is sent in the name of a senior official of the Reserve Bank of India which gives an impression of it having been sent from the Reserve Bank and at times even displays the official rbi.org.in extension. The e-mail states that the Reserve Bank has received a large sum of foreign currency from the World B
+
+[rbi-bffc2b85#0000] RBI Cautions about Fake Websites in its Name: Date: 08/02/2018
+RBI Cautions about Fake Websites in its Name
+It has come to the notice of the Reserve Bank of India that a fake website of the Reserve Bank of India has been created with the URL www.indiareserveban.org by some unknown person(s). The layout of the fake website is similar to the original RBI website. The home page of the fake website also contains a provision for “Bank verification with online account holders” which appears to have been created with a fraudulent intent of obtaining personal and confidential banking details of customers of banks. The Reserve Bank of India clarifies that as India’s central bank, it does not hold any accounts for individuals and never asks for personal information such as bank account details, passwords, etc. The Reserve Bank cautions members ",0,,
+q088,எனக்கு falsa KYC update செய்தி வந்தது. என்ன செய்ய வேண்டும்?,"1. अपने बैंक के आधिकारिक वेबसाइट या ब्रांच से संपर्क करके KYC की स्थिति की जांच करें। RBI के KYC मास्टर डायरेक्शन के अनुसार, KYC के लिए कभी भी अनजान व्यक्ति या वेबसाइट को दस्तावेज़ साझा न करें। [rbi-6e639779#0001] ['rbi-6e639779#0001']
+2. अगर पहले से कोई UPI लेनदेन या भुगतान किया गया है, तो तुरंत अपने बैंक को सूचित करें। RBI के निर्देशों के अनुसार, बैंक को तुरंत सूचना दें ताकि आगे की कार्रवाई की जा सके। [rbi-843271d7#0003] ['rbi-843271d7#0003']
+3. साइबर क्राइम हेल्पलाइन नंबर 1930 पर शिकायत दर्ज कराएं या cybercrime.gov.in पर ऑनलाइन रिपोर्ट दर्ज करें। Sanchar Saathi के अनुसार, यदि पहले से धन हानि हुई है, तो तुरंत 1930 या cybercrime.gov.in पर रिपोर्ट करें। [departme-09c0c586#0000] ['departme-09c0c586#0000']
+4. संदिग्ध धोखाधड़ी संचार को Sanchar Saathi के Chakshu पोर्टल पर रिपोर्ट करें। यह प्लेटफ़ॉर्म KYC अपडेट, बैंक खाता, पेमेंट वॉलेट आदि से संबंधित संदिग्ध संचार की रिपोर्टिंग की सुविधा प्रदान करता है। [departme-09c0c586#0000] ['departme-09c0c586#0000']","[departme-09c0c586#0000] Sanchar Saathi Suspected Fraud Communication Reporting: चक्षु - Chakshu
+(Report within 30 days for action)
+Proceed
+Chakshu facilitates citizens to report the suspected fraud communications with the intention of defrauding telecom service users for cyber-crime, financial frauds, non-bonafide purpose like impersonation or any other misuse through Call, SMS or WhatsApp.
+Examples: Bank Account / Payment Wallet / SIM / Gas / Electricity / KYC update, impersonation as Government official, sextortion etc.
+Note: If you have already lost money, please report at cyber crime helpline 1930 or cybercrime.gov.in .
+
+[rbi-6e639779#0001] RBI cautions against frauds in the name of KYC updation: RBI Master Direction on KYC dated February 25, 2016 , as amended from time to time. Don’ts Do not share account login credentials, card information, PINs, passwords, OTPs with anyone. Do not share KYC documents or copies of KYC documents with unknown or unidentified individuals or organizations. Do not share any sensitive data/ information through unverified/unauthorized websites or applications. Do not click on suspicious or unverified links received in mobile or email. (Yogesh Dayal) Chief General Manager Press Release: 2023-2024/1794
+The Reserve Bank had cautioned members of public against frauds in the name of KYC updation vide its Press Release dated September 13, 2021 . In the wake of continuing incidents/ reports of customers falling prey to frauds being perpetrated in the name of K
+
+[rbi-843271d7#0003] Consumer Awareness - Cyber Threats and Frauds: from their bank / e-wallet provider and contain links to extract confidential details.
+Remote Access - by luring customer to download an application on their mobile phone / computer which is able to access all the customers’ data on that customer device.
+Misuse the ‘collect request’ feature of UPI by sending fake payment requests with messages like ‘Enter your UPI PIN’ to receive money. Fake numbers of banks / e-wallet providers on webpages / social media and displayed by search engines, etc.
+RBI urges the members of public to practice safe digital banking by taking all due precautions, while carrying out any digital (online / mobile) banking / payment transactions. These will help in preventing financial and / or other loss to them.
+(Yogesh Dayal) Chief General Manager
+Press Release: 2021",0,,
+q024,"I received a message saying my KYC needs updating and asking me to click a link, what should I do?","1. Do not click the link or share any OTP, PIN, or KYC documents; this is a common fraud modus operandi warned against by RBI. ['rbi-6e639779#0001', 'rbi-843271d7#0001']
+2. Do not share account login credentials, card information, PINs, passwords, OTPs with anyone, including unknown individuals or organizations. ['rbi-6e639779#0001']
+3. Always access your bank's official website or contact your branch directly to verify KYC status; never use links received via unsolicited messages. ['rbi-843271d7#0001']
+4. If you have already lost money, report immediately through the National Cyber Crime Reporting Portal (www.cybercrime.gov.in) or call the dedicated helpline 1930. ['pressinf-0aa4344f#0009', 'departme-09c0c586#0000']","[departme-09c0c586#0000] Sanchar Saathi Suspected Fraud Communication Reporting: चक्षु - Chakshu
+(Report within 30 days for action)
+Proceed
+Chakshu facilitates citizens to report the suspected fraud communications with the intention of defrauding telecom service users for cyber-crime, financial frauds, non-bonafide purpose like impersonation or any other misuse through Call, SMS or WhatsApp.
+Examples: Bank Account / Payment Wallet / SIM / Gas / Electricity / KYC update, impersonation as Government official, sextortion etc.
+Note: If you have already lost money, please report at cyber crime helpline 1930 or cybercrime.gov.in .
+
+[pressinf-0aa4344f#0009] Curbing Cyber Frauds in Digital India: yber defences, the Union Budget 2025 has allocate d ₹782 crore for
+cybersecurity projects. This significant move highlights government’s heightened focus on cyber threats that
+pose risk to the national security.19 Through the Citizen Financial Cyber Fraud Reporting and Management
+System (CFCFRMS), financial institutions have been able to save more than ₹5,489 crore in over 17.82 lakh
+complaints.20
+To strengthen citizen participation in the fight against cybercrime, the Government has operationalised the
+National Cyber Crime Reporting Portal (www.cybercrime.gov.in). The portal enables citizens to report
+complaints relating to various categories of cybercrime, with a special focus on offences targeting women and
+children. A dedicated cybercrime helpline number 1930 provides immediate assista
+
+[rbi-6e639779#0001] RBI cautions against frauds in the name of KYC updation: RBI Master Direction on KYC dated February 25, 2016 , as amended from time to time. Don’ts Do not share account login credentials, card information, PINs, passwords, OTPs with anyone. Do not share KYC documents or copies of KYC documents with unknown or unidentified individuals or organizations. Do not share any sensitive data/ information through unverified/unauthorized websites or applications. Do not click on suspicious or unverified links received in mobile or email. (Yogesh Dayal) Chief General Manager Press Release: 2023-2024/1794
+The Reserve Bank had cautioned members of public against frauds in the name of KYC updation vide its Press Release dated September 13, 2021 . In the wake of continuing incidents/ reports of customers falling prey to frauds being perpetrated in the name of K
+
+[rbi-843271d7#0001] Consumer Awareness - Cyber Threats and Frauds: transactions. These will help in preventing financial and / or other loss to them. (Yogesh Dayal) Chief General Manager Press Release: 2021-2022/1630 SAFE DIGITAL BANKING PRACTICES Never share your account details such as account number, login ID, password, PIN, UPI-PIN, OTP, ATM / Debit card / credit card details with anyone, not even with bank officials, however genuine they might sound. Any phone call / email threatening the blocking of your account on the pretext of non-updation of KYC and suggestion to click link for updating the same is a common modus operandi of fraudsters. Do not respond to offers for getting KYC updated / expedited. Always access the official website of your bank / NBFC / e-wallet provider or contact the branch. Do not download any unknown app on your phone / devi",0,,
+q034,"I invested money in a trading app after seeing it promoted on WhatsApp, but now I can't withdraw my money. What should I do?","1. Recognise the scam stages: victims are pressured to invest more or borrow money, and then withdrawal is refused with excuses and fees. ['sebi-f7196f25#0004']
+2. Verify that any broker or platform you use in future is SEBI‑registered. Check the Registered Mobile Trading Apps section on SEBI's investor portal before downloading any app or sending money. ['sebi-f7196f25#0002']
+3. Report the fraud through official channels: use the cybercrime helpline number 1930 or the portal cybercrime.gov.in. ['pressinf-0aa4344f#0009', 'certin-00209aa3#0041']","[certin-00209aa3#0041] Digital Safety Compass Handbook (Safer Internet Day 2025): ans with little or
+no paperwork.
+Scammers target
+vulnerable people via fake
+websites, ads, or emails.
+Once victims show interest,
+fraudsters ask for advance
+fees, or bank access and
+makes the victim to install
+malicious apps.
+Victims are lured into
+high-interest loans,
+making repayment
+nearly impossible.
+Scammers extort money
+by manipulating photos
+and threatening victims.
+CERT-In’s Digital Safety
+The fraudulent trading app scam involves
+creating deceptive apps to trick investors,
+promising high returns with low risk to lure you
+into investing.
+Scammers try
+to contact
+victims
+through social
+media and
+establish trust.
+After gaining
+trust, scammers
+offer a fake
+trading app as a
+profitable
+investment.
+The app falsely
+shows rising
+investments,
+misleading
+victims into
+investing more.
+
+[pressinf-0aa4344f#0009] Curbing Cyber Frauds in Digital India: yber defences, the Union Budget 2025 has allocate d ₹782 crore for
+cybersecurity projects. This significant move highlights government’s heightened focus on cyber threats that
+pose risk to the national security.19 Through the Citizen Financial Cyber Fraud Reporting and Management
+System (CFCFRMS), financial institutions have been able to save more than ₹5,489 crore in over 17.82 lakh
+complaints.20
+To strengthen citizen participation in the fight against cybercrime, the Government has operationalised the
+National Cyber Crime Reporting Portal (www.cybercrime.gov.in). The portal enables citizens to report
+complaints relating to various categories of cybercrime, with a special focus on offences targeting women and
+children. A dedicated cybercrime helpline number 1930 provides immediate assista
+
+[sebi-f7196f25#0002] BEWARE OF Fake Trading App Scams!: nvestors with promises of high returns and "" "" access through fake trading apps and social
+media groups
+exclusive
+Stages of the Scam: Remember:
+Invest Wisely,
+Don't Fall for Get
+Unverified app links or apk files (download
+only from official app stores!
+Payments to third-party accounts
+(legitimate platforms don't do this
+Unrealistic promises (guaranteed returns in
+the securities market are a scam!)
+V erify platform legitimacy (check on
+Exchanges website or SEBI Investor website
+under Registered Mobile T rading Apps Section
+Be skeptical of investment advice / Stock tips
+on social medi
+Report any suspicious activity to cyber cell,
+I4C helpline 1930
+(https://investor.sebi.gov.in/Investor-
+support.html
+https://cybercrime.gov.in/ ( )
+Social Media Hook:
+Attractive ads on
+WhatsApp/T elegram
+promis
+
+[sebi-f7196f25#0004] BEWARE OF Fake Trading App Scams!: r.sebi.gov.in/Investor-
+support.html
+https://cybercrime.gov.in/ ( )
+Social Media Hook:
+Attractive ads on
+WhatsApp/T elegram
+promising high returns.
+2T rust Building: Fake
+""experts"" share analysis,
+successful track records,
+screenshots, and initial
+successful tips
+3Fake T rading App
+download fake trading
+app
+4Fake Profits: The app
+shows profits, encouraging
+further investment.
+5Pressure to Increase
+urge victims to invest more
+or ""borrow"" from them
+6Withdrawal Blocked:
+Victims can't withdraw
+money; excuses and fees
+arise
+7Scam Exposed: The app
+becomes dysfunctional,
+revealing the fraud.",1,,
+q084,"I got a call from someone claiming to be from the RBI or a government agency, saying my bank account will be blocked unless I share my OTP and install a given app. Is this real?","1. End the call immediately if the caller asks you to install any application or share your OTP. RBI warns that fraudsters lure customers to download applications that access all data on the device, and that one must never share OTPs or PINs with anyone. ([rbi-843271d7#0003] [certin-1003ca02#0007]) ['rbi-843271d7#0003', 'certin-1003ca02#0007']
+2. Do not share your bank account details, card information, PINs, passwords, or OTPs with anyone over the phone or via email. RBI explicitly states: 'Never share your account details such as account number, ... PINs, passwords, OTPs' ([rbi-843271d7#0003]) ['rbi-843271d7#0003']
+3. Report the incident on the National Cyber Crime Reporting Portal (www.cybercrime.gov.in) or dial the dedicated cybercrime helpline number 1930 for immediate assistance. The Government has operationalised the portal and helpline to facilitate prompt reporting of online financial frauds ([pressinf-0aa4344f#0009]) ['pressinf-0aa4344f#0009']
+4. Contact your bank's helpline to inform them of the potential compromise, so they can take action on your account. RBI advises reporting any unauthorised transaction observed to your bank immediately for blocking the card / account / wallet ([rbi-843271d7#0003]) ['rbi-843271d7#0003']","[certin-1003ca02#0007] Cyber Security Awareness Booklet for Digital Nagriks and Digital Enterprises (NCSAM 2023): to the messages which shows urgency.
+Do not trust promotional offers which look “too good to be
+true”.
+Do not hesitate to report to Law Enforcement Agencies, if you
+become a victim of phishing.
+Verify the email ids in emails addressed to generic recipients.
+Look for typing errors (eg., Acc0unt, ema1l, dep0sit, passw0rd)
+“Do yu kare about yurself?” Look for poor grammar and
+unprofessional Language.
+Fraudsters contact the victim
+pretending to be calling from
+trusted sources like bank/
+income tax/ Gas agency etc.
+They ask victim's for bank
+account details & collect
+financial information about
+debit/credit cards, expiry date
+etc.
+The fraudster tells the victim to
+share OTP sent on mobile for
+depositing the amount.
+Once the victim shares the OTP,
+money is deducted from their
+account.
+Never shar
+
+[pressinf-0aa4344f#0009] Curbing Cyber Frauds in Digital India: yber defences, the Union Budget 2025 has allocate d ₹782 crore for
+cybersecurity projects. This significant move highlights government’s heightened focus on cyber threats that
+pose risk to the national security.19 Through the Citizen Financial Cyber Fraud Reporting and Management
+System (CFCFRMS), financial institutions have been able to save more than ₹5,489 crore in over 17.82 lakh
+complaints.20
+To strengthen citizen participation in the fight against cybercrime, the Government has operationalised the
+National Cyber Crime Reporting Portal (www.cybercrime.gov.in). The portal enables citizens to report
+complaints relating to various categories of cybercrime, with a special focus on offences targeting women and
+children. A dedicated cybercrime helpline number 1930 provides immediate assista
+
+[rbi-843271d7#0003] Consumer Awareness - Cyber Threats and Frauds: from their bank / e-wallet provider and contain links to extract confidential details.
+Remote Access - by luring customer to download an application on their mobile phone / computer which is able to access all the customers’ data on that customer device.
+Misuse the ‘collect request’ feature of UPI by sending fake payment requests with messages like ‘Enter your UPI PIN’ to receive money. Fake numbers of banks / e-wallet providers on webpages / social media and displayed by search engines, etc.
+RBI urges the members of public to practice safe digital banking by taking all due precautions, while carrying out any digital (online / mobile) banking / payment transactions. These will help in preventing financial and / or other loss to them.
+(Yogesh Dayal) Chief General Manager
+Press Release: 2021",0,,

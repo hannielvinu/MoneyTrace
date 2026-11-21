@@ -37,6 +37,54 @@ def load_golden(path):
         return [json.loads(l) for l in f if l.strip()]
 
 
+EVAL_JUDGE_PROMPT = """You are an independent auditor of advice given to scam victims. You did NOT write it.
+For EACH step: split it into its individual claims or instructions (actions, numbers, deadlines, websites, names of
+organisations, rights). For every claim find a sentence in the step's CITED PASSAGES that states it (translation and
+paraphrase are fine). If any claim has no supporting sentence, the step is NOT supported. Generic politeness is not a claim.
+
+{items}
+
+Return ONLY JSON: {{"steps": [{{"step": 1, "claims": [{{"claim": "...", "quote": "<supporting sentence or null>"}}],
+}}]}}
+Quotes must be copied word for word from the passages; they are verified automatically."""
+
+
+def eval_judge_model():
+    from moneytrace.llm import provider, model_for
+    default = "minimaxai/minimax-m3.1-flash" if provider() == "nvidia" else model_for("judge")
+    return os.environ.get("EVAL_JUDGE_MODEL", default)
+
+
+def independent_judge(answer):
+    """Re-judge the FINAL answer with a different model and a claim-level rubric. Returns (fully_grounded, detail)."""
+    from moneytrace.agents.guidance import load_chunks
+    from moneytrace.llm import generate_json
+    steps = answer.get("steps") or []
+    if not steps or answer["grounding"].get("fallback_used"):
+        return False, {"reason": "safe fallback or empty answer"}
+    chunks = load_chunks([c for s in steps for c in s.get("citations", [])])
+    items = []
+    for i, s in enumerate(steps, 1):
+        cited = [chunks[c] for c in s.get("citations", []) if c in chunks]
+        passages = "\n".join(f"  [{c['chunk_id']}] {c['text'][:1800]}" for c in cited) or "  (none)"
+        items.append(f"STEP {i}: {s['text']}\nCITED PASSAGES:\n{passages}")
+    for attempt in range(2):
+        try:
+            res = generate_json(EVAL_JUDGE_PROMPT.format(items="\n\n".join(items)), agent="eval_judge",
+                                model=eval_judge_model(), max_tokens=16000)
+            from moneytrace.agents.guidance import verdict_from_claims
+            verdicts = {int(v.get("step")): v for v in res.get("steps", []) if str(v.get("step", "")).isdigit()}
+            per = []
+            for i in range(1, len(steps) + 1):
+                ps = [chunks[c]["text"] for c in steps[i - 1].get("citations", []) if c in chunks]
+                ok, _ = verdict_from_claims((verdicts.get(i) or {}).get("claims") or [], ps)
+                per.append(ok and bool(ps))
+            return all(per), {"per_step": per, "verdicts": res.get("steps", [])}
+        except Exception as e:
+            err = f"{type(e).__name__}: {str(e)[:150]}"
+    return False, {"reason": "eval judge failed", "error": err}
+
+
 def recall_at_k(rows, k=5, rerank=None, translate=None):
     from rag.retriever import retrieve, RetrievalTrace
     out = []
@@ -69,8 +117,13 @@ async def grounded_eval(rows, concurrency=3):
                      "error": f"{type(e).__name__}: {str(e)[:200]}"}
             g["latency_ms"] = round((time.perf_counter() - t0) * 1000, 1)
             g["tokens"] = m.summary()
+            g["eval_judge_grounded"], g["eval_judge_detail"] = await asyncio.to_thread(independent_judge, g) \
+                if not g.get("error") else (False, {"reason": "error"})
+            att = (g["grounding"].get("attempts") or [{}])[0]
+            g["draft_fully_grounded"] = bool(att.get("steps")) and att.get("supported") == att.get("steps")
             results[r["id"]] = g
-            print(f"  {r['id']} grounded={g['grounding'].get('fully_grounded')} steps={len(g['steps'])} "
+            print(f"  {r['id']} eval_judge={g['eval_judge_grounded']} self_check={g['grounding'].get('fully_grounded')} "
+                  f"draft={g['draft_fully_grounded']} steps={len(g['steps'])} "
                   f"{'ERR ' + g['error'][:60] if g['error'] else ''}", flush=True)
     await asyncio.gather(*(one(r) for r in rows))
     return results
@@ -129,9 +182,16 @@ def main(argv=None):
     if not args.retrieval_only:
         gres = asyncio.run(grounded_eval(rows, args.concurrency))
         ok = [g for g in gres.values() if not g.get("error")]
-        grounded = sum(1 for g in gres.values() if g["grounding"].get("fully_grounded"))
+        grounded = sum(1 for g in gres.values() if g.get("eval_judge_grounded"))
+        self_ok = sum(1 for g in gres.values() if g["grounding"].get("fully_grounded"))
+        draft_ok = sum(1 for g in gres.values() if g.get("draft_fully_grounded"))
         summary.update({
             "fully_grounded_pct": round(100 * grounded / len(rows), 2), "fully_grounded_count": grounded,
+            "fully_grounded_definition": "independent eval judge (different model, claim-level rubric with supporting quotes) "
+                                         "on the FINAL answer; every step must be supported",
+            "eval_judge_model": eval_judge_model(),
+            "pipeline_self_check_grounded_pct": round(100 * self_ok / len(rows), 2),
+            "draft_fully_grounded_pct": round(100 * draft_ok / len(rows), 2),
             "answers_with_errors": len(rows) - len(ok),
             "safe_fallback_count": sum(1 for g in gres.values() if g["grounding"].get("fallback_used")),
             "mean_final_steps": round(sum(len(g["steps"]) for g in gres.values()) / len(rows), 2),
@@ -146,6 +206,8 @@ def main(argv=None):
             if g["id"] in gres:
                 x = gres[g["id"]]
                 row["answer"] = {"steps": x["steps"], "sources": x["sources"], "grounding": x["grounding"],
+                                 "draft": x.get("draft"), "draft_fully_grounded": x.get("draft_fully_grounded"),
+                                 "eval_judge_grounded": x.get("eval_judge_grounded"), "eval_judge_detail": x.get("eval_judge_detail"),
                                  "error": x.get("error"), "latency_ms": x["latency_ms"], "tokens": x.get("tokens")}
             f.write(json.dumps(row, ensure_ascii=False, default=str) + "\n")
     with open(os.path.join(out_dir, "summary.json"), "w", encoding="utf-8") as f:
@@ -162,7 +224,7 @@ def main(argv=None):
                 from moneytrace.agents.guidance import load_chunks
                 ch = load_chunks([c for s in x["steps"] for c in s.get("citations", [])])
                 passages = "\n\n".join(f"[{k}] {v['title']}: {v['text'][:800]}" for k, v in ch.items())
-                w.writerow([g["id"], g["question"], steps, passages, int(bool(x["grounding"].get("fully_grounded"))), "", ""])
+                w.writerow([g["id"], g["question"], steps, passages, int(bool(x.get("eval_judge_grounded"))), "", ""])
     latest = os.path.join(BACKEND, "results", "rag_eval", "latest_subset.json" if args.subset else "latest.json")
     with open(latest, "w", encoding="utf-8") as f:
         json.dump({**summary, "run_dir": os.path.relpath(out_dir, BACKEND)}, f, indent=2, ensure_ascii=False)

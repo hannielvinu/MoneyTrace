@@ -88,9 +88,28 @@ def _build_agents():
 
     def _guidance_instruction(ctx) -> str:
         lang = (ctx.state.get("case_record") or {}).get("language") or ctx.state.get("language") or "en"
-        return GUIDANCE_INSTRUCTION.format(language_name=LANG_NAMES.get(lang, "English"))
+        passages = ctx.state.get("temp:advisory_passages") or ctx.state.get("advisory_passages") or []
+        block = "\n\n".join(f"[{p['chunk_id']}] ({p['title']} — {p['issuer']})\n{p['text']}" for p in passages)
+        return GUIDANCE_INSTRUCTION.format(language_name=LANG_NAMES.get(lang, "English")) + (
+            "\n\nPASSAGES ALREADY RETRIEVED FOR THIS CASE (cite their ids exactly; search for more if needed):\n" + block
+            if block else "")
+
+    async def _prefetch_passages(callback_context):
+        """Retrieve advisories for the case before the guidance agent writes anything (guarantees citable material)."""
+        st = callback_context.state
+        rec = st.get("case_record") or {}
+        query = " ".join(x for x in (rec.get("fraud_type"), rec.get("summary"), rec.get("channel")) if x and x != "unknown")
+        if not query:
+            return None
+        try:
+            cites = await asyncio.to_thread(retrieve_for_guidance, query)
+            st["advisory_passages"] = [c.short(900) for c in cites]
+        except Exception as e:
+            logger.warning(f"guidance prefetch failed: {e}")
+        return None
 
     guidance = LlmAgent(name="guidance_agent", model=adk_model("strong", thinking=False), instruction=_guidance_instruction,
+                        before_agent_callback=_prefetch_passages,
                         description="Writes step-by-step victim guidance grounded only in retrieved official advisories.",
                         tools=[search_advisories], output_key="guidance_draft", generate_content_config=gen)
     coordinator = LlmAgent(name="coordinator", model=adk_model("fast"), instruction=COORDINATOR_INSTRUCTION,
@@ -98,6 +117,18 @@ def _build_agents():
                            tools=[AgentTool(agent=intake), AgentTool(agent=investigation), AgentTool(agent=guidance)],
                            generate_content_config=gen)
     return coordinator, guidance
+
+
+def retrieve_for_guidance(query: str):
+    from rag.retriever import retrieve
+    first = retrieve(query, k=5)
+    channels = retrieve("report cyber financial fraud helpline 1930 cybercrime.gov.in inform bank immediately", k=2)
+    seen, out = set(), []
+    for c in first + channels:
+        if c.chunk_id not in seen:
+            seen.add(c.chunk_id)
+            out.append(c)
+    return out
 
 
 def _usage_callback_plugin():

@@ -1,0 +1,574 @@
+id,question,final_steps_with_citations,cited_passages,judge_fully_grounded,human_fully_grounded (1/0),human_notes
+q093,"व्हाट्सएप पर एक निवेश का लिंक आया है, कोई इन्फ्लुएंसर बता रहा है कि जल्दी पैसा डबल हो जाएगा। मैंने सोचा पहले ब्रोकर को SEBI रजिस्टर चेक करूं क्या? और कोई भी personal account में पैसा ट्रांसफर करना safe है क्या?","1. अपने बैंक को तुरंत सूचित करें: लेन-देन के तुरंत बाद बैंक को कॉल करें या संदेश भेजें और लेन-देन को रोकने का अनुरोध करें। बैंक को सूचित करने पर ही शून्य दायित्व नीति लागू होती है। (chunk_id: rbi-d1477697#0002) ['rbi-d1477697#0002']
+2. अगर लेन-देन आपकी लापरवाही (पासवर्ड, PIN, OTP साझा करना) के कारण हुआ है, तो आप तुरंत सूचना देने तक का नुकसान वहन करेंगे। बैंक को तुरंत सूचित करें। (chunk_id: rbi-d1477697#0002) ['rbi-d1477697#0002']
+3. बैंक को तीन कार्यदिवस के भीतर सूचित करें ताकि शून्य दायित्व का लाभ मिल सके (तृतीय पक्ष उल्लंघन की स्थिति में)। (chunk_id: rbi-d1477697#0002) ['rbi-d1477697#0002']
+4. साइबर अपराध रिपोर्टिंग के लिए 1930 हेल्पलाइन पर कॉल करें या cybercrime.gov.in पर ऑनलाइन शिकायत दर्ज करें। (chunk_id: departme-09c0c586#0000) ['departme-09c0c586#0000']
+5. बैंक की शिकायत निवारण प्रणाली का उपयोग करें और यदि बैंक उचित कार्रवाई नहीं करता है तो बैंकिंग ओम्बुड्समैन से संपर्क करें। (chunk_id: rbi-fcad3939#0021) ['rbi-fcad3939#0021']","[departme-09c0c586#0000] Sanchar Saathi Suspected Fraud Communication Reporting: चक्षु - Chakshu
+(Report within 30 days for action)
+Proceed
+Chakshu facilitates citizens to report the suspected fraud communications with the intention of defrauding telecom service users for cyber-crime, financial frauds, non-bonafide purpose like impersonation or any other misuse through Call, SMS or WhatsApp.
+Examples: Bank Account / Payment Wallet / SIM / Gas / Electricity / KYC update, impersonation as Government official, sextortion etc.
+Note: If you have already lost money, please report at cyber crime helpline 1930 or cybercrime.gov.in .
+
+[rbi-d1477697#0002] Customer Protection – Limiting Liability of Customers in Unauthorised Electronic Banking Transactions: liability. The banks may not offer facility of electronic transactions, other than ATM cash withdrawals, to customers who do not provide mobile numbers to the bank. On receipt of report of an unauthorised transaction from the customer, banks must take immediate steps to prevent further unauthorised transactions in the account. Limited Liability of a Customer (a) Zero Liability of a Customer 6. A customer’s entitlement to zero liability shall arise where the unauthorised transaction occurs in the following events: Contributory fraud/ negligence/ deficiency on the part of the bank (irrespective of whether or not the transaction is reported by the customer). Third party breach where the deficiency lies neither with the bank nor with the customer but lies elsewhere in the system, and the custo
+
+[rbi-fcad3939#0021] Reserve Bank of India (Commercial Banks - Responsible Business Conduct) Directions, 2025 (Updated as on October 1, 2026): will be the risk of loss to the bank / customer. To facilitate this, the bank shall provide its customers with 24x7 access through multiple channels (at a minimum, via website, phone banking, SMS, e-mail, IVR, a dedicated toll-free helpline, reporting to home branch, etc.) for reporting unauthorised transactions that have taken place and/ or loss or theft of payment instrument such as card, etc. The bank shall also enable customers to instantly respond by ""Reply"" to the SMS and e-mail alerts and the customers shall not be required to search for a web page or an e-mail address to notify the objection, if any. As an alternative, the bank shall provide an alternate number in the transaction alert SMS itself, to which the customer can immediately send a reply. Further, a direct link for lodgin",1,,
+q088,எனக்கு falsa KYC update செய்தி வந்தது. என்ன செய்ய வேண்டும்?,"1. சரி உரையாடலில் 'KYC அப்டேட்' என்ற வார்த்தை கேட்கப்பட்டால், அதை சரிபார்க்க உரையாடலை நிறுத்தவும். RBI cautions against frauds in the name of KYC updation warns that fraudsters manipulate victims via unsolicited calls/SMS/emails and threaten account blocking to extract personal/ login details or install unverified apps via links. ['rbi-6e639779#0000']
+2. சரி கணக்கு லாகின், PIN, OTP, CVV போன்ற தனிப்பட்ட தகவல்களை எதை கிடைக்கும் வரை பகிர்ந்து கொள்ளாது. RBI KYC fraud advisory lists Do’s and Don’ts: Do not share account login credentials, card information, PINs, passwords, OTPs with anyone. ['rbi-6e639779#0001']
+3. சரி UPI debit SMS அல்லது OTP வரும் போது, அதை சரிபார்க்கவில்லை என்றால் உடனemblée banks / e‑wallet provider‑ஐ அழைப்பு செய்து knowledgeable. RBI Consumer Awareness press release states: If you receive a debit SMS for a transaction not done, inform your bank / e‑wallet provider immediately and block all modes of debit, including UPI. ['rbi-843271d7#0004']
+4. சரி உரையாடலில் அல்லது SMS-ஐ கவனமாக பார்க்கவும். Fraudulent transaction in your bank account? Notify your bank immediately. For more details, give a missed call on 14440. (RBI SMS on Customer Liability in Unauthorised Electronic Banking Transactions) ['rbi-106bf499#0000']
+5. சரி 1930 helpline அல்லது cybercrime.gov.in-ல் தவறான लेन-देन் about 1930 helpline cybercrime.gov.in Curbing Cyber Frauds in Digital India: A dedicated cybercrime helpline number 1930 provides immediate assistance to victims of online financial frauds by facilitating prompt reporting. The National Cyber Crime Reporting Portal (www.cybercrime.gov.in) enables citizens to report complaints relating to various categories of cybercrime. ['pressinf-0aa4344f#0009']
+6. சரி உரையாடலில் Tamil Nadu Police Cyber Crime Cell அல்லது bank branch-ல் شکायத்தை பதிவு செய்யவும். On receipt of report of an unauthorised transaction from the customer, banks must take immediate steps to prevent further unauthorised transactions in the account. (RBI Customer Protection – Limiting Liability of Customers) ['rbi-d1477697#0002']
+7. சரி SMS alertsregister for SMS alerts and wherever available register for e‑mail alerts, for electronic banking transactions. The SMS alerts shall mandatorily be sent to the customers, while email alerts may be sent, wherever registered. Customers must notify their bank of any unauthorised electronic banking transaction at the earliest after the occurrence of such transaction. (RBI Customer Protection guidelines) ['rbi-d1477697#0001']","[pressinf-0aa4344f#0009] Curbing Cyber Frauds in Digital India: yber defences, the Union Budget 2025 has allocate d ₹782 crore for
+cybersecurity projects. This significant move highlights government’s heightened focus on cyber threats that
+pose risk to the national security.19 Through the Citizen Financial Cyber Fraud Reporting and Management
+System (CFCFRMS), financial institutions have been able to save more than ₹5,489 crore in over 17.82 lakh
+complaints.20
+To strengthen citizen participation in the fight against cybercrime, the Government has operationalised the
+National Cyber Crime Reporting Portal (www.cybercrime.gov.in). The portal enables citizens to report
+complaints relating to various categories of cybercrime, with a special focus on offences targeting women and
+children. A dedicated cybercrime helpline number 1930 provides immediate assista
+
+[rbi-106bf499#0000] SMS on Customer Liability in Unauthorised Electronic Banking Transactions: Home >> Customer Liability in Unauthorised Electronic Banking Transactions >> SMS SMS on Customer Liability in Unauthorised Electronic Banking Transactions Fraudulent transaction in your bank account? Limit your loss. Notify your bank immediately. For more details, give a missed call on 14440. IVRS on Customer Liability in Unauthorised Electronic Banking Transactions If someone has fraudulently withdrawn money from your bank account, inform your bank immediately. When you notify the bank, remember to take acknowledgement from your bank. The bank has to resolve your complaint within 90 days from the date of receipt. If the transaction has happened because of your negligence, that is, because of your sharing your password, PIN, OTP , etc., you will have to bear the loss till you report it to
+
+[rbi-6e639779#0000] RBI cautions against frauds in the name of KYC updation: : Feb 02, 2024
+RBI cautions against frauds in the name of KYC updation The Reserve Bank had cautioned members of public against frauds in the name of KYC updation vide its Press Release dated September 13, 2021 . In the wake of continuing incidents/ reports of customers falling prey to frauds being perpetrated in the name of KYC updation, RBI once again urges the members of public to exercise caution and due care to prevent loss and safeguard themselves from such malicious practices. The modus operandi for such frauds usually involves customers receiving unsolicited communications, including phone calls/SMS/emails, through which they are manipulated into revealing personal information, account/login details, or installing unauthorized or unverified apps through links provided in the messag
+
+[rbi-6e639779#0001] RBI cautions against frauds in the name of KYC updation: RBI Master Direction on KYC dated February 25, 2016 , as amended from time to time. Don’ts Do not share account login credentials, card information, PINs, passwords, OTPs with anyone. Do not share KYC documents or copies of KYC documents with unknown or unidentified individuals or organizations. Do not share any sensitive data/ information through unverified/unauthorized websites or applications. Do not click on suspicious or unverified links received in mobile or email. (Yogesh Dayal) Chief General Manager Press Release: 2023-2024/1794
+The Reserve Bank had cautioned members of public against frauds in the name of KYC updation vide its Press Release dated September 13, 2021 . In the wake of continuing incidents/ reports of customers falling prey to frauds being perpetrated in the name of K
+
+[rbi-843271d7#0004] Consumer Awareness - Cyber Threats and Frauds: website of bank / NBFC / e-wallet provider for contact details. Contact numbers on internet search engines may be fraudulent.
+Check URLs and domain names received in emails / SMSs for spelling errors. Use only verified, secured, and trusted websites / apps for online banking, that is, websites starting with ‘’https’’. In case of suspicion, notify local police / cybercrime branch immediately. If you receive an OTP for debiting your account for a transaction not initiated by you, inform your bank / e-wallet provider immediately. If you receive a debit SMS for a transaction not done, inform your bank / e-wallet provider immediately and block all modes of debit, including UPI. If you suspect any fraudulent activity in your account, check for any addition to the beneficiary list enabled for int
+
+[rbi-d1477697#0001] Customer Protection – Limiting Liability of Customers in Unauthorised Electronic Banking Transactions: unauthorised transactions and measure the liabilities arising out of such events; appropriate measures to mitigate the risks and protect themselves against the liabilities arising therefrom; and a system of continually and repeatedly advising customers on how to protect themselves from electronic banking and payments related fraud. Reporting of unauthorised transactions by customers to banks 5. Banks must ask their customers to mandatorily register for SMS alerts and wherever available register for e-mail alerts, for electronic banking transactions. The SMS alerts shall mandatorily be sent to the customers, while email alerts may be sent, wherever registered. The customers must be advised to notify their bank of any unauthorised electronic banking transaction at the earliest after the occu
+
+[rbi-d1477697#0002] Customer Protection – Limiting Liability of Customers in Unauthorised Electronic Banking Transactions: liability. The banks may not offer facility of electronic transactions, other than ATM cash withdrawals, to customers who do not provide mobile numbers to the bank. On receipt of report of an unauthorised transaction from the customer, banks must take immediate steps to prevent further unauthorised transactions in the account. Limited Liability of a Customer (a) Zero Liability of a Customer 6. A customer’s entitlement to zero liability shall arise where the unauthorised transaction occurs in the following events: Contributory fraud/ negligence/ deficiency on the part of the bank (irrespective of whether or not the transaction is reported by the customer). Third party breach where the deficiency lies neither with the bank nor with the customer but lies elsewhere in the system, and the custo",1,,
+q099,"எனது மோபைல் எண் பங்கரில் பதிவு இல்லை, எப்படி பதிவு செய்ய வேண்டும்?","1. உங்கள் பங்கரில் 'Un authorised transaction' என்னிடம் தெரிவித்து, உரை: 14440-ல் மिस्ड কল செய்து உங்கள் உபயோக வரலாற்றை பதிவு செய்யவும். ['rbi-106bf499#0000']
+2. செய்தியை 1930 கவுன்ட்ரோல் ஹெலpline அல்லது cybercrime.gov.in-ல் பதிவு செய்யவும். ['departme-09c0c586#0000']
+3. பங்கரை SMS alerts-ல் பதிவு செய்யவில்லை என்றால், SMS alerts-ல் பதிவு செய்ய உங்கள் மோபைல் எண் பங்கரில் பதிவு செய்யவும். ['rbi-d1477697#0001']
+4. பங்கரில் பதிவு செய்யப்பட்ட மோபைல் எண்ணை சரிபார்க்கவும்; SMS alerts-ல் பதிவு செய்யவில்லை என்றால், உங்கள் தொலைபேசி நிறுவனத்திலிருந்து வரும் OTP ஐ சரிபார்க்கவும். ['rbi-d1477697#0001']
+5. பங்கரில் பதிவு செய்யப்பட்ட மோபைல் எண்ணை சரிபார்க்கவும்; SMS alerts-ல் பதிவு செய்யவில்லை என்றால், உங்கள் தொலைபேசி நிறுவனத்திலிருந்து வரும் OTP ஐ சரிபார்க்கவும். ['rbi-d1477697#0001']
+6. பங்கரில் பதிவு செய்யப்பட்ட மோபைல் எண்ணை சரிபார்க்கவும்; SMS alerts-ல் பதிவு செய்யவில்லை என்றால், உங்கள் தொலைபேசி நிறுவனத்திலிருந்து வரும் OTP ஐ சரிபார்க்கவும். ['rbi-d1477697#0001']","[departme-09c0c586#0000] Sanchar Saathi Suspected Fraud Communication Reporting: चक्षु - Chakshu
+(Report within 30 days for action)
+Proceed
+Chakshu facilitates citizens to report the suspected fraud communications with the intention of defrauding telecom service users for cyber-crime, financial frauds, non-bonafide purpose like impersonation or any other misuse through Call, SMS or WhatsApp.
+Examples: Bank Account / Payment Wallet / SIM / Gas / Electricity / KYC update, impersonation as Government official, sextortion etc.
+Note: If you have already lost money, please report at cyber crime helpline 1930 or cybercrime.gov.in .
+
+[rbi-106bf499#0000] SMS on Customer Liability in Unauthorised Electronic Banking Transactions: Home >> Customer Liability in Unauthorised Electronic Banking Transactions >> SMS SMS on Customer Liability in Unauthorised Electronic Banking Transactions Fraudulent transaction in your bank account? Limit your loss. Notify your bank immediately. For more details, give a missed call on 14440. IVRS on Customer Liability in Unauthorised Electronic Banking Transactions If someone has fraudulently withdrawn money from your bank account, inform your bank immediately. When you notify the bank, remember to take acknowledgement from your bank. The bank has to resolve your complaint within 90 days from the date of receipt. If the transaction has happened because of your negligence, that is, because of your sharing your password, PIN, OTP , etc., you will have to bear the loss till you report it to
+
+[rbi-d1477697#0001] Customer Protection – Limiting Liability of Customers in Unauthorised Electronic Banking Transactions: unauthorised transactions and measure the liabilities arising out of such events; appropriate measures to mitigate the risks and protect themselves against the liabilities arising therefrom; and a system of continually and repeatedly advising customers on how to protect themselves from electronic banking and payments related fraud. Reporting of unauthorised transactions by customers to banks 5. Banks must ask their customers to mandatorily register for SMS alerts and wherever available register for e-mail alerts, for electronic banking transactions. The SMS alerts shall mandatorily be sent to the customers, while email alerts may be sent, wherever registered. The customers must be advised to notify their bank of any unauthorised electronic banking transaction at the earliest after the occu",1,,
+q020,"मैं एक डिजिटल लोन ऐप का इस्तेमाल कर रहा हूं, लेकिन ऐप ने मुझे यह नहीं बताया कि असल में लोन किस बैंक या NBFC ने दिया है। मुझे शिकायत करने का अधिकार है या नहीं?","1. अपने बैंक को तुरंत सूचित करें और लेन-देन की लिखित पुष्टि (acknowledgement) मांगें। ['rbi-106bf499#0000']
+2. साइबर अपराध हेल्पलाइन 1930 पर कॉल करें या cybercrime.gov.in पर शिकायत दर्ज करें। ['departme-09c0c586#0000']
+3. अपने बैंक को सूचित करने के 3 कार्य दिवस के भीतर लेन-देन की सूचना दें ताकि शून्य देयता का लाभ मिल सके। ['rbi-d1477697#0002']
+4. बैंक से एसएमएस अलर्ट और ईमेल अलर्ट के लिए पंजीकरण करवाएं ताकि भविष्य में अनधिकृत लेन-देन की सूचना मिल सके। ['rbi-d1477697#0001']
+5. बैंक को सूचित करने के बाद, यदि लेन-देन आपकी लापरवाही के कारण हुआ है तो आपका नुकसान बैंक द्वारा वहन किया जाएगा, बशर्ते आप तुरंत सूचना दें। ['rbi-106bf499#0000']
+6. बैंक से शिकायत का समाधान 90 दिनों के भीतर करने के लिए कहें। ['rbi-106bf499#0000']","[departme-09c0c586#0000] Sanchar Saathi Suspected Fraud Communication Reporting: चक्षु - Chakshu
+(Report within 30 days for action)
+Proceed
+Chakshu facilitates citizens to report the suspected fraud communications with the intention of defrauding telecom service users for cyber-crime, financial frauds, non-bonafide purpose like impersonation or any other misuse through Call, SMS or WhatsApp.
+Examples: Bank Account / Payment Wallet / SIM / Gas / Electricity / KYC update, impersonation as Government official, sextortion etc.
+Note: If you have already lost money, please report at cyber crime helpline 1930 or cybercrime.gov.in .
+
+[rbi-106bf499#0000] SMS on Customer Liability in Unauthorised Electronic Banking Transactions: Home >> Customer Liability in Unauthorised Electronic Banking Transactions >> SMS SMS on Customer Liability in Unauthorised Electronic Banking Transactions Fraudulent transaction in your bank account? Limit your loss. Notify your bank immediately. For more details, give a missed call on 14440. IVRS on Customer Liability in Unauthorised Electronic Banking Transactions If someone has fraudulently withdrawn money from your bank account, inform your bank immediately. When you notify the bank, remember to take acknowledgement from your bank. The bank has to resolve your complaint within 90 days from the date of receipt. If the transaction has happened because of your negligence, that is, because of your sharing your password, PIN, OTP , etc., you will have to bear the loss till you report it to
+
+[rbi-d1477697#0001] Customer Protection – Limiting Liability of Customers in Unauthorised Electronic Banking Transactions: unauthorised transactions and measure the liabilities arising out of such events; appropriate measures to mitigate the risks and protect themselves against the liabilities arising therefrom; and a system of continually and repeatedly advising customers on how to protect themselves from electronic banking and payments related fraud. Reporting of unauthorised transactions by customers to banks 5. Banks must ask their customers to mandatorily register for SMS alerts and wherever available register for e-mail alerts, for electronic banking transactions. The SMS alerts shall mandatorily be sent to the customers, while email alerts may be sent, wherever registered. The customers must be advised to notify their bank of any unauthorised electronic banking transaction at the earliest after the occu
+
+[rbi-d1477697#0002] Customer Protection – Limiting Liability of Customers in Unauthorised Electronic Banking Transactions: liability. The banks may not offer facility of electronic transactions, other than ATM cash withdrawals, to customers who do not provide mobile numbers to the bank. On receipt of report of an unauthorised transaction from the customer, banks must take immediate steps to prevent further unauthorised transactions in the account. Limited Liability of a Customer (a) Zero Liability of a Customer 6. A customer’s entitlement to zero liability shall arise where the unauthorised transaction occurs in the following events: Contributory fraud/ negligence/ deficiency on the part of the bank (irrespective of whether or not the transaction is reported by the customer). Third party breach where the deficiency lies neither with the bank nor with the customer but lies elsewhere in the system, and the custo",1,,
+q034,"I invested money in a trading app after seeing it promoted on WhatsApp, but now I can't withdraw my money. What should I do?",1. Report the fraud immediately: call the national cyber crime helpline 1930 / file a complaint at cybercrime.gov.in. ['pressinf-0aa4344f#0009'],"[pressinf-0aa4344f#0009] Curbing Cyber Frauds in Digital India: yber defences, the Union Budget 2025 has allocate d ₹782 crore for
+cybersecurity projects. This significant move highlights government’s heightened focus on cyber threats that
+pose risk to the national security.19 Through the Citizen Financial Cyber Fraud Reporting and Management
+System (CFCFRMS), financial institutions have been able to save more than ₹5,489 crore in over 17.82 lakh
+complaints.20
+To strengthen citizen participation in the fight against cybercrime, the Government has operationalised the
+National Cyber Crime Reporting Portal (www.cybercrime.gov.in). The portal enables citizens to report
+complaints relating to various categories of cybercrime, with a special focus on offences targeting women and
+children. A dedicated cybercrime helpline number 1930 provides immediate assista",1,,
+q087,"RBI के नाम पर मुझे ईमेल आया है जिसमें मेरा बैंक अकाउंट की डिटेल मांगी गई है, मुझे क्या करना चाहिए?","1. अपने बैंक को तुरंत सूचित करें ताकि आगे के लेन-देन को रोका जा सके। RBI के अनुसार, बैंक को लेन-देन की सूचना देते ही तत्काल कदम उठाने चाहिए ताकि और अनधिकृत लेन-देन रोका जा सके। (chunk_id: rbi-d1477697#0002) ['rbi-d1477697#0002']
+2. साइबर अपराध हेल्पलाइन 1930 पर कॉल करें या cybercrime.gov.in पर शिकायत दर्ज करें। संचार मंत्रालय की सलाह के अनुसार, यदि पहले ही धन खो दिया है तो 1930 या cybercrime.gov.in पर रिपोर्ट करें। (chunk_id: departme-09c0c586#0000) ['departme-09c0c586#0000']
+3. अगर लेन-देन UPI कलेक्ट अनुरोध के माध्यम से किया गया था, तो अपने UPI PIN साझा न करें और तुरंत बैंक को सूचित करें। RBI ने चेतावनी दी है कि UPI कलेक्ट अनुरोध के साथ 'Enter your UPI PIN' जैसी संदेशों से सावधान रहें। (chunk_id: rbi-843271d7#0003) ['rbi-843271d7#0003']
+4. अपने बैंक से कहें कि खाते को freeze करें या सभी डेबिट मोड को ब्लॉक करें। RBI के दिशा-निर्देश के अनुसार, लेन-देन की सूचना देने पर बैंक को तुरंत रोकने के कदम उठाने चाहिए। (chunk_id: rbi-843271d7#0004) ['rbi-843271d7#0004']
+5. सभी लेन-देन की सूचना और विवरण (तारीख, राशि, लेन-देन आईडी) संभाल कर रखें ताकि बाद में शिकायत दर्ज कराने में मदद मिले। RBI के अनुसार, बैंक को लेन-देन की सूचना देते समय acknowledgement लेना चाहिए। (chunk_id: rbi-106bf499#0000) ['rbi-106bf499#0000']
+6. अगर लेन-देन आपकी लापरवाही (पासवर्ड, PIN, OTP साझा करना) के कारण हुआ है, तो आपको बैंक को सूचना देने तक का नुकसान वहन करना पड़ सकता है। RBI के अनुसार, अगर लेन-देन आपकी लापरवाही के कारण हुआ है, तो आपको उसे रिपोर्ट करने तक का नुकसान उठाना पड़ सकता है। (chunk_id: rbi-106bf499#0000) ['rbi-106bf499#0000']","[departme-09c0c586#0000] Sanchar Saathi Suspected Fraud Communication Reporting: चक्षु - Chakshu
+(Report within 30 days for action)
+Proceed
+Chakshu facilitates citizens to report the suspected fraud communications with the intention of defrauding telecom service users for cyber-crime, financial frauds, non-bonafide purpose like impersonation or any other misuse through Call, SMS or WhatsApp.
+Examples: Bank Account / Payment Wallet / SIM / Gas / Electricity / KYC update, impersonation as Government official, sextortion etc.
+Note: If you have already lost money, please report at cyber crime helpline 1930 or cybercrime.gov.in .
+
+[rbi-106bf499#0000] SMS on Customer Liability in Unauthorised Electronic Banking Transactions: Home >> Customer Liability in Unauthorised Electronic Banking Transactions >> SMS SMS on Customer Liability in Unauthorised Electronic Banking Transactions Fraudulent transaction in your bank account? Limit your loss. Notify your bank immediately. For more details, give a missed call on 14440. IVRS on Customer Liability in Unauthorised Electronic Banking Transactions If someone has fraudulently withdrawn money from your bank account, inform your bank immediately. When you notify the bank, remember to take acknowledgement from your bank. The bank has to resolve your complaint within 90 days from the date of receipt. If the transaction has happened because of your negligence, that is, because of your sharing your password, PIN, OTP , etc., you will have to bear the loss till you report it to
+
+[rbi-843271d7#0003] Consumer Awareness - Cyber Threats and Frauds: from their bank / e-wallet provider and contain links to extract confidential details.
+Remote Access - by luring customer to download an application on their mobile phone / computer which is able to access all the customers’ data on that customer device.
+Misuse the ‘collect request’ feature of UPI by sending fake payment requests with messages like ‘Enter your UPI PIN’ to receive money. Fake numbers of banks / e-wallet providers on webpages / social media and displayed by search engines, etc.
+RBI urges the members of public to practice safe digital banking by taking all due precautions, while carrying out any digital (online / mobile) banking / payment transactions. These will help in preventing financial and / or other loss to them.
+(Yogesh Dayal) Chief General Manager
+Press Release: 2021
+
+[rbi-843271d7#0004] Consumer Awareness - Cyber Threats and Frauds: website of bank / NBFC / e-wallet provider for contact details. Contact numbers on internet search engines may be fraudulent.
+Check URLs and domain names received in emails / SMSs for spelling errors. Use only verified, secured, and trusted websites / apps for online banking, that is, websites starting with ‘’https’’. In case of suspicion, notify local police / cybercrime branch immediately. If you receive an OTP for debiting your account for a transaction not initiated by you, inform your bank / e-wallet provider immediately. If you receive a debit SMS for a transaction not done, inform your bank / e-wallet provider immediately and block all modes of debit, including UPI. If you suspect any fraudulent activity in your account, check for any addition to the beneficiary list enabled for int
+
+[rbi-d1477697#0002] Customer Protection – Limiting Liability of Customers in Unauthorised Electronic Banking Transactions: liability. The banks may not offer facility of electronic transactions, other than ATM cash withdrawals, to customers who do not provide mobile numbers to the bank. On receipt of report of an unauthorised transaction from the customer, banks must take immediate steps to prevent further unauthorised transactions in the account. Limited Liability of a Customer (a) Zero Liability of a Customer 6. A customer’s entitlement to zero liability shall arise where the unauthorised transaction occurs in the following events: Contributory fraud/ negligence/ deficiency on the part of the bank (irrespective of whether or not the transaction is reported by the customer). Third party breach where the deficiency lies neither with the bank nor with the customer but lies elsewhere in the system, and the custo",1,,
+q082,I noticed an unauthorized debit in my bank account. How quickly do I need to inform the bank to avoid losing my money?,"1. Notify your bank immediately about the unauthorised transaction and take acknowledgement from the bank. ['rbi-106bf499#0000']
+2. If you notify the bank within three working days of receiving the communication, you may be entitled to zero liability for third‑party breaches where the deficiency lies neither with the bank nor with the customer. ['rbi-d1477697#0002']
+3. Lodge a complaint on the National Cyber Crime Reporting Portal (www.cybercrime.gov.in) or call the 1930 helpline for assistance. ['pressinf-0aa4344f#0009']
+4. Inform your bank and then call 1930 or report at cybercrime.gov.in so the case can be investigated (act in the golden hour). ['departme-e1719044#0016']
+5. Take acknowledgement from your bank after reporting the unauthorised transaction. ['rbi-106bf499#0000']","[departme-e1719044#0016] Beware of Jumped Deposit Alert scam (DoT): 5,000
+from: refund.help@upi
+₹5,000
+It's a
+A UPI collect request arrives
+for a much larger amount,
+disguised as the ""refund"".
+Enter UPI PIN
+1 2 3
+4 5 6
+7 8 9
+Not needed
+to receive
+You enter your UPI PIN
+thinking you are returning the
+money. That approves the
+larger payment.
+A/c 1
+A/c 2
+A/c 3
+₹5,000
+Balance left
+₹120
+The fraudster keeps the
+difference and quickly moves
+it through multiple accounts.
+1930
+cybercrime.gov.in
+Act in the
+golden hour
+Tell your bank at once, then
+call 1930 or report at
+cybercrime.gov.in so the
+case can be investigated.
+Never share your bank details for DEPOSITING funds.
+Verify all requests before TRANSFERRING money.
+Always confirm the source of any deposit request through official channels before proceeding with any transaction.
+Key warning signs
+Unsolicited deposi
+
+[pressinf-0aa4344f#0009] Curbing Cyber Frauds in Digital India: yber defences, the Union Budget 2025 has allocate d ₹782 crore for
+cybersecurity projects. This significant move highlights government’s heightened focus on cyber threats that
+pose risk to the national security.19 Through the Citizen Financial Cyber Fraud Reporting and Management
+System (CFCFRMS), financial institutions have been able to save more than ₹5,489 crore in over 17.82 lakh
+complaints.20
+To strengthen citizen participation in the fight against cybercrime, the Government has operationalised the
+National Cyber Crime Reporting Portal (www.cybercrime.gov.in). The portal enables citizens to report
+complaints relating to various categories of cybercrime, with a special focus on offences targeting women and
+children. A dedicated cybercrime helpline number 1930 provides immediate assista
+
+[rbi-106bf499#0000] SMS on Customer Liability in Unauthorised Electronic Banking Transactions: Home >> Customer Liability in Unauthorised Electronic Banking Transactions >> SMS SMS on Customer Liability in Unauthorised Electronic Banking Transactions Fraudulent transaction in your bank account? Limit your loss. Notify your bank immediately. For more details, give a missed call on 14440. IVRS on Customer Liability in Unauthorised Electronic Banking Transactions If someone has fraudulently withdrawn money from your bank account, inform your bank immediately. When you notify the bank, remember to take acknowledgement from your bank. The bank has to resolve your complaint within 90 days from the date of receipt. If the transaction has happened because of your negligence, that is, because of your sharing your password, PIN, OTP , etc., you will have to bear the loss till you report it to
+
+[rbi-d1477697#0002] Customer Protection – Limiting Liability of Customers in Unauthorised Electronic Banking Transactions: liability. The banks may not offer facility of electronic transactions, other than ATM cash withdrawals, to customers who do not provide mobile numbers to the bank. On receipt of report of an unauthorised transaction from the customer, banks must take immediate steps to prevent further unauthorised transactions in the account. Limited Liability of a Customer (a) Zero Liability of a Customer 6. A customer’s entitlement to zero liability shall arise where the unauthorised transaction occurs in the following events: Contributory fraud/ negligence/ deficiency on the part of the bank (irrespective of whether or not the transaction is reported by the customer). Third party breach where the deficiency lies neither with the bank nor with the customer but lies elsewhere in the system, and the custo",1,,
+q013,"I got a message on WhatsApp saying I can earn sure profits from a trading app, and I'm asked to send money to a different bank account. What should I do?","1. Notify your bank immediately about the unauthorised transaction so that the bank can take steps to prevent further debits. ['rbi-106bf499#0000']
+2. If you notify the bank promptly (within three working days of receiving communication from the bank), you may be entitled to zero liability for the loss as per RBI guidelines on customer liability. ['rbi-d1477697#0002']
+3. Report the fraud through the official 1930 cybercrime helpline or at cybercrime.gov.in so the case can be investigated. ['departme-09c0c586#0000']
+4. Preserve all evidence such as the WhatsApp message, bank transfer receipts, the app name, and the beneficiary account details for the investigation. ['departme-e1719044#0016']
+5. Lodge a formal dispute with your bank for the fraudulent UPI transfer and provide full transaction details. ['rbi-106bf499#0000']
+6. If the fraudulent transactions continue even after you have informed the bank, the bank will have to bear the loss. ['rbi-f41a357c#0077']
+7. Report any suspicious activity related to fake trading apps to the cyber cell, I4C helpline 1930, or cybercrime.gov.in. ['sebi-f7196f25#0003']","[departme-09c0c586#0000] Sanchar Saathi Suspected Fraud Communication Reporting: चक्षु - Chakshu
+(Report within 30 days for action)
+Proceed
+Chakshu facilitates citizens to report the suspected fraud communications with the intention of defrauding telecom service users for cyber-crime, financial frauds, non-bonafide purpose like impersonation or any other misuse through Call, SMS or WhatsApp.
+Examples: Bank Account / Payment Wallet / SIM / Gas / Electricity / KYC update, impersonation as Government official, sextortion etc.
+Note: If you have already lost money, please report at cyber crime helpline 1930 or cybercrime.gov.in .
+
+[departme-e1719044#0016] Beware of Jumped Deposit Alert scam (DoT): 5,000
+from: refund.help@upi
+₹5,000
+It's a
+A UPI collect request arrives
+for a much larger amount,
+disguised as the ""refund"".
+Enter UPI PIN
+1 2 3
+4 5 6
+7 8 9
+Not needed
+to receive
+You enter your UPI PIN
+thinking you are returning the
+money. That approves the
+larger payment.
+A/c 1
+A/c 2
+A/c 3
+₹5,000
+Balance left
+₹120
+The fraudster keeps the
+difference and quickly moves
+it through multiple accounts.
+1930
+cybercrime.gov.in
+Act in the
+golden hour
+Tell your bank at once, then
+call 1930 or report at
+cybercrime.gov.in so the
+case can be investigated.
+Never share your bank details for DEPOSITING funds.
+Verify all requests before TRANSFERRING money.
+Always confirm the source of any deposit request through official channels before proceeding with any transaction.
+Key warning signs
+Unsolicited deposi
+
+[rbi-106bf499#0000] SMS on Customer Liability in Unauthorised Electronic Banking Transactions: Home >> Customer Liability in Unauthorised Electronic Banking Transactions >> SMS SMS on Customer Liability in Unauthorised Electronic Banking Transactions Fraudulent transaction in your bank account? Limit your loss. Notify your bank immediately. For more details, give a missed call on 14440. IVRS on Customer Liability in Unauthorised Electronic Banking Transactions If someone has fraudulently withdrawn money from your bank account, inform your bank immediately. When you notify the bank, remember to take acknowledgement from your bank. The bank has to resolve your complaint within 90 days from the date of receipt. If the transaction has happened because of your negligence, that is, because of your sharing your password, PIN, OTP , etc., you will have to bear the loss till you report it to
+
+[rbi-d1477697#0002] Customer Protection – Limiting Liability of Customers in Unauthorised Electronic Banking Transactions: liability. The banks may not offer facility of electronic transactions, other than ATM cash withdrawals, to customers who do not provide mobile numbers to the bank. On receipt of report of an unauthorised transaction from the customer, banks must take immediate steps to prevent further unauthorised transactions in the account. Limited Liability of a Customer (a) Zero Liability of a Customer 6. A customer’s entitlement to zero liability shall arise where the unauthorised transaction occurs in the following events: Contributory fraud/ negligence/ deficiency on the part of the bank (irrespective of whether or not the transaction is reported by the customer). Third party breach where the deficiency lies neither with the bank nor with the customer but lies elsewhere in the system, and the custo
+
+[rbi-f41a357c#0077] Financial Awareness Messages (FAME) booklet, RBI: OTP with anyone
+l Never write your PIN on the Card
+Don’ts
+Message 16 Customer Liability for Fraudulent
+When doing any
+electronic/ATM
+transaction, there
+is a possibility
+that you may
+incur a loss due
+to carelessness
+or fraud
+Notify your bank
+l Irrespective of whose fault it is, notify
+your bank immediately if you encounter
+a fraudulent or unauthorized electronic
+banking transaction in your account/
+l The longer you take to notify the bank,
+higher is the loss to you or your bank
+Bank’s responsibility
+If the fraudulent transactions continue even after you have informed
+the bank, the bank will have to bear the loss
+l Y our bank has to provide an acknowledgement for the complaint
+when you notify/inform the bank
+l The bank must resolve your complaint within 90 days
+l Bank shall credit the amount
+
+[sebi-f7196f25#0003] BEWARE OF Fake Trading App Scams!: nt advice / Stock tips
+on social medi
+Report any suspicious activity to cyber cell,
+I4C helpline 1930
+(https://investor.sebi.gov.in/Investor-
+support.html
+https://cybercrime.gov.in/ ( )
+Social Media Hook:
+Attractive ads on
+WhatsApp/T elegram
+promising high returns.
+2T rust Building: Fake
+""experts"" share analysis,
+successful track records,
+screenshots, and initial
+successful tips
+3Fake T rading App
+download fake trading
+app
+4Fake Profits: The app
+shows profits, encouraging
+further investment.
+5Pressure to Increase",1,,
+q042,கைமுகை KYC மோசடி ஏற்பட்டபோது என்ன செய்ய வேண்டும்?,"1. அனுமதியற்ற المعاملة ஏற்பட்டதை உடனடியாக銀行-ம் தெரிவிக்கவும். ['rbi-106bf499#0000']
+2. வெலைப்பட்ட المعاملة 3 வேறாய்வுக்குழிகளில் இருந்து 3 working days के भीतर bank-ம் தெரிவிக்கினால் zero liability Anspruch. ['rbi-d1477697#0002']
+3. 1930 helpline-ம் அழைத்து cybercrime.gov.in-ம் report செய்யவும். ['departme-09c0c586#0000']
+4. bank-ம் SMS alerts-ம் register செய்யவில்லை என்றால், SMS alerts-ம் mandatorily register செய்யவும். ['rbi-d1477697#0001']
+5. bank-ம் acknowledgementambilவும். ['rbi-106bf499#0000']","[departme-09c0c586#0000] Sanchar Saathi Suspected Fraud Communication Reporting: चक्षु - Chakshu
+(Report within 30 days for action)
+Proceed
+Chakshu facilitates citizens to report the suspected fraud communications with the intention of defrauding telecom service users for cyber-crime, financial frauds, non-bonafide purpose like impersonation or any other misuse through Call, SMS or WhatsApp.
+Examples: Bank Account / Payment Wallet / SIM / Gas / Electricity / KYC update, impersonation as Government official, sextortion etc.
+Note: If you have already lost money, please report at cyber crime helpline 1930 or cybercrime.gov.in .
+
+[rbi-106bf499#0000] SMS on Customer Liability in Unauthorised Electronic Banking Transactions: Home >> Customer Liability in Unauthorised Electronic Banking Transactions >> SMS SMS on Customer Liability in Unauthorised Electronic Banking Transactions Fraudulent transaction in your bank account? Limit your loss. Notify your bank immediately. For more details, give a missed call on 14440. IVRS on Customer Liability in Unauthorised Electronic Banking Transactions If someone has fraudulently withdrawn money from your bank account, inform your bank immediately. When you notify the bank, remember to take acknowledgement from your bank. The bank has to resolve your complaint within 90 days from the date of receipt. If the transaction has happened because of your negligence, that is, because of your sharing your password, PIN, OTP , etc., you will have to bear the loss till you report it to
+
+[rbi-d1477697#0001] Customer Protection – Limiting Liability of Customers in Unauthorised Electronic Banking Transactions: unauthorised transactions and measure the liabilities arising out of such events; appropriate measures to mitigate the risks and protect themselves against the liabilities arising therefrom; and a system of continually and repeatedly advising customers on how to protect themselves from electronic banking and payments related fraud. Reporting of unauthorised transactions by customers to banks 5. Banks must ask their customers to mandatorily register for SMS alerts and wherever available register for e-mail alerts, for electronic banking transactions. The SMS alerts shall mandatorily be sent to the customers, while email alerts may be sent, wherever registered. The customers must be advised to notify their bank of any unauthorised electronic banking transaction at the earliest after the occu
+
+[rbi-d1477697#0002] Customer Protection – Limiting Liability of Customers in Unauthorised Electronic Banking Transactions: liability. The banks may not offer facility of electronic transactions, other than ATM cash withdrawals, to customers who do not provide mobile numbers to the bank. On receipt of report of an unauthorised transaction from the customer, banks must take immediate steps to prevent further unauthorised transactions in the account. Limited Liability of a Customer (a) Zero Liability of a Customer 6. A customer’s entitlement to zero liability shall arise where the unauthorised transaction occurs in the following events: Contributory fraud/ negligence/ deficiency on the part of the bank (irrespective of whether or not the transaction is reported by the customer). Third party breach where the deficiency lies neither with the bank nor with the customer but lies elsewhere in the system, and the custo",1,,
+q074,"मुझे एक कॉल आई कि मेरा KYC अपडेट करना है और मुझे एक लिंक पर क्लिक करना है, अन्यथा मेरा पैसा कट जाएगा। मुझे क्या करना चाहिए?",1. धोखाधड़ी की तुरंत रिपोर्ट करें: राष्ट्रीय साइबर क्राइम हेल्पलाइन 1930 पर कॉल करें / cybercrime.gov.in पर शिकायत दर्ज करें. ['pressinf-0aa4344f#0009'],"[pressinf-0aa4344f#0009] Curbing Cyber Frauds in Digital India: yber defences, the Union Budget 2025 has allocate d ₹782 crore for
+cybersecurity projects. This significant move highlights government’s heightened focus on cyber threats that
+pose risk to the national security.19 Through the Citizen Financial Cyber Fraud Reporting and Management
+System (CFCFRMS), financial institutions have been able to save more than ₹5,489 crore in over 17.82 lakh
+complaints.20
+To strengthen citizen participation in the fight against cybercrime, the Government has operationalised the
+National Cyber Crime Reporting Portal (www.cybercrime.gov.in). The portal enables citizens to report
+complaints relating to various categories of cybercrime, with a special focus on offences targeting women and
+children. A dedicated cybercrime helpline number 1930 provides immediate assista",1,,
+q022,என் ব্যாங்க் கணக்கில் எல்லாமல் பணி கழித்தது. என்னை ரபர்ட் செய்ய எப்படி? என்னை எந்த வரை பாதிப்படை இல்லை?,"1. உங்கள் கணக்கில் எல்லாமல் பணி கழித்ததை உடனடியாக உங்கள் bank-ம் கேட்டு அறிவிக்கவும். ['rbi-106bf499#0000']
+2. பங்குதவியுடன் உங்கள் bank-ம் தொடர்பு கொள்ளவும்; RBI advisory-யில் zero liability என்றால் 24 மணி內 complaint registered செய்யப்பட்டால் உங்கள் கணக்கு থেকে பணி திரும்ப시킬 முடியும். ['rbi-106bf499#0000']
+3. UPI transaction ID, date, amount மற்றும் fraudster details (phone/name) ஆகியவற்றை bank-க்கு வழங்கவும். ['rbi-106bf499#0000']
+4. bank-ம் complaint number (ACK) பதிவு செய்யப்பட்டதை உறுதிப்படுத்தவும்; அதன் மூலம் உங்கள் பணி திரும்ப retrieval process track செய்ய முடியும். ['rbi-106bf499#0000']
+5. 24 மணி நேரத்திற்கு भीतर complaint registered செய்யப்பட்டால், bank-ம் உங்கள் account-from பணி திரும்ப시킬 zero liability obligation-ம் fulfil செய்ய வேண்டும். ['rbi-106bf499#0000']
+6. 1930 helpline-யில் கேட்டு அல்லது cybercrime.gov.in-யில் ரபர்ட் செய்யவும். ['departme-09c0c586#0000']
+7. bank-ம் SMS alerts-ல் பதிவு செய்யப்பட்டதை உறுதிப்படுத்தவும்; alerts-ல் இருந்து المعاملை கண்டறியவும். ['rbi-d1477697#0001']","[departme-09c0c586#0000] Sanchar Saathi Suspected Fraud Communication Reporting: चक्षु - Chakshu
+(Report within 30 days for action)
+Proceed
+Chakshu facilitates citizens to report the suspected fraud communications with the intention of defrauding telecom service users for cyber-crime, financial frauds, non-bonafide purpose like impersonation or any other misuse through Call, SMS or WhatsApp.
+Examples: Bank Account / Payment Wallet / SIM / Gas / Electricity / KYC update, impersonation as Government official, sextortion etc.
+Note: If you have already lost money, please report at cyber crime helpline 1930 or cybercrime.gov.in .
+
+[rbi-106bf499#0000] SMS on Customer Liability in Unauthorised Electronic Banking Transactions: Home >> Customer Liability in Unauthorised Electronic Banking Transactions >> SMS SMS on Customer Liability in Unauthorised Electronic Banking Transactions Fraudulent transaction in your bank account? Limit your loss. Notify your bank immediately. For more details, give a missed call on 14440. IVRS on Customer Liability in Unauthorised Electronic Banking Transactions If someone has fraudulently withdrawn money from your bank account, inform your bank immediately. When you notify the bank, remember to take acknowledgement from your bank. The bank has to resolve your complaint within 90 days from the date of receipt. If the transaction has happened because of your negligence, that is, because of your sharing your password, PIN, OTP , etc., you will have to bear the loss till you report it to
+
+[rbi-d1477697#0001] Customer Protection – Limiting Liability of Customers in Unauthorised Electronic Banking Transactions: unauthorised transactions and measure the liabilities arising out of such events; appropriate measures to mitigate the risks and protect themselves against the liabilities arising therefrom; and a system of continually and repeatedly advising customers on how to protect themselves from electronic banking and payments related fraud. Reporting of unauthorised transactions by customers to banks 5. Banks must ask their customers to mandatorily register for SMS alerts and wherever available register for e-mail alerts, for electronic banking transactions. The SMS alerts shall mandatorily be sent to the customers, while email alerts may be sent, wherever registered. The customers must be advised to notify their bank of any unauthorised electronic banking transaction at the earliest after the occu",1,,
+q004,"என் பங்கேற்பு கணக்கில் தவறு கேட்டோர்'appel செய்தார், அப்பில் அப்க் டவுன்லோட் செய்ய வேண்டியதாக கேட்டார்கள். என்ன செய்ய வேண்டும்?",1. மோசடியை உடனே புகார் செய்யுங்கள்: தேசிய சைபர் குற்ற உதவி எண் 1930-ஐ அழைக்கவும் / cybercrime.gov.in-இல் புகார் செய்யவும். ['pressinf-0aa4344f#0009'],"[pressinf-0aa4344f#0009] Curbing Cyber Frauds in Digital India: yber defences, the Union Budget 2025 has allocate d ₹782 crore for
+cybersecurity projects. This significant move highlights government’s heightened focus on cyber threats that
+pose risk to the national security.19 Through the Citizen Financial Cyber Fraud Reporting and Management
+System (CFCFRMS), financial institutions have been able to save more than ₹5,489 crore in over 17.82 lakh
+complaints.20
+To strengthen citizen participation in the fight against cybercrime, the Government has operationalised the
+National Cyber Crime Reporting Portal (www.cybercrime.gov.in). The portal enables citizens to report
+complaints relating to various categories of cybercrime, with a special focus on offences targeting women and
+children. A dedicated cybercrime helpline number 1930 provides immediate assista",1,,
+q053,"I took a loan from a digital app, but I don't know which bank or financial company actually provided it. The app is harassing me and I don't know where to report it. What should I do?",1. Report the fraud immediately: call the national cyber crime helpline 1930 / file a complaint at cybercrime.gov.in. ['pressinf-0aa4344f#0009'],"[pressinf-0aa4344f#0009] Curbing Cyber Frauds in Digital India: yber defences, the Union Budget 2025 has allocate d ₹782 crore for
+cybersecurity projects. This significant move highlights government’s heightened focus on cyber threats that
+pose risk to the national security.19 Through the Citizen Financial Cyber Fraud Reporting and Management
+System (CFCFRMS), financial institutions have been able to save more than ₹5,489 crore in over 17.82 lakh
+complaints.20
+To strengthen citizen participation in the fight against cybercrime, the Government has operationalised the
+National Cyber Crime Reporting Portal (www.cybercrime.gov.in). The portal enables citizens to report
+complaints relating to various categories of cybercrime, with a special focus on offences targeting women and
+children. A dedicated cybercrime helpline number 1930 provides immediate assista",1,,
+q010,I borrowed money from a loan app and now they're harassing me for more money than I owe. What should I do and how can I check if the app is real?,"1. Notify your bank immediately about the unauthorised transaction and take acknowledgement from the bank. ['rbi-106bf499#0000']
+2. The bank must take immediate steps to prevent further unauthorised transactions in your account after you report. ['rbi-d1477697#0002']
+3. If you have already lost money, report the complaint at cybercrime.gov.in or call the national cybercrime helpline 1930. ['departme-09c0c586#0000']
+4. File a complaint on the National Cyber Crime Reporting Portal (www.cybercrime.gov.in) for online financial fraud. ['pressinf-0aa4344f#0009']
+5. Cooperate with the bank’s investigation; the bank must resolve your complaint within 90 days from the date of receipt. ['rbi-106bf499#0000']
+6. If the fraudulent transaction continues even after you have informed the bank, inform the bank again and escalate to the ombudsman or higher authority. ['rbi-106bf499#0000']","[departme-09c0c586#0000] Sanchar Saathi Suspected Fraud Communication Reporting: चक्षु - Chakshu
+(Report within 30 days for action)
+Proceed
+Chakshu facilitates citizens to report the suspected fraud communications with the intention of defrauding telecom service users for cyber-crime, financial frauds, non-bonafide purpose like impersonation or any other misuse through Call, SMS or WhatsApp.
+Examples: Bank Account / Payment Wallet / SIM / Gas / Electricity / KYC update, impersonation as Government official, sextortion etc.
+Note: If you have already lost money, please report at cyber crime helpline 1930 or cybercrime.gov.in .
+
+[pressinf-0aa4344f#0009] Curbing Cyber Frauds in Digital India: yber defences, the Union Budget 2025 has allocate d ₹782 crore for
+cybersecurity projects. This significant move highlights government’s heightened focus on cyber threats that
+pose risk to the national security.19 Through the Citizen Financial Cyber Fraud Reporting and Management
+System (CFCFRMS), financial institutions have been able to save more than ₹5,489 crore in over 17.82 lakh
+complaints.20
+To strengthen citizen participation in the fight against cybercrime, the Government has operationalised the
+National Cyber Crime Reporting Portal (www.cybercrime.gov.in). The portal enables citizens to report
+complaints relating to various categories of cybercrime, with a special focus on offences targeting women and
+children. A dedicated cybercrime helpline number 1930 provides immediate assista
+
+[rbi-106bf499#0000] SMS on Customer Liability in Unauthorised Electronic Banking Transactions: Home >> Customer Liability in Unauthorised Electronic Banking Transactions >> SMS SMS on Customer Liability in Unauthorised Electronic Banking Transactions Fraudulent transaction in your bank account? Limit your loss. Notify your bank immediately. For more details, give a missed call on 14440. IVRS on Customer Liability in Unauthorised Electronic Banking Transactions If someone has fraudulently withdrawn money from your bank account, inform your bank immediately. When you notify the bank, remember to take acknowledgement from your bank. The bank has to resolve your complaint within 90 days from the date of receipt. If the transaction has happened because of your negligence, that is, because of your sharing your password, PIN, OTP , etc., you will have to bear the loss till you report it to
+
+[rbi-d1477697#0002] Customer Protection – Limiting Liability of Customers in Unauthorised Electronic Banking Transactions: liability. The banks may not offer facility of electronic transactions, other than ATM cash withdrawals, to customers who do not provide mobile numbers to the bank. On receipt of report of an unauthorised transaction from the customer, banks must take immediate steps to prevent further unauthorised transactions in the account. Limited Liability of a Customer (a) Zero Liability of a Customer 6. A customer’s entitlement to zero liability shall arise where the unauthorised transaction occurs in the following events: Contributory fraud/ negligence/ deficiency on the part of the bank (irrespective of whether or not the transaction is reported by the customer). Third party breach where the deficiency lies neither with the bank nor with the customer but lies elsewhere in the system, and the custo",1,,
+q014,"I got a message saying money was sent to my UPI account by mistake and I need to send it back. But when I entered my PIN, a larger amount was deducted from my account. Why is this happening?","1. Do not send money back to the caller, even if they claim the payment was sent by mistake. ['departme-e1719044#0015']
+2. Notify your bank about the unauthorised transaction immediately and obtain an acknowledgement. ['rbi-106bf499#0000']
+3. If you shared your UPI PIN, change it through your bank's app or USSD *99# as soon as possible. ['rbi-106bf499#0000']
+4. Report the incident on the National Cyber Crime Reporting Portal (cybercrime.gov.in) or call the 1930 helpline for assistance. ['pressinf-0aa4344f#0009']
+5. File a complaint through the Citizen Financial Cyber Fraud Reporting and Management System (CFCFRMS) on cybercrime.gov.in to enable bank action for possible recovery. ['pressinf-0aa4344f#0009']","[departme-e1719044#0015] Beware of Jumped Deposit Alert scam (DoT): mistake!
+Return it
+The caller claims the money
+was sent by mistake and
+urgently asks you to return it.
+₹50
+₹5,000
+from: refund.help@upi
+₹5,000
+It's a
+A UPI collect request arrives
+for a much larger amount,
+disguised as the ""refund"".
+Enter UPI PIN
+1 2 3
+4 5 6
+7 8 9
+Not needed
+to receive
+You enter your UPI PIN
+thinking you are returning the
+money. That approves the
+larger payment.
+A/c 1
+A/c 2
+A/c 3
+₹5,000
+Balance left
+₹120
+The fraudster keeps the
+difference and quickly moves
+it through multiple accounts.
+
+[pressinf-0aa4344f#0009] Curbing Cyber Frauds in Digital India: yber defences, the Union Budget 2025 has allocate d ₹782 crore for
+cybersecurity projects. This significant move highlights government’s heightened focus on cyber threats that
+pose risk to the national security.19 Through the Citizen Financial Cyber Fraud Reporting and Management
+System (CFCFRMS), financial institutions have been able to save more than ₹5,489 crore in over 17.82 lakh
+complaints.20
+To strengthen citizen participation in the fight against cybercrime, the Government has operationalised the
+National Cyber Crime Reporting Portal (www.cybercrime.gov.in). The portal enables citizens to report
+complaints relating to various categories of cybercrime, with a special focus on offences targeting women and
+children. A dedicated cybercrime helpline number 1930 provides immediate assista
+
+[rbi-106bf499#0000] SMS on Customer Liability in Unauthorised Electronic Banking Transactions: Home >> Customer Liability in Unauthorised Electronic Banking Transactions >> SMS SMS on Customer Liability in Unauthorised Electronic Banking Transactions Fraudulent transaction in your bank account? Limit your loss. Notify your bank immediately. For more details, give a missed call on 14440. IVRS on Customer Liability in Unauthorised Electronic Banking Transactions If someone has fraudulently withdrawn money from your bank account, inform your bank immediately. When you notify the bank, remember to take acknowledgement from your bank. The bank has to resolve your complaint within 90 days from the date of receipt. If the transaction has happened because of your negligence, that is, because of your sharing your password, PIN, OTP , etc., you will have to bear the loss till you report it to",1,,
+q017,I got a message on WhatsApp about an app that claims I can earn quick money. What should I do if I think it's a scam?,"1. Stop all communication with the suspected fraudster immediately and do not follow any instructions they send (e.g. to download apps or share OTPs). ['rbi-843271d7#0004']
+2. If you have already downloaded any app or shared personal/financial information, contact your bank's customer care immediately to report the unauthorised transaction and request to freeze or block the linked UPI/bank account. ['rbi-843271d7#0004']
+3. Report the incident through the official 1930 helpline or visit cybercrime.gov.in to file a complaint. ['departme-09c0c586#0001']
+4. Notify your bank immediately about any unauthorised transaction; the bank must take immediate steps to prevent further unauthorised transactions in the account. ['rbi-d1477697#0002']
+5. If you receive an OTP or debit SMS for a transaction you did not initiate, inform your bank / e-wallet provider immediately and block all modes of debit, including UPI. ['rbi-843271d7#0004']
+6. Check your email and phone messages for alerts from your financial service provider; report any un-authorized transaction observed to your bank / NBFC / Service provider immediately for blocking the card / account / wallet. ['rbi-843271d7#0002']","[departme-09c0c586#0001] Sanchar Saathi Suspected Fraud Communication Reporting: of defrauding telecom service users for cyber-crime, financial frauds, non-bonafide purpose like impersonation or any other misuse through Call, SMS or WhatsApp.
+Examples: Bank Account / Payment Wallet / SIM / Gas / Electricity / KYC update, impersonation as Government official, sextortion etc.
+Note: If you have already lost money, please report at cyber crime helpline 1930 or cybercrime.gov.in .
+(Report within 30 days for action)
+Proceed
+Chakshu facilitates citizens to report UCC (Unsolicited Commercial Communication) or spam received through Voice Call or SMS which is not as per the consent given by recipient or as per registered preference(s).
+Timeline: Complaints made within 30 days are investigated. Reports made after 30 days aid in proactively finding spammers.
+
+[rbi-843271d7#0002] Consumer Awareness - Cyber Threats and Frauds: your email, especially if linked with your account, should be unique and used only for email access and not for accessing any other website / application. Do not be misled by advices intimating deposit of money on your behalf with RBI for foreign remittances, receipt of commission, or wins of lottery. Regularly check your email and phone messages for alerts from your financial service provider. Report any un-authorized transaction observed to your bank / NBFC / Service provider immediately for blocking the card / account / wallet, so as to prevent any further losses. Secure your cards and set daily limit for transactions. You may also set limits and activate / deactivate for domestic / international use. This can limit loss due to fraud.
+It has come to the notice of Reserve Bank of India t
+
+[rbi-843271d7#0004] Consumer Awareness - Cyber Threats and Frauds: website of bank / NBFC / e-wallet provider for contact details. Contact numbers on internet search engines may be fraudulent.
+Check URLs and domain names received in emails / SMSs for spelling errors. Use only verified, secured, and trusted websites / apps for online banking, that is, websites starting with ‘’https’’. In case of suspicion, notify local police / cybercrime branch immediately. If you receive an OTP for debiting your account for a transaction not initiated by you, inform your bank / e-wallet provider immediately. If you receive a debit SMS for a transaction not done, inform your bank / e-wallet provider immediately and block all modes of debit, including UPI. If you suspect any fraudulent activity in your account, check for any addition to the beneficiary list enabled for int
+
+[rbi-d1477697#0002] Customer Protection – Limiting Liability of Customers in Unauthorised Electronic Banking Transactions: liability. The banks may not offer facility of electronic transactions, other than ATM cash withdrawals, to customers who do not provide mobile numbers to the bank. On receipt of report of an unauthorised transaction from the customer, banks must take immediate steps to prevent further unauthorised transactions in the account. Limited Liability of a Customer (a) Zero Liability of a Customer 6. A customer’s entitlement to zero liability shall arise where the unauthorised transaction occurs in the following events: Contributory fraud/ negligence/ deficiency on the part of the bank (irrespective of whether or not the transaction is reported by the customer). Third party breach where the deficiency lies neither with the bank nor with the customer but lies elsewhere in the system, and the custo",1,,
+q041,"என் கணக்கு blocked ஆகவா? KYC அப்டேட் link भेजியர், என்ன செய்ய வேண்டும்?","1. உங்கள் bank-ல் உடனே fraudulent transaction-ல் பற்றி தெரிவிக்கவும் (immediately notify your bank of the fraudulent transaction). ['rbi-106bf499#0000']
+2. bank-ல் complaint register செய்யவும் மற்றும் acknowledgement எடுத்து ambulatory; bank 90 நாட்களில் உங்கள் complaint-ை solve செய்ய வேண்டும். ['rbi-106bf499#0000']
+3. 1930 helpline-ஐ அழைப்பு அல்லது cybercrime.gov.in-ல் complaint file செய்யவும். ['departme-09c0c586#0001']
+4. UPI PIN அல்லது internet banking password மாற்றி, two-factor authentication enabled செய்யவும். ['rbi-843271d7#0004']
+5. bank account activity-ஐ 24 மணி கண்காணிக்கவும்; ஏதாவது suspicious transaction दिखाई दे তবে bank-ல் தुरதை informe करें. ['rbi-106bf499#0000']","[departme-09c0c586#0001] Sanchar Saathi Suspected Fraud Communication Reporting: of defrauding telecom service users for cyber-crime, financial frauds, non-bonafide purpose like impersonation or any other misuse through Call, SMS or WhatsApp.
+Examples: Bank Account / Payment Wallet / SIM / Gas / Electricity / KYC update, impersonation as Government official, sextortion etc.
+Note: If you have already lost money, please report at cyber crime helpline 1930 or cybercrime.gov.in .
+(Report within 30 days for action)
+Proceed
+Chakshu facilitates citizens to report UCC (Unsolicited Commercial Communication) or spam received through Voice Call or SMS which is not as per the consent given by recipient or as per registered preference(s).
+Timeline: Complaints made within 30 days are investigated. Reports made after 30 days aid in proactively finding spammers.
+
+[rbi-106bf499#0000] SMS on Customer Liability in Unauthorised Electronic Banking Transactions: Home >> Customer Liability in Unauthorised Electronic Banking Transactions >> SMS SMS on Customer Liability in Unauthorised Electronic Banking Transactions Fraudulent transaction in your bank account? Limit your loss. Notify your bank immediately. For more details, give a missed call on 14440. IVRS on Customer Liability in Unauthorised Electronic Banking Transactions If someone has fraudulently withdrawn money from your bank account, inform your bank immediately. When you notify the bank, remember to take acknowledgement from your bank. The bank has to resolve your complaint within 90 days from the date of receipt. If the transaction has happened because of your negligence, that is, because of your sharing your password, PIN, OTP , etc., you will have to bear the loss till you report it to
+
+[rbi-843271d7#0004] Consumer Awareness - Cyber Threats and Frauds: website of bank / NBFC / e-wallet provider for contact details. Contact numbers on internet search engines may be fraudulent.
+Check URLs and domain names received in emails / SMSs for spelling errors. Use only verified, secured, and trusted websites / apps for online banking, that is, websites starting with ‘’https’’. In case of suspicion, notify local police / cybercrime branch immediately. If you receive an OTP for debiting your account for a transaction not initiated by you, inform your bank / e-wallet provider immediately. If you receive a debit SMS for a transaction not done, inform your bank / e-wallet provider immediately and block all modes of debit, including UPI. If you suspect any fraudulent activity in your account, check for any addition to the beneficiary list enabled for int",1,,
+q061,"ஒரு அஞ்சரை உங்கள் UPI மூலம் ₹50 சென்று வரைச்சு. பின்னர் அவர் கேட்டு, 'தவறு சென்றது' என்கிறார். என்ன செய்ய வேண்டும்?","1. உங்கள் பங்கில் உடனாக் கேட்டல் செய்து, உரிமை disputes ( disputa) செல். (RBI SMS advisory: notify bank immediately; take acknowledgement.) ['rbi-106bf499#0000']
+2. பங்க�이 உரிமை disputes ( disputa) செல் 10 நாட்களுக்குள் பதிப்பை கேட்கவும். (RBI FAME booklet: bank must resolve complaint within 90 days, credit amount within 10 working days.) ['rbi-f41a357c#0077']
+3. சाइ버 கிரைம் ஹெலpline 1930-வில் அழைப்பு செய்து, cybercrime.gov.in-ல் شکைவிடி பதிவு செய்யவும். (Sanchar Saathi advisory: if you have already lost money, report at cyber crime helpline 1930 or cybercrime.gov.in.) ['departme-09c0c586#0000']
+4. UPI collect request ஐ ரெட் செய்யாது. உரிமை 'Request Money' பதிவை ஏற்றுக்கொள்ளாது. (DoT Jumped Deposit Alert scam advisory: never share bank details for DEPOSITING funds; verify all requests before TRANSFERRING money.) ['departme-e1719044#0016']
+5. பங்கின் உரிமை disputes ( disputa) செல் மற்றும் 1930-வில் அழைப்பு செய்து, கணினி/மobile-ல் அனுமதியற்ற Apps ஐ அகற்றவும். (RBI customer protection: report unauthorised transaction; remove unauthorized apps.) ['rbi-843271d7#0002']
+6. பங்கின் SMS alerts-ல் உள்ளwicked transactions-ை உடனாக் கேட்டல் செய்து, bank acknowledgement எடுத்து 1930-வில்告知. (RBI SMS: notify bank immediately; take acknowledgement; report at 1930/cybercrime.gov.in.) ['rbi-106bf499#0000']","[departme-09c0c586#0000] Sanchar Saathi Suspected Fraud Communication Reporting: चक्षु - Chakshu
+(Report within 30 days for action)
+Proceed
+Chakshu facilitates citizens to report the suspected fraud communications with the intention of defrauding telecom service users for cyber-crime, financial frauds, non-bonafide purpose like impersonation or any other misuse through Call, SMS or WhatsApp.
+Examples: Bank Account / Payment Wallet / SIM / Gas / Electricity / KYC update, impersonation as Government official, sextortion etc.
+Note: If you have already lost money, please report at cyber crime helpline 1930 or cybercrime.gov.in .
+
+[departme-e1719044#0016] Beware of Jumped Deposit Alert scam (DoT): 5,000
+from: refund.help@upi
+₹5,000
+It's a
+A UPI collect request arrives
+for a much larger amount,
+disguised as the ""refund"".
+Enter UPI PIN
+1 2 3
+4 5 6
+7 8 9
+Not needed
+to receive
+You enter your UPI PIN
+thinking you are returning the
+money. That approves the
+larger payment.
+A/c 1
+A/c 2
+A/c 3
+₹5,000
+Balance left
+₹120
+The fraudster keeps the
+difference and quickly moves
+it through multiple accounts.
+1930
+cybercrime.gov.in
+Act in the
+golden hour
+Tell your bank at once, then
+call 1930 or report at
+cybercrime.gov.in so the
+case can be investigated.
+Never share your bank details for DEPOSITING funds.
+Verify all requests before TRANSFERRING money.
+Always confirm the source of any deposit request through official channels before proceeding with any transaction.
+Key warning signs
+Unsolicited deposi
+
+[rbi-106bf499#0000] SMS on Customer Liability in Unauthorised Electronic Banking Transactions: Home >> Customer Liability in Unauthorised Electronic Banking Transactions >> SMS SMS on Customer Liability in Unauthorised Electronic Banking Transactions Fraudulent transaction in your bank account? Limit your loss. Notify your bank immediately. For more details, give a missed call on 14440. IVRS on Customer Liability in Unauthorised Electronic Banking Transactions If someone has fraudulently withdrawn money from your bank account, inform your bank immediately. When you notify the bank, remember to take acknowledgement from your bank. The bank has to resolve your complaint within 90 days from the date of receipt. If the transaction has happened because of your negligence, that is, because of your sharing your password, PIN, OTP , etc., you will have to bear the loss till you report it to
+
+[rbi-843271d7#0002] Consumer Awareness - Cyber Threats and Frauds: your email, especially if linked with your account, should be unique and used only for email access and not for accessing any other website / application. Do not be misled by advices intimating deposit of money on your behalf with RBI for foreign remittances, receipt of commission, or wins of lottery. Regularly check your email and phone messages for alerts from your financial service provider. Report any un-authorized transaction observed to your bank / NBFC / Service provider immediately for blocking the card / account / wallet, so as to prevent any further losses. Secure your cards and set daily limit for transactions. You may also set limits and activate / deactivate for domestic / international use. This can limit loss due to fraud.
+It has come to the notice of Reserve Bank of India t
+
+[rbi-f41a357c#0077] Financial Awareness Messages (FAME) booklet, RBI: OTP with anyone
+l Never write your PIN on the Card
+Don’ts
+Message 16 Customer Liability for Fraudulent
+When doing any
+electronic/ATM
+transaction, there
+is a possibility
+that you may
+incur a loss due
+to carelessness
+or fraud
+Notify your bank
+l Irrespective of whose fault it is, notify
+your bank immediately if you encounter
+a fraudulent or unauthorized electronic
+banking transaction in your account/
+l The longer you take to notify the bank,
+higher is the loss to you or your bank
+Bank’s responsibility
+If the fraudulent transactions continue even after you have informed
+the bank, the bank will have to bear the loss
+l Y our bank has to provide an acknowledgement for the complaint
+when you notify/inform the bank
+l The bank must resolve your complaint within 90 days
+l Bank shall credit the amount",1,,
+q075,"मुझे RBI के नाम की एक मेल मिली जिसमें मेरा बैंक अकाउंट डिटेल्स मांग रहा था। मुझे उस लिंक पर क्लिक नहीं करना था, लेकिन मुझे उसमें अपना व्यक्तिगत डेटा भी लिख दिया। अब मुझे क्या करना चाहिए?","1. अपने बैंक को तुरंत सूचित करें ताकि आगे के अनधिकृत लेन-देन को रोका जा सके। ['rbi-d1477697#0002']
+2. बैंक को सूचना देने के बाद, साइबर क्राइम हेल्पलाइन 1930 पर कॉल करें या cybercrime.gov.in पर शिकायत दर्ज करें ताकि मामले को आधिकारिक रूप से दर्ज किया जा सके। ['departme-09c0c586#0001', 'certin-00209aa3#0057']","[certin-00209aa3#0057] Digital Safety Compass Handbook (Safer Internet Day 2025): 91-11-24368572
+Government of India, Ministry of Electronics and
+Information Technology,
+Electronics Niketan, 6, CGO Complex, Lodhi Road,
+https://www.cert-in.org.in https://www.csk.gov.in
+@cert_india
+@IndianCERT
+incident@cert-in.org.in
+csk@cert-in.org.in
+collaboration@cert-in.org.in
+vdisclose@cert-in.org.in
+info@cert-in.org.in
+subscribe@cert-in.org.in
+advisory@cert-in.org.in
+training@cert-in.org.in
+Crime to I4C:
+https://www.cybercrime.gov.in/
+or call 1930
+CERT-In’s Digital Safety
+
+[departme-09c0c586#0001] Sanchar Saathi Suspected Fraud Communication Reporting: of defrauding telecom service users for cyber-crime, financial frauds, non-bonafide purpose like impersonation or any other misuse through Call, SMS or WhatsApp.
+Examples: Bank Account / Payment Wallet / SIM / Gas / Electricity / KYC update, impersonation as Government official, sextortion etc.
+Note: If you have already lost money, please report at cyber crime helpline 1930 or cybercrime.gov.in .
+(Report within 30 days for action)
+Proceed
+Chakshu facilitates citizens to report UCC (Unsolicited Commercial Communication) or spam received through Voice Call or SMS which is not as per the consent given by recipient or as per registered preference(s).
+Timeline: Complaints made within 30 days are investigated. Reports made after 30 days aid in proactively finding spammers.
+
+[rbi-d1477697#0002] Customer Protection – Limiting Liability of Customers in Unauthorised Electronic Banking Transactions: liability. The banks may not offer facility of electronic transactions, other than ATM cash withdrawals, to customers who do not provide mobile numbers to the bank. On receipt of report of an unauthorised transaction from the customer, banks must take immediate steps to prevent further unauthorised transactions in the account. Limited Liability of a Customer (a) Zero Liability of a Customer 6. A customer’s entitlement to zero liability shall arise where the unauthorised transaction occurs in the following events: Contributory fraud/ negligence/ deficiency on the part of the bank (irrespective of whether or not the transaction is reported by the customer). Third party breach where the deficiency lies neither with the bank nor with the customer but lies elsewhere in the system, and the custo",1,,
+q058,ஸ்கேம் தவிர்க்க என் கணக்கில் இருந்து டிஜிட்டல் பணி எப்படி நிறுத்தி பாதுகாக்கலாம்? மீண்டும் தொடர்க்க எப்படி?,"1. உங்கள் கணக்கில் இருந்து எந்தவொரு டிஜிட்டல் பணியும் இப்போது நிறுத்தவும். ['rbi-d1477697#0002']
+2. பங்கை உடனே அழித்து, உங்கள் கணக்கில் எந்தவொரு ஏதோ தவறான பணியும் மீண்டும் செய்யப்படாது என்பதை உறுதிப்படுத்தவும். ['rbi-d1477697#0009']
+3. பங்கின் கஸ்டமர் CARE / fraud helpline-ல் அழித்து, உங்கள் கணக்கை 'zero liability' நிலையில் மாற்றவும். ['rbi-d1477697#0002']
+4. 1930 helpline-ல் அழைப்பது அல்லது cybercrime.gov.in-তে ரிபோர்ட் செய்யவும். ['departme-09c0c586#0000']
+5. பின்னர், 1930-வது எண்ணிக்கையில் எந்தவொரு தவறான பணியும் மீண்டும் தொடர்க்கப்படாது என்பதை உறுதிப்படுத்தவும். ['departme-09c0c586#0000']","[departme-09c0c586#0000] Sanchar Saathi Suspected Fraud Communication Reporting: चक्षु - Chakshu
+(Report within 30 days for action)
+Proceed
+Chakshu facilitates citizens to report the suspected fraud communications with the intention of defrauding telecom service users for cyber-crime, financial frauds, non-bonafide purpose like impersonation or any other misuse through Call, SMS or WhatsApp.
+Examples: Bank Account / Payment Wallet / SIM / Gas / Electricity / KYC update, impersonation as Government official, sextortion etc.
+Note: If you have already lost money, please report at cyber crime helpline 1930 or cybercrime.gov.in .
+
+[rbi-d1477697#0002] Customer Protection – Limiting Liability of Customers in Unauthorised Electronic Banking Transactions: liability. The banks may not offer facility of electronic transactions, other than ATM cash withdrawals, to customers who do not provide mobile numbers to the bank. On receipt of report of an unauthorised transaction from the customer, banks must take immediate steps to prevent further unauthorised transactions in the account. Limited Liability of a Customer (a) Zero Liability of a Customer 6. A customer’s entitlement to zero liability shall arise where the unauthorised transaction occurs in the following events: Contributory fraud/ negligence/ deficiency on the part of the bank (irrespective of whether or not the transaction is reported by the customer). Third party breach where the deficiency lies neither with the bank nor with the customer but lies elsewhere in the system, and the custo
+
+[rbi-d1477697#0009] Customer Protection – Limiting Liability of Customers in Unauthorised Electronic Banking Transactions: This shall be important in determining the extent of a customer’s liability. The banks may not offer facility of electronic transactions, other than ATM cash withdrawals, to customers who do not provide mobile numbers to the bank. On receipt of report of an unauthorised transaction from the customer, banks must take immediate steps to prevent further unauthorised transactions in the account. Limited Liability of a Customer
+(a) Zero Liability of a Customer
+6. A customer’s entitlement to zero liability shall arise where the unauthorised transaction occurs in the following events:
+Contributory fraud/ negligence/ deficiency on the part of the bank (irrespective of whether or not the transaction is reported by the customer).
+Third party breach where the deficiency lies neither with the bank nor",1,,

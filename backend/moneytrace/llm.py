@@ -102,9 +102,10 @@ def _gemini_client():
 
 def generate_text(prompt: str, *, tier: str = "fast", agent: str = "llm", json_mode: bool = False,
                   system: Optional[str] = None, temperature: float = 0.0, max_tokens: int = 2048,
-                  image_bytes: Optional[bytes] = None, image_mime: str = "image/png") -> LLMResult:
+                  image_bytes: Optional[bytes] = None, image_mime: str = "image/png",
+                  model: Optional[str] = None) -> LLMResult:
     p = provider()
-    model = model_for(tier)
+    model = model or model_for(tier)
     t0 = time.perf_counter()
     if p in OPENAI_COMPAT:
         base, key_env, _, _ = OPENAI_COMPAT[p]

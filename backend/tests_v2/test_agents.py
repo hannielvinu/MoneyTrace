@@ -131,3 +131,14 @@ def test_signal_scoring_is_evidence_based(app):
     s = compute_signals(scam)
     assert s["risk_score"] >= 0.6
     assert {x["signal"] for x in s["signals"]} >= {"impersonation", "credential_request", "urgency_or_threat"}
+
+
+def test_judge_quotes_are_verified_against_the_passage():
+    P = ["Citizens can dial the helpline 1930 to report online financial fraud.\nNever share your OTP."]
+    ok, _ = G.verdict_from_claims([{"claim": "call 1930", "quote": "Citizens can dial the helpline 1930 to report online financial fraud."}], P)
+    assert ok
+    # a judge that invents a supporting quote is caught
+    ok, why = G.verdict_from_claims([{"claim": "call 1930", "quote": "Citizens can dial 1930."},
+                                     {"claim": "visit the police", "quote": "Always visit your nearest police station."}], P)
+    assert not ok and "police" in why
+    assert not G.verdict_from_claims([], P)[0]

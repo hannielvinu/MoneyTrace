@@ -69,7 +69,9 @@ def main():
         if "recall_at_5_without_query_translation" in rag:
             L.append(f"| recall@5 without query translation (ablation) | {rag['recall_at_5_without_query_translation']} |")
         if "fully_grounded_pct" in rag:
-            L += [f"| Fully grounded answers | **{rag['fully_grounded_pct']} %** ({rag['fully_grounded_count']}/{rag['eval_set_size']}) |",
+            L += [f"| Fully grounded answers (independent auditor `{rag.get('eval_judge_model')}`, quote-verified) | **{rag['fully_grounded_pct']} %** ({rag['fully_grounded_count']}/{rag['eval_set_size']}) |",
+                  f"| Pipeline self-check grounded (optimistic, for reference) | {rag.get('pipeline_self_check_grounded_pct')} % |",
+                  f"| First drafts fully grounded (before self-check) | {rag.get('draft_fully_grounded_pct')} % |",
                   f"| Safe-fallback answers | {rag.get('safe_fallback_count')} |",
                   f"| Answers with errors | {rag.get('answers_with_errors')} |",
                   f"| Mean guidance latency | {rag.get('mean_guidance_latency_ms')} ms |"]
