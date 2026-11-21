@@ -118,7 +118,7 @@ class ModelCall:
     input_tokens: int
     output_tokens: int
     latency_ms: float
-    cost_usd: float
+    cost_usd: Optional[float]
 
 
 @dataclass
@@ -132,7 +132,7 @@ class RequestMetrics:
 
     def add_call(self, agent: str, model: str, input_tokens: int, output_tokens: int, latency_ms: float):
         price = get_settings().price_for(model)
-        cost = (input_tokens * price.input_per_m + output_tokens * price.output_per_m) / 1e6
+        cost = None if price is None else (input_tokens * price.input_per_m + output_tokens * price.output_per_m) / 1e6
         self.calls.append(ModelCall(agent, model, int(input_tokens or 0), int(output_tokens or 0), latency_ms, cost))
         try:
             from moneytrace.db.database import record_llm_call
@@ -150,7 +150,8 @@ class RequestMetrics:
         inp = sum(c.input_tokens for c in self.calls)
         out = sum(c.output_tokens for c in self.calls)
         gen_ms = sum(c.latency_ms for c in self.calls)
-        usd = sum(c.cost_usd for c in self.calls)
+        priced = all(c.cost_usd is not None for c in self.calls)
+        usd = sum(c.cost_usd for c in self.calls) if priced else None
         return {
             "request_id": self.request_id,
             "incident_id": self.incident_id,
@@ -161,8 +162,10 @@ class RequestMetrics:
             "output_tokens": out,
             # output tokens per second of model wall-time (generation throughput)
             "output_tokens_per_sec": round(out / (gen_ms / 1000), 2) if gen_ms > 0 else None,
-            "cost_usd": round(usd, 8),
-            "cost_inr": round(usd * s.usd_to_inr, 6),
+            "cost_usd": round(usd, 8) if usd is not None else None,
+            "cost_inr": round(usd * s.usd_to_inr, 6) if usd is not None else None,
+            "cost_note": None if usd is not None else "price not configured for: " + ", ".join(
+                sorted({c.model for c in self.calls if c.cost_usd is None})),
             "models": sorted({c.model for c in self.calls}),
         }
 

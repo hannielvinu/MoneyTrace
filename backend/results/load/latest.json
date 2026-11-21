@@ -1,32 +1,31 @@
 {
-  "run_id": "LOAD_20261121T223052Z",
-  "date_utc": "2026-11-21T22:39:15.577060+00:00",
+  "run_id": "LOAD_20261121T224200Z",
+  "date_utc": "2026-11-21T22:46:05.381034+00:00",
   "base_url": "http://127.0.0.1:8000",
   "command": "python scripts/load_test.py --base-url http://127.0.0.1:8000 --n 24 --concurrency 4 --poll-timeout 600",
   "requests": 24,
   "completed": 24,
   "errors": 0,
   "concurrency": 4,
-  "wall_time_s": 503.4,
+  "wall_time_s": 244.6,
   "intake_latency_ms": {
-    "p50": 17.8,
-    "p95": 3199.2,
-    "mean": 416.0
+    "p50": 17.5,
+    "p95": 3880.2,
+    "mean": 510.9
   },
   "time_to_guidance_ms": {
-    "p50": 38381.0,
-    "p95": 242051.6,
-    "mean": 61710.6
+    "p50": 39815.9,
+    "p95": 50466.2,
+    "mean": 39402.9
   },
-  "avg_output_tokens_per_sec": 164.7,
-  "avg_input_tokens": 2427893.8,
-  "avg_output_tokens": 6340.2,
-  "avg_model_calls": 37.04,
+  "avg_output_tokens_per_sec": 170.84,
+  "avg_input_tokens": 148070.1,
+  "avg_output_tokens": 5825.3,
+  "avg_model_calls": 23.17,
   "avg_cost_inr_per_request": 0.0,
   "fully_grounded_share": 1.0,
   "ai_status_counts": {
-    "AGENTS FAILED (rules fallback)": 7,
-    "LLM LIVE (nvidia)": 17
+    "LLM LIVE (nvidia)": 24
   },
   "models": [
     "nvidia/nemotron-3.5-lightning-30b-a3b"
@@ -43,5 +42,5 @@
       }
     }
   },
-  "run_dir": "results/load/LOAD_20261121T223052Z"
+  "run_dir": "results/load/LOAD_20261121T224200Z"
 }

@@ -134,7 +134,7 @@ def summarise(rows, args, wall_s):
         "models": models,
         "pricing": {"note": "cost = measured tokens x price table in moneytrace/config.py", "checked_on": PRICES_CHECKED_ON,
                     "usd_to_inr": s.usd_to_inr, "usd_to_inr_source": s.usd_to_inr_source,
-                    "prices_usd_per_1m": {m: s.price_for(m).__dict__ for m in models}},
+                    "prices_usd_per_1m": {m: (s.price_for(m).__dict__ if s.price_for(m) else "not configured") for m in models}},
     }
 
 

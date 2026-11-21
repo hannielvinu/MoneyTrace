@@ -97,7 +97,11 @@ def main():
               f"| Time to guidance p50 / p95 / mean (full agent pipeline) | {load['time_to_guidance_ms']['p50']} / {load['time_to_guidance_ms']['p95']} / {load['time_to_guidance_ms']['mean']} ms |",
               f"| Avg output tokens/sec (model wall time) | {load['avg_output_tokens_per_sec']} |",
               f"| Avg tokens per request (in / out) | {load['avg_input_tokens']} / {load['avg_output_tokens']} over {load['avg_model_calls']} model calls |",
-              f"| Avg cost per request | ₹{load['avg_cost_inr_per_request']} |",
+              (f"| Avg cost per request | ₹{load['avg_cost_inr_per_request']} |"
+               if all(isinstance(v, dict) and (v.get('input_per_m') or v.get('output_per_m'))
+                      for v in load['pricing']['prices_usd_per_1m'].values()) and load['pricing']['prices_usd_per_1m']
+               else "| Avg cost per request | **not measured**: development models on a free endpoint, no price configured "
+                    "(re-run with Gemini and PRICE_* set) |"),
               f"| Models | {', '.join(load['models'])} |",
               f"| Pricing used | prices {json.dumps(load['pricing']['prices_usd_per_1m'])} USD/1M tokens (checked {load['pricing']['checked_on']}); USD→INR {load['pricing']['usd_to_inr']} ({load['pricing']['usd_to_inr_source']}) |",
               f"| Date | {load['date_utc']} |", f"| Command | `cd backend && {load['command']}` |",

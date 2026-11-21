@@ -50,18 +50,24 @@ Status legend: ⬜ to do · ✅ done
    ```
    ⚠️ The deploy uses `--no-cpu-throttling` (instance-based billing, max 1 instance) because the agent pipeline
    runs after the HTTP response. Check the current free tier on https://cloud.google.com/run/pricing first.
-10. ⬜ Load test against the live URL and look at a trace in Cloud Trace (console → Trace explorer):
+10. ⬜ Before the load test, copy the current Gemini prices from https://ai.google.dev/gemini-api/docs/pricing into
+    env vars on the Cloud Run service (not secrets), e.g. `PRICE_GEMINI_3_8_FLASH_IN=<usd per 1M input>`,
+    `PRICE_GEMINI_3_8_FLASH_OUT=<usd per 1M output>`, `PRICES_CHECKED_ON=<date>`, and `USD_TO_INR=<RBI reference rate>`,
+    `USD_TO_INR_SOURCE="RBI reference rate <date>"`. Without them cost is reported as "not configured".
+    Note: the dev run averaged ~148k input tokens per case (passages repeated across agent calls) — cutting that is the
+    main lever for the ₹/request number.
+11. ⬜ Load test against the live URL and look at a trace in Cloud Trace (console → Trace explorer):
     ```bash
     cd backend && python scripts/load_test.py --base-url https://<service>.run.app --n 100 --concurrency 5
     ```
-11. ⬜ Change the demo passwords (victim123 / operator123) on the live database, or remove the demo users.
-12. ⬜ Add GitHub repo secrets `RAG_EVAL_DATABASE_URL` and `GEMINI_API_KEY` to enable the CI RAG gate.
+12. ⬜ Change the demo passwords (victim123 / operator123) on the live database, or remove the demo users.
+13. ⬜ Add GitHub repo secrets `RAG_EVAL_DATABASE_URL` and `GEMINI_API_KEY` to enable the CI RAG gate.
 
 ## D. WhiteHats
-13. ⬜ Run discovery session 1 and 2; fill in `docs/discovery/session-1.md` / `session-2.md`; open issues for findings.
-14. ⬜ Create operator accounts: `python backend/scripts/create_operator.py --csv operators.csv` (columns `email,name`).
-15. ⬜ Share `docs/OPERATOR_GUIDE.md` with operators; launch; run `python backend/scripts/usage_summary.py` weekly.
+14. ⬜ Run discovery session 1 and 2; fill in `docs/discovery/session-1.md` / `session-2.md`; open issues for findings.
+15. ⬜ Create operator accounts: `python backend/scripts/create_operator.py --csv operators.csv` (columns `email,name`).
+16. ⬜ Share `docs/OPERATOR_GUIDE.md` with operators; launch; run `python backend/scripts/usage_summary.py` weekly.
 
 ## E. Finally
-16. ⬜ Re-run everything with Gemini and replace the dev-provider numbers in `RESULTS.md`; update the resume from
+17. ⬜ Re-run everything with Gemini and replace the dev-provider numbers in `RESULTS.md`; update the resume from
     RESULTS.md only (if a number differs from the target, the resume changes, not the number).
