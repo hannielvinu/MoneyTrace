@@ -1,7 +1,7 @@
 {
-  "run_id": "RAG_20261121T214728Z",
-  "date_utc": "2026-11-21T21:48:24.432046+00:00",
-  "command": "python -m evaluation.rag_eval --concurrency 4 --ablation",
+  "run_id": "RAG_20261121T220703Z",
+  "date_utc": "2026-11-21T22:07:58.501134+00:00",
+  "command": "python -m evaluation.rag_eval --concurrency 5 --ablation",
   "eval_set": "evaluation/rag_golden.jsonl",
   "eval_set_size": 100,
   "review_status": [
@@ -15,21 +15,25 @@
   "llm_provider": "nvidia",
   "guidance_model": "nvidia/nemotron-3.5-lightning-30b-a3b",
   "judge_model": "nvidia/nemotron-3.5-lightning-30b-a3b",
-  "recall_at_5": 0.71,
-  "recall_at_5_hits": 71,
+  "recall_at_5": 0.72,
+  "recall_at_5_hits": 72,
   "recall_at_5_by_language": {
     "en": 0.7,
-    "ta": 0.68,
+    "ta": 0.72,
     "hi": 0.76
   },
-  "mean_retrieval_latency_ms": 553.7,
+  "mean_retrieval_latency_ms": 549.9,
   "recall_at_5_without_query_translation": 0.69,
-  "fully_grounded_pct": 100.0,
-  "fully_grounded_count": 100,
+  "fully_grounded_pct": 48.0,
+  "fully_grounded_count": 48,
+  "fully_grounded_definition": "independent eval judge (different model, claim-level rubric with supporting quotes) on the FINAL answer; every step must be supported",
+  "eval_judge_model": "minimaxai/minimax-m3.1-flash",
+  "pipeline_self_check_grounded_pct": 100.0,
+  "draft_fully_grounded_pct": 61.0,
   "answers_with_errors": 0,
   "safe_fallback_count": 0,
-  "mean_final_steps": 4.78,
-  "mean_guidance_latency_ms": 20615.8,
-  "duration_s": 609.4,
-  "run_dir": "results/rag_eval/RAG_20261121T214728Z"
+  "mean_final_steps": 3.61,
+  "mean_guidance_latency_ms": 16183.5,
+  "duration_s": 1413.2,
+  "run_dir": "results/rag_eval/RAG_20261121T220703Z"
 }

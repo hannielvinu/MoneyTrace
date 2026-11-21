@@ -194,10 +194,10 @@ def main(argv=None):
                              "section": c["section"], "chunk_index": j, "text": c["text"],
                              "content_hash": hashlib.sha1(c["text"].encode()).hexdigest(), "embedding": v})
             try:
-              with engine.begin() as conn:
-                store.upsert_document(conn, {"doc_id": src["doc_id"], "title": title, "issuer": src.get("issuer"), "url": url,
-                                             "published_date": src.get("published_date") or doc.published_date,
-                                             "language": src.get("language") or doc.language, "content_hash": h}, rows)
+                with engine.begin() as conn:
+                    store.upsert_document(conn, {"doc_id": src["doc_id"], "title": title, "issuer": src.get("issuer"), "url": url,
+                                                 "published_date": src.get("published_date") or doc.published_date,
+                                                 "language": src.get("language") or doc.language, "content_hash": h}, rows)
             except Exception as e:
                 log["failures"].append({"doc_id": src["doc_id"], "url": url, "stage": "store", "error": repr(e)[:200]})
                 print(f"[{i}/{len(sources)}] STORE FAIL {repr(e)[:100]}")

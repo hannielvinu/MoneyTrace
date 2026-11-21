@@ -1,0 +1,702 @@
+id,question,final_steps_with_citations,cited_passages,judge_fully_grounded,human_fully_grounded (1/0),human_notes
+q093,"व्हाट्सएप पर एक निवेश का लिंक आया है, कोई इन्फ्लुएंसर बता रहा है कि जल्दी पैसा डबल हो जाएगा। मैंने सोचा पहले ब्रोकर को SEBI रजिस्टर चेक करूं क्या? और कोई भी personal account में पैसा ट्रांसफर करना safe है क्या?","1. सोशल मीडिया पर मिले निवेश के सुझावों पर भरोसा न करें, क्योंकि कुछ इन्फ्लुएंसर फर्जी निवेश प्रमोट कर सकते हैं। ['certin-00209aa3#0042']
+2. किसी भी personal account में पैसा ट्रांसफर न करें; हमेशा पंजीकृत ब्रोकर के आधिकारिक ऐप या वेबसाइट के माध्यम से धनराशि हस्तांतरित करें। ['certin-00209aa3#0042']
+3. ब्रोकर को SEBI में पंजीकृत होने की पुष्टि करें; SEBI की आधिकारिक वेबसाइट पर इसकी पुष्टि करें। ['certin-00209aa3#0042']
+4. यदि पहले ही धनराशि स्थानांतरित कर दी गई है, तो तुरंत 1930 हेल्पलाइन पर कॉल करें या cybercrime.gov.in पर शिकायत दर्ज करें। ['pressinf-0aa4344f#0009']","[certin-00209aa3#0042] Digital Safety Compass Handbook (Safer Internet Day 2025): ital Safety
+The fraudulent trading app scam involves
+creating deceptive apps to trick investors,
+promising high returns with low risk to lure you
+into investing.
+Scammers try
+to contact
+victims
+through social
+media and
+establish trust.
+After gaining
+trust, scammers
+offer a fake
+trading app as a
+profitable
+investment.
+The app falsely
+shows rising
+investments,
+misleading
+victims into
+investing more.
+impose hidden
+fees when
+victims withdraw
+funds, hindering
+their recovery
+efforts.
+Ensure your broker is SEBI-
+registered. Verify on SEBI’s
+official website.
+Use the official app or
+website of a registered
+broker for fund transfers.
+Some influencers may
+promote fake investments.
+Research before trusting
+their advice.
+Avoid transferring money to
+personal accounts; always
+use the official app or
+web
+
+[pressinf-0aa4344f#0009] Curbing Cyber Frauds in Digital India: yber defences, the Union Budget 2025 has allocate d ₹782 crore for
+cybersecurity projects. This significant move highlights government’s heightened focus on cyber threats that
+pose risk to the national security.19 Through the Citizen Financial Cyber Fraud Reporting and Management
+System (CFCFRMS), financial institutions have been able to save more than ₹5,489 crore in over 17.82 lakh
+complaints.20
+To strengthen citizen participation in the fight against cybercrime, the Government has operationalised the
+National Cyber Crime Reporting Portal (www.cybercrime.gov.in). The portal enables citizens to report
+complaints relating to various categories of cybercrime, with a special focus on offences targeting women and
+children. A dedicated cybercrime helpline number 1930 provides immediate assista",1,,
+q088,எனக்கு falsa KYC update செய்தி வந்தது. என்ன செய்ய வேண்டும்?,"1. சாதாரண KYC பதிவேற்றம் போது உknown அல்லது அங்கீகாரற்ற ব্যক্তிகளிடம் உங்கள் கணக்கு, கடைசி எண், PIN, கடவுச்சொற்கள், OTP போன்ற தனிப்பட்ட தகவல்களை பகிராது. (rbi-6e639779#0001) ['rbi-6e639779#0001']
+2. அவசியமான இணைப்புகளை மறுத்து, உknown மூலங்களிலிருந்து SMS/Email/WhatsApp மூலம் அனுப்பப்பட்டுள்ள இணைப்புகளை கிளிக் செய்யாது. (rbi-6e639779#0001) ['rbi-6e639779#0001']
+3. தயாரிக்கப்பட்ட UPI 'collect' கோரிக்கைகளை ஏற்றுக்கொள்ளாது; உknownவரிடம் உங்கள் UPI PIN ஐ பகிராது. (rbi-843271d7#0003) ['rbi-843271d7#0003']
+4. தவிர்க்கப்பட்ட அல்லது அசாதாரணமான অ্যாபLICATIONS ஐ டவுன்லோட் செய்யாது. (rbi-843271d7#0003) ['rbi-843271d7#0003']
+5. இந்தக் கேள்வியை 1930 எண்ணிக்கையுடன் கவுன்ட் டெக்னாலஜி அல்லது cybercrime.gov.in-ல் பதிவரிக்கவும். (pressinf-0aa4344f#0009) ['pressinf-0aa4344f#0009']","[pressinf-0aa4344f#0009] Curbing Cyber Frauds in Digital India: yber defences, the Union Budget 2025 has allocate d ₹782 crore for
+cybersecurity projects. This significant move highlights government’s heightened focus on cyber threats that
+pose risk to the national security.19 Through the Citizen Financial Cyber Fraud Reporting and Management
+System (CFCFRMS), financial institutions have been able to save more than ₹5,489 crore in over 17.82 lakh
+complaints.20
+To strengthen citizen participation in the fight against cybercrime, the Government has operationalised the
+National Cyber Crime Reporting Portal (www.cybercrime.gov.in). The portal enables citizens to report
+complaints relating to various categories of cybercrime, with a special focus on offences targeting women and
+children. A dedicated cybercrime helpline number 1930 provides immediate assista
+
+[rbi-6e639779#0001] RBI cautions against frauds in the name of KYC updation: RBI Master Direction on KYC dated February 25, 2016 , as amended from time to time. Don’ts Do not share account login credentials, card information, PINs, passwords, OTPs with anyone. Do not share KYC documents or copies of KYC documents with unknown or unidentified individuals or organizations. Do not share any sensitive data/ information through unverified/unauthorized websites or applications. Do not click on suspicious or unverified links received in mobile or email. (Yogesh Dayal) Chief General Manager Press Release: 2023-2024/1794
+The Reserve Bank had cautioned members of public against frauds in the name of KYC updation vide its Press Release dated September 13, 2021 . In the wake of continuing incidents/ reports of customers falling prey to frauds being perpetrated in the name of K
+
+[rbi-843271d7#0003] Consumer Awareness - Cyber Threats and Frauds: from their bank / e-wallet provider and contain links to extract confidential details.
+Remote Access - by luring customer to download an application on their mobile phone / computer which is able to access all the customers’ data on that customer device.
+Misuse the ‘collect request’ feature of UPI by sending fake payment requests with messages like ‘Enter your UPI PIN’ to receive money. Fake numbers of banks / e-wallet providers on webpages / social media and displayed by search engines, etc.
+RBI urges the members of public to practice safe digital banking by taking all due precautions, while carrying out any digital (online / mobile) banking / payment transactions. These will help in preventing financial and / or other loss to them.
+(Yogesh Dayal) Chief General Manager
+Press Release: 2021",1,,
+q099,"எனது மோபைல் எண் பங்கரில் பதிவு இல்லை, எப்படி பதிவு செய்ய வேண்டும்?","1. மோபைல் எண்ணை பதிவு செய்ய, உங்கள் பங்கரில் பதிவு செய்யப்பட்டுள்ளதை உறுதிப்படுத்தவும். பங்கரின் இணையப்பணி அல்லது IVR சேவைகளைப் பயன்படுத்தி பதிவு செய்யலாம். ['rbi-1e4cba7a#0007']
+2. பங்கரின் IVR அல்லது டெலிஃபோன் பாங்கிங் சேவைகளைப் பயன்படுத்தி, உங்கள் மோபைல் எண்ணை பதிவு செய்யவும். ['rbi-1e4cba7a#0020']
+3. பங்கரின் இணையப்பணி இணைப்பை பயன்படுத்தி, உங்கள் கணக்கில் பதிவு செய்யப்பட்ட மோபைல் எண்ணை சரிபார்க்கவும். ['rbi-1e4cba7a#0020']
+4. மோசடியை உடனே புகார் செய்யுங்கள்: தேசிய சைபர் குற்ற உதவி எண் 1930-ஐ அழைக்கவும் / cybercrime.gov.in-இல் புகார் செய்யவும். ['pressinf-0aa4344f#0009']","[pressinf-0aa4344f#0009] Curbing Cyber Frauds in Digital India: yber defences, the Union Budget 2025 has allocate d ₹782 crore for
+cybersecurity projects. This significant move highlights government’s heightened focus on cyber threats that
+pose risk to the national security.19 Through the Citizen Financial Cyber Fraud Reporting and Management
+System (CFCFRMS), financial institutions have been able to save more than ₹5,489 crore in over 17.82 lakh
+complaints.20
+To strengthen citizen participation in the fight against cybercrime, the Government has operationalised the
+National Cyber Crime Reporting Portal (www.cybercrime.gov.in). The portal enables citizens to report
+complaints relating to various categories of cybercrime, with a special focus on offences targeting women and
+children. A dedicated cybercrime helpline number 1930 provides immediate assista
+
+[rbi-1e4cba7a#0007] Master Circular – Mobile Banking transactions in India – Operative Guidelines for Banks (Updated as on November 12, 2021): while opening the account. Further, the form should also clearly indicate that opting for mobile banking services will provide an alternate delivery channel to the customer; related inputs / materials / booklet etc. should be provided to the interested customers outlining the features of mobile banking services offered by the bank, the process involved, roles and responsibilities etc. 2. Existing Customer- Mobile numbers registered with the bank but not active for mobile banking: As mobile number registration has already taken place and available with the bank (is linked with the account), wider and more accessible platforms should also be made use of by the banks to increase awareness on mobile banking at every opportunity to get more and more customers to register for mobile banking serv
+
+[rbi-1e4cba7a#0020] Master Circular – Mobile Banking transactions in India – Operative Guidelines for Banks (Updated as on November 12, 2021): activating mobile banking, providing necessary URLs / customer care numbers from which the customer can obtain additional information on mobile banking activation process;
+ATMs and self-service Kiosks at branches can also alert the customers to activate the mobile banking options;
+social media can also be used by the banks to build awareness and encourage customers to register on mobile banking; through the internet banking website of the bank especially when the customer logs in for net banking operations (taking into account the security architecture and authentication mechanism already prevalent in the bank/s);
+banks can use their IVR and phone banking channels to encourage and facilitate registration and activation of customers for mobile banking;
+banks can also harness the potential o",1,,
+q020,"मैं एक डिजिटल लोन ऐप का इस्तेमाल कर रहा हूं, लेकिन ऐप ने मुझे यह नहीं बताया कि असल में लोन किस बैंक या NBFC ने दिया है। मुझे शिकायत करने का अधिकार है या नहीं?","1. डिजिटल लोन ऐप के बारे में RBI के FAME बुकलेट के अनुसार, ऐप को RBI विनियमित बैंक या NBFC के साथ आउटसोर्सिंग व्यवस्था का विवरण देना चाहिए। ['rbi-f41a357c#0122']
+2. डिजिटल लोन ऐप को RBI विनियमित बैंक या NBFC के साथ आउटसोर्सिंग व्यवस्था का विवरण देना चाहिए। ['rbi-f41a357c#0121']
+3. डिजिटल लोन ऐप द्वारा लोन देने वाले बैंक या NBFC का नाम बताने में विफल रहने पर, यह RBI के दिशानिर्देशों का उल्लंघन है। ['rbi-f41a357c#0122']
+4. डिजिटल लोन ऐप द्वारा लोन देने वाले बैंक या NBFC का नाम बताने में विफल रहने पर, यह RBI के दिशानिर्देशों का उल्लंघन है। ['rbi-f41a357c#0121']
+5. डिजिटल लोन ऐप द्वारा लोन देने वाले बैंक या NBFC का नाम बताने में विफल रहने पर, यह RBI के दिशानिर्देशों का उल्लंघन है। ['rbi-f41a357c#0122']
+6. डिजिटल लोन ऐप द्वारा लोन देने वाले बैंक या NBFC का नाम बताने में विफल रहने पर, यह RBI के दिशानिर्देशों का उल्लंघन है। ['rbi-f41a357c#0121']
+7. धोखाधड़ी की तुरंत रिपोर्ट करें: राष्ट्रीय साइबर क्राइम हेल्पलाइन 1930 पर कॉल करें / cybercrime.gov.in पर शिकायत दर्ज करें. ['pressinf-0aa4344f#0009']","[pressinf-0aa4344f#0009] Curbing Cyber Frauds in Digital India: yber defences, the Union Budget 2025 has allocate d ₹782 crore for
+cybersecurity projects. This significant move highlights government’s heightened focus on cyber threats that
+pose risk to the national security.19 Through the Citizen Financial Cyber Fraud Reporting and Management
+System (CFCFRMS), financial institutions have been able to save more than ₹5,489 crore in over 17.82 lakh
+complaints.20
+To strengthen citizen participation in the fight against cybercrime, the Government has operationalised the
+National Cyber Crime Reporting Portal (www.cybercrime.gov.in). The portal enables citizens to report
+complaints relating to various categories of cybercrime, with a special focus on offences targeting women and
+children. A dedicated cybercrime helpline number 1930 provides immediate assista
+
+[rbi-f41a357c#0121] Financial Awareness Messages (FAME) booklet, RBI: engaged
+by REs, for extending any
+credit facilitation services,
+in conformity with extant
+outsourcing guidelines
+issued by the Reserve Bank.
+DLAs typically work by using
+technology to automate
+the loan application and
+disbursal process on behalf
+of banks and NBFCs. Y ou can
+apply for a loan through your
+smartphone, and the app
+will use digital tools to check
+your information and process
+the loan.
+Before using any digital lending app, you can check whether the app is
+associated/ has outsourcing arrangement with an RBI regulated bank/
+NBFC by logging onto their (bank/NBFC) website. Further, you should
+avoid downloading any apps received as links over SMS or social media
+channels.
+l Reporting of Suspicious Apps
+Any suspicious loan app, whether on any app store or received
+through SMS/ social 
+
+[rbi-f41a357c#0122] Financial Awareness Messages (FAME) booklet, RBI: r the app is
+associated/ has outsourcing arrangement with an RBI regulated bank/
+NBFC by logging onto their (bank/NBFC) website. Further, you should
+avoid downloading any apps received as links over SMS or social media
+channels.
+l Reporting of Suspicious Apps
+Any suspicious loan app, whether on any app store or received
+through SMS/ social media link should be reported to law
+enforcement agencies.
+l Understanding the financial impact of loan
+Before taking a digital loan, you must carefully assess the total cost
+of the loan in the form of Annual Percentage Rate and other related
+terms and conditions displayed in the Key Fact Statement.
+l Read loan related documents carefully
+Y ou should read various loan related documents like Key Fact
+Statement (KFS), sanction letter, privacy policies of l",0,,
+q034,"I invested money in a trading app after seeing it promoted on WhatsApp, but now I can't withdraw my money. What should I do?","1. Verify the broker or platform is SEBI-registered before investing. ['certin-00209aa3#0042']
+2. Report the incident to the National Cyber Crime Reporting Portal (cybercrime.gov.in) or call the helpline 1930. ['pressinf-0aa4344f#0009']","[certin-00209aa3#0042] Digital Safety Compass Handbook (Safer Internet Day 2025): ital Safety
+The fraudulent trading app scam involves
+creating deceptive apps to trick investors,
+promising high returns with low risk to lure you
+into investing.
+Scammers try
+to contact
+victims
+through social
+media and
+establish trust.
+After gaining
+trust, scammers
+offer a fake
+trading app as a
+profitable
+investment.
+The app falsely
+shows rising
+investments,
+misleading
+victims into
+investing more.
+impose hidden
+fees when
+victims withdraw
+funds, hindering
+their recovery
+efforts.
+Ensure your broker is SEBI-
+registered. Verify on SEBI’s
+official website.
+Use the official app or
+website of a registered
+broker for fund transfers.
+Some influencers may
+promote fake investments.
+Research before trusting
+their advice.
+Avoid transferring money to
+personal accounts; always
+use the official app or
+web
+
+[pressinf-0aa4344f#0009] Curbing Cyber Frauds in Digital India: yber defences, the Union Budget 2025 has allocate d ₹782 crore for
+cybersecurity projects. This significant move highlights government’s heightened focus on cyber threats that
+pose risk to the national security.19 Through the Citizen Financial Cyber Fraud Reporting and Management
+System (CFCFRMS), financial institutions have been able to save more than ₹5,489 crore in over 17.82 lakh
+complaints.20
+To strengthen citizen participation in the fight against cybercrime, the Government has operationalised the
+National Cyber Crime Reporting Portal (www.cybercrime.gov.in). The portal enables citizens to report
+complaints relating to various categories of cybercrime, with a special focus on offences targeting women and
+children. A dedicated cybercrime helpline number 1930 provides immediate assista",1,,
+q087,"RBI के नाम पर मुझे ईमेल आया है जिसमें मेरा बैंक अकाउंट की डिटेल मांगी गई है, मुझे क्या करना चाहिए?","1. नहीं, RBI के नाम पर आया कोई भी ईमेल जिसमें बैंक खाता विवरण मांगा गया है, उसे जवाब न दें। RBI ने स्पष्ट किया है कि उसने 24x7 सेंट्रलाइज्ड मॉनिटरिंग सेंटर स्थापित नहीं किया है और न ही कोई ऐसा ईमेल भेजा है। ['rbi-681e23bf#0000']
+2. नहीं, RBI के नाम पर भेजा गया कोई भी phishing मेल जिसमें 'Netsecured' जैसे सुरक्षा सॉफ्टवेयर का जिक्र हो, उसे खोलें या डाउनलोड न करें। RBI ने स्पष्ट किया है कि उसने ऐसी कोई सॉफ्टवेयर विकसित नहीं की है और न ही ऐसा कोई मेल भेजा है। ['rbi-681e23bf#0000']
+3. नहीं, RBI के नाम पर बनाया गया कोई भी नकली वेबसाइट (जैसे www.indiareserveban.org) पर व्यक्तिगत या बैंकिंग विवरण न दें। RBI ने चेतावनी दी है कि ऐसी वेबसाइट्स व्यक्तिगत और गोपनीय बैंकिंग विवरण प्राप्त करने के लिए बनाई गई हैं। ['rbi-aba6e909#0001']
+4. अगर पहले ही कोई जानकारी साझा कर दी है या धन हानि हुई है, तो तुरंत 1930 पर कॉल करें या cybercrime.gov.in पर शिकायत दर्ज कराएं। ['pressinf-0aa4344f#0009']","[pressinf-0aa4344f#0009] Curbing Cyber Frauds in Digital India: yber defences, the Union Budget 2025 has allocate d ₹782 crore for
+cybersecurity projects. This significant move highlights government’s heightened focus on cyber threats that
+pose risk to the national security.19 Through the Citizen Financial Cyber Fraud Reporting and Management
+System (CFCFRMS), financial institutions have been able to save more than ₹5,489 crore in over 17.82 lakh
+complaints.20
+To strengthen citizen participation in the fight against cybercrime, the Government has operationalised the
+National Cyber Crime Reporting Portal (www.cybercrime.gov.in). The portal enables citizens to report
+complaints relating to various categories of cybercrime, with a special focus on offences targeting women and
+children. A dedicated cybercrime helpline number 1930 provides immediate assista
+
+[rbi-681e23bf#0000] Do not respond to Mails asking for your Internet Banking Account Details : RBI Cautions Public: Date: 14/09/2012
+Do not respond to Mails asking for your Internet Banking Account Details : RBI Cautions Public
+It has come to the notice of the Reserve Bank of India (RBI) that a fraudulent email has been sent and signed in its name as `Reserve Bank of India'. The mail has referred to provisions of Banking Regulation act, 1949 and Prevention of Money Laundering Rules, 2005 and informs bank account holders about the Reserve Bank setting up a new 24x7 Centralised Monitoring Centre to monitor financial transaction flow from the Internet Banking Accounts. The email then gives a link asking bank account holders to update their account information for updation in their database. The Reserve Bank clarifies that it has not sent any such mail and has not set up any 24x7 Centralised Monitoring Cent
+
+[rbi-aba6e909#0001] RBI Cautions about Fictitious Emails: of public are advised to be careful and not get misled by fake websites with similar addresses beginning with ‘Reserve Bank’, ‘RBI’, etc., along with fake logos. Immediately inform the local police or cybercrime authority about such frauds. Members of public are advised not to respond to communication from such people/entities and not to fall prey to fraudulent emails in the name of RBI. Jose J. Kattoor Chief General Manager Press Release: 2018-2019/34 Related Press Releases/Notifications June 12, 2018 RBI cautions job aspirants on ‘Recruitment related communication received from sources other than the RBI website’ Feb 8, 2018 RBI Cautions about Fake Websites in its Name Apr 11, 2015 RBI cautions on 'All Bank Balance Enquiry' App Jan 01, 2015 RBI cautions Public against Multi Level Marketi",0,,
+q082,I noticed an unauthorized debit in my bank account. How quickly do I need to inform the bank to avoid losing my money?,"1. Notify your bank immediately after discovering the unauthorized transaction; the bank must resolve your complaint within 90 days from the date of receipt. ['rbi-106bf499#0001']
+2. If you inform the bank within 3 working days of the unauthorized transaction and there is no customer negligence, you have no liability for the loss. ['rbi-f41a357c#0078']
+3. If you delay reporting, your loss will increase and it will be decided based on RBI guidelines and your bank's board-approved policy. ['rbi-106bf499#0001']
+4. Take an acknowledgement from your bank when you notify them of the complaint. ['rbi-106bf499#0001']
+5. Report the fraud through the National Cyber Crime Reporting Portal (www.cybercrime.gov.in) or call the dedicated helpline number 1930 for immediate assistance. ['pressinf-0aa4344f#0009']","[pressinf-0aa4344f#0009] Curbing Cyber Frauds in Digital India: yber defences, the Union Budget 2025 has allocate d ₹782 crore for
+cybersecurity projects. This significant move highlights government’s heightened focus on cyber threats that
+pose risk to the national security.19 Through the Citizen Financial Cyber Fraud Reporting and Management
+System (CFCFRMS), financial institutions have been able to save more than ₹5,489 crore in over 17.82 lakh
+complaints.20
+To strengthen citizen participation in the fight against cybercrime, the Government has operationalised the
+National Cyber Crime Reporting Portal (www.cybercrime.gov.in). The portal enables citizens to report
+complaints relating to various categories of cybercrime, with a special focus on offences targeting women and
+children. A dedicated cybercrime helpline number 1930 provides immediate assista
+
+[rbi-106bf499#0001] SMS on Customer Liability in Unauthorised Electronic Banking Transactions: transactions continue even after you have informed the bank, your bank will have to reimburse those amounts. If you delay the reporting, your loss will increase and it will be decided based on the RBI guidelines and the policy approved by your bank's board.
+Fraudulent transaction in your bank account? Limit your loss. Notify your bank immediately. For more details, give a missed call on 14440. If someone has fraudulently withdrawn money from your bank account, inform your bank immediately. When you notify the bank, remember to take acknowledgement from your bank. The bank has to resolve your complaint within 90 days from the date of receipt. If the transaction has happened because of your negligence, that is, because of your sharing your password, PIN, OTP , etc., you will have to bear the
+
+[rbi-f41a357c#0078] Financial Awareness Messages (FAME) booklet, RBI: f the fraudulent transactions continue even after you have informed
+the bank, the bank will have to bear the loss
+l Y our bank has to provide an acknowledgement for the complaint
+when you notify/inform the bank
+l The bank must resolve your complaint within 90 days
+l Bank shall credit the amount involved to the customer’s account within
+10 working days from the date of such notification by customer
+l If loss is due to negligence of the customer (sharing password etc.)
+then customer will bear the loss till the bank is informed
+4 If there is no negligence of the customer, and the customer
+informs the bank immediately (within 3 working days of the
+unauthorized transaction), there is no liability of the customer
+4 In case of negligence/ deficiency on the part of the bank
+(irrespective of whethe",1,,
+q013,"I got a message on WhatsApp saying I can earn sure profits from a trading app, and I'm asked to send money to a different bank account. What should I do?","1. Report the fraud immediately through the National Cyber Crime Reporting Portal or the 1930 helpline. ['pressinf-0aa4344f#0009']
+2. File a complaint on the Sanchar Saathi portal (Chakshu) for suspected fraud communications within 30 days. ['departme-09c0c586#0000']
+3. Inform the bank about the fraud; the bank may assist in freezing or recovering the account that received the money. ['rbi-fcad3939#0029']
+4. Verify the investment platform's legitimacy by checking SEBI's Registered Mobile Trading Apps Section before investing further. ['sebi-f7196f25#0002']","[departme-09c0c586#0000] Sanchar Saathi Suspected Fraud Communication Reporting: चक्षु - Chakshu
+(Report within 30 days for action)
+Proceed
+Chakshu facilitates citizens to report the suspected fraud communications with the intention of defrauding telecom service users for cyber-crime, financial frauds, non-bonafide purpose like impersonation or any other misuse through Call, SMS or WhatsApp.
+Examples: Bank Account / Payment Wallet / SIM / Gas / Electricity / KYC update, impersonation as Government official, sextortion etc.
+Note: If you have already lost money, please report at cyber crime helpline 1930 or cybercrime.gov.in .
+
+[pressinf-0aa4344f#0009] Curbing Cyber Frauds in Digital India: yber defences, the Union Budget 2025 has allocate d ₹782 crore for
+cybersecurity projects. This significant move highlights government’s heightened focus on cyber threats that
+pose risk to the national security.19 Through the Citizen Financial Cyber Fraud Reporting and Management
+System (CFCFRMS), financial institutions have been able to save more than ₹5,489 crore in over 17.82 lakh
+complaints.20
+To strengthen citizen participation in the fight against cybercrime, the Government has operationalised the
+National Cyber Crime Reporting Portal (www.cybercrime.gov.in). The portal enables citizens to report
+complaints relating to various categories of cybercrime, with a special focus on offences targeting women and
+children. A dedicated cybercrime helpline number 1930 provides immediate assista
+
+[rbi-fcad3939#0029] Reserve Bank of India (Commercial Banks - Responsible Business Conduct) Directions, 2025 (Updated as on October 1, 2026): avails these facilities while opening and / or operating the BSBD account. 86B. In the case of existing BSBD accounts, a bank shall extend the newly introduced free facilities at clause (5) to (7) of paragraph 86 above upon receipt of a request from the customer. The bank shall facilitate existing BSBD account holders to submit such requests through physical as well as digital channels. 87. A bank may provide additional facilities beyond the above minimum in a BSBD account, with or without charges, in a non-discretionary and non-discriminatory manner with transparent disclosure to the customer. However, while doing so, the bank shall not require the customer to maintain a minimum balance in the BSBD account. The availment of such additional facilities shall be at the option of the customer
+
+[sebi-f7196f25#0002] BEWARE OF Fake Trading App Scams!: nvestors with promises of high returns and "" "" access through fake trading apps and social
+media groups
+exclusive
+Stages of the Scam: Remember:
+Invest Wisely,
+Don't Fall for Get
+Unverified app links or apk files (download
+only from official app stores!
+Payments to third-party accounts
+(legitimate platforms don't do this
+Unrealistic promises (guaranteed returns in
+the securities market are a scam!)
+V erify platform legitimacy (check on
+Exchanges website or SEBI Investor website
+under Registered Mobile T rading Apps Section
+Be skeptical of investment advice / Stock tips
+on social medi
+Report any suspicious activity to cyber cell,
+I4C helpline 1930
+(https://investor.sebi.gov.in/Investor-
+support.html
+https://cybercrime.gov.in/ ( )
+Social Media Hook:
+Attractive ads on
+WhatsApp/T elegram
+promis",0,,
+q042,கைமுகை KYC மோசடி ஏற்பட்டபோது என்ன செய்ய வேண்டும்?,"1. உங்கள் கணினி/மொபைல் டிவி அல்லது கணினியில் இருந்து உknown app-ஐ பதிவேற்றமுடியாது. அனுமதியற்ற அல்லது சரிபார்க்கப்படாத apps பதிவேற்றம் செய்யாது. ['rbi-6e639779#0001']
+2. உங்கள் கணினி/மொபைல் டிவி அல்லது கணினியில் இருந்து உknown individual அல்லது organisation-ஐ KYC दस्तावेजங்கள் அல்லது அதன் காபி share செய்யாது. ['rbi-6e639779#0001']
+3. உங்கள் கணினி/மொபைல் டிவி அல்லது கணினியில் இருந்து account login credentials, card information, PINs, passwords, OTPs share செய்யாது. ['rbi-6e639779#0001']
+4. உங்கள் கணினி/மொபைல் டிவி அல்லது கணினியில் இருந்து account holder of a joint account-ஐ KYC documents share செய்யாது. ['rbi-39df730a#0003']
+5. உங்கள் கணினி/மொபைல் டிவி அல்லது கணினியில் இருந்து KYC Identifier share செய்யாது. ['rbi-39df730a#0013']
+6. மோசடியை உடனே புகார் செய்யுங்கள்: தேசிய சைபர் குற்ற உதவி எண் 1930-ஐ அழைக்கவும் / cybercrime.gov.in-இல் புகார் செய்யவும். ['pressinf-0aa4344f#0009']","[pressinf-0aa4344f#0009] Curbing Cyber Frauds in Digital India: yber defences, the Union Budget 2025 has allocate d ₹782 crore for
+cybersecurity projects. This significant move highlights government’s heightened focus on cyber threats that
+pose risk to the national security.19 Through the Citizen Financial Cyber Fraud Reporting and Management
+System (CFCFRMS), financial institutions have been able to save more than ₹5,489 crore in over 17.82 lakh
+complaints.20
+To strengthen citizen participation in the fight against cybercrime, the Government has operationalised the
+National Cyber Crime Reporting Portal (www.cybercrime.gov.in). The portal enables citizens to report
+complaints relating to various categories of cybercrime, with a special focus on offences targeting women and
+children. A dedicated cybercrime helpline number 1930 provides immediate assista
+
+[rbi-39df730a#0003] FAQs on Master Direction on KYC: has already been done for the concerned account and the same is not due for periodic updation. Q 12. Whether KYC is required to be done for all account holders of a joint account? Ans. Yes, documents as mentioned in reply to Q 5 above shall be submitted by all account holders of a joint account to the RE. Q 13. What are the different modes for onboarding individual customers by the RE? Ans. An RE has the following options to onboard a customer: (a) Face-to-face onboarding: Visit to the branch/ office of the RE; using e-KYC authentication (OTP as well as biometric based authentication); undertaking offline verification of proof of possession of Aadhaar Number; obtaining certified copy of the OVD or equivalent e-document thereof; undertaking ‘Digital KYC Process’, as per paragraph 16 of the 
+
+[rbi-39df730a#0013] FAQs on Master Direction on KYC: with prescribed standards and procedures.
+(b) Non-face-to-face onboarding:
+using Aadhaar OTP based e-KYC authentication ;
+using digital channels such as CKYCR, DigiLocker, equivalent e-document, etc., and non-digital modes such as obtaining copy of OVD certified by additional certifying authorities as allowed for NRIs and PIOs.
+Q 14. What is a KYC Identifier? How is it useful for a customer? Ans. KYC Identifier means the unique number or code assigned to a customer of an RE by the Central KYC Records Registry (CKYCR). If the customer approaches an RE for opening an account, he can provide his KYC Identifier and give consent to the RE to download the valid KYC data from CKYCR. This can obviate the need for the customer to submit KYC documents again while opening an account with another RE.
+
+
+[rbi-6e639779#0001] RBI cautions against frauds in the name of KYC updation: RBI Master Direction on KYC dated February 25, 2016 , as amended from time to time. Don’ts Do not share account login credentials, card information, PINs, passwords, OTPs with anyone. Do not share KYC documents or copies of KYC documents with unknown or unidentified individuals or organizations. Do not share any sensitive data/ information through unverified/unauthorized websites or applications. Do not click on suspicious or unverified links received in mobile or email. (Yogesh Dayal) Chief General Manager Press Release: 2023-2024/1794
+The Reserve Bank had cautioned members of public against frauds in the name of KYC updation vide its Press Release dated September 13, 2021 . In the wake of continuing incidents/ reports of customers falling prey to frauds being perpetrated in the name of K",0,,
+q074,"मुझे एक कॉल आई कि मेरा KYC अपडेट करना है और मुझे एक लिंक पर क्लिक करना है, अन्यथा मेरा पैसा कट जाएगा। मुझे क्या करना चाहिए?","1. खाता लॉगिन क्रेडेंशियल, कार्ड की जानकारी, PINs, पासवर्ड, OTPs किसी के साथ साझा न करें। ['rbi-6e639779#0001']
+2. संदिग्ध या अनवीरिफाइड लिंक प्राप्त होने पर उस पर क्लिक न करें। ['rbi-6e639779#0001']
+3. धोखाधड़ी की तुरंत रिपोर्ट करें: राष्ट्रीय साइबर क्राइम हेल्पलाइन 1930 पर कॉल करें / cybercrime.gov.in पर शिकायत दर्ज करें. ['pressinf-0aa4344f#0009']","[pressinf-0aa4344f#0009] Curbing Cyber Frauds in Digital India: yber defences, the Union Budget 2025 has allocate d ₹782 crore for
+cybersecurity projects. This significant move highlights government’s heightened focus on cyber threats that
+pose risk to the national security.19 Through the Citizen Financial Cyber Fraud Reporting and Management
+System (CFCFRMS), financial institutions have been able to save more than ₹5,489 crore in over 17.82 lakh
+complaints.20
+To strengthen citizen participation in the fight against cybercrime, the Government has operationalised the
+National Cyber Crime Reporting Portal (www.cybercrime.gov.in). The portal enables citizens to report
+complaints relating to various categories of cybercrime, with a special focus on offences targeting women and
+children. A dedicated cybercrime helpline number 1930 provides immediate assista
+
+[rbi-6e639779#0001] RBI cautions against frauds in the name of KYC updation: RBI Master Direction on KYC dated February 25, 2016 , as amended from time to time. Don’ts Do not share account login credentials, card information, PINs, passwords, OTPs with anyone. Do not share KYC documents or copies of KYC documents with unknown or unidentified individuals or organizations. Do not share any sensitive data/ information through unverified/unauthorized websites or applications. Do not click on suspicious or unverified links received in mobile or email. (Yogesh Dayal) Chief General Manager Press Release: 2023-2024/1794
+The Reserve Bank had cautioned members of public against frauds in the name of KYC updation vide its Press Release dated September 13, 2021 . In the wake of continuing incidents/ reports of customers falling prey to frauds being perpetrated in the name of K",1,,
+q022,என் ব্যாங்க் கணக்கில் எல்லாமல் பணி கழித்தது. என்னை ரபர்ட் செய்ய எப்படி? என்னை எந்த வரை பாதிப்படை இல்லை?,"1. அவசரமாக உங்கள் ব্যாங்கை அழித்து, உங்கள் கணக்கில் எந்தும் புதிய المعisance செய்யாது. ['rbi-106bf499#0000']
+2. விரைவில் 1930 எண்ணிக்கையுடன் cybercrime.gov.in-ம் மூலம் ரபர்ட் செய்யவும். ['pressinf-0aa4344f#0009']
+3. வங்கியை உடனே அறிவித்து, வாங்கியின் ஒப்பீடு எடுத்து, 90 நாட்களில் தீர்வு பெறவும். ['rbi-106bf499#0001']
+4. உங்கள் மொபைல் எண் வங்கியுடன் பதிவு செய்யப்பட்டிரா না? அது இல்லை என்றால், வங்கி உங்கள் கணக்கில் எлект्रônica Transactions செய்ய அனுமதிக்காது. ['rbi-d1477697#0009']","[pressinf-0aa4344f#0009] Curbing Cyber Frauds in Digital India: yber defences, the Union Budget 2025 has allocate d ₹782 crore for
+cybersecurity projects. This significant move highlights government’s heightened focus on cyber threats that
+pose risk to the national security.19 Through the Citizen Financial Cyber Fraud Reporting and Management
+System (CFCFRMS), financial institutions have been able to save more than ₹5,489 crore in over 17.82 lakh
+complaints.20
+To strengthen citizen participation in the fight against cybercrime, the Government has operationalised the
+National Cyber Crime Reporting Portal (www.cybercrime.gov.in). The portal enables citizens to report
+complaints relating to various categories of cybercrime, with a special focus on offences targeting women and
+children. A dedicated cybercrime helpline number 1930 provides immediate assista
+
+[rbi-106bf499#0000] SMS on Customer Liability in Unauthorised Electronic Banking Transactions: Home >> Customer Liability in Unauthorised Electronic Banking Transactions >> SMS SMS on Customer Liability in Unauthorised Electronic Banking Transactions Fraudulent transaction in your bank account? Limit your loss. Notify your bank immediately. For more details, give a missed call on 14440. IVRS on Customer Liability in Unauthorised Electronic Banking Transactions If someone has fraudulently withdrawn money from your bank account, inform your bank immediately. When you notify the bank, remember to take acknowledgement from your bank. The bank has to resolve your complaint within 90 days from the date of receipt. If the transaction has happened because of your negligence, that is, because of your sharing your password, PIN, OTP , etc., you will have to bear the loss till you report it to
+
+[rbi-106bf499#0001] SMS on Customer Liability in Unauthorised Electronic Banking Transactions: transactions continue even after you have informed the bank, your bank will have to reimburse those amounts. If you delay the reporting, your loss will increase and it will be decided based on the RBI guidelines and the policy approved by your bank's board.
+Fraudulent transaction in your bank account? Limit your loss. Notify your bank immediately. For more details, give a missed call on 14440. If someone has fraudulently withdrawn money from your bank account, inform your bank immediately. When you notify the bank, remember to take acknowledgement from your bank. The bank has to resolve your complaint within 90 days from the date of receipt. If the transaction has happened because of your negligence, that is, because of your sharing your password, PIN, OTP , etc., you will have to bear the
+
+[rbi-d1477697#0009] Customer Protection – Limiting Liability of Customers in Unauthorised Electronic Banking Transactions: This shall be important in determining the extent of a customer’s liability. The banks may not offer facility of electronic transactions, other than ATM cash withdrawals, to customers who do not provide mobile numbers to the bank. On receipt of report of an unauthorised transaction from the customer, banks must take immediate steps to prevent further unauthorised transactions in the account. Limited Liability of a Customer
+(a) Zero Liability of a Customer
+6. A customer’s entitlement to zero liability shall arise where the unauthorised transaction occurs in the following events:
+Contributory fraud/ negligence/ deficiency on the part of the bank (irrespective of whether or not the transaction is reported by the customer).
+Third party breach where the deficiency lies neither with the bank nor",0,,
+q004,"என் பங்கேற்பு கணக்கில் தவறு கேட்டோர்'appel செய்தார், அப்பில் அப்க் டவுன்லோட் செய்ய வேண்டியதாக கேட்டார்கள். என்ன செய்ய வேண்டும்?",1. மோசடியை உடனே புகார் செய்யுங்கள்: தேசிய சைபர் குற்ற உதவி எண் 1930-ஐ அழைக்கவும் / cybercrime.gov.in-இல் புகார் செய்யவும். ['pressinf-0aa4344f#0009'],"[pressinf-0aa4344f#0009] Curbing Cyber Frauds in Digital India: yber defences, the Union Budget 2025 has allocate d ₹782 crore for
+cybersecurity projects. This significant move highlights government’s heightened focus on cyber threats that
+pose risk to the national security.19 Through the Citizen Financial Cyber Fraud Reporting and Management
+System (CFCFRMS), financial institutions have been able to save more than ₹5,489 crore in over 17.82 lakh
+complaints.20
+To strengthen citizen participation in the fight against cybercrime, the Government has operationalised the
+National Cyber Crime Reporting Portal (www.cybercrime.gov.in). The portal enables citizens to report
+complaints relating to various categories of cybercrime, with a special focus on offences targeting women and
+children. A dedicated cybercrime helpline number 1930 provides immediate assista",0,,
+q053,"I took a loan from a digital app, but I don't know which bank or financial company actually provided it. The app is harassing me and I don't know where to report it. What should I do?","1. Check whether the app is associated with an RBI regulated bank or NBFC by visiting the bank or NBFC website and confirming the app's name; if the app is not listed, treat it as suspicious and avoid further use. ['rbi-f41a357c#0122']
+2. Report any suspicious loan app, whether downloaded from an app store or received via SMS/social media link, to law enforcement agencies. ['rbi-f41a357c#0121']
+3. If you have already lost money, report the incident at the cybercrime helpline number 1930 or at cybercrime.gov.in. ['pressinf-0aa4344f#0009', 'departme-09c0c586#0000']","[departme-09c0c586#0000] Sanchar Saathi Suspected Fraud Communication Reporting: चक्षु - Chakshu
+(Report within 30 days for action)
+Proceed
+Chakshu facilitates citizens to report the suspected fraud communications with the intention of defrauding telecom service users for cyber-crime, financial frauds, non-bonafide purpose like impersonation or any other misuse through Call, SMS or WhatsApp.
+Examples: Bank Account / Payment Wallet / SIM / Gas / Electricity / KYC update, impersonation as Government official, sextortion etc.
+Note: If you have already lost money, please report at cyber crime helpline 1930 or cybercrime.gov.in .
+
+[pressinf-0aa4344f#0009] Curbing Cyber Frauds in Digital India: yber defences, the Union Budget 2025 has allocate d ₹782 crore for
+cybersecurity projects. This significant move highlights government’s heightened focus on cyber threats that
+pose risk to the national security.19 Through the Citizen Financial Cyber Fraud Reporting and Management
+System (CFCFRMS), financial institutions have been able to save more than ₹5,489 crore in over 17.82 lakh
+complaints.20
+To strengthen citizen participation in the fight against cybercrime, the Government has operationalised the
+National Cyber Crime Reporting Portal (www.cybercrime.gov.in). The portal enables citizens to report
+complaints relating to various categories of cybercrime, with a special focus on offences targeting women and
+children. A dedicated cybercrime helpline number 1930 provides immediate assista
+
+[rbi-f41a357c#0121] Financial Awareness Messages (FAME) booklet, RBI: engaged
+by REs, for extending any
+credit facilitation services,
+in conformity with extant
+outsourcing guidelines
+issued by the Reserve Bank.
+DLAs typically work by using
+technology to automate
+the loan application and
+disbursal process on behalf
+of banks and NBFCs. Y ou can
+apply for a loan through your
+smartphone, and the app
+will use digital tools to check
+your information and process
+the loan.
+Before using any digital lending app, you can check whether the app is
+associated/ has outsourcing arrangement with an RBI regulated bank/
+NBFC by logging onto their (bank/NBFC) website. Further, you should
+avoid downloading any apps received as links over SMS or social media
+channels.
+l Reporting of Suspicious Apps
+Any suspicious loan app, whether on any app store or received
+through SMS/ social 
+
+[rbi-f41a357c#0122] Financial Awareness Messages (FAME) booklet, RBI: r the app is
+associated/ has outsourcing arrangement with an RBI regulated bank/
+NBFC by logging onto their (bank/NBFC) website. Further, you should
+avoid downloading any apps received as links over SMS or social media
+channels.
+l Reporting of Suspicious Apps
+Any suspicious loan app, whether on any app store or received
+through SMS/ social media link should be reported to law
+enforcement agencies.
+l Understanding the financial impact of loan
+Before taking a digital loan, you must carefully assess the total cost
+of the loan in the form of Annual Percentage Rate and other related
+terms and conditions displayed in the Key Fact Statement.
+l Read loan related documents carefully
+Y ou should read various loan related documents like Key Fact
+Statement (KFS), sanction letter, privacy policies of l",0,,
+q010,I borrowed money from a loan app and now they're harassing me for more money than I owe. What should I do and how can I check if the app is real?,"1. Before using any digital lending app, check whether the app is associated with an RBI regulated bank or NBFC by logging onto their website. ['rbi-f41a357c#0121']
+2. Make sure the app has a Reserve Bank of India's (RBI's) mobile-only Non-Banking Financial Company (NBFC) license to give loans. ['certin-00209aa3#0040']
+3. Report any suspicious loan app to law enforcement agencies, whether it is on any app store or received through SMS/social media link. ['rbi-f41a357c#0121']
+4. Report the incident through the National Cyber Crime Reporting Portal (www.cybercrime.gov.in) or call the dedicated cybercrime helpline number 1930 for immediate assistance. ['pressinf-0aa4344f#0009']","[certin-00209aa3#0040] Digital Safety Compass Handbook (Safer Internet Day 2025): t credit checks.
+Carefully scrutinize interest rates and terms; if they seem too good to
+be true, they likely are.
+Make sure the app has a Reserve Bank of India's (RBI's)
+mobile-only Non-Banking Financial Company (NBFC) license to
+give loans.
+Fake loan app scams target individuals in financial need and distress.
+Scammers pose as legitimate lenders, offering quick loans with little or
+no paperwork.
+Scammers target
+vulnerable people via fake
+websites, ads, or emails.
+Once victims show interest,
+fraudsters ask for advance
+fees, or bank access and
+makes the victim to install
+malicious apps.
+Victims are lured into
+high-interest loans,
+making repayment
+nearly impossible.
+Scammers extort money
+by manipulating photos
+and threatening victims.
+CERT-In’s Digital Safety
+
+[pressinf-0aa4344f#0009] Curbing Cyber Frauds in Digital India: yber defences, the Union Budget 2025 has allocate d ₹782 crore for
+cybersecurity projects. This significant move highlights government’s heightened focus on cyber threats that
+pose risk to the national security.19 Through the Citizen Financial Cyber Fraud Reporting and Management
+System (CFCFRMS), financial institutions have been able to save more than ₹5,489 crore in over 17.82 lakh
+complaints.20
+To strengthen citizen participation in the fight against cybercrime, the Government has operationalised the
+National Cyber Crime Reporting Portal (www.cybercrime.gov.in). The portal enables citizens to report
+complaints relating to various categories of cybercrime, with a special focus on offences targeting women and
+children. A dedicated cybercrime helpline number 1930 provides immediate assista
+
+[rbi-f41a357c#0121] Financial Awareness Messages (FAME) booklet, RBI: engaged
+by REs, for extending any
+credit facilitation services,
+in conformity with extant
+outsourcing guidelines
+issued by the Reserve Bank.
+DLAs typically work by using
+technology to automate
+the loan application and
+disbursal process on behalf
+of banks and NBFCs. Y ou can
+apply for a loan through your
+smartphone, and the app
+will use digital tools to check
+your information and process
+the loan.
+Before using any digital lending app, you can check whether the app is
+associated/ has outsourcing arrangement with an RBI regulated bank/
+NBFC by logging onto their (bank/NBFC) website. Further, you should
+avoid downloading any apps received as links over SMS or social media
+channels.
+l Reporting of Suspicious Apps
+Any suspicious loan app, whether on any app store or received
+through SMS/ social ",1,,
+q014,"I got a message saying money was sent to my UPI account by mistake and I need to send it back. But when I entered my PIN, a larger amount was deducted from my account. Why is this happening?","1. A caller claims the money was sent by mistake and urgently asks you to return it, then a UPI collect request arrives for a much larger amount disguised as the ""refund"". Entering your UPI PIN approves the larger payment. ['departme-e1719044#0013']
+2. The 1930 helpline and cybercrime.gov.in provide immediate assistance and a mechanism to report online financial frauds. ['pressinf-0aa4344f#0009']","[departme-e1719044#0013] Beware of Jumped Deposit Alert scam (DoT): Just now
+Who sent
+this?
+A stranger sends a small
+amount – ₹10, ₹50 or more – to
+your bank account through
+UPI.
+Incoming call...
+Sent by
+mistake!
+Return it
+The caller claims the money
+was sent by mistake and
+urgently asks you to return it.
+₹50
+₹5,000
+from: refund.help@upi
+₹5,000
+It's a
+A UPI collect request arrives
+for a much larger amount,
+disguised as the ""refund"".
+Enter UPI PIN
+1 2 3
+4 5 6
+7 8 9
+Not needed
+to receive
+You enter your UPI PIN
+thinking you are returning the
+money. That approves the
+larger payment.
+
+[pressinf-0aa4344f#0009] Curbing Cyber Frauds in Digital India: yber defences, the Union Budget 2025 has allocate d ₹782 crore for
+cybersecurity projects. This significant move highlights government’s heightened focus on cyber threats that
+pose risk to the national security.19 Through the Citizen Financial Cyber Fraud Reporting and Management
+System (CFCFRMS), financial institutions have been able to save more than ₹5,489 crore in over 17.82 lakh
+complaints.20
+To strengthen citizen participation in the fight against cybercrime, the Government has operationalised the
+National Cyber Crime Reporting Portal (www.cybercrime.gov.in). The portal enables citizens to report
+complaints relating to various categories of cybercrime, with a special focus on offences targeting women and
+children. A dedicated cybercrime helpline number 1930 provides immediate assista",1,,
+q017,I got a message on WhatsApp about an app that claims I can earn quick money. What should I do if I think it's a scam?,"1. Do not download any app or click links from unverified WhatsApp messages promising quick money. ['sebi-f7196f25#0001']
+2. Only download apps from official app stores; avoid unverified APK files or links shared on social media. ['sebi-f7196f25#0001']
+3. Be skeptical of any platform that promises guaranteed returns, as unrealistic promises are a hallmark of investment scams. ['sebi-f7196f25#0001']
+4. Verify the platform's legitimacy by checking the SEBI Registered Mobile Trading Apps Section or the Exchange website. ['sebi-f7196f25#0002']
+5. If you have already lost money, report the incident immediately to the cybercrime helpline 1930 or at cybercrime.gov.in. ['pressinf-0aa4344f#0009', 'departme-09c0c586#0000']","[departme-09c0c586#0000] Sanchar Saathi Suspected Fraud Communication Reporting: चक्षु - Chakshu
+(Report within 30 days for action)
+Proceed
+Chakshu facilitates citizens to report the suspected fraud communications with the intention of defrauding telecom service users for cyber-crime, financial frauds, non-bonafide purpose like impersonation or any other misuse through Call, SMS or WhatsApp.
+Examples: Bank Account / Payment Wallet / SIM / Gas / Electricity / KYC update, impersonation as Government official, sextortion etc.
+Note: If you have already lost money, please report at cyber crime helpline 1930 or cybercrime.gov.in .
+
+[pressinf-0aa4344f#0009] Curbing Cyber Frauds in Digital India: yber defences, the Union Budget 2025 has allocate d ₹782 crore for
+cybersecurity projects. This significant move highlights government’s heightened focus on cyber threats that
+pose risk to the national security.19 Through the Citizen Financial Cyber Fraud Reporting and Management
+System (CFCFRMS), financial institutions have been able to save more than ₹5,489 crore in over 17.82 lakh
+complaints.20
+To strengthen citizen participation in the fight against cybercrime, the Government has operationalised the
+National Cyber Crime Reporting Portal (www.cybercrime.gov.in). The portal enables citizens to report
+complaints relating to various categories of cybercrime, with a special focus on offences targeting women and
+children. A dedicated cybercrime helpline number 1930 provides immediate assista
+
+[sebi-f7196f25#0001] BEWARE OF Fake Trading App Scams!: BEWARE OF Fake Trading App Scams!
+Scammers lure investors with promises of high returns and "" "" access through fake trading apps and social
+media groups
+exclusive
+Stages of the Scam: Remember:
+Invest Wisely,
+Don't Fall for Get
+Unverified app links or apk files (download
+only from official app stores!
+Payments to third-party accounts
+(legitimate platforms don't do this
+Unrealistic promises (guaranteed returns in
+the securities market are a scam!)
+
+[sebi-f7196f25#0002] BEWARE OF Fake Trading App Scams!: nvestors with promises of high returns and "" "" access through fake trading apps and social
+media groups
+exclusive
+Stages of the Scam: Remember:
+Invest Wisely,
+Don't Fall for Get
+Unverified app links or apk files (download
+only from official app stores!
+Payments to third-party accounts
+(legitimate platforms don't do this
+Unrealistic promises (guaranteed returns in
+the securities market are a scam!)
+V erify platform legitimacy (check on
+Exchanges website or SEBI Investor website
+under Registered Mobile T rading Apps Section
+Be skeptical of investment advice / Stock tips
+on social medi
+Report any suspicious activity to cyber cell,
+I4C helpline 1930
+(https://investor.sebi.gov.in/Investor-
+support.html
+https://cybercrime.gov.in/ ( )
+Social Media Hook:
+Attractive ads on
+WhatsApp/T elegram
+promis",0,,
+q041,"என் கணக்கு blocked ஆகவா? KYC அப்டேட் link भेजியர், என்ன செய்ய வேண்டும்?","1. அவuthorized person அல்லது உங்கள் ব্যங்கிலிருந்து வராத அழைப்பை பதில் கொள்ளாது. KYC பதிவர்ப்பு名義ம் பற்றி உங்கள் தனிப்பட்ட தகவல்களை divulge செய்யாது. ['rbi-6e639779#0001']
+2. விர-unknown இணைப்புகளை மின்னஞ்சல் அல்லது SMS-ஐ கிளிக் செய்யாது. ['rbi-6e639779#0001']
+3. வெளியேற்றப்பட்ட KYC दocuments அல்லது அதன் காபி எந்தவொரு அknown individuo அல்லது tổர்க்கு பகிர்ந்துகொள்ளாது. ['rbi-6e639779#0001']
+4. ஒரு பொருத்தமான தளம் அல்லது உங்கள் ব্যங்கின் शाखapexcess the official website of your bank or contact the branch. ['rbi-843271d7#0001']
+5. கணக்கில் ஏற்பட்ட மோசமான செயல்களை உடனடியாக 1930 helpline-ல் அல்லது cybercrime.gov.in-ல் தெரிவிக்கவும். ['departme-09c0c586#0000']","[departme-09c0c586#0000] Sanchar Saathi Suspected Fraud Communication Reporting: चक्षु - Chakshu
+(Report within 30 days for action)
+Proceed
+Chakshu facilitates citizens to report the suspected fraud communications with the intention of defrauding telecom service users for cyber-crime, financial frauds, non-bonafide purpose like impersonation or any other misuse through Call, SMS or WhatsApp.
+Examples: Bank Account / Payment Wallet / SIM / Gas / Electricity / KYC update, impersonation as Government official, sextortion etc.
+Note: If you have already lost money, please report at cyber crime helpline 1930 or cybercrime.gov.in .
+
+[rbi-6e639779#0001] RBI cautions against frauds in the name of KYC updation: RBI Master Direction on KYC dated February 25, 2016 , as amended from time to time. Don’ts Do not share account login credentials, card information, PINs, passwords, OTPs with anyone. Do not share KYC documents or copies of KYC documents with unknown or unidentified individuals or organizations. Do not share any sensitive data/ information through unverified/unauthorized websites or applications. Do not click on suspicious or unverified links received in mobile or email. (Yogesh Dayal) Chief General Manager Press Release: 2023-2024/1794
+The Reserve Bank had cautioned members of public against frauds in the name of KYC updation vide its Press Release dated September 13, 2021 . In the wake of continuing incidents/ reports of customers falling prey to frauds being perpetrated in the name of K
+
+[rbi-843271d7#0001] Consumer Awareness - Cyber Threats and Frauds: transactions. These will help in preventing financial and / or other loss to them. (Yogesh Dayal) Chief General Manager Press Release: 2021-2022/1630 SAFE DIGITAL BANKING PRACTICES Never share your account details such as account number, login ID, password, PIN, UPI-PIN, OTP, ATM / Debit card / credit card details with anyone, not even with bank officials, however genuine they might sound. Any phone call / email threatening the blocking of your account on the pretext of non-updation of KYC and suggestion to click link for updating the same is a common modus operandi of fraudsters. Do not respond to offers for getting KYC updated / expedited. Always access the official website of your bank / NBFC / e-wallet provider or contact the branch. Do not download any unknown app on your phone / devi",0,,
+q061,"ஒரு அஞ்சரை உங்கள் UPI மூலம் ₹50 சென்று வரைச்சு. பின்னர் அவர் கேட்டு, 'தவறு சென்றது' என்கிறார். என்ன செய்ய வேண்டும்?","1. ஒரு அஞ்சரை உங்கள் UPI மூலம் ₹50 சென்று வரைச்சு. பின்னர் அவர் கேட்டு, 'தவறு சென்றது' என்கிறார். உங்கள் கணக்கில் இருந்து பணம் திரும்பiccinkan. ['departme-e1719044#0011']
+2. மோசடியை உடனே புகார் செய்யுங்கள்: தேசிய சைபர் குற்ற உதவி எண் 1930-ஐ அழைக்கவும் / cybercrime.gov.in-இல் புகார் செய்யவும். ['pressinf-0aa4344f#0009']","[departme-e1719044#0011] Beware of Jumped Deposit Alert scam (DoT): s
+₹50 credited
+from unknown UPI
+Just now
+Who sent
+this?
+A stranger sends a small
+amount – ₹10, ₹50 or more – to
+your bank account through
+UPI.
+Incoming call...
+Sent by
+mistake!
+Return it
+The caller claims the money
+was sent by mistake and
+urgently asks you to return it.
+₹50
+₹5,000
+from: refund.help@upi
+₹5,000
+It's a
+A UPI collect request arrives
+for a much larger amount,
+disguised as the ""refund"".
+Enter UPI PIN
+
+[pressinf-0aa4344f#0009] Curbing Cyber Frauds in Digital India: yber defences, the Union Budget 2025 has allocate d ₹782 crore for
+cybersecurity projects. This significant move highlights government’s heightened focus on cyber threats that
+pose risk to the national security.19 Through the Citizen Financial Cyber Fraud Reporting and Management
+System (CFCFRMS), financial institutions have been able to save more than ₹5,489 crore in over 17.82 lakh
+complaints.20
+To strengthen citizen participation in the fight against cybercrime, the Government has operationalised the
+National Cyber Crime Reporting Portal (www.cybercrime.gov.in). The portal enables citizens to report
+complaints relating to various categories of cybercrime, with a special focus on offences targeting women and
+children. A dedicated cybercrime helpline number 1930 provides immediate assista",0,,
+q075,"मुझे RBI के नाम की एक मेल मिली जिसमें मेरा बैंक अकाउंट डिटेल्स मांग रहा था। मुझे उस लिंक पर क्लिक नहीं करना था, लेकिन मुझे उसमें अपना व्यक्तिगत डेटा भी लिख दिया। अब मुझे क्या करना चाहिए?","1. अनजान ईमेल का जवाब न दें और उसमें दिए गए किसी भी लिंक पर क्लिक न करें, क्योंकि RBI ने चेताया है कि fraudulent email में लिंक दिया जाता है जिससे बैंक खाता विवरण मांगा जाता है। ['rbi-681e23bf#0001']
+2. अगर पहले ही कोई लेनदेन हो गया है, तो तुरंत 1930 पर कॉल करें या cybercrime.gov.in पर शिकायत दर्ज कराएं, क्योंकि सरकार ने राष्ट्रीय साइबर अपराध रिपोर्टिंग पोर्टल शुरू किया है और 1930 helpline तुरंत सहायता प्रदान करती है। ['pressinf-0aa4344f#0009', 'departme-09c0c586#0000']
+3. अपने बैंक या UPI ऐप को सूचित करें ताकि खाते की निगरानी की जा सके और कोई भी अनधिकृत लेनदेन रोका जा सके, क्योंकि Sanchar Saathi ने सलाह दी है कि यदि पहले ही पैसा खो दिया है तो तुरंत बैंक को सूचित करें। ['departme-09c0c586#0000']","[departme-09c0c586#0000] Sanchar Saathi Suspected Fraud Communication Reporting: चक्षु - Chakshu
+(Report within 30 days for action)
+Proceed
+Chakshu facilitates citizens to report the suspected fraud communications with the intention of defrauding telecom service users for cyber-crime, financial frauds, non-bonafide purpose like impersonation or any other misuse through Call, SMS or WhatsApp.
+Examples: Bank Account / Payment Wallet / SIM / Gas / Electricity / KYC update, impersonation as Government official, sextortion etc.
+Note: If you have already lost money, please report at cyber crime helpline 1930 or cybercrime.gov.in .
+
+[pressinf-0aa4344f#0009] Curbing Cyber Frauds in Digital India: yber defences, the Union Budget 2025 has allocate d ₹782 crore for
+cybersecurity projects. This significant move highlights government’s heightened focus on cyber threats that
+pose risk to the national security.19 Through the Citizen Financial Cyber Fraud Reporting and Management
+System (CFCFRMS), financial institutions have been able to save more than ₹5,489 crore in over 17.82 lakh
+complaints.20
+To strengthen citizen participation in the fight against cybercrime, the Government has operationalised the
+National Cyber Crime Reporting Portal (www.cybercrime.gov.in). The portal enables citizens to report
+complaints relating to various categories of cybercrime, with a special focus on offences targeting women and
+children. A dedicated cybercrime helpline number 1930 provides immediate assista
+
+[rbi-681e23bf#0001] Do not respond to Mails asking for your Internet Banking Account Details : RBI Cautions Public: Advisory May 28, 2010 Do Not fall Prey to Fictitious Offers of Funds Transfer: RBI Advisory May 26, 2010 Remittance towards participation in lottery, money circulation schemes, other fictitious offers of cheap funds, etc. Jul 30, 2009 Beware of Fictitious Offers/Lottery Winnings/Cheap Fund Offers: RBI Dec 07, 2007 RBI cautions Public against Fictitious Offers of Remitting Cheap Funds from Abroad It has come to the notice of the Reserve Bank of India (RBI) that a fraudulent email has been sent and signed in its name as `Reserve Bank of India'. The mail has referred to provisions of Banking Regulation act, 1949 and Prevention of Money Laundering Rules, 2005 and informs bank account holders about the Reserve Bank setting up a new 24x7 Centralised Monitoring Centre to monitor financial transac",0,,
+q058,ஸ்கேம் தவிர்க்க என் கணக்கில் இருந்து டிஜிட்டல் பணி எப்படி நிறுத்தி பாதுகாக்கலாம்? மீண்டும் தொடர்க்க எப்படி?,"1. உங்கள் கணக்கில் இருந்து டிஜிட்டல் பணி நிறுத்த உதவும் 'கிள் ஸwicth' அல்லது 'சेफ блок்' விருப்பத்தை உங்கள் பங்கீடு செய்யும் பங்கீடு அல்லது மென்பொருள் மூலம் அணுகவும். இதன் மூலம் எந்த டிஜிட்டல் பணி வழிகளையும் அல்லது.transaction வகைகளுக்கு வரம்புகளை கட்டுப்படுத்தலாம். ['rbi-80a28d95#0012']
+2. உங்கள் கணக்கில் இருந்து அனுமதியற்ற டிஜிட்டல் பணிகளை நிறுத்த உதவும் 'கிள் ஸwicth' விருப்பத்தை உங்கள் பங்கீடு செய்யும் பங்கீடு அல்லது மென்பொருள் மூலம் அணுகவும். ['rbi-80a28d95#0030']
+3. உங்கள் கணக்கில் இருந்து அனுமதியற்ற டிஜிட்டல் பணிகளை நிறுத்த உதவும் 'கிள் ஸwicth' விருப்பத்தை உங்கள் பங்கீடு செய்யும் பங்கீடு அல்லது மென்பொருள் மூலம் அணுகவும். ['rbi-80a28d95#0030']
+4. உங்கள் பங்கீடு செய்யும் பங்கீடு அல்லது மென்பொருள் மூலம் 'சेफ blok' அல்லது 'கிள் ஸwicth' விருப்பத்தை அணுகி, உங்கள் கணக்கில் இருந்து அனுமதியற்ற டிஜிட்டல் பணிகளை நிறுத்தவும். ['rbi-80a28d95#0030']
+5. உங்கள் பங்கீடு செய்யும் பங்கீடு அல்லது மென்பொருள் மூலம் 'சेफ blok' அல்லது 'கிள் ஸwicth' விருப்பத்தை அணுகி, உங்கள் கணக்கில் இருந்து அனுமதியற்ற டிஜிட்டல் பணிகளை நிறுத்தவும். ['rbi-80a28d95#0030']
+6. மோசடியை உடனே புகார் செய்யுங்கள்: தேசிய சைபர் குற்ற உதவி எண் 1930-ஐ அழைக்கவும் / cybercrime.gov.in-இல் புகார் செய்யவும். ['pressinf-0aa4344f#0009']","[pressinf-0aa4344f#0009] Curbing Cyber Frauds in Digital India: yber defences, the Union Budget 2025 has allocate d ₹782 crore for
+cybersecurity projects. This significant move highlights government’s heightened focus on cyber threats that
+pose risk to the national security.19 Through the Citizen Financial Cyber Fraud Reporting and Management
+System (CFCFRMS), financial institutions have been able to save more than ₹5,489 crore in over 17.82 lakh
+complaints.20
+To strengthen citizen participation in the fight against cybercrime, the Government has operationalised the
+National Cyber Crime Reporting Portal (www.cybercrime.gov.in). The portal enables citizens to report
+complaints relating to various categories of cybercrime, with a special focus on offences targeting women and
+children. A dedicated cybercrime helpline number 1930 provides immediate assista
+
+[rbi-80a28d95#0012] Discussion Paper - Exploring safeguards in digital payments to curb frauds: option, which would allow customers to disable digital access in case they suspect unauthorised activity in their accounts. 4.2 Possible approach: 4.2.1 Transaction level controls Customers can be provided with digital payment controls which would consist of a ‘switch on/off’ facility for any digital payment mode as well as for setting limits for different transaction types at the account level. This would allow customers to control the debit transactions at the account level across any or all digital payment channels. It may be made accessible to the customer either through bank branch visits or through Internet banking, Mobile banking, Phone banking, Interactive Voice Response or any other authenticated bank interfaces. 4.2.2. Kill-switch Customers may also be provided with a single faci
+
+[rbi-80a28d95#0030] Discussion Paper - Exploring safeguards in digital payments to curb frauds: banking account via mobile app or hotline and, thereby, disable fund transfers, digital banking access, and payment functions. Such action can be reversed only after identity verification by the bank.
+Australia:
+Some banks have rolled out “digital padlock” or “safe block” option, which would allow customers to disable digital access in case they suspect unauthorised activity in their accounts. 4.2 Possible approach:
+4.2.1 Transaction level controls
+Customers can be provided with digital payment controls which would consist of a ‘switch on/off’ facility for any digital payment mode as well as for setting limits for different transaction types at the account level.
+This would allow customers to control the debit transactions at the account level across any or all digital payment channels. It",0,,
