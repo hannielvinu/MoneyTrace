@@ -90,7 +90,7 @@ def _build_agents():
         lang = (ctx.state.get("case_record") or {}).get("language") or ctx.state.get("language") or "en"
         return GUIDANCE_INSTRUCTION.format(language_name=LANG_NAMES.get(lang, "English"))
 
-    guidance = LlmAgent(name="guidance_agent", model=adk_model("strong"), instruction=_guidance_instruction,
+    guidance = LlmAgent(name="guidance_agent", model=adk_model("strong", thinking=False), instruction=_guidance_instruction,
                         description="Writes step-by-step victim guidance grounded only in retrieved official advisories.",
                         tools=[search_advisories], output_key="guidance_draft", generate_content_config=gen)
     coordinator = LlmAgent(name="coordinator", model=adk_model("fast"), instruction=COORDINATOR_INSTRUCTION,

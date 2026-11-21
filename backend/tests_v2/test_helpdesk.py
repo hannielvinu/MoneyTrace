@@ -35,3 +35,16 @@ def test_create_operator_account(app, client):
     uid, pw, existed = mod.create("whitehats.member@example.org", "Club Member")
     r = client.post("/api/auth/login", json={"email": "whitehats.member@example.org", "password": pw})
     assert r.status_code == 200 and r.json()["user"]["role"] == "FRAUD_OPERATOR"
+
+
+def test_retention_purge_removes_old_reports_but_keeps_counts(app):
+    from datetime import datetime, timedelta, timezone
+    from moneytrace.db import database as db
+    old = db.create_incident({"user_id": "usr_demo_victim_1", "narrative": "old report 9876543210", "language": "en",
+                              "created_ts": datetime.now(timezone.utc) - timedelta(days=200)})
+    db.add_audit_log(old, "x", "y")
+    db.record_usage_event("report_received", old, None, "en")
+    assert db.purge_reports_older_than(90, dry_run=True)["incidents"] >= 1
+    db.purge_reports_older_than(90)
+    assert db.get_incident(old) is None
+    assert db.get_usage_summary(400)["totals"]["reports_received"] >= 1

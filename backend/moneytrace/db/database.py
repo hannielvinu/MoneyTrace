@@ -589,3 +589,21 @@ def get_usage_summary(days: int = 30) -> Dict[str, Any]:
                                                              "operator_signoffs")}
     totals["median_seconds_to_first_guidance"] = round(statistics.median(all_secs), 1) if all_secs else None
     return {"days": days, "daily": sorted(daily.values(), key=lambda d: d["date"]), "totals": totals}
+
+
+def purge_reports_older_than(days: int, dry_run: bool = False) -> Dict[str, int]:
+    """Delete victim reports (and everything derived from them) older than `days`. usage_events are kept: no PII."""
+    from datetime import timedelta
+    cutoff = datetime.now(timezone.utc) - timedelta(days=days)
+    i = m.incidents
+    with get_engine().begin() as conn:
+        ids = [r[0] for r in conn.execute(select(i.c.id).where(i.c.created_ts < cutoff)).all()]
+        counts = {"incidents": len(ids)}
+        if dry_run or not ids:
+            return counts
+        for tbl in (m.audit_trail, m.entities, m.evidence_packages, m.investigation_events, m.user_notifications):
+            counts[tbl.name] = conn.execute(delete(tbl).where(tbl.c.incident_id.in_(ids))).rowcount
+        counts["llm_calls"] = conn.execute(delete(m.llm_calls).where(m.llm_calls.c.incident_id.in_(ids))).rowcount
+        conn.execute(update(m.usage_events).where(m.usage_events.c.incident_id.in_(ids)).values(incident_id=None))
+        conn.execute(delete(i).where(i.c.id.in_(ids)))
+    return counts

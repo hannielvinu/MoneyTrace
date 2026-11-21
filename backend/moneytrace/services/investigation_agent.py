@@ -544,6 +544,14 @@ async def run_legacy_pipeline(incident_id: str) -> Dict[str, Any]:
             guidance=victim_guidance_text
         )
 
+    try:
+        from moneytrace.db.database import mark_guidance_delivered, record_usage_event
+        record_usage_event("guidance_delivered", incident_id, scam_type, language, mark_guidance_delivered(incident_id))
+        if evidence_package.get("severity") == "CRITICAL":
+            record_usage_event("escalated", incident_id, scam_type, language)
+    except Exception as e:
+        logger.warning(f"usage logging failed: {e}")
+
     await emit_event(
         event_type="USER_NOTIFICATION_CREATED",
         incident_id=incident_id,

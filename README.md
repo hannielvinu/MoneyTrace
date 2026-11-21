@@ -14,6 +14,43 @@
 
 ---
 
+## 🆕 MoneyTrace v2 — multi-agent fraud-response help desk
+
+> **Status:** built and tested in development; Cloud Run deployment and the WhiteHats launch are pending
+> (see [`docs/HANNIEL_TODO.md`](docs/HANNIEL_TODO.md)). Measured numbers live only in [`RESULTS.md`](RESULTS.md).
+> Live demo (v1, Render): https://moneytrace-gv84.onrender.com — the Cloud Run URL replaces it once verified.
+
+**What changed in v2**
+- **Google ADK multi-agent system**: a coordinator delegates (agent-as-tool) to an **intake** agent
+  (voice / screenshot / text → structured case record), a **ReAct investigation** agent (ledger lookup, evidence-based
+  signal scoring, Cognee + database mule-ring search, justified severity) and a **guidance** agent.
+- **RAG over official advisories** (RBI, NPCI, CERT-In, PIB, DoT, SEBI): polite crawler (robots.txt, honest user agent),
+  ~600-token chunks, embeddings, **pgvector** + Postgres full-text hybrid search with reciprocal-rank fusion and query
+  translation for Hindi / Tamil / Kannada. Every guidance step cites its source (title + URL).
+- **Grounding self-check**: an LLM judge verifies each step against its cited passage; unsupported steps are removed or
+  regenerated once; otherwise a safe fallback ("Report immediately on 1930 / cybercrime.gov.in and contact your bank").
+- **Storage**: SQLAlchemy + Alembic on Postgres (Neon / Cloud SQL) or SQLite; **Firestore** ADK session service for
+  agent state (survives restarts and scale-to-zero).
+- **Observability**: OpenTelemetry (FastAPI + ADK spans → Cloud Trace), measured tokens, tokens/sec and INR cost per
+  request; load-test script.
+- **Help-desk mode**: disclaimer with 1930 / cybercrime.gov.in, consent gate, privacy note, PII redaction before every LLM
+  call, CRITICAL cases need operator sign-off, operator accounts for WhiteHats, usage logging without personal data.
+- **Honesty fixes**: removed the fake screenshot parser (always ₹18,500), fixed risk / confidence scores and the
+  hard-coded dashboard clusters.
+
+**Key docs:** [`docs/V2_SPEC.md`](docs/V2_SPEC.md) · [`docs/V2_PLAN.md`](docs/V2_PLAN.md) ·
+[`docs/OPERATOR_GUIDE.md`](docs/OPERATOR_GUIDE.md) · [`backend/rag/STATS.md`](backend/rag/STATS.md) ·
+[`backend/evaluation/RAG_EVAL_README.md`](backend/evaluation/RAG_EVAL_README.md)
+
+```bash
+make test        # unit tests (no network)
+make ingest      # build the advisory corpus (DATABASE_URL, EMBEDDING_PROVIDER)
+make eval        # classifier benchmark + RAG eval (recall@5, fully grounded %)
+make load        # load test (BASE_URL=...)
+```
+
+---
+
 ## 📑 Table of Contents
 - [The Problem](#-the-problem)
 - [System Architecture](#-system-architecture)

@@ -1,6 +1,6 @@
 # MoneyTrace v2 — Implementation Plan
 
-Status: **awaiting Hanniel's approval**. Nothing outside `docs/` has been changed yet.
+Status: **approved 2026-11-21; built phase by phase** (see "Decisions and deviations" at the end).
 Companion to `docs/V2_SPEC.md`.
 
 ## 1. What exists today (from reading the repo)
@@ -124,3 +124,16 @@ Sarvam STT/TTS and voice responses, the Cognee service, the n8n service, JWT/aut
 2. Your **GCP project ID**, and how I should authenticate. This container has no gcloud credentials. You can run the gcloud commands yourself, or grant a short-lived credential.
 3. A Gemini/Vertex credential for local development. The acceptance test and the agents need live model calls. The proxy here lists `generativelanguage.googleapis.com`, but my test call came back 401.
 4. Past commits are authored "agnes beulah". From now on every commit uses `Hanniel Vinu A <hannielvinu@gmail.com>` with no co-author lines. Rewriting the old commits as well would need a force-push of history. **Tell me if you want that.** Otherwise I leave them alone.
+
+## 8. Decisions and deviations (recorded during the build)
+
+| Topic | Spec | What was built | Why |
+|---|---|---|---|
+| Hosting | Cloud Run + Cloud SQL + Vertex AI | **Hybrid free**: Cloud Run, Firestore, Cloud Trace, Secret Manager on GCP free tier; **Neon** Postgres + pgvector; **Gemini API** (AI Studio key) for LLM + `gemini-embedding-001` | Hanniel chose a ₹0 setup; Cloud SQL / Vertex have no permanent free tier. Code still supports Cloud SQL (`DATABASE_URL`) and Vertex (`GOOGLE_GENAI_USE_VERTEXAI=true`). |
+| Delegation | `LlmAgent(sub_agents=...)` | Coordinator `LlmAgent` delegates via `AgentTool` (agent-as-a-tool) | Deterministic hand-back after each specialist; LLM `transfer_to_agent` chains were unreliable. Still hierarchical delegation, visible in traces. |
+| Milestones | same 12 SSE events | Ordered `MilestoneEmitter` + guard | Agents call tools in any order; UI needs canonical order. Guard completes skipped work and marks it `via: guard`. |
+| Dev models | Gemini | NVIDIA-hosted `nemotron-3.5-lightning` / `minimax-m3.1-flash` and `nemotron-3-embed-1b` (2048-d, no HNSW → exact scan) via LiteLLM in the build sandbox | No working Gemini key in the sandbox. All dev-model numbers are labelled; re-run with Gemini. |
+| Corpus size | ~120 docs | 49 docs ingested from the sandbox (131 candidates in `sources.yaml`) | PIB, NPCI, I4C, cybercrime.gov.in and the RBI PDF host refused the sandbox (robots 403 / bot challenge, never bypassed). `make ingest --refetch` from a laptop. |
+| Human review gate | CRITICAL → sign-off | `HUMAN_REVIEW_REQUIRED` event always emitted (milestone count stays 12) with `required: true/false`; only CRITICAL sets `requires_human_review` | Keeps the 12-milestone contract while honouring the rule. |
+| Cloud Run CPU | min instances 0 | `--no-cpu-throttling`, max 1 instance | Pipeline runs after the HTTP response; request-based billing would throttle it. |
+| Grounded % | judge + human 20 | Strict judge; uncited mandatory channel line and safe fallback count as NOT grounded | Conservative definition so the metric cannot be inflated by the fallback. |

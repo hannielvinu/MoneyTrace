@@ -64,7 +64,7 @@ def llm_available() -> bool:
     return get_settings().llm_configured()
 
 
-def adk_model(tier: str = "fast") -> Any:
+def adk_model(tier: str = "fast", thinking: bool = True) -> Any:
     """Model argument for google.adk LlmAgent: a Gemini model id, or a LiteLlm wrapper."""
     p = provider()
     name = model_for(tier)
@@ -77,7 +77,10 @@ def adk_model(tier: str = "fast") -> Any:
         os.environ.setdefault(key_env, "proxy-injected")
         if p == "groq":
             return LiteLlm(model=f"groq/{name}")
-        return LiteLlm(model=f"openai/{name}", api_base=base, api_key=os.environ[key_env])
+        extra = {}
+        if p == "nvidia" and "nemotron" in name and not thinking:
+            extra["extra_body"] = {"chat_template_kwargs": {"enable_thinking": False}}
+        return LiteLlm(model=f"openai/{name}", api_base=base, api_key=os.environ[key_env], **extra)
     return name
 
 
@@ -116,6 +119,8 @@ def generate_text(prompt: str, *, tier: str = "fast", agent: str = "llm", json_m
         else:
             msgs.append({"role": "user", "content": prompt})
         body = {"model": model, "messages": msgs, "temperature": temperature, "max_tokens": max_tokens}
+        if p == "nvidia" and "nemotron" in model and os.environ.get("DEV_THINKING", "0") != "1":
+            body["chat_template_kwargs"] = {"enable_thinking": False}  # judge / translator: no hidden reasoning tokens
         if json_mode:
             body["response_format"] = {"type": "json_object"}
         delay = 2.0
