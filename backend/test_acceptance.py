@@ -94,7 +94,7 @@ async def test_full_flow():
 
         print("\n--- 5. Awaiting Autonomous Investigation Pipeline & Events ---")
         # Await pipeline completion (real Cognee Cloud adds/searches + Gemini structured generation + n8n webhook take 4-8 seconds)
-        for _ in range(35):
+        for _ in range(int(os.environ.get("ACCEPTANCE_WAIT_S", "35"))):
             await asyncio.sleep(1.0)
             case_check = await client.get(f"/api/incidents/{new_inc_id}", headers=op_headers)
             if case_check.status_code == 200:

@@ -197,6 +197,18 @@ _STOP = {"the", "a", "an", "of", "to", "and", "or", "in", "on", "for", "is", "my
 
 
 def keyword_search(conn: Connection, query: str, k: int) -> List[Dict[str, Any]]:
+    try:
+        return _keyword_search(conn, query, k)
+    except Exception as e:  # full-text is a booster; never fail retrieval because of it
+        logger.warning(f"keyword search failed, using vector results only: {type(e).__name__}")
+        try:
+            conn.rollback()
+        except Exception:
+            pass
+        return []
+
+
+def _keyword_search(conn: Connection, query: str, k: int) -> List[Dict[str, Any]]:
     if _is_pg(conn):
         rows = conn.execute(text(f"""
             SELECT {_COLS}, ts_rank_cd(tsv, q) AS score
@@ -207,7 +219,9 @@ def keyword_search(conn: Connection, query: str, k: int) -> List[Dict[str, Any]]
         """), {"q": query, "k": k}).all()
         if not rows:
             # websearch_to_tsquery ANDs terms; fall back to OR semantics for long natural questions.
-            terms = [t for t in _TOKEN.findall(query.lower()) if t not in _STOP and len(t) > 2]
+            # English stemming config: only ASCII alphanumeric terms are meaningful (and safe) here.
+            terms = [t for t in _TOKEN.findall(query.lower())
+                     if t not in _STOP and len(t) > 2 and re.fullmatch(r"[a-z0-9]+", t)]
             if terms:
                 rows = conn.execute(text(f"""
                     SELECT {_COLS}, ts_rank_cd(tsv, q) AS score

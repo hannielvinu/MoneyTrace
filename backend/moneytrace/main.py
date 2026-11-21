@@ -658,6 +658,16 @@ async def get_evaluation_provenance():
         }
     }
 
+@app.get("/api/evaluation/rag")
+async def get_evaluation_rag():
+    """Latest full RAG evaluation (recall@5, fully grounded %), from results/rag_eval/latest.json."""
+    path = os.path.join(WORKSPACE_ROOT, "backend", "results", "rag_eval", "latest.json")
+    if not os.path.isfile(path):
+        raise HTTPException(status_code=404, detail="RAG evaluation not run yet: python -m evaluation.rag_eval")
+    with open(path, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
 @app.get("/api/evaluation/runs")
 async def get_evaluation_runs():
     """Lists available evaluation runs."""

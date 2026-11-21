@@ -37,12 +37,12 @@ def load_golden(path):
         return [json.loads(l) for l in f if l.strip()]
 
 
-def recall_at_k(rows, k=5, rerank=None):
+def recall_at_k(rows, k=5, rerank=None, translate=None):
     from rag.retriever import retrieve, RetrievalTrace
     out = []
     for r in rows:
         tr = RetrievalTrace(r["question"])
-        cites = retrieve(r["question"], k=k, trace=tr, rerank=rerank)
+        cites = retrieve(r["question"], k=k, trace=tr, rerank=rerank, translate=translate)
         docs = [c.doc_id for c in cites]
         hit = any(d in docs for d in r["gold_doc_ids"])
         rank = next((i + 1 for i, d in enumerate(docs) if d in r["gold_doc_ids"]), None)
@@ -83,6 +83,7 @@ def main(argv=None):
     ap.add_argument("--retrieval-only", action="store_true")
     ap.add_argument("--rerank", action="store_true", help="also measure recall@5 with the LLM reranker")
     ap.add_argument("--concurrency", type=int, default=3)
+    ap.add_argument("--ablation", action="store_true", help="also measure recall@5 without query translation")
     ap.add_argument("--seed", type=int, default=13)
     args = ap.parse_args(argv)
 
@@ -116,6 +117,9 @@ def main(argv=None):
         "recall_at_5_by_language": {k: round(sum(v) / len(v), 4) for k, v in by_lang.items()},
         "mean_retrieval_latency_ms": round(sum(r["latency_ms"] for r in rec) / len(rec), 1),
     }
+    if args.ablation:
+        nt = recall_at_k(rows, translate=False)
+        summary["recall_at_5_without_query_translation"] = round(sum(r["hit"] for r in nt) / len(nt), 4)
     if args.rerank:
         rr = recall_at_k(rows, rerank=True)
         summary["recall_at_5_with_rerank"] = round(sum(r["hit"] for r in rr) / len(rr), 4)

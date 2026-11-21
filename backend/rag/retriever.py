@@ -100,8 +100,34 @@ def _diversify(items: List[Dict], k: int, max_per_doc: int = 2) -> List[Dict]:
     return out
 
 
+def _translate_enabled() -> bool:
+    return os.environ.get("RAG_QUERY_TRANSLATE", "1").strip().lower() in ("1", "true", "yes")
+
+
+def is_non_english(text: str) -> bool:
+    non_ascii_letters = sum(1 for ch in text if ord(ch) > 0x900)
+    return non_ascii_letters > max(3, len(text) * 0.2)
+
+
+def translate_query(query: str) -> Optional[str]:
+    """English rendering of a Hindi / Tamil / Kannada query (adds English vector + full-text lists to the fusion)."""
+    if not is_non_english(query):
+        return None
+    try:
+        from moneytrace.llm import generate_text, llm_available
+        if not llm_available():
+            return None
+        res = generate_text("Translate this message from a scam victim into plain English. Output only the translation.\n\n"
+                            + query, tier="fast", agent="query_translator", max_tokens=1500)
+        out = (res.text or "").strip().strip('"')
+        return out or None
+    except Exception as e:
+        logger.warning(f"query translation failed: {type(e).__name__}")
+        return None
+
+
 def retrieve(query: str, k: Optional[int] = None, engine=None, trace: Optional[RetrievalTrace] = None,
-             rerank: Optional[bool] = None) -> List[Citation]:
+             rerank: Optional[bool] = None, translate: Optional[bool] = None) -> List[Citation]:
     from rag import store
     s = get_settings()
     k = k or s.rag_top_k
@@ -112,6 +138,7 @@ def retrieve(query: str, k: Optional[int] = None, engine=None, trace: Optional[R
         engine = get_engine()
     t0 = time.perf_counter()
     emb = _get_embedder()
+    english = translate_query(query) if (translate if translate is not None else _translate_enabled()) else None
     with engine.connect() as conn:
         meta = store.get_meta(conn)
         if meta.get("embedding_model") and meta["embedding_model"] != emb.model:
@@ -120,7 +147,11 @@ def retrieve(query: str, k: Optional[int] = None, engine=None, trace: Optional[R
         qvec = emb.embed_query(query)
         vec_hits = store.vector_search(conn, qvec, n)
         kw_hits = store.keyword_search(conn, query, n)
-    merged = rrf_merge([vec_hits, kw_hits], k=s.rag_rrf_k)
+        lists = [vec_hits, kw_hits]
+        if english:
+            lists.append(store.vector_search(conn, emb.embed_query(english), n))
+            lists.append(store.keyword_search(conn, english, n))
+    merged = rrf_merge(lists, k=s.rag_rrf_k)
     if rerank and merged:
         from rag.rerank import llm_rerank
         merged = llm_rerank(query, merged[: max(10, k * 2)])
@@ -129,6 +160,7 @@ def retrieve(query: str, k: Optional[int] = None, engine=None, trace: Optional[R
         trace.latency_ms = (time.perf_counter() - t0) * 1000
         trace.vector_hits, trace.keyword_hits = len(vec_hits), len(kw_hits)
         trace.reranked, trace.embedding_model = bool(rerank), emb.model
+        trace.extra["translated_query"] = english
     return [Citation(chunk_id=it["id"], doc_id=it["doc_id"], title=it["title"] or "", issuer=it["issuer"] or "",
                      url=it["url"] or "", section=it.get("section") or "", published_date=it.get("published_date"),
                      text=it["text"], score=round(float(it.get("rerank_score", it["rrf_score"])), 5),

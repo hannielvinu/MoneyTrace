@@ -66,6 +66,7 @@ def main(argv=None):
     ap.add_argument("--n", type=int, default=100)
     ap.add_argument("--seed", type=int, default=7)
     ap.add_argument("--workers", type=int, default=6)
+    ap.add_argument("--append", action="store_true", help="keep existing rows and draft only the missing ones")
     ap.add_argument("--out", default=os.path.join(HERE, "rag_golden.jsonl"))
     args = ap.parse_args(argv)
 
@@ -73,13 +74,29 @@ def main(argv=None):
     from moneytrace.llm import generate_json, model_for
 
     rng = random.Random(args.seed)
-    langs = LANG_PLAN[: args.n]
+    existing = []
+    if args.append and os.path.exists(args.out):
+        existing = [json.loads(l) for l in open(args.out, encoding="utf-8") if l.strip()]
+    from collections import Counter
+    have = Counter(r["language"] for r in existing)
+    want = Counter(LANG_PLAN[: args.n])
+    langs = [l for l in want for _ in range(max(0, want[l] - have.get(l, 0)))]
     rng.shuffle(langs)
+    if not langs:
+        print("nothing to add")
+        return
     types = list(FRAUD_TYPES)
     pools = {}
+    taken = {r["source_chunk_id"] for r in existing}
     for t, desc in FRAUD_TYPES.items():
-        pools[t] = [c for c in retrieve(desc, k=20)]
-        rng.shuffle(pools[t])
+        seen, pool = set(), []
+        for q in (desc, desc + " what should the victim do", desc + " RBI NPCI advisory precautions"):
+            for c in retrieve(q, k=30):
+                if c.chunk_id not in seen and c.chunk_id not in taken:
+                    seen.add(c.chunk_id)
+                    pool.append(c)
+        rng.shuffle(pool)
+        pools[t] = pool
     # Plan (fraud type, passage) pairs round-robin, then draft questions in parallel.
     plan, used = [], set()
     depth = 0
@@ -108,16 +125,20 @@ def main(argv=None):
     from concurrent.futures import ThreadPoolExecutor
     rows = []
     cursor = 0
+    target = len(langs)
     with ThreadPoolExecutor(max_workers=args.workers) as ex:
-        while len(rows) < args.n and cursor < len(plan):
-            need = args.n - len(rows)
+        while len(rows) < target and cursor < len(plan):
+            need = target - len(rows)
             batch = plan[cursor: cursor + need]
             cursor += len(batch)
-            items = [(t, c, langs[(len(rows) + j) % len(langs)]) for j, (t, c) in enumerate(batch)]
+            remaining = Counter(langs) - Counter(r["language"] for r in rows)
+            lang_seq = list(remaining.elements())
+            items = [(t, c, lang_seq[j % len(lang_seq)]) for j, (t, c) in enumerate(batch)]
             for r in ex.map(draft, items):
-                if r and len(rows) < args.n:
+                if r and len(rows) < target and (Counter(r2["language"] for r2 in rows)[r["language"]] < Counter(langs)[r["language"]]):
                     rows.append(r)
-            print(f"{len(rows)}/{args.n} drafted", flush=True)
+            print(f"{len(existing) + len(rows)}/{args.n} drafted", flush=True)
+    rows = existing + rows
     # re-balance languages to the plan exactly (50/25/25) is not guaranteed after skips; report actual mix
     for k, r in enumerate(rows, 1):
         r["id"] = f"q{k:03d}"

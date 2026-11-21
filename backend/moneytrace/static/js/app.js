@@ -1943,9 +1943,37 @@ const MoneyTraceApp = (() => {
         `;
       });
 
+      // RAG metrics (v2): recall@5 and fully-grounded %, labelled with eval-set size and date
+      let ragCard = "";
+      try {
+        const ragRes = await fetch("/api/evaluation/rag");
+        if (ragRes.ok) {
+          const r = await ragRes.json();
+          const pct = (x) => (x === null || x === undefined) ? "—" : x;
+          ragCard = `
+          <div class="eval-header-banner" style="margin-bottom:16px;">
+            <div>
+              <div class="eval-pill-tag"><span class="pulse-dot-green"></span>RAG over official RBI / NPCI / CERT-In / I4C advisories</div>
+              <h2 style="font-size:20px; font-weight:800; color:var(--brand-dark-navy); margin-top:10px;">Guidance retrieval & grounding</h2>
+              <p style="font-size:13px; color:var(--text-muted); margin-top:4px;">
+                Eval set: <strong>${r.eval_set_size}</strong> questions (${(r.review_status || []).join(", ")}), corpus ${r.corpus ? r.corpus.documents + " documents / " + r.corpus.chunks + " chunks" : ""},
+                run ${new Date(r.date_utc).toLocaleString()}. Embeddings: ${r.embedding_model}; guidance + judge: ${r.guidance_model} / ${r.judge_model}.
+              </p>
+              <div style="display:flex; gap:28px; margin-top:12px;">
+                <div><div style="font-size:11px; color:var(--text-muted); font-weight:700;">RECALL@5</div>
+                  <div style="font-size:26px; font-weight:800; color:var(--brand-dark-navy);">${pct(r.recall_at_5)}</div></div>
+                <div><div style="font-size:11px; color:var(--text-muted); font-weight:700;">FULLY GROUNDED</div>
+                  <div style="font-size:26px; font-weight:800; color:var(--brand-dark-navy);">${r.fully_grounded_pct !== undefined ? r.fully_grounded_pct + "%" : "—"}</div></div>
+              </div>
+            </div>
+            <div style="text-align:right; font-size:11.5px; color:var(--text-muted);">RUN<br/><span style="font-family:ui-monospace,monospace; font-weight:800; color:var(--brand-dark-navy);">${r.run_id}</span></div>
+          </div>`;
+        }
+      } catch (e) { /* RAG card is optional */ }
+
       main.innerHTML = `
         <div class="eval-container">
-          
+          ${ragCard}
           <!-- 1. Evaluation Overview Banner -->
           <div class="eval-header-banner">
             <div>

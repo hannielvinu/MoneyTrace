@@ -1,0 +1,27 @@
+{
+  "run_id": "RAG_20261121T213631Z",
+  "date_utc": "2026-11-21T21:36:46.942125+00:00",
+  "command": "python -m evaluation.rag_eval --golden /tmp/claude-0/golden65.jsonl --retrieval-only",
+  "eval_set": "../../../../tmp/claude-0/golden65.jsonl",
+  "eval_set_size": 65,
+  "review_status": [
+    "draft"
+  ],
+  "corpus": {
+    "documents": 49,
+    "chunks": 1106
+  },
+  "embedding_model": "nvidia/nemotron-3-embed-1b",
+  "llm_provider": "nvidia",
+  "guidance_model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+  "judge_model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+  "recall_at_5": 0.7385,
+  "recall_at_5_hits": 48,
+  "recall_at_5_by_language": {
+    "en": 0.725,
+    "ta": 0.5385,
+    "hi": 1.0
+  },
+  "mean_retrieval_latency_ms": 238.8,
+  "duration_s": 15.5
+}
