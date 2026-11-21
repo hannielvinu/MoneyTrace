@@ -1,0 +1,47 @@
+{
+  "run_id": "LOAD_20261121T223052Z",
+  "date_utc": "2026-11-21T22:39:15.577060+00:00",
+  "base_url": "http://127.0.0.1:8000",
+  "command": "python scripts/load_test.py --base-url http://127.0.0.1:8000 --n 24 --concurrency 4 --poll-timeout 600",
+  "requests": 24,
+  "completed": 24,
+  "errors": 0,
+  "concurrency": 4,
+  "wall_time_s": 503.4,
+  "intake_latency_ms": {
+    "p50": 17.8,
+    "p95": 3199.2,
+    "mean": 416.0
+  },
+  "time_to_guidance_ms": {
+    "p50": 38381.0,
+    "p95": 242051.6,
+    "mean": 61710.6
+  },
+  "avg_output_tokens_per_sec": 164.7,
+  "avg_input_tokens": 2427893.8,
+  "avg_output_tokens": 6340.2,
+  "avg_model_calls": 37.04,
+  "avg_cost_inr_per_request": 0.0,
+  "fully_grounded_share": 1.0,
+  "ai_status_counts": {
+    "AGENTS FAILED (rules fallback)": 7,
+    "LLM LIVE (nvidia)": 17
+  },
+  "models": [
+    "nvidia/nemotron-3.5-lightning-30b-a3b"
+  ],
+  "pricing": {
+    "note": "cost = measured tokens x price table in moneytrace/config.py",
+    "checked_on": "2026-11-21 (verify on the pricing page before quoting)",
+    "usd_to_inr": 84.0,
+    "usd_to_inr_source": "config default; set USD_TO_INR to the RBI reference rate on the day you report",
+    "prices_usd_per_1m": {
+      "nvidia/nemotron-3.5-lightning-30b-a3b": {
+        "input_per_m": 0.0,
+        "output_per_m": 0.0
+      }
+    }
+  },
+  "run_dir": "results/load/LOAD_20261121T223052Z"
+}

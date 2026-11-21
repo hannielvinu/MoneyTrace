@@ -136,11 +136,22 @@ def _usage_callback_plugin():
     from google.adk.plugins.base_plugin import BasePlugin
 
     class UsagePlugin(BasePlugin):
+        """Records measured token usage and enforces a per-case model-call budget (stops runaway ReAct loops)."""
+
         def __init__(self):
             super().__init__(name="moneytrace_usage")
             self._t0: Dict[str, float] = {}
+            self.calls = 0
+            self.budget = int(os.environ.get("MAX_LLM_CALLS_PER_CASE", "40"))
 
         async def before_model_callback(self, *, callback_context, llm_request):
+            self.calls += 1
+            if self.calls > self.budget:
+                from google.adk.models.llm_response import LlmResponse
+                from google.genai import types as gt
+                logger.warning(f"model-call budget ({self.budget}) reached for {callback_context.agent_name}; stopping")
+                return LlmResponse(content=gt.Content(role="model", parts=[gt.Part(
+                    text="Step budget reached; stopping here. The coordinator's guard will complete the case.")]))
             self._t0[callback_context.invocation_id + callback_context.agent_name] = time.perf_counter()
             return None
 

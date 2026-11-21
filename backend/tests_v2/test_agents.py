@@ -142,3 +142,15 @@ def test_judge_quotes_are_verified_against_the_passage():
                                      {"claim": "visit the police", "quote": "Always visit your nearest police station."}], P)
     assert not ok and "police" in why
     assert not G.verdict_from_claims([], P)[0]
+
+
+def test_model_call_budget_stops_runaway_loops(monkeypatch):
+    import asyncio as aio
+    from types import SimpleNamespace
+    from moneytrace.agents.coordinator import _usage_callback_plugin
+    monkeypatch.setenv("MAX_LLM_CALLS_PER_CASE", "2")
+    plugin = _usage_callback_plugin()
+    ctx = SimpleNamespace(invocation_id="i", agent_name="investigation_agent")
+    out = [aio.run(plugin.before_model_callback(callback_context=ctx, llm_request=None)) for _ in range(3)]
+    assert out[0] is None and out[1] is None
+    assert out[2] is not None and "budget" in out[2].content.parts[0].text
