@@ -551,3 +551,41 @@ def record_usage_event(kind: str, incident_id: Optional[str] = None, scam_type: 
             ))
     except Exception as e:
         logger.warning(f"record_usage_event failed: {e}")
+
+
+def get_usage_summary(days: int = 30) -> Dict[str, Any]:
+    """Daily help-desk usage from usage_events (contains no personal data)."""
+    import statistics
+    from datetime import timedelta
+    since = datetime.now(timezone.utc) - timedelta(days=days)
+    u = m.usage_events
+    with get_engine().connect() as conn:
+        rows = _rows(conn.execute(select(u.c.kind, u.c.scam_type, u.c.language, u.c.seconds_to_guidance, u.c.created_ts)
+                                  .where(u.c.created_ts >= since).order_by(u.c.created_ts)))
+    daily: Dict[str, Dict[str, Any]] = {}
+    for r in rows:
+        ts = r["created_ts"]
+        day = ts.strftime("%Y-%m-%d") if hasattr(ts, "strftime") else str(ts)[:10]
+        d = daily.setdefault(day, {"date": day, "reports_received": 0, "guidance_delivered": 0, "escalations": 0,
+                                   "operator_signoffs": 0, "by_scam_type": {}, "by_language": {}, "_secs": []})
+        if r["kind"] == "report_received":
+            d["reports_received"] += 1
+            d["by_language"][r["language"] or "?"] = d["by_language"].get(r["language"] or "?", 0) + 1
+        elif r["kind"] == "guidance_delivered":
+            d["guidance_delivered"] += 1
+            d["by_scam_type"][r["scam_type"] or "?"] = d["by_scam_type"].get(r["scam_type"] or "?", 0) + 1
+            if r["seconds_to_guidance"] is not None:
+                d["_secs"].append(r["seconds_to_guidance"])
+        elif r["kind"] == "escalated":
+            d["escalations"] += 1
+        elif r["kind"] == "signoff":
+            d["operator_signoffs"] += 1
+    all_secs = []
+    for d in daily.values():
+        secs = d.pop("_secs")
+        all_secs += secs
+        d["median_seconds_to_first_guidance"] = round(statistics.median(secs), 1) if secs else None
+    totals = {k: sum(d[k] for d in daily.values()) for k in ("reports_received", "guidance_delivered", "escalations",
+                                                             "operator_signoffs")}
+    totals["median_seconds_to_first_guidance"] = round(statistics.median(all_secs), 1) if all_secs else None
+    return {"days": days, "daily": sorted(daily.values(), key=lambda d: d["date"]), "totals": totals}

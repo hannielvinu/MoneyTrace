@@ -32,7 +32,7 @@ from sse_starlette.sse import EventSourceResponse
 
 from moneytrace.db.database import (
     init_db, get_incident, create_incident, list_incidents, get_dashboard_metrics,
-    get_cluster_summary,
+    get_cluster_summary, record_usage_event, get_usage_summary,
     add_audit_log, get_transaction, get_user_by_email, get_user_by_id,
     hash_password, get_user_incidents, get_user_notifications,
     get_incident_events, update_incident_record
@@ -67,6 +67,9 @@ app = FastAPI(
     version="1.0.0"
 )
 
+from moneytrace.telemetry import setup_tracing
+setup_tracing(app)
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -97,6 +100,7 @@ class CreatePortalReportRequest(BaseModel):
     amount: Optional[float] = None
     screenshot_url: Optional[str] = None
     ocr_data: Optional[Dict[str, Any]] = None
+    consent: bool = False
 
 
 class RespondRequest(BaseModel):
@@ -243,6 +247,9 @@ async def api_submit_portal_report(
     Creates incident, links to authenticated user_id, emits INCIDENT_CREATED,
     and dispatches background investigation.
     """
+    if os.environ.get("HELPDESK_MODE", "1").strip().lower() in ("1", "true", "yes") and not req.consent:
+        raise HTTPException(status_code=400, detail="Consent is required before a report can be stored.")
+
     now_str = datetime.now().strftime("%d %b %Y, %H:%M IST")
 
     # Resolve amount lineage from spoken narrative vs manual request
@@ -320,6 +327,8 @@ async def api_submit_portal_report(
         },
         user_id=current_user["id"]
     )
+
+    record_usage_event("report_received", inc_id, None, req.language or "en")
 
     # Launch autonomous investigation pipeline in background
     background_tasks.add_task(run_investigation_pipeline, inc_id)
@@ -503,6 +512,7 @@ async def api_review_incident(
         "status": "OPERATOR_CONFIRMED" if action == "APPROVED" else "UNDER_REVIEW"
     })
     add_audit_log(incident_id, f"Human Review: {action}", f"{notes} (Operator: {operator['email']})")
+    record_usage_event("signoff", incident_id, (get_incident(incident_id) or {}).get("scam_type"), None)
 
     await emit_event(
         event_type="INCIDENT_COMPLETED",
@@ -513,6 +523,32 @@ async def api_review_incident(
     )
 
     return {"status": "SUCCESS", "action": action, "incident_id": incident_id}
+
+
+@app.get("/api/incidents/{incident_id}/metrics")
+async def api_incident_metrics(incident_id: str, operator: Dict[str, Any] = Depends(require_operator)):
+    """Measured per-request telemetry for one investigation: latency, per-agent time, tokens, cost (INR)."""
+    inc = get_incident(incident_id)
+    if not inc:
+        raise HTTPException(status_code=404, detail="Incident not found")
+    pkg = inc.get("evidence_package") or {}
+    return {"incident_id": incident_id, "investigation_stage": inc.get("investigation_stage"),
+            "request_metrics": pkg.get("request_metrics"), "grounding": pkg.get("grounding"),
+            "ai_investigator": pkg.get("ai_investigator")}
+
+
+@app.get("/api/helpdesk/usage")
+async def api_helpdesk_usage(days: int = 30, operator: Dict[str, Any] = Depends(require_operator)):
+    """Help-desk usage (no personal data): reports, cases by type, escalations, sign-offs, median time to guidance."""
+    return get_usage_summary(days)
+
+
+@app.get("/api/helpdesk/info")
+async def api_helpdesk_info():
+    return {"helpdesk_mode": os.environ.get("HELPDESK_MODE", "1") in ("1", "true"),
+            "disclaimer": "Independent student project - not an official government, police or bank service.",
+            "official_channels": {"helpline": "1930", "portal": "https://cybercrime.gov.in"},
+            "retention_days": int(os.environ.get("DATA_RETENTION_DAYS", "90"))}
 
 
 @app.get("/api/dashboard")

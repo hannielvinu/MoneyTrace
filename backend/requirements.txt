@@ -12,4 +12,27 @@ pyjwt>=2.8.0
 
 # AI and Model Integrations
 openai>=1.55.0
-google-genai>=0.1.0
+google-genai>=1.0.0
+google-adk>=2.15,<3
+litellm>=1.50          # dev providers (NVIDIA / Groq) for ADK agents when no Gemini key is available
+
+# Storage (v2)
+sqlalchemy>=2.0
+psycopg[binary]>=3.2
+alembic>=1.13
+aiosqlite>=0.20        # ADK SQLite session service (local dev)
+google-cloud-firestore>=2.16
+
+# RAG corpus
+pypdf>=4.0
+beautifulsoup4>=4.12
+pyyaml>=6.0
+
+# Observability
+opentelemetry-sdk>=1.25
+opentelemetry-instrumentation-fastapi>=0.46b0
+opentelemetry-exporter-gcp-trace>=1.7
+
+# Evaluation (classifier benchmark)
+pandas>=2.0
+openpyxl>=3.1

@@ -1,0 +1,9 @@
+.git
+**/__pycache__
+**/*.pyc
+**/.env
+**/.env.*
+backend/rag/raw/
+backend/**/*.db
+backend/moneytrace/static/uploads/
+.github

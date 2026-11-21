@@ -361,3 +361,35 @@ async def _finalize(incident_id: str, state: Dict[str, Any], guidance: Dict[str,
         save_evidence_package(incident_id, evidence)
     return {"incident": get_incident(incident_id), "evidence_package": evidence, "workflow": wf,
             "metrics": metrics_summary}
+
+
+async def run_guidance_only(question: str, language: str = "en", fraud_type: str = "") -> Dict[str, Any]:
+    """Run the production guidance agent + grounding check for one free-text question (used by the RAG eval)."""
+    from google.adk.runners import Runner
+    from google.adk.sessions.in_memory_session_service import InMemorySessionService
+    from google.genai import types
+
+    _, guidance_agent = _build_agents()
+    svc = InMemorySessionService()
+    state = {"language": language, "case_record": {"summary": question, "fraud_type": fraud_type or "unknown",
+                                                    "language": language}}
+    s = await svc.create_session(app_name=APP_NAME, user_id="eval", state=state)
+    runner = Runner(app_name=APP_NAME, agent=guidance_agent, session_service=svc, plugins=[_usage_callback_plugin()])
+    msg = types.Content(role="user", parts=[types.Part(text=f"Victim's question: {question}")])
+    async for _ in runner.run_async(user_id="eval", session_id=s.id, new_message=msg):
+        pass
+    s2 = await svc.get_session(app_name=APP_NAME, user_id="eval", session_id=s.id)
+    st = dict(s2.state) if s2 else {}
+    draft = parse_steps(st.get("guidance_draft"))
+    loop = asyncio.get_running_loop()
+
+    def regen(feedback):
+        async def _r():
+            return await _regenerate_guidance(st, feedback)
+        try:
+            return asyncio.run_coroutine_threadsafe(_r(), loop).result(timeout=120)
+        except Exception:
+            return None
+    result = await asyncio.to_thread(finalize_guidance, draft, language, regen if draft else None)
+    result["draft"] = draft
+    return result

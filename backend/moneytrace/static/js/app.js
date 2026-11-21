@@ -595,6 +595,12 @@ const MoneyTraceApp = (() => {
   function renderPortalView() {
     const main = document.getElementById("mainApp");
     main.innerHTML = `
+      <div class="helpdesk-banner" role="note" style="background:#FFF7ED; border:1px solid #FDBA74; color:#7C2D12; border-radius:10px; padding:12px 16px; margin-bottom:16px; font-size:13px; line-height:1.5;">
+        <strong>Independent student project — not an official government, police or bank service.</strong>
+        Lost money to a scam? <strong>Call 1930</strong> (National Cyber Crime Helpline) and report at
+        <a href="https://cybercrime.gov.in" target="_blank" rel="noopener" style="color:#9A3412; font-weight:600;">cybercrime.gov.in</a>
+        immediately, and call your bank's official helpline to block your account or card. This help desk is run with VIT's WhiteHats club.
+      </div>
       <div class="portal-grid">
         <!-- Left: Incident Intake Flow -->
         <div>
@@ -657,6 +663,17 @@ const MoneyTraceApp = (() => {
                 <label style="font-size:12px; font-weight:700; color:var(--brand-dark-navy); margin-bottom:6px; display:block;">Payment Screenshot (Optional with OCR)</label>
                 <input type="file" id="screenshotInput" class="input-clean" accept="image/*" onchange="MoneyTraceApp.handleScreenshotUpload(event)" />
                 <div id="screenshotPreviewBox" style="display:none; margin-top:10px;"></div>
+              </div>
+
+              <div style="font-size:12px; color:#475569; background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:10px 12px;">
+                <label style="display:flex; gap:8px; align-items:flex-start; cursor:pointer;">
+                  <input type="checkbox" id="consentInput" style="margin-top:3px;" />
+                  <span>I agree that MoneyTrace stores this report (description, amount, transaction details, screenshot or voice text)
+                  so trained student volunteers can review it and send me guidance.</span>
+                </label>
+                <div style="margin-top:6px;"><strong>Privacy:</strong> phone and account numbers are hidden from the AI models;
+                reports are kept for at most 90 days and are never shared outside the help desk. Usage statistics contain no personal data.
+                We are not a reporting authority — always also report on 1930 / cybercrime.gov.in.</div>
               </div>
 
               <button type="submit" class="btn-primary-dark" style="margin-top:8px;">
@@ -874,6 +891,11 @@ const MoneyTraceApp = (() => {
       showToast("Please provide a description or record your voice.");
       return;
     }
+    const consentEl = document.getElementById("consentInput");
+    if (consentEl && !consentEl.checked) {
+      showToast("Please tick the consent box so we can store and review your report.");
+      return;
+    }
 
     const payload = {
       narrative,
@@ -881,7 +903,8 @@ const MoneyTraceApp = (() => {
       transaction_id: txId || null,
       amount,
       screenshot_url: window._currentScreenshot || null,
-      ocr_data: window._currentOcr || null
+      ocr_data: window._currentOcr || null,
+      consent: consentEl ? consentEl.checked : false
     };
 
     try {

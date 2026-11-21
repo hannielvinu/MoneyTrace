@@ -81,7 +81,8 @@ async def test_full_flow():
             "narrative": "Urgent help needed. Received a call claiming to be HDFC bank KYC department. They asked me to transfer money to kyc-update.pay@ybl or account will freeze. Transferred ₹18,500.",
             "language": "en",
             "transaction_id": "TXN784219",
-            "amount": 18500.0
+            "amount": 18500.0,
+            "consent": True
         }
         submit_res = await client.post("/api/portal/reports", json=report_payload, headers=v1_headers)
         assert submit_res.status_code == 200, f"Submission failed: {submit_res.text}"
