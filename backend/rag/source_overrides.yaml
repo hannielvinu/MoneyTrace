@@ -1,0 +1,30 @@
+# Curation decisions applied on top of the automatic screen in rag/build_sources.py.
+# First pass by Claude Code (2026-11-21); REVIEW BY HANNIEL before ingestion.
+# Keys are URLs exactly as they appear in sources.yaml.
+#   include: false  -> kept out of the corpus (reason recorded)
+#   title / published_date / language -> manual corrections
+exclude:
+  # Not victim-facing or off-topic for fraud response
+  "https://www.rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=59246": "Governor's monetary-policy statement; only one paragraph on MuleHunter.AI"
+  "https://rbi.org.in/Scripts/PublicationsView.aspx?id=18948": "Banking Ombudsman annual report 2017-18 (statistics; outdated scheme)"
+  "https://rbi.org.in/scripts/PublicationsView.aspx?Id=17754": "Monetary and Credit Information Review newsletter (duplicates the liability circular)"
+  "https://rbi.org.in/scripts/PublicationsView.aspx?Id=22782": "Monetary and Credit Information Review newsletter"
+  "https://rbi.org.in/scripts/PublicationsView.aspx?id=21022": "Monetary and Credit Information Review newsletter (duplicates BE(A)WARE)"
+  "https://www.cert-in.org.in/s2cMainServlet?VLCODE=CIAD-2026-0020&pageid=PUBVLNOTES02": "CERT-In advisory on frontier-AI cyber risks to organisations, not citizen fraud"
+  # Drafts / withdrawn / superseded
+  "https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=12715": "Withdrawn (superseded by the 2026 cyber-resilience directions)"
+  "https://www.rbi.org.in/commonman/Upload/English/Notification/PDFs/NT109ML141217.PDF": "Bilingual PDF whose Hindi text extracts garbled; same circular is ingested from its HTML page"
+  "https://www.rbi.org.in/commonman/Upload/English/Notification/PDFs/NT41802062016.pdf": "Bilingual PDF whose Hindi text extracts garbled; same circular is ingested from its HTML page"
+
+fix:
+  "https://cert-in.org.in/PDF/CSA_Booklet.pdf":
+    title: "Cyber Security Awareness Booklet for Digital Nagriks and Digital Enterprises (NCSAM 2023)"
+  "https://www.cert-in.org.in/PDF/CSH_Booklet25.pdf":
+    title: "Digital Safety Compass Handbook (Safer Internet Day 2025)"
+  "https://www.incometax.gov.in/iec/foportal/sites/default/files/2020-08/Press-Release-Anti-Phishing-email-05-02-2016.pdf":
+    title: "Steps taken by Income Tax Department for safeguarding taxpayers from phishing email"
+    published_date: "5 February 2016"
+  "https://sancharsaathi.gov.in/SancharSaathiDocuments/KeepYourselfAwareDocuments/JumpDepositFraud.pdf":
+    title: "Beware of Jumped Deposit Alert scam (DoT)"
+  "https://www.rbi.org.in/commonman/images/FAME202426022024.pdf":
+    title: "Financial Awareness Messages (FAME) booklet, RBI"

@@ -1,0 +1,833 @@
+{
+  "candidates": 318,
+  "excluded": [
+    "http://pib.gov.in/screenReaderAcces.aspx",
+    "http://www.pib.gov.in/screenReaderAcces.aspx",
+    "https://cybercrime.gov.in/Webform/Accept.aspx",
+    "https://i4c.mha.gov.in/cyber-awareness-videos.aspx",
+    "https://i4c.mha.gov.in/cyber_digest/jan_2024/I4C%20Daily%20Digest-%2005.01.2024%20.pdf",
+    "https://i4c.mha.gov.in/docs/NATIONAL%20CYBER%20AWARENESS%20CONTENT%20CREATION%20CHALLENGE.pdf",
+    "https://indiancurrency.rbi.org.in/exchange-banknote",
+    "https://investor.sebi.gov.in",
+    "https://investor.sebi.gov.in/inv_aware_edu_videos.html",
+    "https://m.rbi.org.in/Scripts/BS_ViewBulletin.aspx?Id=23910",
+    "https://m.rbi.org.in/Scripts/BS_ViewBulletin.aspx?Id=24440",
+    "https://m.rbi.org.in/Scripts/FS_PressRelease.aspx?fn=2745",
+    "https://m.rbi.org.in/Scripts/PublicationReportDetails.aspx?UrlPage=&ID=1307",
+    "https://m.rbi.org.in/scripts/bs_viewmasterdirections.aspx",
+    "https://m.rbi.org.in/scripts/helpdesk.aspx",
+    "https://pib.gov.in/screenReaderAcces.aspx",
+    "https://pib.gov.in/screenReaderAcces.aspx?reg=3",
+    "https://pib.gov.in/screenReaderAcces.aspx?reg=3&lang=2",
+    "https://rbi.org.in/Scripts/AboutUsDisplay.aspx?pg=BankingOmbudsmen.htm",
+    "https://rbi.org.in/Scripts/BS_CircularIndexDisplay.aspx?Id=12898",
+    "https://rbi.org.in/Scripts/BS_SpeechesView.aspx?Id=1524",
+    "https://rbi.org.in/Scripts/BS_SpeechesView.aspx?Id=1542",
+    "https://rbi.org.in/Scripts/CommunicationPolicy.aspx",
+    "https://rbi.org.in/commonman/Punjabi/Scripts/FLW24_DigitalCyberHygiene.aspx",
+    "https://rbi.org.in/commonman/oriya/Scripts/FLW24_DigitalCyberHygiene.aspx",
+    "https://rbi.org.in/scripts/BS_ViewBulletin.aspx?Id=24371",
+    "https://rbi.org.in/scripts/PublicationReportDetails.aspx?ID=1306",
+    "https://rbi.org.in/scripts/bs_viewcontent.aspx?Id=4235",
+    "https://rbidocs.rbi.org.in/rdocs/PublicationReport/Pdfs/FREEAIR130820250A24FF2D4578453F824C72ED9F5D5851.PDF",
+    "https://sachet.rbi.org.in/sachet",
+    "https://sachet.rbi.org.in/sachet/recent-updates",
+    "https://sachet.rbi.org.in/sachet/track-complaint",
+    "https://sancharsaathi.gov.in",
+    "https://sancharsaathi.gov.in?OWASP-CSRFTOKEN=UZL5-AVE1-B1GX-XN8C-I3T4-0R5K-HT2N-EJ18",
+    "https://sancharsaathi.gov.in?from=AppAgg.com",
+    "https://uidai.gov.in/en/aadhaar-online-services",
+    "https://uidai.gov.in/en/authentication",
+    "https://uidai.gov.in/en/contact-support/have-any-question/925-english-uk/faqs/aadhaar-online-services/biometric-lock-unlock.html",
+    "https://uidai.gov.in/images/E_UIDAI_Annual_Report_24-25.pdf",
+    "https://uidai.gov.in/images/UIDAI_Annual_Report-2022-23_English.pdf",
+    "https://uidai.gov.in/images/resource/Compendium_August_2019.pdf",
+    "https://www.cert-in.org.in/PDF/CP_Samvaad-2025.pdf",
+    "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBADVLIST",
+    "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBADVLIST02&year=2011",
+    "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBADVLIST02&year=2026&utm=",
+    "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBWEL03",
+    "https://www.cert-in.org.in/s2cMainServlet?pageid=WHTPVIEW01",
+    "https://www.csk.gov.in",
+    "https://www.csk.gov.in/index-hi.html",
+    "https://www.dot.gov.in/static/uploads/2026/10/d9e738c8bfbd4606cae366107b91fdfb.pdf",
+    "https://www.incometax.gov.in/iec/foportal/e-filing%20account%20misuse",
+    "https://www.incometax.gov.in/iec/foportal/help/all-topics/e-filing-services/login",
+    "https://www.incometax.gov.in/iec/foportal/help/income-tax-form-upload?mobile-app=1",
+    "https://www.meity.gov.in/static/uploads/2024/02/11ab.pdf",
+    "https://www.meity.gov.in/static/uploads/2024/02/35-1.pdf",
+    "https://www.meity.gov.in/static/uploads/2024/02/AR_2022-23_English_24-04-23-1.pdf",
+    "https://www.meity.gov.in/static/uploads/2024/02/Committes_D-Cyber-n-Legal-and-Ethical.pdf",
+    "https://www.meity.gov.in/static/uploads/2024/02/Strategic_PlanDIT_FINAL_110211.pdf",
+    "https://www.meity.gov.in/static/uploads/2026/04/46face7d48c8f6a97030f713ad5fdab4.pdf",
+    "https://www.npci.org.in",
+    "https://www.npci.org.in/blog/cashless-payments-made-easy-by-npci-and-its-products",
+    "https://www.npci.org.in/blog/upi-one-world-your-digital-passport-to-seamless-payments-in-india",
+    "https://www.npci.org.in/complaint-status",
+    "https://www.npci.org.in/privacy-policy",
+    "https://www.npci.org.in/product/rupay/credit-card-on-upi",
+    "https://www.npci.org.in/product/upi",
+    "https://www.npci.org.in/product/upi/about-upi",
+    "https://www.npci.org.in/product/upi/product-statistics",
+    "https://www.npci.org.in/product/upi/upi-lite",
+    "https://www.npci.org.in/purpose-value",
+    "https://www.npci.org.in/uploads/Ru_Pay_Consolidated_Circular_V1_0_b9a1bd52b3.pdf",
+    "https://www.npci.org.in/uploads/UPI_Circle_Brand_Guidelines_cc333752ea.pdf",
+    "https://www.npci.org.in/uploads/UPI_Help_Brand_Guidelines_86c8c28922.pdf",
+    "https://www.npci.org.in/uploads/UPI_Reserve_Pay_Guidlines_b4cb359cbc.pdf",
+    "https://www.npci.org.in/what-we-do/upi/product-overview",
+    "https://www.pib.gov.in/screenReaderAcces.aspx?reg=6&lang=1",
+    "https://www.rbi.org.in/FinancialEducation/FLCs_CFLs_Details.aspx",
+    "https://www.rbi.org.in/Scripts/AnnualReportPublications.aspx?Id=1319",
+    "https://www.rbi.org.in/Scripts/BS_CircularIndexDisplay.aspx?Id=11188",
+    "https://www.rbi.org.in/Scripts/BS_CircularIndexDisplay.aspx?Id=11910",
+    "https://www.rbi.org.in/Scripts/BS_CircularIndexDisplay.aspx?Id=12898",
+    "https://www.rbi.org.in/Scripts/BS_CircularIndexDisplay.aspx?Id=13543",
+    "https://www.rbi.org.in/Scripts/BS_CircularIndexDisplay.aspx?Id=13545",
+    "https://www.rbi.org.in/Scripts/BS_SpeechesView.aspx?Id=1425",
+    "https://www.rbi.org.in/Scripts/BS_ViewBulletin.aspx?Id=23057",
+    "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx",
+    "https://www.rbi.org.in/Scripts/PublicationReportDetails.aspx?UrlPage=&ID=1189",
+    "https://www.rbi.org.in/Scripts/PublicationReportDetails.aspx?UrlPage=&ID=888",
+    "https://www.rbi.org.in/Scripts/PublicationsView.aspx?id=23813",
+    "https://www.rbi.org.in/Upload/Publications/PDFs/BOL.pdf",
+    "https://www.rbi.org.in/commonman/English/Scripts/SettingLimits_video.aspx",
+    "https://www.rbi.org.in/commonman/English/scripts/pressreleases.aspx",
+    "https://www.rbi.org.in/commonman/Upload/English/Notification/PDFs/DPSSTI6B55CB8123BE4DB588A16CA23A91C1EC.pdf",
+    "https://www.rbi.org.in/commonman/english/scripts/FAQs.aspx",
+    "https://www.rbi.org.in/commonman/marathi/Scripts/FLW24_DigitalCyberHygiene.aspx",
+    "https://www.rbi.org.in/commonman/urdu/Scripts/FLW24_DigitalCyberHygiene.aspx",
+    "https://www.rbi.org.in/nbfcfaqs",
+    "https://www.rbi.org.in/scripts/AnnualReportPublications.aspx?Id=1290",
+    "https://www.rbi.org.in/scripts/BS_CircularIndexDisplay.aspx?Id=12898",
+    "https://www.rbi.org.in/scripts/bs_circularindexdisplay.aspx/Scripts/BS_CircularIndexDisplay.aspx?Id=12898",
+    "https://www.sebi.gov.in/media-and-notifications/speeches/mar-2026/address-by-chairman-at-launch-of-verified-app-label_100615.html",
+    "https://www.sebi.gov.in/reports-and-statistics/publications/aug-2026/Chapter%2008.pdf",
+    "https://www.sebi.gov.in/sebi_data/attachdocs/feb-2021/1612940539512.pdf",
+    "https://www.sebi.gov.in/sebi_data/attachdocs/feb-2025/Asmita_Patel_Global_School_of_Trading_Private_Limited.pdf",
+    "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2025/1752664428748.pdf",
+    "https://www.sebi.gov.in/sebi_data/attachdocs/may-2026/ORDER_1779429679.pdf",
+    "https://www.sebi.gov.in/sebi_data/commondocs/mar-2026/Policy%20related%20Letters%20and%20Emails%20issued%20by%20SEBI%20as%20on%20March%2020%202026_p.pdf",
+    "https://www.uidai.gov.in/images/240826_UIDAI_Unlocking_face_authentication_playbook_Digital_version.pdf",
+    "https://www.upihelp.npci.org.in"
+  ],
+  "duplicates": [
+    "https://cybercrime.gov.in/webform/cyber_suspect.aspx",
+    "https://www.cert-in.org.in/PDF/CSA_Booklet.pdf",
+    "https://www.cybercrime.gov.in/webform/cyber_suspect.aspx",
+    "https://www.incometax.gov.in/iec/foportal/help/all-topics/videos/got-emailsms-itd",
+    "https://www.pib.gov.in/PressReleaseDetail.aspx?PRID=2319087&reg=6&lang=1",
+    "https://www.pib.gov.in/PressReleasePage.aspx?PRID=1814120",
+    "https://www.pib.gov.in/PressReleasePage.aspx?PRID=1814120&lang=2&reg=3",
+    "https://www.pib.gov.in/PressReleasePage.aspx?PRID=1982936&lang=2&reg=48",
+    "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2110405&utm=",
+    "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2193548&reg=3&lang=2",
+    "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2223095&reg=3&lang=1",
+    "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2241344&reg=3&lang=1",
+    "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2316499",
+    "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2319087",
+    "https://www.pib.gov.in/PressReleseDetailm.aspx?PRID=1982936&reg=48&lang=2",
+    "https://www.pib.gov.in/Pressreleaseshare.aspx?PRID=1814120",
+    "https://www.rbi.org.in/commonman/english/Scripts/SMSLimitedliability.aspx",
+    "https://www.sancharsaathi.gov.in/sfc"
+  ],
+  "fetch_failed": [
+    {
+      "url": "https://cybercrime.gov.in/Webform/cyber_suspect.aspx",
+      "error": "blocked by robots policy (robots.txt unreachable (ConnectError))"
+    },
+    {
+      "url": "https://i4c.mha.gov.in/FAQ.aspx",
+      "error": "blocked by robots policy (robots.txt unreachable (ConnectError))"
+    },
+    {
+      "url": "https://i4c.mha.gov.in/cyber-awareness-material/book/DOs%20Donts%20English.pdf",
+      "error": "blocked by robots policy (robots.txt unreachable (ConnectError))"
+    },
+    {
+      "url": "https://i4c.mha.gov.in/initiative.aspx",
+      "error": "blocked by robots policy (robots.txt unreachable (ConnectError))"
+    },
+    {
+      "url": "https://i4c.mha.gov.in/ncrp.aspx",
+      "error": "blocked by robots policy (robots.txt unreachable (ConnectError))"
+    },
+    {
+      "url": "https://i4c.mha.gov.in/press-release.aspx",
+      "error": "blocked by robots policy (robots.txt unreachable (ConnectError))"
+    },
+    {
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=1814120",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=1559115",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://rbidocs.rbi.org.in/rdocs/Content/PDFs/ALERTLIST1AB72E4086BB4DD698AB9E973735BB42.PDF",
+      "error": "site served a bot-protection challenge (not bypassed)"
+    },
+    {
+      "url": "https://rbidocs.rbi.org.in/rdocs/content/pdfs/BEAWARE07032022.pdf",
+      "error": "site served a bot-protection challenge (not bypassed)"
+    },
+    {
+      "url": "https://rbidocs.rbi.org.in/rdocs/notification/PDFs/CIRCULAR677EC931A7A65E4D99AA957D8E85BC0A2A.PDF",
+      "error": "site served a bot-protection challenge (not bypassed)"
+    },
+    {
+      "url": "https://sachet.rbi.org.in/sachet/awareness",
+      "error": "blocked by robots policy (robots.txt unreachable (ConnectError))"
+    },
+    {
+      "url": "https://www.meity.gov.in/static/uploads/2024/03/Ransomware_Attack_An_Evolving_Targeted_Threat.pdf",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.meity.gov.in/static/uploads/2025/10/065b6deb585441b5ccdf8be42502a49c.pdf",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.npci.org.in/circulars/upi",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.npci.org.in/complaint-register",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.npci.org.in/cyber-security",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.npci.org.in/faqs/upi",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.npci.org.in/fraud-awareness",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.npci.org.in/safety-feature",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.npci.org.in/upi-complaint",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.npci.org.in/uploads/BHIM_UPI_Guidelines_2026_012a0b1bce.pdf",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.npci.org.in/uploads/UPI_Consolidated_Circular_f9c023a0ef.pdf",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.npci.org.in/uploads/UPI_OC_No_227_FY_2025_26_Introduction_of_UPI_HELP_Assistant_pilot_an_AI_powered_support_for_UPI_payments_cd501de8f3.pdf",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.pib.gov.in/FactsheetDetails.aspx?Id=150650&reg=48&lang=1",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.pib.gov.in/PressNoteDetails.aspx?NoteId=155384&ModuleId=3",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2147769",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2316499",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2319087",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2110405",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2193548",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=1498034",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=1808680",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=1982936",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2020570",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2047369",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2077948",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2110809",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2130249",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2141616",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2144602",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2146786",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2154268",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2176146",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2203457",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2207376",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2215423",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2223050",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2223095",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2223779",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2240592",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2240723",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2241344",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2260277",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2274249",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2287674",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2290366",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2297626",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2298336",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2301973",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2307871",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2036395",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2122832",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=1579184",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    },
+    {
+      "url": "https://www.upihelp.npci.org.in/faq",
+      "error": "blocked by robots policy (robots.txt 403: disallow)"
+    }
+  ],
+  "irrelevant": [
+    {
+      "url": "http://www.incometax.gov.in/iec/foportal/help/all-topics/videos/got-emailsms-itd",
+      "chars": 426,
+      "relevance": 0,
+      "title": "Got a email/SMS from ITD | Income Tax Department"
+    },
+    {
+      "url": "https://investor.sebi.gov.in/beware-fake-trading-app-scam.html",
+      "chars": 33,
+      "relevance": 3,
+      "title": ":: Topic of Interest | Beware of Fake Trading App scam | SEBI Investor"
+    },
+    {
+      "url": "https://m.rbi.org.in/Scripts/BS_ViewREwiseDraftDirections.aspx?id=300",
+      "chars": 3999,
+      "relevance": 0,
+      "title": "Home-Reserve Bank of India"
+    },
+    {
+      "url": "https://m.rbi.org.in/Scripts/FS_PressRelease.aspx?prid=59135&fn=2745",
+      "chars": 3999,
+      "relevance": 0,
+      "title": "Home-Reserve Bank of India"
+    },
+    {
+      "url": "https://m.rbi.org.in/Scripts/NotificationUser.aspx?Id=13544&Mode=0",
+      "chars": 3999,
+      "relevance": 0,
+      "title": "Home-Reserve Bank of India"
+    },
+    {
+      "url": "https://m.rbi.org.in/scripts/BS_ViewMasDirections.aspx?id=10485",
+      "chars": 3999,
+      "relevance": 0,
+      "title": "Home-Reserve Bank of India"
+    },
+    {
+      "url": "https://m.rbi.org.in/scripts/BS_ViewMasDirections.aspx?id=13641",
+      "chars": 3999,
+      "relevance": 0,
+      "title": "Home-Reserve Bank of India"
+    },
+    {
+      "url": "https://m.rbi.org.in/scripts/bs_viewcontent.aspx?Id=4925",
+      "chars": 3999,
+      "relevance": 0,
+      "title": "Home-Reserve Bank of India"
+    },
+    {
+      "url": "https://m.rbi.org.in/scripts/bs_viewcontent.aspx?Id=4987",
+      "chars": 3999,
+      "relevance": 0,
+      "title": "Home-Reserve Bank of India"
+    },
+    {
+      "url": "https://rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=54633",
+      "chars": 2389,
+      "relevance": 0,
+      "title": "Nation-wide Awareness Programme: November 2022"
+    },
+    {
+      "url": "https://rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=55201",
+      "chars": 3929,
+      "relevance": 0,
+      "title": "RBI issues an updated Alert List"
+    },
+    {
+      "url": "https://rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=62677",
+      "chars": 3444,
+      "relevance": 0,
+      "title": "RBI reiterates caution against unauthorised and misleading campaigns promising Loan Waivers"
+    },
+    {
+      "url": "https://rbi.org.in/Scripts/Complaints.aspx",
+      "chars": 686,
+      "relevance": 0,
+      "title": "Grievance Redressal"
+    },
+    {
+      "url": "https://rbi.org.in/Scripts/FS_PressRelease.aspx?prid=40666&fn=2745",
+      "chars": 4192,
+      "relevance": 4,
+      "title": "CONSUMER EDUCATION AND PROTECTION"
+    },
+    {
+      "url": "https://rbi.org.in/financialeducation/financialliteracykyc.aspx",
+      "chars": 721,
+      "relevance": 0,
+      "title": "Welcome to RBI Financial"
+    },
+    {
+      "url": "https://rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=58406",
+      "chars": 2538,
+      "relevance": 0,
+      "title": "Draft Framework on Alternative Authentication Mechanisms for Digital Payment Transactions"
+    },
+    {
+      "url": "https://rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=58449",
+      "chars": 8441,
+      "relevance": 0,
+      "title": "Statement on Developmental and Regulatory Policies"
+    },
+    {
+      "url": "https://www.cert-in.org.in/s2cMainServlet?VLCODE=CIAD-2026-0049&pageid=PUBVLNOTES02",
+      "chars": 29900,
+      "relevance": 0,
+      "title": "AI Agents as Attack Vectors: Unauthorized Access by Agents under Evaluation and Misuse of Open-Source Agentic AI Tools Targeting Indian ICT Assets"
+    },
+    {
+      "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES02&VLCODE=CIAD-2026-0052",
+      "chars": 13722,
+      "relevance": 0,
+      "title": "Advisory to MSME - Remote code execution vulnerabilities in PHP (PHP2Shell)"
+    },
+    {
+      "url": "https://www.csk.gov.in/announcements/ncsam2023-t28.html",
+      "chars": 125,
+      "relevance": 0,
+      "title": "Cyber Swachhta Kendra: NCSAM-2023 Day-28 Safety and Security Tips / साइबर सुरक्षा युक्तियाँ"
+    },
+    {
+      "url": "https://www.csk.gov.in/announcements/tip15.html",
+      "chars": 112,
+      "relevance": 0,
+      "title": "Cyber Swachhta Kendra: Day-15 Cyber Security Tips"
+    },
+    {
+      "url": "https://www.csk.gov.in/announcements/tip28.html",
+      "chars": 81,
+      "relevance": 0,
+      "title": "Cyber Swachhta Kendra: Day-28 Cyber Security Tips"
+    },
+    {
+      "url": "https://www.csk.gov.in/documents/Safer%20Internet%20day%20English%202026.pdf",
+      "chars": 4270,
+      "relevance": 0,
+      "title": "Safer Internet day English 2026"
+    },
+    {
+      "url": "https://www.csk.gov.in/documents/english-womens-day2026.pdf",
+      "chars": 3263,
+      "relevance": 0,
+      "title": "@IndianCERT @cert_india"
+    },
+    {
+      "url": "https://www.csk.gov.in/security-best-practices.html",
+      "chars": 3334,
+      "relevance": 0,
+      "title": "Cyber Swachhta Kendra: Security Best Practices"
+    },
+    {
+      "url": "https://www.rbi.org.in/Commonman/English/scripts/RBICMS.aspx",
+      "chars": 1154,
+      "relevance": 0,
+      "title": "SELECT LANGUAGE ASSAMESE BENGALI ENGLISH GUJARATI HINDI KANNADA KASHMIRI MALAYALAM MARATHI ODIA PUNJABI TAMIL TELUGU URDU SITE MAP CONTACT US DISCLAIMER"
+    },
+    {
+      "url": "https://www.rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=37689",
+      "chars": 8116,
+      "relevance": 0,
+      "title": "RBI Governor launches Website ' सचेत ' to curb Illegal Collection of Deposits"
+    },
+    {
+      "url": "https://www.rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=53385",
+      "chars": 6180,
+      "relevance": 0,
+      "title": "Reserve Bank of India launches (a) UPI for Feature Phones (UPI123pay) and (b) 24x7 Helpline for Digital Payments (DigiSaathi)"
+    },
+    {
+      "url": "https://www.rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=53391",
+      "chars": 3352,
+      "relevance": 0,
+      "title": "Reserve Bank clarifies on the mode of receipt of complaints under Reserve Bank – Integrated Ombudsman Scheme 2021(RB-IOS)"
+    },
+    {
+      "url": "https://www.rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=55317",
+      "chars": 2848,
+      "relevance": 0,
+      "title": "RBI cancels Certificate of Registration of M/s Rhino Finance Private Limited due to irregular lending practices"
+    },
+    {
+      "url": "https://www.rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=58949",
+      "chars": 1705,
+      "relevance": 0,
+      "title": "RBI updates the Alert List of unauthorised forex trading platforms"
+    },
+    {
+      "url": "https://www.rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=59135",
+      "chars": 1534,
+      "relevance": 0,
+      "title": "RBI cautions public on deepfake videos of Top Management circulated over social media giving financial advice"
+    },
+    {
+      "url": "https://www.rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=60848",
+      "chars": 4388,
+      "relevance": 0,
+      "title": "RBI imposes monetary penalty on Sarvodaya Nagrik Sahakari Bank Ltd., Himatnagar, Dist. Sabarkantha, Gujarat"
+    },
+    {
+      "url": "https://www.rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=61646",
+      "chars": 1165,
+      "relevance": 0,
+      "title": "RBI updates the Alert List of unauthorised forex trading platforms"
+    },
+    {
+      "url": "https://www.rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=61705",
+      "chars": 7890,
+      "relevance": 0,
+      "title": "Reserve Bank of India issues Consolidated Master Directions"
+    },
+    {
+      "url": "https://www.rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=62052",
+      "chars": 1682,
+      "relevance": 0,
+      "title": "RBI issues Reserve Bank - Integrated Ombudsman Scheme, 2026"
+    },
+    {
+      "url": "https://www.rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=62857",
+      "chars": 3196,
+      "relevance": 0,
+      "title": "Launch of Payment Systems’ Connectivity Between India and Cambodia for QR-Code Based Cross-Border Merchant Payments"
+    },
+    {
+      "url": "https://www.rbi.org.in/Scripts/BS_ViewMasCirculardetails.aspx?id=12095",
+      "chars": 7079,
+      "relevance": 0,
+      "title": "Master Circulars"
+    },
+    {
+      "url": "https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=12532",
+      "chars": 3040,
+      "relevance": 0,
+      "title": "Operation of Pre-Sanctioned Credit Lines at Banks through Unified Payments Interface (UPI) ( Updated as on February 12, 2025 )"
+    },
+    {
+      "url": "https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=12671",
+      "chars": 7650,
+      "relevance": 0,
+      "title": "Unauthorised foreign exchange transactions"
+    },
+    {
+      "url": "https://www.rbi.org.in/commonman/English/scripts/Notification.aspx?Id=3074",
+      "chars": 14599,
+      "relevance": 0,
+      "title": "Harmonisation of Turn Around Time (TAT) and customer compensation for failed transactions using authorised Payment Systems"
+    },
+    {
+      "url": "https://www.rbi.org.in/commonman/english/Scripts/SMSCMS.aspx",
+      "chars": 4733,
+      "relevance": 0,
+      "title": "Complaint against bank, NBFC, system participant not redressed? Lodge complaint on RBI's Complaint Management System @ https://cms.rbi.org.in . More? Call 14440"
+    },
+    {
+      "url": "https://www.rbi.org.in/commonman/english/scripts/FAQs.aspx?Id=3347",
+      "chars": 17087,
+      "relevance": 0,
+      "title": "Foreign Exchange (Forex) Transactions"
+    },
+    {
+      "url": "https://www.rbi.org.in/commonman/english/scripts/FAQs.aspx?Id=3407",
+      "chars": 42911,
+      "relevance": 0,
+      "title": "Reserve Bank - Integrated Ombudsman Scheme, 2026"
+    },
+    {
+      "url": "https://www.rbi.org.in/commonman/english/scripts/FAQs.aspx?Id=3415",
+      "chars": 8669,
+      "relevance": 0,
+      "title": "UPI-PayNow Linkage"
+    },
+    {
+      "url": "https://www.rbi.org.in/commonman/english/scripts/FAQs.aspx?SID=23",
+      "chars": 1022,
+      "relevance": 0,
+      "title": "Payment and Settlement System"
+    },
+    {
+      "url": "https://www.rbi.org.in/commonman/english/scripts/PressReleases.aspx?Id=3340",
+      "chars": 6921,
+      "relevance": 0,
+      "title": "The Reserve Bank - Integrated Ombudsman Scheme, 2021"
+    },
+    {
+      "url": "https://www.rbi.org.in/commonman/english/scripts/PressReleases.aspx?Id=3368",
+      "chars": 3891,
+      "relevance": 0,
+      "title": "RBI issues Alert List of entities not authorised to deal in forex and to operate electronic trading platforms for forex transactions"
+    },
+    {
+      "url": "https://www.rbi.org.in/commonman/english/scripts/rbikehtahai.aspx",
+      "chars": 1452,
+      "relevance": 0,
+      "title": "RBI Kehta Hai"
+    },
+    {
+      "url": "https://www.rbi.org.in/commonperson/English/Scripts/FAQs.aspx?Id=3074",
+      "chars": 14599,
+      "relevance": 0,
+      "title": "Harmonisation of Turn Around Time (TAT) and customer compensation for failed transactions using authorised Payment Systems"
+    },
+    {
+      "url": "https://www.rbi.org.in/financialeducation/fame.aspx",
+      "chars": 6387,
+      "relevance": 0,
+      "title": "Welcome to RBI Financial"
+    },
+    {
+      "url": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=47383",
+      "chars": 3597,
+      "relevance": 0,
+      "title": "Launch of Complaint Management System by RBI"
+    },
+    {
+      "url": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=58294",
+      "chars": 4350,
+      "relevance": 0,
+      "title": "Reserve Bank of India issues Revised Master Directions on Fraud Risk Management in the Regulated Entities"
+    },
+    {
+      "url": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=62290",
+      "chars": 3395,
+      "relevance": 0,
+      "title": "Workshop on Digital / Cyber Frauds"
+    },
+    {
+      "url": "https://www.rbi.org.in/scripts/FS_PressRelease.aspx?prid=54187&fn=2",
+      "chars": 17351,
+      "relevance": 0,
+      "title": "REGULATING COMMERCIAL BANKING"
+    },
+    {
+      "url": "https://www.rbi.org.in/scripts/bs_viewcontent.aspx?Id=4477",
+      "chars": 22379,
+      "relevance": 0,
+      "title": "DRAFT FRAMEWORK FOR COMMENTS"
+    },
+    {
+      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2025/1755862022145.pdf",
+      "chars": 1393,
+      "relevance": 0,
+      "title": "Advisory Against investment in Fraudulent Trading Schemes claiming to be"
+    },
+    {
+      "url": "https://www.rbi.org.in/commonman/English/Scripts/FLW24_DigitalCyberHygiene.aspx",
+      "chars": 932,
+      "relevance": 0,
+      "title": "SELECT LANGUAGE ASSAMESE BENGALI ENGLISH GUJARATI HINDI KANNADA KASHMIRI MALAYALAM MARATHI ODIA PUNJABI TAMIL TELUGU URDU SITE MAP CONTACT US DISCLAIMER"
+    },
+    {
+      "url": "https://www.rbi.org.in/commonman/Hindi/Scripts/FLW24_DigitalCyberHygiene.aspx",
+      "chars": 1179,
+      "relevance": 0,
+      "title": "Download the hindi font SELECT LANGUAGE ASSAMESE BENGALI ENGLISH GUJARATI HINDI KANNADA KASHMIRI MALAYALAM MARATHI ODIA PUNJABI TAMIL TELUGU URDU कहां क्या है संपर्क करें अस्वीकरण"
+    },
+    {
+      "url": "https://www.rbi.org.in/commonman/Tamil/Scripts/FLW24_DigitalCyberHygiene.aspx",
+      "chars": 1086,
+      "relevance": 0,
+      "title": "Download the tamil font SELECT LANGUAGE ASSAMESE BENGALI ENGLISH GUJARATI HINDI KANNADA KASHMIRI MALAYALAM MARATHI ODIA PUNJABI TAMIL TELUGU URDU தளப் படம் தொடர்பு கொள்ள மறுதலிப்பு"
+    }
+  ],
+  "kept": [
+    "https://cert-in.org.in/PDF/CSA_Booklet.pdf",
+    "https://investor.sebi.gov.in/pdf/Fake%20trading%20app%20scam%20Landscape.pdf",
+    "https://rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=58595",
+    "https://rbi.org.in/Scripts/FS_PressRelease.aspx?prid=44392&fn=2745",
+    "https://rbi.org.in/Scripts/NotificationUser.aspx?Id=11920&Mode=0",
+    "https://rbi.org.in/Scripts/PublicationsView.aspx?id=18948",
+    "https://rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=25911",
+    "https://rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=31755",
+    "https://rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=37765",
+    "https://rbi.org.in/scripts/PublicationsView.aspx?Id=17754",
+    "https://rbi.org.in/scripts/PublicationsView.aspx?Id=22782",
+    "https://rbi.org.in/scripts/PublicationsView.aspx?id=21022",
+    "https://sancharsaathi.gov.in/SancharSaathiDocuments/KeepYourselfAwareDocuments/JumpDepositFraud.pdf",
+    "https://sancharsaathi.gov.in/sfc",
+    "https://static.pib.gov.in/WriteReadData/specificdocs/documents/2025/oct/doc2025108660701.pdf",
+    "https://www.cert-in.org.in/PDF/CSH_Booklet25.pdf",
+    "https://www.cert-in.org.in/s2cMainServlet?VLCODE=CIAD-2026-0020&pageid=PUBVLNOTES02",
+    "https://www.cert-in.org.in/s2cMainServlet?VLCODE=CIAD-2026-0058&pageid=PUBVLNOTES02",
+    "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES02&VLCODE=CIAD-2026-0046",
+    "https://www.csk.gov.in/documents/CERT-In_Safe_Internet-Best_Practices_Booklet.pdf",
+    "https://www.incometax.gov.in/iec/foportal/sites/default/files/2020-08/Press-Release-Anti-Phishing-email-05-02-2016.pdf",
+    "https://www.rbi.org.in/Commonman/English/Scripts/SMSLimitedliability.aspx",
+    "https://www.rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=50846",
+    "https://www.rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=53185",
+    "https://www.rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=53372",
+    "https://www.rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=57244",
+    "https://www.rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=59246",
+    "https://www.rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=62340",
+    "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=10477",
+    "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13140",
+    "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13751",
+    "https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=12032",
+    "https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=12715",
+    "https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=12756&Mode=0",
+    "https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=12898&Mode=0",
+    "https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=13624&Mode=0",
+    "https://www.rbi.org.in/Scripts/PublicationsView.aspx?id=23810",
+    "https://www.rbi.org.in/commonman/Upload/English/Notification/PDFs/NT109ML141217.PDF",
+    "https://www.rbi.org.in/commonman/Upload/English/Notification/PDFs/NT41802062016.pdf",
+    "https://www.rbi.org.in/commonman/english/Scripts/FAQs.aspx?Id=3782",
+    "https://www.rbi.org.in/commonman/english/scripts/FAQs.aspx?Id=1498",
+    "https://www.rbi.org.in/commonman/english/scripts/Notification.aspx?Id=1235",
+    "https://www.rbi.org.in/commonman/english/scripts/Notification.aspx?Id=1721",
+    "https://www.rbi.org.in/commonman/english/scripts/Notification.aspx?Id=1888",
+    "https://www.rbi.org.in/commonman/english/scripts/Notification.aspx?Id=2336",
+    "https://www.rbi.org.in/commonman/english/scripts/Notification.aspx?Id=2623",
+    "https://www.rbi.org.in/commonman/english/scripts/Notification.aspx?Id=3221",
+    "https://www.rbi.org.in/commonman/english/scripts/Notification.aspx?Id=578",
+    "https://www.rbi.org.in/commonman/english/scripts/Notification.aspx?Id=916",
+    "https://www.rbi.org.in/commonman/english/scripts/PressReleases.aspx?Id=2438",
+    "https://www.rbi.org.in/commonman/english/scripts/PressReleases.aspx?Id=2439",
+    "https://www.rbi.org.in/commonman/english/scripts/PressReleases.aspx?Id=2440",
+    "https://www.rbi.org.in/commonman/english/scripts/PressReleases.aspx?Id=2441",
+    "https://www.rbi.org.in/commonman/english/scripts/PressReleases.aspx?Id=2628",
+    "https://www.rbi.org.in/commonman/english/scripts/PressReleases.aspx?Id=2660",
+    "https://www.rbi.org.in/commonman/images/FAME202426022024.pdf",
+    "https://www.rbi.org.in/commonperson/english/Scripts/Notification.aspx?Id=1470",
+    "https://www.rbi.org.in/hindi1/Upload/content/PDFs/C229260416_2.pdf",
+    "https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=12770",
+    "https://www.rbi.org.in/scripts/bs_viewcontent.aspx?Id=3235",
+    "https://www.sancharsaathi.gov.in/SancharSaathiDocuments/ImportantDocuments/en/Citizens%E2%80%99%20Money%20Saved%20before%20It%20Is%20Lost:%20Financial%20Fraud%20Risk%20Indicator%20(FRI)%20Prevents%20Suspected%20Cyber%20Fraud%20transactions%20of%20over%20%E2%82%B95,000%20Crore.pdf",
+    "https://www.sancharsaathi.gov.in/SancharSaathiDocuments/ImportantDocuments/en/Sanchar%20Saathi%20portal%20crosses%2030%20crore%20visits%20as%20citizens%20turn%20Cyber%20Warriors%20against%20telecom%20fraud.pdf",
+    "https://www.sancharsaathi.gov.in/sfc/Home/sfc-complaint.jsp",
+    "https://www.sancharsaathi.gov.in/sfc/Home/ucc-complaint.jsp",
+    "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2025/1744374585901.pdf",
+    "https://www.sebi.gov.in/sebi_data/attachdocs/may-2025/1747825040886.pdf"
+  ],
+  "summary": {
+    "excluded": 109,
+    "duplicates": 18,
+    "fetch_failed": 65,
+    "irrelevant": 60,
+    "kept": 66
+  }
+}
