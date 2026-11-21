@@ -13,7 +13,11 @@ from typing import Optional, Dict, Any
 from fastapi import Request, HTTPException, Depends, Header
 from moneytrace.db.database import get_user_by_id, get_user_by_email, hash_password
 
-JWT_SECRET = os.environ.get("JWT_SECRET", "moneytrace-super-secret-key-2026-secure")
+_DEV_JWT_SECRET = "moneytrace-super-secret-key-2026-secure"
+JWT_SECRET = os.environ.get("JWT_SECRET", _DEV_JWT_SECRET)
+if os.environ.get("K_SERVICE") and JWT_SECRET in ("", _DEV_JWT_SECRET):
+    # Never run a deployed service with the public development secret: anyone could forge operator tokens.
+    raise RuntimeError("JWT_SECRET must be set (Secret Manager) when running on Cloud Run")
 JWT_ALGORITHM = "HS256"
 JWT_EXPIRATION_SECONDS = 86400 * 7  # 7 days
 

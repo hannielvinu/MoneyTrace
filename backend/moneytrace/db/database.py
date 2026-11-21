@@ -136,8 +136,8 @@ def init_db(force_reseed: bool = False):
     eng = get_engine()
     with eng.begin() as conn:
         user_count = conn.execute(select(func.count()).select_from(m.users)).scalar()
-        if user_count == 0 or force_reseed:
-            seed_users(conn)
+        if user_count == 0 or force_reseed or os.environ.get("K_SERVICE"):
+            seed_users(conn)  # on Cloud Run this re-applies (or skips) demo passwords from env on every start
     with eng.begin() as conn:
         incident_count = conn.execute(select(func.count()).select_from(m.incidents)).scalar()
         if incident_count == 0 or force_reseed:
@@ -154,11 +154,19 @@ def _upsert(conn, table, values: Dict[str, Any], key: str):
 
 
 def seed_users(conn):
-    users = [
-        ("usr_demo_victim_1", "victim@moneytrace.in", hash_password("victim123"), "Ramesh Kumar (Victim)", "USER"),
-        ("usr_demo_victim_2", "victim2@moneytrace.in", hash_password("victim123"), "Priya Sharma (Victim 2)", "USER"),
-        ("usr_demo_operator", "operator@moneytrace.in", hash_password("operator123"), "Vikram Mehta (Fraud Ops)", "FRAUD_OPERATOR"),
-    ]
+    """Demo accounts. On a deployed service (K_SERVICE set) they are created only with SEED_DEMO_USERS=1 and
+    passwords taken from DEMO_VICTIM_PASSWORD / DEMO_OPERATOR_PASSWORD, so the public dev passwords never work live."""
+    deployed = bool(os.environ.get("K_SERVICE"))
+    if deployed and os.environ.get("SEED_DEMO_USERS", "0") != "1":
+        return
+    victim_pw = os.environ.get("DEMO_VICTIM_PASSWORD") or ("" if deployed else "victim123")
+    operator_pw = os.environ.get("DEMO_OPERATOR_PASSWORD") or ("" if deployed else "operator123")
+    users = []
+    if victim_pw:
+        users += [("usr_demo_victim_1", "victim@moneytrace.in", hash_password(victim_pw), "Ramesh Kumar (Victim)", "USER"),
+                  ("usr_demo_victim_2", "victim2@moneytrace.in", hash_password(victim_pw), "Priya Sharma (Victim 2)", "USER")]
+    if operator_pw:
+        users += [("usr_demo_operator", "operator@moneytrace.in", hash_password(operator_pw), "Vikram Mehta (Fraud Ops)", "FRAUD_OPERATOR")]
     for uid, email, phash, name, role in users:
         _upsert(conn, m.users, {
             "id": uid, "email": email, "password_hash": phash, "name": name,

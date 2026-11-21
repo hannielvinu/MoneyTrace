@@ -25,21 +25,21 @@ async def test_full_flow():
 
         print("\n--- 2. Authentication & Data Isolation ---")
         # Victim 1 Login
-        v1_res = await client.post("/api/auth/login", json={"email": "victim@moneytrace.in", "password": "victim123"})
+        v1_res = await client.post("/api/auth/login", json={"email": "victim@moneytrace.in", "password": os.environ.get("DEMO_VICTIM_PASSWORD", "victim123")})
         assert v1_res.status_code == 200, "Victim 1 login failed"
         v1_token = v1_res.json()["access_token"]
         v1_headers = {"Authorization": f"Bearer {v1_token}"}
         print("✓ Victim 1 logged in successfully")
 
         # Victim 2 Login
-        v2_res = await client.post("/api/auth/login", json={"email": "victim2@moneytrace.in", "password": "victim123"})
+        v2_res = await client.post("/api/auth/login", json={"email": "victim2@moneytrace.in", "password": os.environ.get("DEMO_VICTIM_PASSWORD", "victim123")})
         assert v2_res.status_code == 200, "Victim 2 login failed"
         v2_token = v2_res.json()["access_token"]
         v2_headers = {"Authorization": f"Bearer {v2_token}"}
         print("✓ Victim 2 logged in successfully")
 
         # Operator Login
-        op_res = await client.post("/api/auth/login", json={"email": "operator@moneytrace.in", "password": "operator123"})
+        op_res = await client.post("/api/auth/login", json={"email": "operator@moneytrace.in", "password": os.environ.get("DEMO_OPERATOR_PASSWORD", "operator123")})
         assert op_res.status_code == 200, "Operator login failed"
         op_token = op_res.json()["access_token"]
         op_headers = {"Authorization": f"Bearer {op_token}"}

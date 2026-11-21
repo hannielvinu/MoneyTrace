@@ -36,3 +36,26 @@ def test_operator_allowed(client, operator_headers):
     r = client.get("/api/dashboard", headers=operator_headers)
     assert r.status_code == 200
     assert "metrics" in r.json()
+
+
+def test_deployed_service_never_seeds_public_demo_passwords(monkeypatch):
+    from sqlalchemy import select
+    from moneytrace.db import database as db, models as m
+    monkeypatch.setenv("K_SERVICE", "moneytrace")
+    monkeypatch.delenv("SEED_DEMO_USERS", raising=False)
+    with db.get_engine().begin() as conn:
+        conn.execute(m.users.delete().where(m.users.c.email == "operator@moneytrace.in"))
+        db.seed_users(conn)
+        assert conn.execute(select(m.users).where(m.users.c.email == "operator@moneytrace.in")).first() is None
+    monkeypatch.setenv("SEED_DEMO_USERS", "1")
+    monkeypatch.setenv("DEMO_OPERATOR_PASSWORD", "a-long-private-password")
+    with db.get_engine().begin() as conn:
+        db.seed_users(conn)
+    u = db.get_user_by_email("operator@moneytrace.in")
+    assert u["password_hash"] == db.hash_password("a-long-private-password")
+    assert u["password_hash"] != db.hash_password("operator123")
+    monkeypatch.delenv("K_SERVICE")
+    monkeypatch.delenv("DEMO_OPERATOR_PASSWORD")
+    monkeypatch.delenv("SEED_DEMO_USERS")
+    with db.get_engine().begin() as conn:  # restore dev account for the other tests
+        db.seed_users(conn)

@@ -60,7 +60,10 @@ Status legend: ⬜ to do · ✅ done
     ```bash
     cd backend && python scripts/load_test.py --base-url https://<service>.run.app --n 100 --concurrency 5
     ```
-12. ⬜ Change the demo passwords (victim123 / operator123) on the live database, or remove the demo users.
+12. ⬜ Demo accounts on Cloud Run: by default they are **not** created (the public dev passwords never work live), and
+    the service refuses to start without a real `JWT_SECRET`. For `verify` / the load test, either create real accounts
+    (`create_operator.py`, and register a test victim) or deploy once with `SEED_DEMO_USERS=1` plus private
+    `DEMO_VICTIM_PASSWORD` / `DEMO_OPERATOR_PASSWORD` env vars, run the tests with the same env vars, then redeploy without them.
 13. ⬜ Add GitHub repo secrets `RAG_EVAL_DATABASE_URL` and `GEMINI_API_KEY` to enable the CI RAG gate.
 
 ## D. WhiteHats
