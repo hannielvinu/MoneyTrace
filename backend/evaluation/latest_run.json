@@ -1,12 +1,12 @@
 {
-  "run_id": "RUN_20260919_043904_6bbb9d",
+  "run_id": "RUN_20261121_184701_f1229c",
   "dataset_name": "MoneyTrace Fraud Classification Benchmark v1",
   "dataset_version": "1.0.0",
-  "timestamp": "2026-09-19T04:39:04.639980Z",
+  "timestamp": "2026-11-21T18:47:01.128698Z",
   "model_version": "MoneyTrace Pipeline v1.2 (Hybrid Multi-Modal Reasoning)",
   "test_sample_count": 400,
   "total_benchmark_records": 2000,
-  "execution_duration_sec": 0.05,
+  "execution_duration_sec": 0.03,
   "classes": [
     "LEGITIMATE",
     "UPI_FRAUD",

@@ -11,7 +11,9 @@ import hashlib
 from typing import List, Dict, Any, Optional
 from datetime import datetime
 
-DB_FILE = os.path.join(os.path.dirname(__file__), "moneytrace.db")
+_DEFAULT_DB_FILE = os.path.join(os.path.dirname(__file__), "moneytrace.db")
+_url = os.environ.get("DATABASE_URL", "")
+DB_FILE = _url[len("sqlite:///"):] if _url.startswith("sqlite:///") else _DEFAULT_DB_FILE
 
 
 def hash_password(password: str) -> str:

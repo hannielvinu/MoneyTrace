@@ -197,7 +197,8 @@ class TestEmpatheticVoiceAgent(unittest.IsolatedAsyncioTestCase):
             request=httpx.Request("POST", "https://api.sarvam.ai/text-to-speech")
         )
 
-        with patch("httpx.AsyncClient.post", new_callable=AsyncMock) as mock_post:
+        with patch.dict(os.environ, {"SARVAM_API_KEY": os.environ.get("SARVAM_API_KEY") or "unit-test-dummy-key"}), \
+             patch("httpx.AsyncClient.post", new_callable=AsyncMock) as mock_post:
             mock_post.return_value = mock_response
 
             res1 = await generate_voice_response(
@@ -230,7 +231,8 @@ class TestEmpatheticVoiceAgent(unittest.IsolatedAsyncioTestCase):
             request=httpx.Request("POST", "https://api.sarvam.ai/text-to-speech")
         )
 
-        with patch("httpx.AsyncClient.post", new_callable=AsyncMock) as mock_post:
+        with patch.dict(os.environ, {"SARVAM_API_KEY": os.environ.get("SARVAM_API_KEY") or "unit-test-dummy-key"}), \
+             patch("httpx.AsyncClient.post", new_callable=AsyncMock) as mock_post:
             mock_post.return_value = mock_response
 
             res = await generate_voice_response(

@@ -13,7 +13,8 @@ import asyncio
 import httpx
 from datetime import datetime
 
-BASE_URL = "http://127.0.0.1:8000"
+import os
+BASE_URL = os.environ.get("MONEYTRACE_BASE_URL", "http://127.0.0.1:8000")
 
 async def test_full_flow():
     async with httpx.AsyncClient(base_url=BASE_URL, timeout=25.0) as client:
