@@ -23,3 +23,6 @@ moneytrace/static/uploads/
 rag/raw/
 moneytrace/static/uploads/voice_cache/
 .env.cloud
+
+# raw result logs are evidence for RESULTS.md and must be committed
+!results/**/*.log

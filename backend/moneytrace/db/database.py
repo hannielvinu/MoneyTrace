@@ -24,19 +24,50 @@ from moneytrace.db import models as m
 logger = logging.getLogger("moneytrace.db")
 
 _DEFAULT_DB_FILE = os.path.join(os.path.dirname(__file__), "moneytrace.db")
+_REPO_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+
+# Neon CLI (`neon init` / `neon deploy` / `neon env pull`) writes DATABASE_URL (pooled) and DATABASE_URL_UNPOOLED
+# (direct) into <repo>/.env.local. Load it as a fallback: explicit env vars and backend/.env take precedence.
+try:
+    from dotenv import load_dotenv as _load_dotenv
+    _neon_env = os.path.join(_REPO_ROOT, ".env.local")
+    if os.path.exists(_neon_env) and os.environ.get("MONEYTRACE_TESTING") != "1":
+        _load_dotenv(_neon_env, override=False)
+except Exception:  # pragma: no cover
+    pass
 INCIDENT_ID_BASE = 10482
+
+
+def _normalise(url: str) -> str:
+    # Accept plain postgres:// URLs from Neon / Heroku style providers; use the psycopg 3 driver.
+    if url.startswith("postgres://"):
+        url = "postgresql+psycopg://" + url[len("postgres://"):]
+    elif url.startswith("postgresql://"):
+        url = "postgresql+psycopg://" + url[len("postgresql://"):]
+    return url
 
 
 def _database_url() -> str:
     url = os.environ.get("DATABASE_URL", "").strip()
     if not url:
         return f"sqlite:///{_DEFAULT_DB_FILE}"
-    # Accept plain postgres:// URLs from Neon / Heroku style providers.
-    if url.startswith("postgres://"):
-        url = "postgresql+psycopg://" + url[len("postgres://"):]
-    elif url.startswith("postgresql://"):
-        url = "postgresql+psycopg://" + url[len("postgresql://"):]
-    return url
+    return _normalise(url)
+
+
+def migration_database_url() -> str:
+    """Direct (unpooled) URL for Alembic / DDL. Neon's pooled endpoint runs PgBouncer in transaction mode, which
+    breaks session-level operations, so migrations use DATABASE_URL_UNPOOLED, or the pooled URL with the
+    `-pooler` host suffix removed (Neon's naming convention)."""
+    from urllib.parse import urlparse
+    url = _database_url()
+    derived = url.replace("-pooler.", ".", 1) if "-pooler." in url else url
+    direct = os.environ.get("DATABASE_URL_UNPOOLED", "").strip()
+    if direct and not url.startswith("sqlite"):
+        d, a = urlparse(_normalise(direct)), urlparse(derived)
+        # only trust it when it is the direct endpoint of the SAME database the app uses
+        if (d.hostname, d.path) == (a.hostname, a.path):
+            return _normalise(direct)
+    return derived
 
 
 DATABASE_URL = _database_url()
@@ -57,8 +88,13 @@ def get_engine() -> Engine:
                 cur.execute("PRAGMA journal_mode=WAL")
                 cur.close()
         else:
+            connect_args = {}
+            if "-pooler." in DATABASE_URL:
+                # PgBouncer (transaction mode): disable psycopg's automatic server-side prepared statements
+                connect_args["prepare_threshold"] = None
             _engine = create_engine(
                 DATABASE_URL,
+                connect_args=connect_args,
                 pool_pre_ping=True,
                 pool_size=int(os.environ.get("DB_POOL_SIZE", "5")),
                 max_overflow=int(os.environ.get("DB_MAX_OVERFLOW", "5")),

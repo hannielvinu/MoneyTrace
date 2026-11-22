@@ -1,0 +1,27 @@
+Sat Nov 21 18:46:59 UTC 2026
+$ python evaluation/generate_dataset.py
+/home/user/MoneyTrace/backend/evaluation/generate_dataset.py:562: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "creation_timestamp": datetime.utcnow().isoformat() + "Z",
+==================================================
+MONEYTRACE BENCHMARK GENERATION COMPLETE
+Total records: 2000 (Train: 1600, Test: 400)
+Classes: ['LEGITIMATE', 'UPI_FRAUD', 'PHISHING', 'IMPERSONATION', 'INVESTMENT_FRAUD', 'ACCOUNT_TAKEOVER', 'WRONG_TRANSFER']
+CSV SHA-256: 1254fed57cfbe8afc29440a8727779f3cac3e55d9d05a2f4f128a2b8eaeb684b
+Output files in: /home/user/MoneyTrace/backend/evaluation
+==================================================
+$ python evaluation/evaluator.py
+/home/user/MoneyTrace/backend/evaluation/evaluator.py:263: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  run_id = f"RUN_{datetime.utcnow().strftime('%Y%m%d_%H%M%S')}_{uuid.uuid4().hex[:6]}"
+/home/user/MoneyTrace/backend/evaluation/evaluator.py:307: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z",
+==================================================
+MONEYTRACE BENCHMARK EVALUATION FINISHED
+Run ID: RUN_20261121_184701_f1229c
+Test Cases Evaluated: 400
+Multi-Class Accuracy: 86.50%
+Multi-Class Macro F1: 87.37%
+Binary Fraud Detection F1: 94.83%
+Binary Fraud Accuracy: 92.75%
+False Positive Rate (FPR): 8.70%
+Artifacts saved in: /home/user/MoneyTrace/backend/evaluation/runs/RUN_20261121_184701_f1229c
+==================================================

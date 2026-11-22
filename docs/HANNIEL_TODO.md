@@ -7,9 +7,11 @@ Status legend: ⬜ to do · ✅ done
    `GEMINI_API_KEY=...` and set `LLM_PROVIDER=gemini`, `EMBEDDING_PROVIDER=gemini`.
    For this cloud session, add it in the environment settings as a network secret for host
    `generativelanguage.googleapis.com` with header `x-goog-api-key` (the session's credential form cannot save that header).
-2. ⬜ **Neon Postgres** (free, no card): https://neon.tech → create project in region *AWS Asia Pacific (Mumbai)* →
-   copy the connection string into `DATABASE_URL=` (keep `?sslmode=require`). pgvector is available on Neon:
-   migrations run `CREATE EXTENSION vector` automatically.
+2. ✅ **Neon Postgres** — project `holy-bar-58757480`, branch `production`, AWS ap-southeast-1 (Singapore),
+   Postgres 18.7 + pgvector 0.8.7. Schema applied and verified (`backend/results/neon/neon_check.log`).
+   On your laptop run `neon env pull` (or `neon init` with the same ids) to get `.env.local` with `DATABASE_URL`
+   (pooled, for the app) and `DATABASE_URL_UNPOOLED` (direct, used automatically for Alembic migrations).
+   Because the database is in Singapore, deploy Cloud Run with `REGION=asia-southeast1`.
 3. ⬜ **Google Cloud project** with billing linked (needed even for the free tier). Note the `PROJECT_ID`.
 
 ## B. Build the real corpus and numbers (on your laptop)
@@ -34,11 +36,11 @@ Status legend: ⬜ to do · ✅ done
    ```
 
 ## C. Deploy (Cloud Run free tier, ask yourself before each step)
-8. ⬜ Create `backend/.env.cloud` (gitignored) with `DATABASE_URL, GEMINI_API_KEY, JWT_SECRET, SARVAM_API_KEY,
+8. ⬜ Create `backend/.env.cloud` (gitignored) with `DATABASE_URL` (Neon **pooled** string from `.env.local`), GEMINI_API_KEY, JWT_SECRET, SARVAM_API_KEY,
    COGNEE_API_KEY, N8N_WEBHOOK_URL` (generate JWT_SECRET with `python -c "import secrets;print(secrets.token_urlsafe(48))"`).
 9. ⬜ Run, one at a time, reading each step first:
    ```bash
-   export PROJECT_ID=<your-project> REGION=asia-south1
+   export PROJECT_ID=<your-project> REGION=asia-southeast1
    bash backend/scripts/deploy_cloudrun.sh check
    bash backend/scripts/deploy_cloudrun.sh apis
    bash backend/scripts/deploy_cloudrun.sh sa

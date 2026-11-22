@@ -1,0 +1,57 @@
+Sun Nov 22 09:03:46 UTC 2026
+$ python scripts/neon_http_check.py --apply   # Neon branch production, via HTTPS /sql
+{
+  "endpoint": "ep-winter-brook-b34z1jce.c-4.ap-southeast-1.aws.neon.tech",
+  "server": {
+    "v": "PostgreSQL 18.7 (84da7d8) on aarch64-unknown-linux-gnu, compiled by gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0, 64-bit",
+    "db": "neondb"
+  },
+  "ddl_statements_applied": 24,
+  "pgvector": [
+    {
+      "extversion": "0.8.7"
+    }
+  ],
+  "tables": [
+    "advisory_chunks",
+    "advisory_documents",
+    "alembic_version",
+    "audit_trail",
+    "counters",
+    "entities",
+    "evidence_packages",
+    "incidents",
+    "investigation_events",
+    "llm_calls",
+    "rag_meta",
+    "transactions",
+    "usage_events",
+    "user_notifications",
+    "users"
+  ],
+  "indexes_on_advisory_chunks": [
+    "advisory_chunks_pkey",
+    "ix_chunks_doc",
+    "ix_chunks_embedding_hnsw",
+    "ix_chunks_tsv"
+  ],
+  "alembic_version": [
+    {
+      "version_num": "0002_advisory_chunks"
+    }
+  ],
+  "vector_search": [
+    {
+      "id": "neon-check#0",
+      "score": 1.0
+    }
+  ],
+  "fulltext_search": [
+    {
+      "id": "neon-check#0",
+      "score": 0.13333334
+    }
+  ],
+  "cleanup_rows_left": "0",
+  "seconds": 10.57
+}

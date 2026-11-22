@@ -1,0 +1,55 @@
+Sat Nov 21 23:07:31 UTC 2026
+$ ACCEPTANCE_WAIT_S=400 python -X utf8 test_acceptance.py  # local v2 stack: Postgres+pgvector, ADK agents on NVIDIA dev models, no Sarvam key
+
+--- 1. Health Check ---
+✓ Health Check Passed
+
+--- 2. Authentication & Data Isolation ---
+✓ Victim 1 logged in successfully
+✓ Victim 2 logged in successfully
+✓ Fraud Operator logged in successfully
+✓ Data Isolation Confirmed: Victim blocked with HTTP 403 on operator endpoint
+✓ Operator Dashboard Loaded: 129 active incidents
+
+--- 3. Voice Transcription (Sarvam STT) ---
+✓ Sarvam STT Result: Provider='Sarvam Unconfigured — Local Resilience Mode', Lang='en'
+  Live Success: True, Fallback: True
+
+--- 4. Victim 1 Submits Emergency Incident Report ---
+✓ Incident Registered: MT-10613, Message: 'Report submitted — investigation in progress.'
+✓ Voice Acknowledgement Generated: available=False, url=None
+
+--- 5. Awaiting Autonomous Investigation Pipeline & Events ---
+✓ Victim 1 isolated reports confirmed (130 records)
+✓ Victim 2 Isolation Verified: Victim 2 has 0 reports (0 leak of MT-10613)
+
+--- 6. User-Safe Protective Notifications ---
+✓ User Notification Created: 'Investigation Complete: Protective Actions Required'
+  Summary: Your report about the ₹18,500.00 transfer has been reviewed (Fake KYC).
+  Safe Guidance Preview: 1. Report immediately on the 1930 cyber-fraud helpline or at cybercrime.gov.in, ...
+
+--- 7. Fraud Operator Case Workspace & Cognee Syndicate Intelligence ---
+✓ Evidence Package: Severity=CRITICAL, Intel Layer='Cognee unavailable — local resilience mode'
+✓ AI Investigator: Provider='Google ADK multi-agent (nvidia)', Status='LLM LIVE (nvidia)', Model='nvidia/nemotron-3.5-lightning-30b-a3b'
+  Gemini Story Summary: Victim received a fraudulent call claiming to be from HDFC KYC department and tr...
+  Shared Entities: ['UPI: kyc-update.pay@ybl']
+  Related Incidents Discovered: 10
+✓ Persistent Event Bus recorded 12 milestones: ['INCIDENT_CREATED', 'INVESTIGATION_STARTED', 'TRANSACTION_FOUND', 'SIGNALS_ANALYZED', 'RELATED_INCIDENTS_FOUND', 'GRAPH_READY', 'EVIDENCE_PREPARED', 'N8N_WORKFLOW_STARTED', 'N8N_WORKFLOW_COMPLETED', 'HUMAN_REVIEW_REQUIRED', 'INCIDENT_COMPLETED', 'USER_NOTIFICATION_CREATED']
+✓ Resolution Voice Response in Pipeline: available=False, event=investigation_completed, url=None
+Traceback (most recent call last):
+  File "/home/user/MoneyTrace/backend/test_acceptance.py", line 179, in <module>
+    asyncio.run(test_full_flow())
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/asyncio/runners.py", line 196, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "/usr/local/lib/python3.13/asyncio/runners.py", line 119, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/local/lib/python3.13/asyncio/base_events.py", line 726, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/home/user/MoneyTrace/backend/test_acceptance.py", line 162, in test_full_flow
+    assert voice_data.get("available") is True, "Voice response not available on endpoint"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Voice response not available on endpoint
