@@ -53,24 +53,29 @@ class BaseEmbedder:
 
     def _with_retry(self, texts: List[str], kind: str) -> List[List[float]]:
         delay = 2.0
-        for attempt in range(6):
+        for attempt in range(8):
             try:
                 return self._embed(texts, kind)
             except Exception as e:
                 msg = str(e)
                 transient = any(s in msg for s in ("429", "overloaded", "503", "500", "RESOURCE_EXHAUSTED",
                                                     "timed out", "Timeout", "502", "504"))
-                if not transient or attempt == 5:
+                if not transient or attempt == 7:
                     raise
                 logger.warning(f"embedding retry {attempt + 1}: {msg[:120]}")
                 time.sleep(delay)
-                delay = min(delay * 2, 60)
+                delay = min(delay * 2, 65)
         raise RuntimeError("unreachable")
 
     def embed_documents(self, texts: List[str]) -> List[List[float]]:
+        # EMBED_BATCH_SIZE / EMBED_PAUSE_S pace large documents under free-tier per-minute quotas
+        size = int(os.environ.get("EMBED_BATCH_SIZE", self.batch_size))
+        pause = float(os.environ.get("EMBED_PAUSE_S", "0"))
         out: List[List[float]] = []
-        for i in range(0, len(texts), self.batch_size):
-            batch = texts[i:i + self.batch_size]
+        for i in range(0, len(texts), size):
+            if i and pause:
+                time.sleep(pause)
+            batch = texts[i:i + size]
             out.extend(_norm(v) for v in self._with_retry(batch, "document"))
         return out
 

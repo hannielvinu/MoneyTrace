@@ -49,10 +49,14 @@ Return ONLY JSON: {{"steps": [{{"step": 1, "claims": [{{"claim": "...", "quote":
 Quotes must be copied word for word from the passages; they are verified automatically."""
 
 
+def eval_judge_provider():
+    """The auditor must not be the model that wrote and self-checked the answer. Default: NVIDIA-hosted MiniMax,
+    a different model family from both Gemini and Nemotron. Override with EVAL_JUDGE_PROVIDER / EVAL_JUDGE_MODEL."""
+    return os.environ.get("EVAL_JUDGE_PROVIDER", "nvidia")
+
+
 def eval_judge_model():
-    from moneytrace.llm import provider, model_for
-    default = "minimaxai/minimax-m3.1-flash" if provider() == "nvidia" else model_for("judge")
-    return os.environ.get("EVAL_JUDGE_MODEL", default)
+    return os.environ.get("EVAL_JUDGE_MODEL", "minimaxai/minimax-m3.1-flash")
 
 
 def independent_judge(answer):
@@ -71,7 +75,8 @@ def independent_judge(answer):
     for attempt in range(2):
         try:
             res = generate_json(EVAL_JUDGE_PROMPT.format(items="\n\n".join(items)), agent="eval_judge",
-                                model=eval_judge_model(), max_tokens=16000)
+                                model=eval_judge_model(), provider_override=eval_judge_provider(),
+                                max_tokens=16000)
             from moneytrace.agents.guidance import verdict_from_claims
             verdicts = {int(v.get("step")): v for v in res.get("steps", []) if str(v.get("step", "")).isdigit()}
             per = []
@@ -189,7 +194,7 @@ def main(argv=None):
             "fully_grounded_pct": round(100 * grounded / len(rows), 2), "fully_grounded_count": grounded,
             "fully_grounded_definition": "independent eval judge (different model, claim-level rubric with supporting quotes) "
                                          "on the FINAL answer; every step must be supported",
-            "eval_judge_model": eval_judge_model(),
+            "eval_judge_model": f"{eval_judge_provider()}/{eval_judge_model()}",
             "pipeline_self_check_grounded_pct": round(100 * self_ok / len(rows), 2),
             "draft_fully_grounded_pct": round(100 * draft_ok / len(rows), 2),
             "answers_with_errors": len(rows) - len(ok),
