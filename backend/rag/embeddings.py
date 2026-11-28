@@ -32,6 +32,41 @@ def _norm(v: Sequence[float]) -> List[float]:
     return [x / n for x in v]
 
 
+class _QueryCache:
+    def __init__(self, path: str):
+        import sqlite3
+        import threading
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+        self._lock = threading.Lock()
+        self._db = sqlite3.connect(path, check_same_thread=False, timeout=30)
+        self._db.execute("CREATE TABLE IF NOT EXISTS q (k TEXT PRIMARY KEY, v TEXT)")
+
+    def get(self, key):
+        import json
+        with self._lock:
+            row = self._db.execute("SELECT v FROM q WHERE k = ?", (key,)).fetchone()
+        return json.loads(row[0]) if row else None
+
+    def put(self, key, vec):
+        import json
+        with self._lock:
+            self._db.execute("INSERT OR REPLACE INTO q (k, v) VALUES (?, ?)", (key, json.dumps(vec)))
+            self._db.commit()
+
+
+_qcache = None
+
+
+def _query_cache():
+    global _qcache
+    if os.environ.get("EMBED_QUERY_CACHE", "1") != "1" or os.environ.get("MONEYTRACE_TESTING") == "1":
+        return None
+    if _qcache is None:
+        _qcache = _QueryCache(os.environ.get("EMBED_QUERY_CACHE_PATH",
+                                             os.path.join(os.path.dirname(__file__), ".cache", "query_embeddings.db")))
+    return _qcache
+
+
 @dataclass
 class EmbeddingUsage:
     calls: int = 0
@@ -80,7 +115,18 @@ class BaseEmbedder:
         return out
 
     def embed_query(self, text: str) -> List[float]:
-        return _norm(self._with_retry([text], "query")[0])
+        """Query embeddings are cached on disk (keyed by provider/model/dim/text): repeated queries across eval runs
+        and agent calls cost no API requests, which matters under free-tier daily quotas."""
+        key = hashlib.sha256(f"{self.provider}|{self.model}|{self.dim}|{text}".encode("utf-8")).hexdigest()
+        cache = _query_cache()
+        if cache is not None:
+            hit = cache.get(key)
+            if hit is not None:
+                return hit
+        vec = _norm(self._with_retry([text], "query")[0])
+        if cache is not None:
+            cache.put(key, vec)
+        return vec
 
     def describe(self) -> dict:
         return {"provider": self.provider, "model": self.model, "dim": self.dim}

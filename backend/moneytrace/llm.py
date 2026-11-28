@@ -81,7 +81,12 @@ def adk_model(tier: str = "fast", thinking: bool = True) -> Any:
         if p == "nvidia" and "nemotron" in name and not thinking:
             extra["extra_body"] = {"chat_template_kwargs": {"enable_thinking": False}}
         return LiteLlm(model=f"openai/{name}", api_base=base, api_key=os.environ[key_env], **extra)
-    return name
+    # Gemini: retry per-minute rate limits (429) and overload (503) with exponential backoff
+    from google.adk.models.google_llm import Gemini
+    from google.genai import types
+    return Gemini(model=name, retry_options=types.HttpRetryOptions(
+        attempts=int(os.environ.get("LLM_NUM_RETRIES", "6")), initial_delay=4, max_delay=65, exp_base=2,
+        http_status_codes=[429, 500, 503]))
 
 
 _genai_client = None
@@ -98,6 +103,34 @@ def _gemini_client():
         else:
             _genai_client = genai.Client(api_key=s.gemini_api_key())
     return _genai_client
+
+
+def _retry_delay_s(err) -> Optional[float]:
+    """Seconds Google asks us to wait, or None when the quota is per-day (waiting hours is pointless)."""
+    import re as _re
+    details = getattr(err, "details", None) or {}
+    blob = str(details)
+    if "PerDay" in blob:
+        return None
+    m = _re.search(r"retryDelay'?\"?:\s*'?\"?(\d+(?:\.\d+)?)s", blob)
+    return float(m.group(1)) if m else 8.0
+
+
+def _gemini_with_retry(model, contents, cfg):
+    from google.genai import errors as genai_errors
+    attempts = int(os.environ.get("LLM_NUM_RETRIES", "6"))
+    for attempt in range(attempts):
+        try:
+            return _gemini_client().models.generate_content(model=model, contents=contents, config=cfg)
+        except genai_errors.APIError as e:
+            code = getattr(e, "code", None)
+            if code not in (429, 500, 503) or attempt == attempts - 1:
+                raise
+            delay = _retry_delay_s(e) if code == 429 else min(4 * 2 ** attempt, 60)
+            if delay is None:
+                raise  # daily quota exhausted
+            logger.warning(f"Gemini {model} {code}; retrying in {delay:.0f}s ({attempt + 1}/{attempts})")
+            time.sleep(min(delay + 1, 65))
 
 
 def generate_text(prompt: str, *, tier: str = "fast", agent: str = "llm", json_mode: bool = False,
@@ -147,7 +180,7 @@ def generate_text(prompt: str, *, tier: str = "fast", agent: str = "llm", json_m
         contents: Any = prompt
         if image_bytes:
             contents = [types.Part.from_bytes(data=image_bytes, mime_type=image_mime), prompt]
-        resp = _gemini_client().models.generate_content(model=model, contents=contents, config=cfg)
+        resp = _gemini_with_retry(model, contents, cfg)
         text = resp.text or ""
         um = resp.usage_metadata
         inp = int(getattr(um, "prompt_token_count", 0) or 0)

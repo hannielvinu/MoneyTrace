@@ -1,0 +1,40 @@
+{
+  "started_at": "2026-11-28T17:49:48.221532+00:00",
+  "embedding": {
+    "provider": "gemini",
+    "model": "gemini-embedding-001",
+    "dim": 768
+  },
+  "chunk_tokens": 600,
+  "overlap_tokens": 100,
+  "documents": [
+    {
+      "doc_id": "rbi-fcad3939",
+      "title": "Reserve Bank of India (Commercial Banks - Responsible Business Conduct) Directions, 2025 (Updated as on October 1, 2026)",
+      "chunks": 254,
+      "chars": 507955
+    }
+  ],
+  "failures": [],
+  "skipped_unchanged": 48,
+  "finished_at": "2026-11-28T17:54:50.461467+00:00",
+  "duration_s": 302.2,
+  "embedding_usage": {
+    "calls": 13,
+    "texts": 254,
+    "input_tokens": 160780
+  },
+  "corpus": {
+    "documents": 49,
+    "chunks": 1106,
+    "by_issuer": {
+      "Reserve Bank of India": 34,
+      "Department of Telecommunications (Sanchar Saathi)": 5,
+      "CERT-In": 4,
+      "SEBI": 3,
+      "CERT-In (Cyber Swachhta Kendra)": 1,
+      "Income Tax Department": 1,
+      "Press Information Bureau, Government of India": 1
+    }
+  }
+}
